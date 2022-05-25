@@ -9,8 +9,8 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-// import Signup from './pages/Signup';
-// import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 console.log("in react")
 // Construct our main GraphQL API endpoint
@@ -50,14 +50,14 @@ function App() {
                 path="/" 
                 element={<Home />} 
               />
-              {/* <Route 
+              <Route 
                 path="/login" 
                 element={<Login />} 
-              /> */}
-              {/* <Route 
+              />
+              <Route 
                 path="/signup" 
                 element={<Signup />} 
-              /> */}
+              />
               {/* <Route 
                 path="/profiles/:profileId" 
                 element={<Profile />} 

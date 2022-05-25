@@ -2,11 +2,14 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import UserList from '../components/UserList';
 import { QUERY_USERS } from '../utils/queries';
+import auth from "../utils/auth"
 
 const Home = () => {
-    console.log("in home")
   const { loading, data } = useQuery(QUERY_USERS);
   const users = data?.users || [];
+  console.log(auth.loggedIn())
+  console.log(auth.getToken())
+  console.log(auth.getProfile())
   return (
     <main>
       <div className="flex-row justify-center">
@@ -16,7 +19,7 @@ const Home = () => {
           ) : (
             <UserList
             users={users}
-            title="Here's the current roster of current users..."
+            title="Here's the current roster of users..."
           />
           )}
         </div>
