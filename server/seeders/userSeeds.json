@@ -1,0 +1,80 @@
+
+[
+    {
+      "name": "Brian Kernighan",
+      "email": "bkernighan@techfriends.dev",
+      "password": "password01",
+      "credentials":"basic",
+      "enterprise":"DINGO"
+
+    },
+    {
+      "name": "Max Kanat-Alexander",
+      "email": "mkanatalexander@techfriends.dev",
+      "password": "password02",
+      "credentials":"basic",
+      "enterprise":"AX Garden Supplies"
+
+    },
+    {
+      "name": "Amiko",
+      "email": "amiko@techfriends.dev",
+      "password": "password03",
+      "credentials":"basic",
+      "enterprise":"Sol Sys"
+
+    },
+    {
+      "name": "Kent Beck",
+      "email": "kbeck@techfriends.dev",
+      "password": "password04",
+      "credentials":"basic",
+      "enterprise":"KB Enterprises"
+
+    },
+    {
+      "name": "Edward V. Berard",
+      "email": "evberard@techfriends.dev",
+      "password": "password05",
+      "credentials":"basic",
+      "enterprise":"Edward CCEKN"
+
+    },
+    {
+      "name": "Alan Kay",
+      "email": "akay@techfriends.dev",
+      "password": "password06",
+      "credentials":"basic",
+      "enterprise":"Alan's Wrenches"
+
+    },
+    {
+      "name": "C.A.R. Hoare",
+      "email": "choare@techfriends.dev",
+      "password": "password07",
+      "credentials":"basic",
+      "enterprise":"Hoare's Horns"
+    },
+    {
+      "name": "David Thomas",
+      "email": "dthomas@techfriends.dev",
+      "password": "password08",
+      "credentials":"basic",
+      "enterprise":"Dave's BBQ Implements"
+    },
+    {
+      "name": "Donald Knuth",
+      "email": "dknuth@techfriends.dev",
+      "password": "password09",
+      "credentials":"basic",
+      "enterprise":"Donald's Ducks"
+    },
+    {
+      "name": "Lernantino",
+      "email": "lernantino@techfriends.dev",
+      "password": "password10",
+      "credentials":"basic",
+      "enterprise":"Lernatino's Lilies"
+    }
+  ]
+  
