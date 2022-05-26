@@ -5,7 +5,8 @@
       "email": "bkernighan@techfriends.dev",
       "password": "password01",
       "credentials":"basic",
-      "enterprise":"DINGO"
+      "enterprise":"DINGO",
+      "role":"manager"
 
     },
     {
@@ -13,7 +14,8 @@
       "email": "mkanatalexander@techfriends.dev",
       "password": "password02",
       "credentials":"basic",
-      "enterprise":"AX Garden Supplies"
+      "enterprise":"AX Garden Supplies",
+      "role":"manager"
 
     },
     {
@@ -21,7 +23,8 @@
       "email": "amiko@techfriends.dev",
       "password": "password03",
       "credentials":"basic",
-      "enterprise":"Sol Sys"
+      "enterprise":"Sol Sys",
+      "role":"manager"
 
     },
     {
@@ -29,7 +32,8 @@
       "email": "kbeck@techfriends.dev",
       "password": "password04",
       "credentials":"basic",
-      "enterprise":"KB Enterprises"
+      "enterprise":"KB Enterprises",
+      "role":"manager"
 
     },
     {
@@ -37,7 +41,8 @@
       "email": "evberard@techfriends.dev",
       "password": "password05",
       "credentials":"basic",
-      "enterprise":"Edward CCEKN"
+      "enterprise":"Edward CCEKN",
+      "role":"manager"
 
     },
     {
@@ -45,7 +50,8 @@
       "email": "akay@techfriends.dev",
       "password": "password06",
       "credentials":"basic",
-      "enterprise":"Alan's Wrenches"
+      "enterprise":"Alan's Wrenches",
+      "role":"manager"
 
     },
     {
@@ -53,28 +59,32 @@
       "email": "choare@techfriends.dev",
       "password": "password07",
       "credentials":"basic",
-      "enterprise":"Hoare's Horns"
+      "enterprise":"Hoare's Horns",
+      "role":"manager"
     },
     {
       "name": "David Thomas",
       "email": "dthomas@techfriends.dev",
       "password": "password08",
       "credentials":"basic",
-      "enterprise":"Dave's BBQ Implements"
+      "enterprise":"Dave's BBQ Implements",
+      "role":"manager"
     },
     {
       "name": "Donald Knuth",
       "email": "dknuth@techfriends.dev",
       "password": "password09",
       "credentials":"basic",
-      "enterprise":"Donald's Ducks"
+      "enterprise":"Donald's Ducks",
+      "role":"manager"
     },
     {
       "name": "Lernantino",
       "email": "lernantino@techfriends.dev",
       "password": "password10",
       "credentials":"basic",
-      "enterprise":"Lernatino's Lilies"
+      "enterprise":"Lernatino's Lilies",
+      "role":"manager"
     }
   ]
   
