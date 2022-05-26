@@ -14,6 +14,10 @@ const UserSchema = new Schema({
     unique: true,
     match: [/.+@.+\..+/, 'Must match an email address!'],
   },
+  role:{
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
@@ -46,4 +50,4 @@ UserSchema.methods.isCorrectPassword = async function (password) {
 
 const User = model('User', UserSchema);
 
-module.exports = User;
+module.exports = {UserSchema,User};
