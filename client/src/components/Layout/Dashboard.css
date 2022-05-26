@@ -1,0 +1,35 @@
+.task-container {
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-icon {
+    height: 100px;
+    width: 100px;
+}
+
+.task {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 3%;
+}
+.task-header {
+    background-color: var(--darkest);
+    height: 25%;
+    color: var(--lightest);
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+}
+.task-image {
+    height: 75%;
+    background-color: var(--lightest);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 15px 15px;
+}
