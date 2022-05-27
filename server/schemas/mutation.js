@@ -9,10 +9,10 @@ const mutation = {
             {new:true}
         );
     },
-    updateItemSale: async ( parent, {item, saleDate, buyer, }) => {
+    updateItemSale: async ( parent, {item, saleDate, buyer,saleNumber }) => {
         return await Item.findOneAndUpdate(
             {_id: item},
-            {saleDate, buyer},
+            {saleDate, buyer,saleNumber},
             {new:true}
         );
     },

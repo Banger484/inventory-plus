@@ -43,6 +43,10 @@ const ItemSchema = new Schema({
         type:Number,
         required:false
     },
+    saleNumber:{
+        type:Number,
+        required:false,
+    },
     saleDate:{
         type:Date,
         required:false

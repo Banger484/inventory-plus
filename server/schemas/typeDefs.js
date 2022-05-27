@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server-express');
+const { GraphQLFloat } = require('graphql');
 
 
 const typeDefs = gql`
@@ -33,6 +34,12 @@ type User {
   type Item {
     _id: ID!
     product: ID!
+  }
+
+  type Sale {
+    product:String!
+    quantity:Int!
+    salesPrice:Float!
   }
 
   type Auth {
@@ -70,11 +77,13 @@ type User {
     updateItemReceived(item:ID!,receivedDate:String!,binLocation:String!): Item
     updateItemSale(item:ID!, saleDate:String!, buyer:String!): Item
     updateItemFulf(item:ID!, fulfillmentDate:String!):Item
+    receiveOrder(enterpriseId:ID!,orderNumber:Int!,receivedDate:String!,binLocation:String!):[Item]
+    makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
   }
 
 
 `
-
+// makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,order:Sale):[Item]
 module.exports = {typeDefs}
 
 

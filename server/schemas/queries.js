@@ -52,4 +52,9 @@ const getFulfilledItemsByProduct = async (parent,{enterpriseId,productId})=>{
     return items
 }
 
-module.exports = {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct}
+const getOneItemInStock = async ({enterpriseId,productId}) =>{
+    const item = await Item.findOne({product:productId,enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null})
+    return item
+}
+
+module.exports = {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}
