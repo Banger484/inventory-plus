@@ -54,6 +54,10 @@ type User {
     getCurrentStocks(enterpriseId:ID!):[Item]
     getOpenSales(enterpriseId:ID!):[Item]
     getFulfilledItems(enterpriseId:ID!):[Item]
+    getOrderedItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getCurrentStocksByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
   }
 
   type Mutation {
