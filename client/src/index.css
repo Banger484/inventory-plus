@@ -22,49 +22,64 @@ code {
     monospace;
 }
 
+.loginCard {
+  background-color:#e2e2e2;
+  margin-top: 160px;
+  margin-bottom: 160px;
+  margin-left: 700px;
+  margin-right: 700px;
+  border-radius: 20px;
+}
+
 #loginHeader {
   font-size: 40px;
-  height: 5em;
+  height: 13em;
   display: flex;
-  align-items: center;
   justify-content: center;
   margin: 0;
+  color: rgb(0, 0, 0);
 }
 
 #emailInput, #passwordInput {
-  height:30px;
+  height:35px;
   width: 275px;
   font-size:14pt;
   margin: 0;
+  margin-right: -50%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
+  text-align: center;
 }
 
 #emailInput {
-  margin-right: -50%;
-
+  top: 50%
 }
 
 #passwordInput {
-  top: 40%;
-  margin-right: -50%;
+  top: 55%;
   transform: translate(-50%, -50%);
 }
 
 #submitBtn {
   margin: 0;
   position: absolute;
-  top: 53%;
+  top: 60%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  height: 30px;
-  width: 90px
+  height: 40px;
+  width: 100px
 }
 
 button:hover {
-  background-color: rgb(179, 179, 179);
+  background-color: rgb(197, 201, 248);
+  transition: 0.3s;
+}
+
+#errorMsg {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
 }
