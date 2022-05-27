@@ -1,6 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product } = require('../models');
-const Enterprise = require('../models/Enterprise');
+const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -20,6 +19,21 @@ const resolvers = {
     singleCategoryProducts: async (parent,{category})=>{
       const result = await Product.find({category:category})
       return result
+    },
+    getEnterprises: async ()=>{
+      const results = await Enterprise.find()
+      console.log(results[0]._id)
+      return results
+    },
+    getEnterpriseByUser: async (parent,{email})=>{
+      const user = await User.findOne({email});
+      console.log(user)
+      const enterprise = await Enterprise.findById(user.enterprise)
+      console.log(enterprise)
+      return enterprise
+    },
+    getItems: async()=>{
+      return Item.find()
     }
   },
 
@@ -59,7 +73,20 @@ const resolvers = {
       const registrant = await User.findById(userId)
       const enterprise = await Enterprise.create({name,location,registrant,users:[registrant]})
       console.log(enterprise)
+      const user = await User.findById(userId)
+      user.set({enterprise:enterprise._id,credentials:"admin"});
+      user.save()
+      console.log(user)
       return enterprise
+    },
+    addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
+      const newItems = [];
+      for (let i=0;i<quantity;i++){
+        const item = await Item.create({product:productId,enterprise:enterpriseId,orderNumber,cost,
+          purchaseDate,supplier})
+          newItems.push(item)
+      }  
+      return newItems
     }
   },
 };

@@ -6,7 +6,7 @@ const EnterpriseSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: false
   },
   location: {
     type: String,
@@ -18,4 +18,4 @@ const EnterpriseSchema = new Schema({
 
 const Enterprise = model('Enterprise', EnterpriseSchema);
 
-module.exports = Enterprise;
+module.exports = {Enterprise,EnterpriseSchema};
