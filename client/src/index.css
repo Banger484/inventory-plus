@@ -21,3 +21,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#loginHeader {
+  font-size: 40px;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+#emailInput, #passwordInput {
+  height:30px;
+  width: 275px;
+  font-size:14pt;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+#emailInput {
+  margin-right: -50%;
+
+}
+
+#passwordInput {
+  top: 40%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#submitBtn {
+  margin: 0;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  height: 30px;
+  width: 90px
+}
+
+button:hover {
+  background-color: rgb(179, 179, 179);
+}
