@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems} = require("./queries")
+const {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct} = require("./queries")
 const mutations = require('../schemas/mutation');
 
 const resolvers = {
@@ -41,7 +41,7 @@ const resolvers = {
     getOrderedItems,
     getCurrentStocks,
     getOpenSales,
-    getFulfilledItems
+    getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct
   },
 
   Mutation: {
