@@ -34,7 +34,7 @@ const resolvers = {
     },
     getItems: async()=>{
       return Item.find()
-    }
+    },
   },
 
   Mutation: {
