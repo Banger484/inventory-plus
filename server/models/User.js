@@ -16,7 +16,7 @@ const UserSchema = new Schema({
   },
   role:{
     type: String,
-    required: true,
+    required: false,
   },
   password: {
     type: String,
@@ -29,7 +29,7 @@ const UserSchema = new Schema({
   },
   enterprise:{
     type:String,
-    required: true,
+    required: false,
   }
 });
 
