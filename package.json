@@ -23,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/Banger484/inventory-plus/issues"
   },
-  "homepage": "https://github.com/Banger484/inventory-plus#readme"
+  "homepage": "https://github.com/Banger484/inventory-plus#readme",
+  "dependencies": {}
 }
