@@ -49,6 +49,11 @@ type User {
     getEnterprises: [Enterprise]
     getEnterpriseByUser(email:String!): Enterprise
     getItems: [Item]
+    getItemsByOrderNumber(orderNumber:Int!):[Item]
+    getOrderedItems(enterpriseId:ID!):[Item]
+    getCurrentStocks(enterpriseId:ID!):[Item]
+    getOpenSales(enterpriseId:ID!):[Item]
+    getFulfilledItems(enterpriseId:ID!):[Item]
   }
 
   type Mutation {
