@@ -6,16 +6,15 @@
   --darkest: #171717;
 }
 * {
-  font-family: 'Comfortaa', cursive; 
+  font-family: 'Comfortaa', cursive;
 }
 body {
   margin: 0;
+  background-color: var(--middle);
   font-family: 'Comfortaa', cursive;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-color: var(--middle);
 }
 
 code {

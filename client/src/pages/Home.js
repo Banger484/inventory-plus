@@ -1,13 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import UserList from '../components/UserList';
+// import UserList from '../components/UserList';
 import { QUERY_USERS } from '../utils/queries';
 import auth from "../utils/auth"
 import Dashboard from '../components/Layout/Dashboard';
+import Order from '../components/Orders/Order';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_USERS);
-  const users = data?.users || [];
+  // const users = data?.users || [];
   console.log(auth.loggedIn())
   console.log(auth.getToken())
   console.log(auth.getProfile())
@@ -22,6 +23,7 @@ const Home = () => {
           //   users={users}
           //   title="Here's the current roster of users..."
           // />
+            // <Order />
             <Dashboard />
           )}
         </div>
