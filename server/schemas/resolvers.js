@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
 const {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems} = require("./queries")
+const mutations = require('../schemas/mutation');
 
 const resolvers = {
   Query: {
@@ -93,7 +94,8 @@ const resolvers = {
           newItems.push(item)
       }  
       return newItems
-    }
+    },
+    ...mutations
   },
 };
 

@@ -1,29 +1,28 @@
 const { Enterprise, Item, Product, User } = require('../models');
 
+
 const mutation = {
-    Mutation: {
-    updateItemReceived: async (parent, {id, receviedDate, binLocation}) => {
+    updateItemReceived: async (parent, {item, receivedDate, binLocation}) => {
         return await Item.findOneAndUpdate(
-            {_id: id},
-            {receviedDate, binLocation},
+            {_id: item},
+            {receivedDate, binLocation},
             {new:true}
         );
     },
-    updateItemSale: async ( parent, {id, saleDate, buyer, }) => {
+    updateItemSale: async ( parent, {item, saleDate, buyer, }) => {
         return await Item.findOneAndUpdate(
-            {_id: id},
+            {_id: item},
             {saleDate, buyer},
             {new:true}
         );
     },
-    updateItemFulf: async (parent, {id, fulfillmentDate}) => {
+    updateItemFulf: async (parent, {item, fulfillmentDate}) => {
         return await Item.findOneAndUpdate(
-            {_id: id},
+            {_id: item},
             {fulfillmentDate},
             {new:true}
         );
     },
-}
 }
 
 module.exports = mutation;

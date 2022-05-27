@@ -63,6 +63,9 @@ type User {
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
     addEnterprise(name:String!,location:String!,userId:ID!): Enterprise
     addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Int!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
+    updateItemReceived(item:ID!,receivedDate:String!,binLocation:String!): Item
+    updateItemSale(item:ID!, saleDate:String!, buyer:String!): Item
+    updateItemFulf(item:ID!, fulfillmentDate:String!):Item
   }
 
 
