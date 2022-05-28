@@ -34,6 +34,7 @@ type User {
   type Item {
     _id: ID!
     product: ID!
+    saleNumber:Int
   }
 
   type Sale {
@@ -79,6 +80,7 @@ type User {
     updateItemFulf(item:ID!, fulfillmentDate:String!):Item
     receiveOrder(enterpriseId:ID!,orderNumber:Int!,receivedDate:String!,binLocation:String!):[Item]
     makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
+    fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
   }
 
 
