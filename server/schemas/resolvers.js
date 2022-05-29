@@ -89,12 +89,11 @@ const resolvers = {
       return enterprise
     },
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
-      const newItems = [];
       for (let i=0;i<quantity;i++){
         const item = await Item.create({product:productId,enterprise:enterpriseId,orderNumber,cost,
           purchaseDate,supplier})
-          newItems.push(item)
-      }  
+      }
+      const newItems = await getItemsByOrderNumber(null,{orderNumber,enterpriseId})
       return newItems
     },
     ...mutations,

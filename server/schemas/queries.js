@@ -1,11 +1,13 @@
-const {Item} = require("../models")
+const {Item,Product} = require("../models")
 const { Schema, model } = require('mongoose');
 
 
-const getItemsByOrderNumber = async (parent,{orderNumber})=>{
-    const items = await Item.find({orderNumber})
-    console.log(items);
-    return items
+const getItemsByOrderNumber = async (parent,{orderNumber,enterpriseId})=>{
+    try{
+        const items = await Item.find({orderNumber,enterprise:enterpriseId}).populate("product").populate("enterprise")
+        console.log(items);
+        return items
+    }catch(err){console.log(err)}
 }
 
 const getOrderedItems = async (parent,{enterpriseId}) =>{

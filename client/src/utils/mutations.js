@@ -127,7 +127,7 @@ mutation addEnterprise($name: String!, $userId: ID!, $location: String!) {
 }
 `
 
-export const BUY = gql`
+export const BUY_ITEMS = gql`
 mutation buy($quantity: Int!, $productId: ID!, $orderNumber: Int!, $cost: Int!, $purchaseDate: String!, $supplier: String!, $enterpriseId: ID!) {
   addItems(quantity: $quantity, productId: $productId, orderNumber: $orderNumber, cost: $cost, purchaseDate: $purchaseDate, supplier: $supplier, enterpriseId: $enterpriseId) {
     _id
@@ -135,3 +135,35 @@ mutation buy($quantity: Int!, $productId: ID!, $orderNumber: Int!, $cost: Int!, 
   }
 }
 `
+export const RECEIVE_ITEMS = gql`
+mutation receiveItems($enterpriseId: ID!, $orderNumber: Int!, $receivedDate: String!, $binLocation: String!) {
+  receiveOrder(enterpriseId: $enterpriseId, orderNumber: $orderNumber, receivedDate: $receivedDate, binLocation: $binLocation) {
+    _id
+    product
+    orderNumber
+    saleNumber
+  }
+}
+`
+export const SELL_ITEMS = gql`
+mutation sellItems($enterpriseId: ID!, $saleId: Int!, $buyer: String!, $saleDate: String!, $quantity: Int!, $salesPrice: Float!, $productId: ID!) {
+  makeSale(enterpriseId: $enterpriseId, saleId: $saleId, buyer: $buyer, saleDate: $saleDate, quantity: $quantity, salesPrice: $salesPrice, productId: $productId) {
+    _id
+    product
+    orderNumber
+    saleNumber
+  }
+}`
+
+export const FULFILL_ITEMS = gql`
+query Query($enterpriseId: ID!) {
+  getFulfilledItems(enterpriseId: $enterpriseId) {
+    _id
+    product
+    orderNumber
+    saleNumber
+  }
+}
+
+`
+
