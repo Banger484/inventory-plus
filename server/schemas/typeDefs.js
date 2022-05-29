@@ -33,8 +33,19 @@ type User {
 
   type Item {
     _id: ID!
-    product: ID!
+    product: Product!
+    orderNumber:Int
     saleNumber:Int
+    cost:Float
+    purchaseDate:String
+    supplier:String
+    receivedDate:String
+    binLocation:String
+    buyer:String
+    salesPrice:Float
+    saleDate:String
+    fulfillmentDate:String
+    enterprise:Enterprise
   }
 
   type Sale {
@@ -57,7 +68,7 @@ type User {
     getEnterprises: [Enterprise]
     getEnterpriseByUser(email:String!): Enterprise
     getItems: [Item]
-    getItemsByOrderNumber(orderNumber:Int!):[Item]
+    getItemsByOrderNumber(orderNumber:Int!,enterpriseId:String!):[Item]
     getOrderedItems(enterpriseId:ID!):[Item]
     getCurrentStocks(enterpriseId:ID!):[Item]
     getOpenSales(enterpriseId:ID!):[Item]
