@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 // import UserList from '../components/UserList';
-import { QUERY_USERS } from '../utils/queries';
+import { QUERY_USERS, QUERY_ALL_PRODUCTS } from '../utils/queries';
 import auth from "../utils/auth"
 import Dashboard from '../components/Layout/Dashboard';
 import Order from '../components/Orders/Order';
@@ -9,7 +9,10 @@ import AddProduct from '../components/Products/AddProduct';
 
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_USERS);
+  // const { loading, data } = useQuery(QUERY_USERS);
+  const { loading, data } = useQuery(QUERY_ALL_PRODUCTS)
+  const allProducts = data?.allProducts || [];
+  console.log(allProducts);
   // const users = data?.users || [];
   // console.log(auth.loggedIn())
   // console.log(auth.getToken())
@@ -27,7 +30,7 @@ const Home = () => {
           // />
             // <Order />
             // <Dashboard />
-            <AddProduct />
+            <AddProduct allProducts={allProducts}/>
           )}
         </div>
       </div>

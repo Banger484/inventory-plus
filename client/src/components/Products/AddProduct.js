@@ -15,14 +15,14 @@ export default function AddProduct () {
         notes: ''
     })
 
-    const [createProduct, { error }] = useMutation(ADD_PRODUCT, {
-        update(cache, { data: {createProduct } }) {
+    const [addProduct, { error }] = useMutation(ADD_PRODUCT, {
+        update(cache, { data: { addProduct } }) {
             try {
-                const { products } = cache.readQuery({ query: QUERY_ALL_PRODUCTS })
+                const { allProducts } = cache.readQuery({ query: QUERY_ALL_PRODUCTS })
 
                 cache.writeQuery({
                     query: QUERY_ALL_PRODUCTS,
-                    data: { products: [...products, createProduct] }
+                    data: { products: [...allProducts, addProduct] }
                 })
             } catch (err) {
                 console.error(err);
@@ -39,7 +39,7 @@ export default function AddProduct () {
         event.preventDefault();
 
         try {
-            const { data } = await createProduct({
+            const { data } = await addProduct({
                 variables: { ...formData }
             })
             console.log( data );
@@ -73,6 +73,11 @@ export default function AddProduct () {
                 <label htmlFor='notes'>Notes:<input name='notes' placeholder='something' type='text' onChange={handleInputChange}/></label>
                 </div>
                 <input id='add-product-submit' type='submit' value='Submit' />
+                {error && (
+          <div className="col-12 my-3 bg-danger text-white p-3">
+            Something went wrong...
+          </div>
+        )}
             </form>
         </div>
     )
