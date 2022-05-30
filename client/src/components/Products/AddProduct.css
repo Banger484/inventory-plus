@@ -15,7 +15,6 @@
 }
 
 form {
-    height: 60vh;
     width: 25vw;
     display: flex;
     flex-direction: column;

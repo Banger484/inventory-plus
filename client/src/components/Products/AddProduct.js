@@ -1,19 +1,76 @@
 import './AddProduct.css'
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../../utils/mutations'
+import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 
 export default function AddProduct () {
+    
+    const [ formData, setFormData ] = useState({
+        sku: '',
+        productName: '',
+        description: '',
+        msrp: 0,
+        category: '',
+        notes: ''
+    })
+
+    const [createProduct, { error }] = useMutation(ADD_PRODUCT, {
+        update(cache, { data: {createProduct } }) {
+            try {
+                const { products } = cache.readQuery({ query: QUERY_ALL_PRODUCTS })
+
+                cache.writeQuery({
+                    query: QUERY_ALL_PRODUCTS,
+                    data: { products: [...products, createProduct] }
+                })
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    })
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const { data } = await createProduct({
+                variables: { ...formData }
+            })
+            console.log( data );
+
+            setFormData({
+                sku: '',
+                productName: '',
+                description: '',
+                msrp: 0,
+                category: '',
+                notes: ''
+            })
+            console.log(formData);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    console.log(formData);
     return (
         <div className='form-container'>
-            <form>
+            <form  onSubmit={handleFormSubmit}>
                 <div className='add-product-header'>
                     <h1>Add Product</h1>
                 </div>
                 <div className='add-product-form'>
-                <label for='SKU'>SKU:<input name='SKU' placeholder='something' type='text' /></label>
-                <label for='Product Name'>Product Name:<input name='Product Name' placeholder='something' type='text' /></label>
-                <label for='Description'>Description:<input name='Description' placeholder='something' type='text' /></label>
-                <label for='MSRP'>MSRP:<input name='MSRP' placeholder='something' type='text' /></label>
-                <label for='Category'>Category:<input name='Category' placeholder='something' type='text' /></label>
-                <label for='Notes'>Notes:<input name='Notes' placeholder='something' type='text' /></label>
+                <label htmlFor='sku'>SKU:<input name='sku' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='productName'>Product Name:<input name='productName' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='description'>Description:<input name='description' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='msrp'>MSRP:<input name='msrp' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='category'>Category:<input name='category' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='notes'>Notes:<input name='notes' placeholder='something' type='text' onChange={handleInputChange}/></label>
                 </div>
                 <input id='add-product-submit' type='submit' value='Submit' />
             </form>
