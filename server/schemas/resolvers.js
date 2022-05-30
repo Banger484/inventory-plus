@@ -1,6 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
+const {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct} = require("./queries")
+const mutations = require('../schemas/mutation');
+const bulkMutations = require("./bulkmutations")
+console.log(bulkMutations)
 
 const resolvers = {
   Query: {
@@ -34,7 +38,12 @@ const resolvers = {
     },
     getItems: async()=>{
       return Item.find()
-    }
+    },
+    getItemsByOrderNumber,
+    getOrderedItems,
+    getCurrentStocks,
+    getOpenSales,
+    getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct
   },
 
   Mutation: {
@@ -80,14 +89,15 @@ const resolvers = {
       return enterprise
     },
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
-      const newItems = [];
       for (let i=0;i<quantity;i++){
         const item = await Item.create({product:productId,enterprise:enterpriseId,orderNumber,cost,
           purchaseDate,supplier})
-          newItems.push(item)
-      }  
+      }
+      const newItems = await getItemsByOrderNumber(null,{orderNumber,enterpriseId})
       return newItems
-    }
+    },
+    ...mutations,
+    ...bulkMutations
   },
 };
 

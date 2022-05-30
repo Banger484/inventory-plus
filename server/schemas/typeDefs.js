@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server-express');
+const { GraphQLFloat } = require('graphql');
 
 
 const typeDefs = gql`
@@ -32,7 +33,25 @@ type User {
 
   type Item {
     _id: ID!
-    product: ID!
+    product: Product!
+    orderNumber:Int
+    saleNumber:Int
+    cost:Float
+    purchaseDate:String
+    supplier:String
+    receivedDate:String
+    binLocation:String
+    buyer:String
+    salesPrice:Float
+    saleDate:String
+    fulfillmentDate:String
+    enterprise:Enterprise
+  }
+
+  type Sale {
+    product:String!
+    quantity:Int!
+    salesPrice:Float!
   }
 
   type Auth {
@@ -49,6 +68,15 @@ type User {
     getEnterprises: [Enterprise]
     getEnterpriseByUser(email:String!): Enterprise
     getItems: [Item]
+    getItemsByOrderNumber(orderNumber:Int!,enterpriseId:String!):[Item]
+    getOrderedItems(enterpriseId:ID!):[Item]
+    getCurrentStocks(enterpriseId:ID!):[Item]
+    getOpenSales(enterpriseId:ID!):[Item]
+    getFulfilledItems(enterpriseId:ID!):[Item]
+    getOrderedItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getCurrentStocksByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
   }
 
   type Mutation {
@@ -58,11 +86,17 @@ type User {
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
     addEnterprise(name:String!,location:String!,userId:ID!): Enterprise
     addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Int!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
+    updateItemReceived(item:ID!,receivedDate:String!,binLocation:String!): Item
+    updateItemSale(item:ID!, saleDate:String!, buyer:String!): Item
+    updateItemFulf(item:ID!, fulfillmentDate:String!):Item
+    receiveOrder(enterpriseId:ID!,orderNumber:Int!,receivedDate:String!,binLocation:String!):[Item]
+    makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
+    fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
   }
 
 
 `
-
+// makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,order:Sale):[Item]
 module.exports = {typeDefs}
 
 
