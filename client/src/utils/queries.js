@@ -128,5 +128,3 @@ query Query($orderNumber: Int!, $enterpriseId: String!) {
 }
 `
 
-const 
-
