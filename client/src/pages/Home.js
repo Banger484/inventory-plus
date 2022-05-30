@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-// import UserList from '../components/UserList';
+import UserList from '../components/UserList';
 import { QUERY_USERS, QUERY_ALL_PRODUCTS } from '../utils/queries';
 import auth from "../utils/auth"
 import Dashboard from '../components/Layout/Dashboard';
@@ -9,14 +9,13 @@ import AddProduct from '../components/Products/AddProduct';
 
 
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_USERS);
-  const { loading, data } = useQuery(QUERY_ALL_PRODUCTS)
-  const allProducts = data?.allProducts || [];
-  console.log(allProducts);
-  // const users = data?.users || [];
-  // console.log(auth.loggedIn())
-  // console.log(auth.getToken())
-  // console.log(auth.getProfile())
+  const { loading, data } = useQuery(QUERY_USERS);
+
+  const users = data?.users || [];
+
+  console.log(auth.loggedIn())
+  console.log(auth.getToken())
+  console.log(auth.getProfile())
   return (
     <main>
       <div className="flex-row justify-center">
@@ -30,7 +29,7 @@ const Home = () => {
           // />
             // <Order />
             // <Dashboard />
-            <AddProduct allProducts={allProducts}/>
+            <AddProduct />
           )}
         </div>
       </div>
