@@ -10,7 +10,7 @@ export default function AddProduct () {
         sku: '',
         name: '',
         description: '',
-        msrp: 0,
+        msrp: 3,
         category: '',
         notes: ''
     })
@@ -24,10 +24,15 @@ export default function AddProduct () {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
+
+        const inputData = { ...formData}
+
+        inputData.msrp = parseInt(inputData.msrp)
+
+
         try {
             const { data } = await addProduct({
-                variables: { ...formData }
+                variables: { ...inputData }
             })
             console.log( data );
         } catch (err) {
