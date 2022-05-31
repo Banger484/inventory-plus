@@ -55,6 +55,8 @@ const getFulfilledItemsByProduct = async (parent,{enterpriseId,productId})=>{
 }
 
 const getOneItemInStock = async ({enterpriseId,productId}) =>{
+    console.log("here are the arguments")
+    console.log({enterpriseId,productId})
     const item = await Item.findOne({product:productId,enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null})
     return item
 }
