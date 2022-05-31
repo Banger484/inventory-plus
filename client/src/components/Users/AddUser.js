@@ -1,12 +1,13 @@
 import emailjs from '@emailjs/browser';
+import Auth from '../../utils/auth';
 
 export default function AddUser () {
-    const enterpriseId ="adfadfads5656153ds"
-    const link = `https://inventoryplus.herokuapp.com/invite/${enterpriseId}`
+    const enterprise = Auth.getProfile().data.enterprise
+    const link = `https://inventoryplus.herokuapp.com/invite/${enterprise}`
     function sendEmail(e) {
         e.preventDefault();
         emailjs.sendForm('gmail', 'template_op0417e', e.target, 'LXAuyeYFRIN_Vzkeh')
-        console.log(e.target)
+        console.log(enterprise)
         .then((result) => {
             console.log(result.text);
         }, (error) => {
