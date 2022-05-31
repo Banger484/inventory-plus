@@ -11,7 +11,7 @@ export default function Header () {
             <p>Welcome, {userName}.</p>
             </div>
             <div className='header-logo'>
-            <img src='/images/iplus.png' alt="Inventory+ Logo" />
+            <img src='/images/icons/iplus.png' alt="Inventory+ Logo" />
             </div>
 
         </header>

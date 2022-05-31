@@ -1,56 +1,46 @@
-import './Dashboard.css'
+import '../Layout/Dashboard.css'
 import { Link } from 'react-router-dom'
 
-export default function Dashboard () {
+export default function ReportingDashboard () {
     return (
         <section className='task-container'>
-            <Link to="/products">
+            <Link to="/reporting/current-supply">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Products</h2>
+                    <h2>Current Supply</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/table2.png" alt='icon'/>
                 </div>
             </div>
             </Link>
-            <Link to="/orders">
+            <Link to="/reporting/second-report">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Orders</h2>
+                    <h2>Second Report</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/gear.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/reporting1.png" alt='icon'/>
                 </div>
             </div>
             </Link>
-            <Link to="/reporting">
+            <Link to="/reporting/third-report">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Reporting</h2>
+                    <h2>Third Report</h2>
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/reporting2.png" alt='icon'/>
                 </div>
             </div>
             </Link>
-            <Link to="/login">
+            <Link to="/">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Login</h2>
+                    <h2>Home</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
-            <Link to="/signup">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Signup</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/home.png" alt='icon'/>
                 </div>
             </div>
             </Link>
