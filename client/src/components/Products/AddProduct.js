@@ -1,8 +1,7 @@
 import './AddProduct.css'
 import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../../utils/mutations'
-import { QUERY_ALL_PRODUCTS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
