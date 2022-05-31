@@ -23,6 +23,8 @@ import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
 //Users
 import UserList from '../components/UserList';
+import Signup from './Signup';
+import Login from './Login';
 
 
 
@@ -103,6 +105,14 @@ const Home = () => {
               path='/reporting'
               element={<ReportingDashboard />}
                />
+              <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
               <Route
               path='/'
               element={<Dashboard />} 
