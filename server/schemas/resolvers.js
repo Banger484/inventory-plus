@@ -47,28 +47,6 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { name, email, password, enterprise,role }) => {
-      const user = await User.create({ name, email, password, enterprise,role });
-      const token = signToken(user);
-
-      return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    },
     addProduct: async (parent,{sku,name,description,msrp,category,notes}) =>{
       const product = await Product.create({sku,name,description,msrp,category,notes});
       return product

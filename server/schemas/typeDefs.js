@@ -7,8 +7,6 @@ type Enterprise {
   _id: ID!
   name: String!
   location: String!
-  registrant: User!
-  users: [User]
 }
 
 type User {
@@ -17,7 +15,7 @@ type User {
     email: String!
     password: String!
     credentials: String
-    enterprise: ID
+    enterprise: Enterprise
     role: String
   }
 
@@ -80,7 +78,6 @@ type User {
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!,enterprise: String,role: String,credentials: String): Auth
     login(email: String!, password: String!): Auth
     addProduct(sku: String!, name: String!, description: String!, msrp: Int!, category: String! notes: String!): Product
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
@@ -92,6 +89,7 @@ type User {
     receiveOrder(enterpriseId:ID!,orderNumber:Int!,receivedDate:String!,binLocation:String!):[Item]
     makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
     fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
+    register(name:String!,email:String!,password:String!,enterpriseName:String,location:String):User
   }
 
 
