@@ -57,6 +57,20 @@ const mutation = {
         user.enterprise = finder
         return { token, user };
       },
+      addToOrderGuide: async (parent,{enterpriseId,productId})=>{
+        const ent = await Enterprise.findById(enterpriseId);
+        ent.orderGuide.push(productId)
+        await ent.save()
+        const result = await Enterprise.findById(enterpriseId).populate("orderGuide")
+        return result
+      },
+      removeFromOrderGuide: async (parent,{enterpriseId,productId})=>{
+        const ent = await Enterprise.findById(enterpriseId);
+        ent.orderGuide.pull(productId)
+        await ent.save()
+        const result = await Enterprise.findById(enterpriseId).populate("orderGuide")
+        return result
+      }
 
 }
 

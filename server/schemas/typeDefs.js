@@ -91,6 +91,8 @@ type User {
     makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
     fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
     register(name:String!,email:String!,password:String!,enterpriseName:String,location:String):User
+    addToOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
+    removeFromOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
   }
 
 
