@@ -21,18 +21,22 @@ mutation register($name: String!, $email: String!, $password: String!, $enterpri
 
 export const LOGIN_USER = gql`
 mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
+  login(email: $email, password: $password) {
+    token
+    user {
+      _id
+      name
+      email
+      password
+      credentials
+      enterprise{
         _id
         name
-        email
-        password
-        credentials
-        enterprise
+        location
       }
     }
   }
+}
 `;
 
 export const ADD_PRODUCT = gql`

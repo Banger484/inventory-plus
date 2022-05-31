@@ -51,7 +51,7 @@ const mutation = {
         if (!correctPw) {
           throw new AuthenticationError('Incorrect password!');
         }
-  
+        console.log(user)
         const token = signToken(user);
         const finder = await Enterprise.findOne({_id:user.enterprise})
         user.enterprise = finder
