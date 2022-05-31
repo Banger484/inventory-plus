@@ -40,15 +40,15 @@ mutation Login($email: String!, $password: String!) {
 `;
 
 export const ADD_PRODUCT = gql`
-mutation addProduct($sku: String!, $name: String!, $description: String!, $msrp: Int!, $category: String!, $notes: String!) {
-  addProduct(sku: $sku, name: $name, description: $description, msrp: $msrp, category: $category, notes: $notes) {
+mutation Mutation($enterprise: ID!, $sku: String!, $name: String!, $msrp: Int!, $category: String!, $notes: String!, $description: String!) {
+  addProduct(enterprise: $enterprise, sku: $sku, name: $name, msrp: $msrp, category: $category, notes: $notes, description: $description) {
     _id
     sku
     name
-    description
     msrp
     category
     notes
+    description
   }
 }
 `
