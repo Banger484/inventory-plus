@@ -4,7 +4,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
 }
 
 .button-icon {
@@ -13,7 +12,6 @@
 }
 
 .task {
-    border: 1px solid blue;
     height: 200px;
     width: 300px;
     display: flex;
