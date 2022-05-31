@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 
 //Component Imports
 import Dashboard from '../components/Layout/Dashboard';
+import Header from '../components/Layout/Header';
 //Products
 import ProductDashboard from '../components/Products/ProductDashboard';
 import AddProduct from '../components/Products/AddProduct';
@@ -32,10 +33,15 @@ const Home = () => {
 
   const users = data?.users || [];
 
+  const userInfo = auth.getProfile()
+  console.log(userInfo);
+
   // console.log(auth.loggedIn())
   // console.log(auth.getToken())
   // console.log(auth.getProfile())
   return (
+    <>
+    <Header enterprise={userInfo.enterpriseName}/>
     <main>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
@@ -104,6 +110,8 @@ const Home = () => {
         </div>
       </div>
     </main>
+    
+    </>
   );
 };
 
