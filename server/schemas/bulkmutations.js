@@ -13,6 +13,7 @@ const bulkMutations = {
     makeSale: async (parent,{enterpriseId,saleId,buyer,saleDate,quantity,salesPrice,productId})=>{
         for(let i=0;i<quantity;i++){
             const item = await getOneItemInStock({enterpriseId,productId})
+            console.log(item)
             const updateItem = await updateItemSale(null,{item:item._id,saleDate,buyer,saleNumber:saleId,salesPrice});
             console.log(updateItem)
         }
