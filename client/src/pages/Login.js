@@ -78,13 +78,14 @@ const Login = (props) => {
                 >
                   Submit
                 </button>
-              </form>
-            )}
-            {error && (
+              {error && (
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg">
                 {error.message}
               </div>
             )}
+            </form>
+            )}
+
           </div>
         </div>
       </div>

@@ -24,19 +24,21 @@ code {
 
 .loginCard {
   background-color:#e2e2e2;
-  margin-top: 160px;
-  margin-bottom: 160px;
-  margin-left: 700px;
-  margin-right: 700px;
+  margin-top: 10%;
+  margin-bottom: 15%;
+  margin-left: 35%;
+  margin-right: 35%;
   border-radius: 20px;
 }
 
 #loginHeader {
   font-size: 40px;
-  height: 13em;
+  height: 12em;
   display: flex;
   justify-content: center;
-  margin: 0;
+  position:relative;
+  top:60px;
+  margin: 0%;
   color: rgb(0, 0, 0);
 }
 
@@ -44,8 +46,6 @@ code {
   height:35px;
   width: 275px;
   font-size:14pt;
-  margin: 0;
-  margin-right: -50%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -54,18 +54,18 @@ code {
 }
 
 #emailInput {
-  top: 50%
+  top: 55%
 }
 
 #passwordInput {
-  top: 55%;
+  top: 60%;
   transform: translate(-50%, -50%);
 }
 
 #submitBtn {
   margin: 0;
   position: absolute;
-  top: 60%;
+  top: 65%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -75,7 +75,7 @@ code {
 }
 
 button:hover {
-  background-color: rgb(197, 201, 248);
+  background-color: rgb(209, 209, 209);
   transition: 0.3s;
 }
 
