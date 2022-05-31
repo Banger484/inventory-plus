@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function OrderDashboard () {
     return (
         <section className='task-container'>
-            <Link to="/orders/purchase-order">
+            <Link className='task-links' to="/orders/purchase-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Purchase Order</h2>
@@ -14,7 +14,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/orders/sell-order">
+            <Link className='task-links' to="/orders/sell-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Sell Order</h2>
@@ -24,7 +24,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/orders/order-fulfillment">
+            <Link className='task-links' to="/orders/order-fulfillment">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order Fulfillment</h2>
@@ -34,7 +34,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/orders/order-guide">
+            <Link className='task-links' to="/orders/order-guide">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order Guide</h2>
@@ -51,16 +51,6 @@ export default function OrderDashboard () {
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/history.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
-            <Link to="/">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Home</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/home.png" alt='icon'/>
                 </div>
             </div>
             </Link>

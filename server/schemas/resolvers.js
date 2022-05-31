@@ -36,6 +36,10 @@ const resolvers = {
       console.log(enterprise)
       return enterprise
     },
+    getEnterpriseById: async (parent, {_id}) => {
+      const enterprise = await Enterprise.findById(_id).populate('orderGuide')
+      return enterprise
+    },
     getItems: async()=>{
       return Item.find()
     },

@@ -171,5 +171,39 @@ query Query($enterpriseId: ID!) {
   }
 }
 
-`
 
+`
+export const ADD_TO_ORDERGUIDE = gql`
+mutation ADD_TO_ORDERGUIDE($enterpriseId: ID!, $productId: ID!) {
+  addToOrderGuide(enterpriseId: $enterpriseId, productId: $productId) {
+    _id
+    name
+    location
+    orderGuide {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+  }
+}`
+export const REMOVE_FROM_ORDERGUIDE = gql`
+mutation RemoveFromOrderGuide($enterpriseId: ID!, $productId: ID!) {
+  removeFromOrderGuide(enterpriseId: $enterpriseId, productId: $productId) {
+    _id
+    name
+    location
+    orderGuide {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+  }
+}`
