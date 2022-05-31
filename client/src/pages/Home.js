@@ -32,9 +32,9 @@ const Home = () => {
 
   const users = data?.users || [];
 
-  console.log(auth.loggedIn())
-  console.log(auth.getToken())
-  console.log(auth.getProfile())
+  // console.log(auth.loggedIn())
+  // console.log(auth.getToken())
+  // console.log(auth.getProfile())
   return (
     <main>
       <div className="flex-row justify-center">
