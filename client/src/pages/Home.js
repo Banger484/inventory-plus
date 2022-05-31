@@ -34,7 +34,7 @@ const Home = () => {
   const users = data?.users || [];
 
   const userInfo = auth.getProfile()
-  console.log(userInfo);
+  // console.log(userInfo);
 
   // console.log(auth.loggedIn())
   // console.log(auth.getToken())
