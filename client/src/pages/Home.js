@@ -23,18 +23,23 @@ import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
 //Users
 import UserList from '../components/UserList';
+import Signup from './Signup';
+import Login from './Login';
 
 
 
 
 
 const Home = () => {
+  console.log('in home');
   const { loading, data } = useQuery(QUERY_USERS);
 
   const users = data?.users || [];
-
-  const userInfo = auth.getProfile()
-  console.log(userInfo);
+  const userInfo = {
+    enterpriseName: "Bret's shop"
+  }
+  // const userInfo = auth.getProfile()
+  // console.log(userInfo);
 
   // console.log(auth.loggedIn())
   // console.log(auth.getToken())
@@ -100,6 +105,14 @@ const Home = () => {
               path='/reporting'
               element={<ReportingDashboard />}
                />
+              <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
               <Route
               path='/'
               element={<Dashboard />} 
