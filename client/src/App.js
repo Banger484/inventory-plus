@@ -46,16 +46,16 @@ function App() {
           <div className="container">
             <Routes>
               <Route 
-                path="/*" 
-                element={<Home />} 
-              />
-              <Route 
                 path="/login" 
                 element={<Login />} 
               />
               <Route 
                 path="/signup" 
                 element={<Signup />} 
+              />
+              <Route 
+                path="/*" 
+                element={<Home />} 
               />
               {/* <Route 
                 path="/profiles/:profileId" 
