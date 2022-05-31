@@ -14,16 +14,6 @@ export default function ProductDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/products/update-product">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Update Product</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/update.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
             <Link to="/products/product-guide">
             <div className='task'>
                 <div className='task-header'>
