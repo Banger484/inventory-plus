@@ -18,6 +18,23 @@ mutation register($name: String!, $email: String!, $password: String!, $enterpri
 }
 `;
 
+export const ADD_USER_TO_EXISTING = gql`
+mutation addUserToExisting($name: String!, $email: String!, $password: String!, $enterprise: ID!) {
+  registerOnlyUser(name: $name, email: $email, password: $password, enterprise: $enterprise) {
+    _id
+    name
+    email
+    password
+    credentials
+    enterprise {
+      _id
+      name
+      location
+    }
+    role
+  }
+}
+`
 
 export const LOGIN_USER = gql`
 mutation Login($email: String!, $password: String!) {

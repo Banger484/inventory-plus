@@ -37,6 +37,11 @@ const mutation = {
             console.log(err)
         }
     },
+    registerOnlyUser: async (parent,{name,email,password,enterprise})=>{
+        const user = await User.create({name,email,password,enterprise});
+        let result = await User.findById(user._id).populate("enterprise")
+        return result;
+    },
     login: async (parent, { email, password }) => {
         console.log("in it")
         console.log({email,password})
