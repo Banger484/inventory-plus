@@ -25,7 +25,7 @@ const resolvers = {
       return result
     },
     getEnterprises: async ()=>{
-      const results = await Enterprise.find()
+      const results = await Enterprise.find().populate("orderGuide")
       console.log(results[0]._id)
       return results
     },
@@ -47,30 +47,11 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { name, email, password, enterprise,role }) => {
-      const user = await User.create({ name, email, password, enterprise,role });
-      const token = signToken(user);
-
-      return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    },
-    addProduct: async (parent,{sku,name,description,msrp,category,notes}) =>{
+    addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes}) =>{
       const product = await Product.create({sku,name,description,msrp,category,notes});
+      const ent = await Enterprise.findById(enterprise);
+      ent.orderGuide.push(product._id)
+      ent.save()     
       return product
     },
     updateProduct: async (parent,props)=>{
