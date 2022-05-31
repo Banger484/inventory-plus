@@ -11,7 +11,11 @@ const EnterpriseSchema = new Schema({
   location: {
     type: String,
     required: true
-  }
+  },
+  orderGuide:[{
+    type:Schema.Types.ObjectId,
+    ref:"Product"
+  }]
 });
 
 const Enterprise = model('Enterprise', EnterpriseSchema);

@@ -7,6 +7,7 @@ type Enterprise {
   _id: ID!
   name: String!
   location: String!
+  orderGuide:[Product]
 }
 
 type User {
@@ -79,7 +80,7 @@ type User {
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addProduct(sku: String!, name: String!, description: String!, msrp: Int!, category: String! notes: String!): Product
+    addProduct(enterprise:ID!,sku: String!, name: String!, description: String!, msrp: Int!, category: String! notes: String!): Product
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
     addEnterprise(name:String!,location:String!,userId:ID!): Enterprise
     addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Int!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
@@ -90,6 +91,8 @@ type User {
     makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
     fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
     register(name:String!,email:String!,password:String!,enterpriseName:String,location:String):User
+    addToOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
+    removeFromOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
   }
 
 

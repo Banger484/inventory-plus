@@ -25,7 +25,7 @@ const resolvers = {
       return result
     },
     getEnterprises: async ()=>{
-      const results = await Enterprise.find()
+      const results = await Enterprise.find().populate("orderGuide")
       console.log(results[0]._id)
       return results
     },
@@ -47,8 +47,11 @@ const resolvers = {
   },
 
   Mutation: {
-    addProduct: async (parent,{sku,name,description,msrp,category,notes}) =>{
+    addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes}) =>{
       const product = await Product.create({sku,name,description,msrp,category,notes});
+      const ent = await Enterprise.findById(enterprise);
+      ent.orderGuide.push(product._id)
+      ent.save()     
       return product
     },
     updateProduct: async (parent,props)=>{
