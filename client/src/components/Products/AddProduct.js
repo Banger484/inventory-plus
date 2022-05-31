@@ -3,16 +3,20 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../../utils/mutations'
 
+import Auth from '../../utils/auth';
+
 export default function AddProduct () {
     
+    const enterprise = Auth.getProfile().data.enterprise
     const [ formData, setFormData ] = useState({
         sku: '',
         name: '',
         description: '',
         msrp: 3,
         category: '',
-        notes: ''
+        notes: '',
     })
+    
 
     const [addProduct, { error, data }] = useMutation(ADD_PRODUCT)
 
@@ -30,8 +34,10 @@ export default function AddProduct () {
 
 
         try {
+            const variables = { ...inputData,enterprise }
+            console.log(variables)
             const { data } = await addProduct({
-                variables: { ...inputData }
+                variables
             })
             console.log( data );
         } catch (err) {
@@ -43,7 +49,7 @@ export default function AddProduct () {
             description: '',
             msrp: 0,
             category: '',
-            notes: ''
+            notes: '',
         })
     }
     return (
