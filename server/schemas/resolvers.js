@@ -48,8 +48,11 @@ const resolvers = {
 
   Mutation: {
     addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes}) =>{
+      console.log({enterprise,sku,name,description,msrp,category,notes})
       const product = await Product.create({sku,name,description,msrp,category,notes});
-      const ent = await Enterprise.findById(enterprise);
+      console.log(product)
+      const ent = await Enterprise.findById(enterprise._id);
+      console.log(ent)
       ent.orderGuide.push(product._id)
       ent.save()     
       return product
