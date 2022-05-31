@@ -29,6 +29,7 @@ import UserList from '../components/UserList';
 
 
 const Home = () => {
+  console.log('in home');
   const { loading, data } = useQuery(QUERY_USERS);
 
   const users = data?.users || [];
