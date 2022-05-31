@@ -10,7 +10,7 @@ import './Home.css'
 //Layout
 import Dashboard from '../components/Layout/Dashboard';
 import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
+import Navbar from '../components/Layout/Navbar';
 //Products
 import ProductDashboard from '../components/Products/ProductDashboard';
 import AddProduct from '../components/Products/AddProduct';
@@ -55,6 +55,7 @@ const Home = () => {
   return (
     <>
     <Header enterprise={userInfo.enterpriseName}/>
+    <Navbar />
     <main className='home-main-content'>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
@@ -136,7 +137,6 @@ const Home = () => {
         </div>
       </div>
     </main>
-    <Footer />
     </>
   );
 };

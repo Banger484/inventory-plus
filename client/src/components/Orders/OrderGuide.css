@@ -1,0 +1,15 @@
+.page-title {
+    text-align: center;
+}
+.order-guide-content {
+    display: flex;
+    height: 80vh;
+}
+.order-guide-sides {
+    border: 1px solid red;
+    min-width: 50%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
