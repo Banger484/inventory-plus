@@ -12,8 +12,10 @@ const EnterpriseSchema = new Schema({
     type: String,
     required: true
   },
-  registrant: UserSchema,
-  users:[UserSchema]
+  orderGuide:[{
+    type:Schema.Types.ObjectId,
+    ref:"Product"
+  }]
 });
 
 const Enterprise = model('Enterprise', EnterpriseSchema);

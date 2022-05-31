@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const {EnterpriseSchema} = require("./Enterprise")
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
@@ -28,9 +29,9 @@ const UserSchema = new Schema({
     default:"basic"
   },
   enterprise:{
-    type:String,
-    required: false,
-  }
+    type:Schema.Types.ObjectId,
+    ref:"Enterprise"
+},
 });
 
 // set up pre-save middleware to create password
