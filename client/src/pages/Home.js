@@ -3,13 +3,18 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USERS, QUERY_ALL_PRODUCTS } from '../utils/queries';
 import auth from "../utils/auth"
 import { Route, Routes } from 'react-router-dom'
+//Style import
+import './Home.css'
 
 //Component Imports
+//Layout
 import Dashboard from '../components/Layout/Dashboard';
 import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
 //Products
 import ProductDashboard from '../components/Products/ProductDashboard';
 import AddProduct from '../components/Products/AddProduct';
+import ProductGuide from '../components/Products/ProductGuide';
 //Orders
 import OrderDashboard from '../components/Orders/OrderDashboard';
 import OrderFulfillment from '../components/Orders/OrderFulfillment'
@@ -22,9 +27,12 @@ import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
 
 //Users
-import UserList from '../components/UserList';
-import Signup from './Signup';
-import Login from './Login';
+import UserDashboard from '../components/Users/UserDashboard';
+import UserList from '../components/Users';
+import Signup from '../components/Users/Signup';
+import Login from '../components/Users/Login';
+import AddUser from '../components/Users/AddUser';
+import AcceptInvite from '../components/Users/AcceptInvite';
 
 
 
@@ -47,20 +55,13 @@ const Home = () => {
   return (
     <>
     <Header enterprise={userInfo.enterpriseName}/>
-    <main>
+    <main className='home-main-content'>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
             <Routes>
-              <Route
-              path='/users'
-              element={<UserList
-                users={users}
-                title="Here's the current roster of users..."
-              />}
-               />
                <Route
               path='/products'
               element={<ProductDashboard />} 
@@ -75,7 +76,7 @@ const Home = () => {
               />
                <Route
               path='/products/product-guide'
-              element={<ProductDashboard />} 
+              element={<ProductGuide />} 
               />
               <Route
               path='/orders'
@@ -101,6 +102,14 @@ const Home = () => {
               path='/orders/order-history'
               element={<OrderHistory />}
                />
+               <Route 
+                path="/users" 
+                element={<UserDashboard />} 
+              />
+              <Route 
+                path="/users/add-user" 
+                element={<AddUser />} 
+              />
                <Route
               path='/reporting'
               element={<ReportingDashboard />}
@@ -113,6 +122,10 @@ const Home = () => {
                 path="/login" 
                 element={<Login />} 
               />
+              <Route 
+                path="/invite/*" 
+                element={<AcceptInvite />} 
+              />
               <Route
               path='/'
               element={<Dashboard />} 
@@ -123,7 +136,7 @@ const Home = () => {
         </div>
       </div>
     </main>
-    
+    <Footer />
     </>
   );
 };
