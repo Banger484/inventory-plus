@@ -38,6 +38,8 @@ const mutation = {
         }
     },
     login: async (parent, { email, password }) => {
+        console.log("in it")
+        console.log({email,password})
         const user = await User.findOne({ email });
   
         if (!user) {
