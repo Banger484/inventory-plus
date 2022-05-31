@@ -34,6 +34,26 @@ export default function Dashboard () {
                 </div>
             </div>
             </Link>
+            <Link to="/login">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Login</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
+            <Link to="/signup">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Signup</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
         </section>
     )
 }
