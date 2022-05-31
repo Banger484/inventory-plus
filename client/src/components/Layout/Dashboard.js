@@ -24,6 +24,16 @@ export default function Dashboard () {
                 </div>
             </div>
             </Link>
+            <Link to="/users">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Users</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/users.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
             <Link to="/reporting">
             <div className='task'>
                 <div className='task-header'>
@@ -34,7 +44,7 @@ export default function Dashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/login">
+            {/* <Link to="/login">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Login</h2>
@@ -53,7 +63,7 @@ export default function Dashboard () {
                 <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
                 </div>
             </div>
-            </Link>
+            </Link> */}
         </section>
     )
 }

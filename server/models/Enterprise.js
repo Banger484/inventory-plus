@@ -15,7 +15,16 @@ const EnterpriseSchema = new Schema({
   orderGuide:[{
     type:Schema.Types.ObjectId,
     ref:"Product"
-  }]
+  }],
+  orderNumber:{
+    type:Number,
+    default:0
+  },
+  saleNumber:{
+    type:Number,
+    default:0
+  }
+
 });
 
 const Enterprise = model('Enterprise', EnterpriseSchema);
