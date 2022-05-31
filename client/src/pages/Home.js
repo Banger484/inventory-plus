@@ -33,8 +33,10 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_USERS);
 
   const users = data?.users || [];
-
-  const userInfo = auth.getProfile()
+  const userInfo = {
+    enterpriseName: "Bret's shop"
+  }
+  // const userInfo = auth.getProfile()
   // console.log(userInfo);
 
   // console.log(auth.loggedIn())
