@@ -1,0 +1,11 @@
+.mini-nav {
+    background-color: var(--darkest);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mini-nav-buttons {
+    background-color: var(--darkest);
+    color: var(--lightest);
+    border: none;
+}
