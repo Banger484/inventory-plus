@@ -1,6 +1,6 @@
 import './OrderList.css'
-import React, { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client';
+import React from 'react'
+import { useQuery } from '@apollo/client';
 import {} from '../../utils/mutations'
 import { GET_ENTERPRISE_BY_ID } from '../../utils/queries'
 import auth from '../../utils/auth'
