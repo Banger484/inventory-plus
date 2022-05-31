@@ -11,9 +11,7 @@ const EnterpriseSchema = new Schema({
   location: {
     type: String,
     required: true
-  },
-  registrant: UserSchema,
-  users:[UserSchema]
+  }
 });
 
 const Enterprise = model('Enterprise', EnterpriseSchema);

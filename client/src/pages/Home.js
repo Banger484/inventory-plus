@@ -16,6 +16,7 @@ const Home = () => {
   console.log(auth.loggedIn())
   console.log(auth.getToken())
   console.log(auth.getProfile())
+  // localStorage.setItem("enterpriseId",auth.getProfile().
   return (
     <main>
       <div className="flex-row justify-center">
