@@ -66,6 +66,7 @@ type User {
     singleCategoryProducts(category: String!): [Product]
     getEnterprises: [Enterprise]
     getEnterpriseByUser(email:String!): Enterprise
+    getEnterpriseById(_id:ID!): Enterprise
     getItems: [Item]
     getItemsByOrderNumber(orderNumber:Int!,enterpriseId:String!):[Item]
     getOrderedItems(enterpriseId:ID!):[Item]

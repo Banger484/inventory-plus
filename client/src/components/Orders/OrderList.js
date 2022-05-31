@@ -2,14 +2,23 @@ import './OrderList.css'
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import {} from '../../utils/mutations'
-import { QUERY_ALL_PRODUCTS } from '../../utils/queries'
+import { GET_ENTERPRISE_BY_ID } from '../../utils/queries'
+import auth from '../../utils/auth'
 
-export default function OrderList () {
+export default function OrderList (props) {
 
-    const { loading, data } = useQuery(QUERY_ALL_PRODUCTS)
+    const user = auth.getProfile()
+    // console.log(user.data.enterprise);
+    
+    console.log(user);
 
+    const { loading, data } = useQuery(GET_ENTERPRISE_BY_ID, {
+        variables: { id: user.data.enterprise}
+    })
+    console.log(data);
 
-
+    const orderList = data?.getEnterpriseById.orderGuide || []
+    console.log(orderList);
     return (
         <div>
             <table className='order-list-table'>
@@ -21,10 +30,11 @@ export default function OrderList () {
                         <th>MSRP</th>
                         <th>Category</th>
                         <th>Notes</th>
+                        {props.buttons?<th>Remove</th> : null}
                     </tr>
                 </thead>
                     <tbody>
-                    {/* {products.map((product, index) => {
+                    {orderList.map((product, index) => {
                         return (
                         <tr key={index}>
                             <td>{product.sku}</td>
@@ -33,9 +43,10 @@ export default function OrderList () {
                             <td>${product.msrp}</td>
                             <td>{product.category}</td>
                             <td>{product.notes}</td>
+                            {props.buttons?<td><button>X</button></td> : null}
                         </tr>
                         )
-                    })} */}
+                    })}
                     </tbody>
                 </table>
         </div>

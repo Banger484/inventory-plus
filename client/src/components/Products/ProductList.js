@@ -10,7 +10,6 @@ export default function ProductList () {
 
     const products = data?.allProducts || [];
 
-
     return (
         <div>
             <table className='product-list-table'>
@@ -27,13 +26,13 @@ export default function ProductList () {
                     <tbody>
                     {products.map((product, index) => {
                         return (
-                        <tr data-sku={product.sku} key={index} onClick={(e) => { console.log(e.target.dataset.sku)}}>
-                            <td data-sku={product.sku}>{product.sku}</td>
-                            <td data-sku={product.sku}>{product.name}</td>
-                            <td data-sku={product.sku}>{product.description}</td>
-                            <td data-sku={product.sku}>${product.msrp}</td>
-                            <td data-sku={product.sku}>{product.category}</td>
-                            <td data-sku={product.sku}>{product.notes}</td>
+                        <tr data-sku={product._id} key={index} onClick={(e) => { console.log(e.target.dataset.sku)}}>
+                            <td data-sku={product._id}>{product.sku}</td>
+                            <td data-sku={product._id}>{product.name}</td>
+                            <td data-sku={product._id}>{product.description}</td>
+                            <td data-sku={product._id}>${product.msrp}</td>
+                            <td data-sku={product._id}>{product.category}</td>
+                            <td data-sku={product._id}>{product.notes}</td>
                         </tr>
                         )
                     })}
