@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function UserDashboard () {
     return (
         <section className='task-container'>
-            <Link to="/users/add-user">
+            <Link className='task-links' to="/users/add-user">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Add User</h2>
@@ -14,7 +14,7 @@ export default function UserDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/users/remove-user">
+            <Link className='task-links' to="/users/remove-user">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Remove User</h2>
@@ -24,7 +24,7 @@ export default function UserDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/users/remove-user">
+            <Link className='task-links' to="/users/remove-user">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Employee Roster</h2>
