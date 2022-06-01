@@ -159,3 +159,25 @@ query Query($orderNumber: Int!, $enterpriseId: String!) {
 }
 `
 
+export const GET_CURRENT_STOCKS = gql`
+query Query($enterpriseId: ID!) {
+  getCurrentStocks(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+  }
+}
+`

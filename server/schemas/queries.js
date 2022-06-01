@@ -24,7 +24,7 @@ const getOrderedItems = async (parent,{enterpriseId}) =>{
 }
 
 const getCurrentStocks = async (parent,{enterpriseId}) =>{
-    const items = await Item.find({enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null})
+    const items = await Item.find({enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null}).populate("product")
     return items
 }
 

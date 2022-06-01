@@ -28,9 +28,6 @@ const bulkMutations = {
                 console.log(err)
             }
         }
-            
-            
-            
         }
         
 module.exports = bulkMutations
