@@ -181,3 +181,34 @@ query Query($enterpriseId: ID!) {
   }
 }
 `
+
+export const GET_INCOMING_ITEMS = gql`
+query ExampleQuery($enterpriseId: ID!) {
+  getOrderedItems(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
+  }
+}
+
+
+
+`
