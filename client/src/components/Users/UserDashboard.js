@@ -24,7 +24,7 @@ export default function UserDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/users/remove-user">
+            <Link className='task-links' to="/users/roster">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Employee Roster</h2>

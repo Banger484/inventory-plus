@@ -32,7 +32,7 @@ import Signup from '../components/Users/Signup';
 import Login from '../components/Users/Login';
 import AddUser from '../components/Users/AddUser';
 import AcceptInvite from '../components/Users/AcceptInvite';
-
+import Roster from "../components/Users/Roster"
 
 
 
@@ -111,6 +111,10 @@ const Home = () => {
               <Route 
                 path="/users/add-user" 
                 element={<AddUser />} 
+              />
+              <Route
+              path="users/roster"
+              element={<Roster/>}
               />
                <Route
               path='/reporting'

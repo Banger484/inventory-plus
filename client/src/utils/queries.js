@@ -13,6 +13,19 @@ query allUsers {
   }
 `;
 
+export const QUERY_ENT_USERS=gql`
+query Query($enterpriseId: ID!) {
+  getEnterpriseUsers(enterpriseId: $enterpriseId) {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+  }
+}
+`
+
 export const QUERY_SINGLE_USER = gql`
 query getUser($userId: ID!) {
     user(userId: $userId) {
@@ -146,3 +159,25 @@ query Query($orderNumber: Int!, $enterpriseId: String!) {
 }
 `
 
+export const GET_CURRENT_STOCKS = gql`
+query Query($enterpriseId: ID!) {
+  getCurrentStocks(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+  }
+}
+`
