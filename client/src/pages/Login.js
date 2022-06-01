@@ -52,26 +52,26 @@ const Login = (props) => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input id="emailInput"
-
+              <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+                <input id="emailInput-Login"
                   className="form-input"
                   placeholder="Email"
                   name="email"
                   type="email"
+                  autocomplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input id="passwordInput"
-                
+                <input id="passwordInput-Login"
                   className="form-input"
                   placeholder="Password"
                   name="password"
                   type="password"
+                  autocomplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button id="submitBtn"
+                <button id="submitBtn-Login"
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
@@ -82,7 +82,7 @@ const Login = (props) => {
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg">
                 {error.message}
               </div>
-            )}
+              )}
             </form>
             )}
 

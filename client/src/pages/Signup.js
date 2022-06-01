@@ -45,8 +45,8 @@ const Signup = () => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+        <div className="signupCard">
+          <h4 className="card-header" id="signupHeader">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -54,40 +54,44 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
+              <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+                <input id="usernameInput-Signup"
                   className="form-input"
-                  placeholder="Your username"
+                  placeholder="Username"
                   name="name"
                   type="text"
+                  autocomplete="off"
                   value={formState.name}
                   onChange={handleChange}
                 />
-                <input
+                <input id="emailInput-Signup"
                   className="form-input"
-                  placeholder="Your email"
+                  placeholder="Email"
                   name="email"
                   type="email"
+                  autocomplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                <input id="passwordInput-Signup"
                   className="form-input"
-                  placeholder="******"
+                  placeholder="Password"
                   name="password"
                   type="password"
+                  autocomplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                                <input
+                  <input id="enterpriseInput-Signup"
                   className="form-input"
                   placeholder="Enterprise"
                   name="enterprise"
                   type="text"
+                  autocomplete="off"
                   value={formState.enterprise}
                   onChange={handleChange}
                 />
-                <button
+                <button id="submitBtn-Signup"
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"

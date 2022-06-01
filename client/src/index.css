@@ -22,27 +22,42 @@ code {
     monospace;
 }
 
-.loginCard {
+.loginCard, .signupCard {
   background-color:#e2e2e2;
-  margin-top: 10%;
   margin-bottom: 15%;
   margin-left: 35%;
   margin-right: 35%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
-#loginHeader {
+.loginCard {
+  margin-top: 10%;
+}
+
+.signupCard {
+  margin-top: 8%;
+}
+
+#loginHeader, #signupHeader {
   font-size: 40px;
-  height: 12em;
   display: flex;
   justify-content: center;
   position:relative;
-  top:60px;
+  top:90px;
   margin: 0%;
   color: rgb(0, 0, 0);
 }
 
-#emailInput, #passwordInput {
+#loginHeader {
+  height: 12em;
+}
+
+#signupHeader {
+  height: 14em;
+}
+
+#emailInput-Login, #passwordInput-Login, #usernameInput-Signup,
+#emailInput-Signup, #passwordInput-Signup, #enterpriseInput-Signup {
   height:35px;
   width: 275px;
   font-size:14pt;
@@ -53,25 +68,40 @@ code {
   text-align: center;
 }
 
-#emailInput {
+#usernameInput-Signup {
+  top: 50%
+}
+
+#emailInput-Login, #emailInput-Signup {
   top: 55%
 }
 
-#passwordInput {
+#passwordInput-Login, #passwordInput-Signup {
   top: 60%;
   transform: translate(-50%, -50%);
 }
 
-#submitBtn {
+#enterpriseInput-Signup {
+  top: 65%
+}
+
+#submitBtn-Login, #submitBtn-Signup {
   margin: 0;
   position: absolute;
-  top: 65%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   height: 40px;
   width: 100px
+}
+
+#submitBtn-Login {
+  top: 67%;
+}
+
+#submitBtn-Signup {
+  top: 72%;
 }
 
 button:hover {
@@ -82,4 +112,6 @@ button:hover {
 #errorMsg {
   font-size: 20px;
   color: rgb(0, 0, 0);
+  position: absolute;
+  top: 75%;
 }
