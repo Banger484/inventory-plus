@@ -4,10 +4,10 @@ import { useMutation } from '@apollo/client';
 import { ADD_TO_ORDERGUIDE } from '../../utils/mutations'
 
 export default function ProductList (props) {
-
+    console.log(props.orderGuide)
     const [addProduct, { error }] = useMutation(ADD_TO_ORDERGUIDE)
-
     const checkIfInList = (product,list)=>{
+        console.log(list)
         const match = list.filter(li=>{
             return li._id===product._id
         })
@@ -50,7 +50,7 @@ export default function ProductList (props) {
                 </thead>
                     <tbody>
                     {props.products.map((product, index) => {
-                        const check = checkIfInList(product, props.orderGuide)
+                        const check = checkIfInList(product, (props?.orderGuide||[]))
                         if(!check) {
                          return (
                         <tr data-pid={product._id} key={index} >
