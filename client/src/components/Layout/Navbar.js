@@ -24,9 +24,9 @@ export default function Navbar() {
         <Link to='/reporting'>
         <button className='mini-nav-buttons'>Reporting</button>
         </Link>
-        <Link to='/'>
+        
         <button className='mini-nav-buttons' onClick={logout}>Logout</button>
-        </Link>
+        
     </nav>
   );
 }

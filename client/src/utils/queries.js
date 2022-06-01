@@ -208,7 +208,27 @@ query ExampleQuery($enterpriseId: ID!) {
     fulfillmentDate
   }
 }
-
-
-
 `
+
+export const GET_SALES = gql `
+query Query($enterpriseID: ID!) {
+  getSoldItems(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    saleNumber
+    cost
+    purchaseDate
+    binLocation
+    buyer
+    saleDate
+    salesPrice
+  }
+}`
