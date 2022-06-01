@@ -18,6 +18,36 @@ mutation register($name: String!, $email: String!, $password: String!, $enterpri
 }
 `;
 
+export const REMOVE_USER = gql`
+mutation removeUser($userId: ID!) {
+  removeUser(userId: $userId) {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+  }
+}
+`
+
+export const ADD_USER_TO_EXISTING = gql`
+mutation addUserToExisting($name: String!, $email: String!, $password: String!, $enterprise: ID!) {
+  registerOnlyUser(name: $name, email: $email, password: $password, enterprise: $enterprise) {
+    _id
+    name
+    email
+    password
+    credentials
+    enterprise {
+      _id
+      name
+      location
+    }
+    role
+  }
+}
+`
 
 export const LOGIN_USER = gql`
 mutation Login($email: String!, $password: String!) {
@@ -171,5 +201,39 @@ query Query($enterpriseId: ID!) {
   }
 }
 
-`
 
+`
+export const ADD_TO_ORDERGUIDE = gql`
+mutation ADD_TO_ORDERGUIDE($enterpriseId: ID!, $productId: ID!) {
+  addToOrderGuide(enterpriseId: $enterpriseId, productId: $productId) {
+    _id
+    name
+    location
+    orderGuide {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+  }
+}`
+export const REMOVE_FROM_ORDERGUIDE = gql`
+mutation RemoveFromOrderGuide($enterpriseId: ID!, $productId: ID!) {
+  removeFromOrderGuide(enterpriseId: $enterpriseId, productId: $productId) {
+    _id
+    name
+    location
+    orderGuide {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+  }
+}`

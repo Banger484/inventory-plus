@@ -66,6 +66,7 @@ type User {
     singleCategoryProducts(category: String!): [Product]
     getEnterprises: [Enterprise]
     getEnterpriseByUser(email:String!): Enterprise
+    getEnterpriseById(_id:ID!): Enterprise
     getItems: [Item]
     getItemsByOrderNumber(orderNumber:Int!,enterpriseId:String!):[Item]
     getOrderedItems(enterpriseId:ID!):[Item]
@@ -76,6 +77,7 @@ type User {
     getCurrentStocksByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getEnterpriseUsers(enterpriseId:ID!):[User]
   }
 
   type Mutation {
@@ -91,8 +93,10 @@ type User {
     makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,quantity:Int!,salesPrice:Float!,productId:ID!):[Item]
     fulfillSale(enterpriseId:ID!,saleNumber:Int!,fulfillmentDate:String!): [Item]
     register(name:String!,email:String!,password:String!,enterpriseName:String,location:String):User
+    registerOnlyUser(name:String!,email:String!,password:String!,enterprise:ID!):User
     addToOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
     removeFromOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
+    removeUser(userId:ID!):User
   }
 
 

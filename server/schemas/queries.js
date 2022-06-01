@@ -1,6 +1,12 @@
-const {Item,Product} = require("../models")
+const {Item,Product,User} = require("../models")
 const { Schema, model } = require('mongoose');
 
+const getEnterpriseUsers = async(parent,{enterpriseId})=>{
+    console.log("in it")
+    const users = await User.find({enterprise:enterpriseId})
+    console.log(users)
+    return users
+}
 
 const getItemsByOrderNumber = async (parent,{orderNumber,enterpriseId})=>{
     try{
@@ -18,7 +24,7 @@ const getOrderedItems = async (parent,{enterpriseId}) =>{
 }
 
 const getCurrentStocks = async (parent,{enterpriseId}) =>{
-    const items = await Item.find({enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null})
+    const items = await Item.find({enterprise:enterpriseId,receivedDate:{$ne:null},saleDate:null}).populate("product")
     return items
 }
 
@@ -61,4 +67,4 @@ const getOneItemInStock = async ({enterpriseId,productId}) =>{
     return item
 }
 
-module.exports = {getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}
+module.exports = {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}

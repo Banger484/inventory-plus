@@ -13,7 +13,7 @@ export default function Header () {
             <div className='header-logo'>
             <img src='/images/icons/iplus.png' alt="Inventory+ Logo" />
             </div>
-
+            
         </header>
     )
 }
