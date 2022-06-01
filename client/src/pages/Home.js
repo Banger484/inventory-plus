@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS, QUERY_ALL_PRODUCTS } from '../utils/queries';
-import auth from "../utils/auth"
+import Auth from "../utils/auth"
 import { Route, Routes } from 'react-router-dom'
 //Style import
 import './Home.css'
