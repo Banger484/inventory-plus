@@ -77,6 +77,7 @@ type User {
     getCurrentStocksByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
+    getEnterpriseUsers(enterpriseId:ID!):[User]
   }
 
   type Mutation {
@@ -95,6 +96,7 @@ type User {
     registerOnlyUser(name:String!,email:String!,password:String!,enterprise:ID!):User
     addToOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
     removeFromOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
+    removeUser(userId:ID!):User
   }
 
 
