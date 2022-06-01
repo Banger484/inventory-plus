@@ -13,6 +13,19 @@ query allUsers {
   }
 `;
 
+export const QUERY_ENT_USERS=gql`
+query Query($enterpriseId: ID!) {
+  getEnterpriseUsers(enterpriseId: $enterpriseId) {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+  }
+}
+`
+
 export const QUERY_SINGLE_USER = gql`
 query getUser($userId: ID!) {
     user(userId: $userId) {
