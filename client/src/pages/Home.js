@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_USERS, QUERY_ALL_PRODUCTS } from '../utils/queries';
+import { GET_ENTERPRISE_BY_ID, QUERY_ALL_PRODUCTS } from '../utils/queries';
 import auth from "../utils/auth"
 import { Route, Routes } from 'react-router-dom'
 //Style import
@@ -28,7 +28,6 @@ import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
 //Users
 import UserDashboard from '../components/Users/UserDashboard';
-import UserList from '../components/Users';
 import Signup from '../components/Users/Signup';
 import Login from '../components/Users/Login';
 import AddUser from '../components/Users/AddUser';
@@ -39,27 +38,33 @@ import AcceptInvite from '../components/Users/AcceptInvite';
 
 
 const Home = () => {
-  console.log('in home');
-  const { loading, data } = useQuery(QUERY_USERS);
+    // getting logged in user
+    const user = auth.getProfile()
+    // making queries
+    const { loading: productsLoading, data: productsData} = useQuery(QUERY_ALL_PRODUCTS)
+    const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
+    variables: { id: user.data.enterprise}
+    })
+    // setting variables to be passed through props
+    let enterpriseName
+    let orderGuide
+    let products
+    let enterpriseId
 
-  const users = data?.users || [];
-  const userInfo = {
-    enterpriseName: "Bret's shop"
-  }
-  // const userInfo = auth.getProfile()
-  // console.log(userInfo);
-
-  // console.log(auth.loggedIn())
-  // console.log(auth.getToken())
-  // console.log(auth.getProfile())
+    if(enterpriseData && productsData) {
+      enterpriseName = enterpriseData.getEnterpriseById.name;
+      enterpriseId = enterpriseData.getEnterpriseById._id
+      orderGuide = enterpriseData.getEnterpriseById.orderGuide;
+      products = productsData.allProducts
+    }
   return (
     <>
-    <Header enterprise={userInfo.enterpriseName}/>
+    <Header user={ user.data.name } enterprise={enterpriseName}/>
     <Navbar />
     <main className='home-main-content'>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
-          {loading ? (
+      <div>
+        <div>
+          {enterpriseLoading || productsLoading ? (
             <div>Loading...</div>
           ) : (
             <Routes>
@@ -69,15 +74,11 @@ const Home = () => {
               />
                <Route
               path='/products/add-product'
-              element={<AddProduct />} 
-              />
-               <Route
-              path='/products/update=product'
-              element={<ProductDashboard />} 
+              element={<AddProduct products={products}/>} 
               />
                <Route
               path='/products/product-guide'
-              element={<ProductGuide />} 
+              element={<ProductGuide products={products} />} 
               />
               <Route
               path='/orders'
@@ -85,11 +86,11 @@ const Home = () => {
                />
                <Route
               path='/orders/purchase-order'
-              element={<OrderPurchase />}
+              element={<OrderPurchase orderGuide={orderGuide} />}
                />
                <Route
               path='/orders/sell-order'
-              element={<OrderSell />}
+              element={<OrderSell orderGuide={orderGuide} />}
                />
                <Route
               path='/orders/order-fulfillment'
@@ -97,7 +98,7 @@ const Home = () => {
                />
                <Route
               path='/orders/order-guide'
-              element={<OrderGuide />}
+              element={<OrderGuide enterpriseId={enterpriseId} orderGuide={orderGuide} products={products}/>}
                />
                <Route
               path='/orders/order-history'

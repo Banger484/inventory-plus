@@ -1,24 +1,28 @@
 import './OrderList.css'
 import React from 'react'
-import { useQuery } from '@apollo/client';
-import {} from '../../utils/mutations'
-import { GET_ENTERPRISE_BY_ID } from '../../utils/queries'
-import auth from '../../utils/auth'
+import { useMutation } from '@apollo/client'
+import { REMOVE_FROM_ORDERGUIDE } from '../../utils/mutations'
 
 export default function OrderList (props) {
 
-    const user = auth.getProfile()
-    // console.log(user.data.enterprise);
+    const [removeProduct, { error }] = useMutation(REMOVE_FROM_ORDERGUIDE)
+
+    const handleRemove = async (pid) => {
+        const newList = props.orderGuide.filter((product) => {
+            return product._id !== pid
+        })
+        props.setGuideState(newList)
+        try {
+            await removeProduct({
+                variables: { enterpriseId: props.enterpriseId, productId: pid }
+            })
+        } catch (err) {
+            console.error(err);
+        }
+
+    }
     
-    console.log(user);
 
-    const { loading, data } = useQuery(GET_ENTERPRISE_BY_ID, {
-        variables: { id: user.data.enterprise}
-    })
-    console.log(data);
-
-    const orderList = data?.getEnterpriseById.orderGuide || []
-    console.log(orderList);
     return (
         <div>
             <table className='order-list-table'>
@@ -34,16 +38,16 @@ export default function OrderList (props) {
                     </tr>
                 </thead>
                     <tbody>
-                    {orderList.map((product, index) => {
+                    {props.orderGuide.map((product, index) => {
                         return (
-                        <tr key={index}>
-                            <td>{product.sku}</td>
-                            <td>{product.name}</td>
-                            <td>{product.description}</td>
-                            <td>${product.msrp}</td>
-                            <td>{product.category}</td>
-                            <td>{product.notes}</td>
-                            {props.buttons?<td><button>X</button></td> : null}
+                        <tr data-pid={product._id} key={index}>
+                            <td data-pid={product._id}>{product.sku}</td>
+                            <td data-pid={product._id}>{product.name}</td>
+                            <td data-pid={product._id}>{product.description}</td>
+                            <td data-pid={product._id}>${product.msrp}</td>
+                            <td data-pid={product._id}>{product.category}</td>
+                            <td data-pid={product._id}>{product.notes}</td>
+                            {props.buttons?<td><button onClick={() => handleRemove(product._id)} data-pid={product._id}>❌</button></td> : null}
                         </tr>
                         )
                     })}

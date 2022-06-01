@@ -7,35 +7,19 @@ import auth from '../../utils/auth'
 
 
 
-export default function Header () {
+export default function Header (props) {
 
-    const user = auth.getProfile()
-
-    const { loading, data } = useQuery(GET_ENTERPRISE_BY_ID, {
-    variables: { id: user.data.enterprise}
-    })
-
-    console.log(data);
-
-    const enterpriseName = data.getEnterpriseById.name
-    const name = user.data.name
+    
 
     return (
         <header>
-            {loading ? (
-            <div>Loading...</div>
-          ) : (
-        <>
-            <div className='header-enterprise'>
-            <h1>{ enterpriseName }</h1>
-            <p>Welcome, {name}.</p>
-            </div>
-            <div className='header-logo'>
+          <div className='header-enterprise'>
+            <h1>{ props.enterprise }</h1>
+            <p>Welcome, {props.user}.</p>
+          </div>
+          <div className='header-logo'>
             <img src='/images/icons/iplus.png' alt="Inventory+ Logo" />
-            </div> 
-        </>
-             
-          )} 
+          </div> 
         </header>
     )
 }
