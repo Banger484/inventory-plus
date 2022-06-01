@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ENTERPRISE_BY_ID, QUERY_ALL_PRODUCTS } from '../utils/queries';
+import { GET_ENTERPRISE_BY_ID, QUERY_ALL_PRODUCTS,QUERY_ENT_USERS } from '../utils/queries';
 import auth from "../utils/auth"
 import { Route, Routes } from 'react-router-dom'
 //Style import
@@ -46,17 +46,27 @@ const Home = () => {
     const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
     variables: { id: user.data.enterprise}
     })
+    console.log(QUERY_ENT_USERS)
+    const {loading:rosterLoading,data:rosterData}=useQuery(QUERY_ENT_USERS,{
+      variables:{ enterpriseId: user.data.enterprise}
+  })
+
+
+
     // setting variables to be passed through props
     let enterpriseName
     let orderGuide
     let products
     let enterpriseId
+    let roster
+
     console.log(enterpriseData)
-    if(enterpriseData && productsData) {
+    if(enterpriseData && productsData&&rosterData) {
       enterpriseName = enterpriseData.getEnterpriseById.name;
       enterpriseId = enterpriseData.getEnterpriseById._id
       orderGuide = enterpriseData.getEnterpriseById.orderGuide;
       products = productsData.allProducts
+      roster = rosterData.getEnterpriseUsers
     }
   return (
     <>
@@ -65,7 +75,7 @@ const Home = () => {
     <main className='home-main-content'>
       <div>
         <div>
-          {enterpriseLoading || productsLoading ? (
+          {enterpriseLoading || productsLoading || rosterLoading? (
             <div>Loading...</div>
           ) : (
             <Routes>
@@ -115,7 +125,7 @@ const Home = () => {
               />
               <Route
               path="users/roster"
-              element={<Roster/>}
+              element={<Roster roster={roster}/>}
               />
                <Route
               path='/reporting'
