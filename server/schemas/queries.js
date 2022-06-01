@@ -18,7 +18,7 @@ const getItemsByOrderNumber = async (parent,{orderNumber,enterpriseId})=>{
 
 const getOrderedItems = async (parent,{enterpriseId}) =>{
     console.log(enterpriseId)
-    const items = await Item.find({enterprise:enterpriseId,receivedDate:null})
+    const items = await Item.find({enterprise:enterpriseId,receivedDate:null}).populate("product")
     console.log(items)
     return items
 }
