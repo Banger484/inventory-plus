@@ -183,7 +183,7 @@ query Query($enterpriseId: ID!) {
 `
 
 export const GET_INCOMING_ITEMS = gql`
-query ExampleQuery($enterpriseId: ID!) {
+query GetIncomingItems($enterpriseId: ID!) {
   getOrderedItems(enterpriseId: $enterpriseId) {
     _id
     product {

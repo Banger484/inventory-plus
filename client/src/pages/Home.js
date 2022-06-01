@@ -40,7 +40,7 @@ import Roster from "../components/Users/Roster"
 const Home = () => {
     // getting logged in user
     const user = auth.getProfile()
-    console.log(user)
+    // console.log(user)
     // making queries
     const { loading: productsLoading, data: productsData} = useQuery(QUERY_ALL_PRODUCTS)
     const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
@@ -51,7 +51,7 @@ const Home = () => {
     let orderGuide
     let products
     let enterpriseId
-    console.log(enterpriseData)
+    // console.log(enterpriseData)
     if(enterpriseData && productsData) {
       enterpriseName = enterpriseData.getEnterpriseById.name;
       enterpriseId = enterpriseData.getEnterpriseById._id
@@ -87,7 +87,7 @@ const Home = () => {
                />
                <Route
               path='/orders/purchase-order'
-              element={<OrderPurchase orderGuide={orderGuide} />}
+              element={<OrderPurchase user={user} enterpriseId={enterpriseId} orderGuide={orderGuide}/>}
                />
                <Route
               path='/orders/sell-order'
