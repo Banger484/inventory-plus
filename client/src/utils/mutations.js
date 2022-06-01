@@ -164,10 +164,23 @@ mutation addEnterprise($name: String!, $userId: ID!, $location: String!) {
 `
 
 export const BUY_ITEMS = gql`
-mutation buy($quantity: Int!, $productId: ID!, $orderNumber: Int!, $cost: Int!, $purchaseDate: String!, $supplier: String!, $enterpriseId: ID!) {
+mutation Mutation($quantity: Int!, $productId: ID!, $orderNumber: Int!, $cost: Int!, $purchaseDate: String!, $supplier: String!, $enterpriseId: ID!) {
   addItems(quantity: $quantity, productId: $productId, orderNumber: $orderNumber, cost: $cost, purchaseDate: $purchaseDate, supplier: $supplier, enterpriseId: $enterpriseId) {
     _id
-    product
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    saleNumber
+    cost
+    purchaseDate
+    supplier
   }
 }
 `

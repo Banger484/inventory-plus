@@ -1,6 +1,7 @@
 
 const groupItems = (data)=>{
     const array = [];
+    // console.log('data',data);
     data.forEach(item=>{
         const matches = array.filter(el=>el.id==item.product._id)
         if(matches.length===0){
