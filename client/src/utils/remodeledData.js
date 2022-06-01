@@ -269,4 +269,4 @@ const checkIfInList = (product,list)=>{
 
 // generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
 
-module.exports = {generatePurchaseTableData}
+module.exports = {generatePurchaseTableData, groupItems}
