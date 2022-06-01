@@ -8,6 +8,8 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import auth from "./utils/auth"
+import Login from "./components/Users/Login"
 
 console.log("in react")
 // Construct our main GraphQL API endpoint
@@ -35,7 +37,14 @@ const client = new ApolloClient({
 });
 
 function App() {
-    console.log("in app")
+    const token = auth.getToken()
+  function choose(){if (token){
+    return(<Home/>)
+  }else{
+    return(<Login/>)
+  }
+  }
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -44,7 +53,7 @@ function App() {
             <Routes>
               <Route 
                 path="/*" 
-                element={<Home />} 
+                element={choose()} 
               />
             </Routes>
           </div>
