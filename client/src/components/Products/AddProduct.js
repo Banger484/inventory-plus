@@ -2,6 +2,7 @@ import './AddProduct.css'
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../../utils/mutations'
+import ProductList from './ProductList';
 
 import Auth from '../../utils/auth';
 
@@ -34,12 +35,10 @@ export default function AddProduct () {
 
 
         try {
-            const variables = { ...inputData,enterprise }
-            console.log(variables)
+            const variables = { ...inputData, enterprise }
             const { data } = await addProduct({
                 variables
             })
-            console.log( data );
         } catch (err) {
             console.error(err);
         }
@@ -53,7 +52,8 @@ export default function AddProduct () {
         })
     }
     return (
-        <div className='form-container'>
+    <div className='add-product-body'>
+    <div className='form-container'>
             <form  onSubmit={handleFormSubmit}>
                 <div className='add-product-header'>
                     <h1>Add Product</h1>
@@ -74,5 +74,10 @@ export default function AddProduct () {
         )}
             </form>
         </div>
+        <div className='add-product-list'>
+            <ProductList />
+        </div>
+    </div>
+        
     )
 }
