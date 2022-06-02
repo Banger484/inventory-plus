@@ -44,9 +44,11 @@ const Signup = () => {
   };
 
   return (
+
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="signupCard">
+          <div style={{ backgroundImage: `url("https://i.pinimg.com/originals/4f/50/3c/4f503caa958fc1dcaec66c0b60a6ebd1.jpg")` }}>
           <h4 className="card-header" id="signupHeader">Sign Up</h4>
           <div className="card-body">
             {data ? (
@@ -107,10 +109,10 @@ const Signup = () => {
             )}
 
             {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Signup">
                 {error.message}
               </div>
-            )}
+            )}    </div>
           </div>
         </div>
       </div>

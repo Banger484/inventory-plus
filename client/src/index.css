@@ -45,7 +45,7 @@ code {
   position:relative;
   top:90px;
   margin: 0%;
-  color: rgb(0, 0, 0);
+  color: rgb(77, 77, 77);
 }
 
 #loginHeader {
@@ -61,28 +61,25 @@ input, button {
   border-width: 1px;
 }
 
-#emailInput-Login, #passwordInput-Login, #usernameInput-Signup,
-#emailInput-Signup, #passwordInput-Signup, #enterpriseInput-Signup, #success-Login, #errorMsg, #redirectSignup {
+#emailInput-Login,
+#passwordInput-Login,
+#usernameInput-Signup,
+#emailInput-Signup,
+#passwordInput-Signup,
+#enterpriseInput-Signup,
+#success-Login,
+#errorMsg-Login,
+#errorMsg-Signup,
+#redirectSignup {
   height:35px;
   width: 275px;
-  font-size:14pt;
-  position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
-  text-align: center;
-}
-
-/* #emailIcon-Login {
   position: absolute;
-  left: 42%;
-  top: 0;
-  font-size: 25px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+  text-align: center;
+  font-size:14pt;
+  border-radius: 5px;
+}
 
 #usernameInput-Signup {
   top: 50%
@@ -121,23 +118,31 @@ input, button {
 }
 
 button:hover {
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(212, 212, 212);
   transition: 0.3s;
 }
 
 #redirectSignup {
   top: 73%;
+  font-size: medium;
 }
 
 #success-Login {
-
+  top: 50%;
 }
 
-#errorMsg {
+#errorMsg-Login, #errorMsg-Signup {
   font-size: 16px;
   color: rgb(255, 109, 109);
-  top: 50%;
   animation: blinker 1s linear infinite;
+}
+
+#errorMsg-Login {
+  top: 50%;
+}
+
+#errorMsg-Signup {
+  top: 78%;
 }
 
 @keyframes blinker {

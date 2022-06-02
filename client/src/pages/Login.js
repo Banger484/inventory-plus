@@ -46,6 +46,7 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="loginCard">
+        <div style={{ backgroundImage: `url("https://i.pinimg.com/originals/4f/50/3c/4f503caa958fc1dcaec66c0b60a6ebd1.jpg")` }}>
           <h4 className="card-header" id="loginHeader">Login</h4>
           <div className="card-body">
             {data ? (
@@ -88,13 +89,14 @@ const Login = (props) => {
                   Create an Account
                 </p>
               {error && (
-              <div className="my-3 p-3 bg-danger text-white" id= "errorMsg">
+              <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Login">
                 {error.message}
               </div>
               )}
             </form>
             )}
           </div>
+        </div>
         </div>
       </div>
     </main>
