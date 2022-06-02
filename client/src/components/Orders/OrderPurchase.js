@@ -80,7 +80,7 @@ export default function OrderPurchase (props) {
             <div className="buy-table-top">
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
             </div>
-            <table className='place-order-table'>
+            <table className='order-table'>
                 <thead>
                     <tr className="order-header">
                         <th>SKU</th>
