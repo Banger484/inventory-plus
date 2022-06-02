@@ -7,12 +7,12 @@ export default function AcceptInvite () {
 
     const path = window.location.pathname.split("/")
     const enterprise = path[path.length-1]
-    console.log(enterprise)
 
     const [formState, setFormState] = useState({
         name: '',
         email: '',
         password: '',
+        enterprise: enterprise
       });
       const [addUser, { error, data }] = useMutation(ADD_USER_TO_EXISTING);
       
@@ -27,14 +27,11 @@ export default function AcceptInvite () {
 
       const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
     
         try {
           const { data } = await addUser({
-            variables: { ...formState,enterprise },
+            variables: { ...formState},
           });
-          console.log(data)
-          window.location.replace("/")
         } catch (e) {
           console.error(e);
         }

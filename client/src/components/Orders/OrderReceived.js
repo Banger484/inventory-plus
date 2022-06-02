@@ -21,6 +21,7 @@ export default function OrderReceived ({enterpriseId}) {
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
 
     const handleFulfill = (e)=>{
+        refetch()
         const index = e.target.dataset.index;
         const binLocation = e.target.parentNode.parentNode.lastElementChild.childNodes[0].value
         const variables = {
