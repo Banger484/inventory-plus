@@ -10,6 +10,19 @@ type Enterprise {
   orderGuide:[Product]
 }
 
+type Analysis {
+  name:String!
+  description:String!
+  msrp:Int!
+  category:String!
+  notes:String!
+  numberPurchased:Int
+  numberIncoming:Int
+  numberInStock:Int
+  numberOutgoing:Int
+  numberFulfilled:Int
+}
+
 type User {
     _id: ID!
     name: String!
@@ -80,6 +93,7 @@ type User {
     getEnterpriseUsers(enterpriseId:ID!):[User]
     getCompletedSales(enterpriseId:ID!):[Item]
     getInventory(enterpriseId:ID!):[Item]
+    generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
   }
 
   type Mutation {
