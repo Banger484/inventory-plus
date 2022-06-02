@@ -6,7 +6,7 @@
     height: 80vh;
 }
 .order-guide-sides {
-    min-width: 50%;
+    width: 50vw;
     height: 80vh;
     display: flex;
     flex-direction: column;

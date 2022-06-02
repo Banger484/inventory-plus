@@ -13,7 +13,7 @@ export default function AddProduct () {
         sku: '',
         name: '',
         description: '',
-        msrp: 3,
+        msrp: 0,
         category: '',
         notes: '',
     })
@@ -59,12 +59,12 @@ export default function AddProduct () {
                     <h1>Add Product</h1>
                 </div>
                 <div className='add-product-form'>
-                <label htmlFor='sku'>SKU:<input name='sku' placeholder='something' type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='name'>Product Name:<input name='name' placeholder='something' type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='description'>Description:<input name='description' placeholder='something' type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='msrp'>MSRP:<input name='msrp' placeholder='something' type='number' onChange={handleInputChange}/></label>
-                <label htmlFor='category'>Category:<input name='category' placeholder='something' type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='notes'>Notes:<input name='notes' placeholder='something' type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='sku'>SKU:<input name='sku' value={formData.sku} type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='name'>Product Name:<input name='name' value={formData.name} type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='description'>Description:<input name='description' value={formData.description} type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='msrp'>MSRP:<input name='msrp' value={formData.msrp} type='number' onChange={handleInputChange}/></label>
+                <label htmlFor='category'>Category:<input name='category' value={formData.category} type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='notes'>Notes:<input name='notes' value={formData.notes} type='text' onChange={handleInputChange}/></label>
                 </div>
                 <input id='add-product-submit' type='submit' value='Submit' />
                 {error && (

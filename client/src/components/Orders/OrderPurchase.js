@@ -21,7 +21,7 @@ export default function OrderPurchase (props) {
     const { loading: currentStocksLoading, data: currentStocksData } = useQuery(GET_CURRENT_STOCKS, {
         variables: { enterpriseId: props.enterpriseId}
     })
-    const { loading: incomingItemsLoading, data: incomingItemsData } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId: props.enterpriseId}
     })
 
@@ -32,11 +32,12 @@ export default function OrderPurchase (props) {
 
     
     if(!currentStocksLoading && !incomingItemsLoading){
+        refetch()
         currentStocksGroups = groupItems(currentStocksData.getCurrentStocks)
         incomingItemsGroups = groupItems(incomingItemsData.getOrderedItems)
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
     }
-
+    console.log(tableData);
 
     const handleSupplierChange = (e) => {
         setSupplier(e.target.value)
@@ -105,8 +106,8 @@ export default function OrderPurchase (props) {
                             <td className="td-4" data-pid={product._id}>{product.notes}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
-                            <td className="td-1" data-pid={product._id}><input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
-                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange}/></td>
+                            <td className="td-1" data-pid={product._id}><input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
                         </tr>
                         )
                     })}
