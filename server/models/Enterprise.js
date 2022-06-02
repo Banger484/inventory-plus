@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { UserSchema } =require( './User');
+
 
 
 const EnterpriseSchema = new Schema({
