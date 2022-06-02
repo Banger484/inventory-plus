@@ -82,6 +82,8 @@ const resolvers = {
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
       const ent = await Enterprise.findById(enterpriseId);
       orderNumber = ent.orderNumber;
+      ent.orderNumber = orderNumber+1;
+      ent.save()
       for (let i=0;i<quantity;i++){
         const item = await Item.create({product:productId,enterprise:enterpriseId,orderNumber,cost,
           purchaseDate,supplier})
