@@ -206,9 +206,17 @@ export const SELL_ITEMS = gql`
 mutation sellItems($enterpriseId: ID!, $saleId: Int!, $buyer: String!, $saleDate: String!, $quantity: Int!, $salesPrice: Float!, $productId: ID!) {
   makeSale(enterpriseId: $enterpriseId, saleId: $saleId, buyer: $buyer, saleDate: $saleDate, quantity: $quantity, salesPrice: $salesPrice, productId: $productId) {
     _id
-    product
     orderNumber
     saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
   }
 }`
 
