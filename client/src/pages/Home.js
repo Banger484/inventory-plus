@@ -22,6 +22,7 @@ import OrderPurchase from '../components/Orders/OrderPurchase'
 import OrderSell from '../components/Orders/OrderSell'
 import OrderGuide from '../components/Orders/OrderGuide'
 import OrderHistory from '../components/Orders/OrderHistory'
+import OrderReceived from '../components/Orders/OrderReceived';
 //Reporting
 import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
@@ -105,8 +106,13 @@ const Home = () => {
                />
                <Route
               path='/orders/order-fulfillment'
-              element={<OrderFulfillment />}
+              element={<OrderFulfillment enterpriseId={enterpriseId}/>}
                />
+                <Route
+              path='/orders/order-received'
+              element={<OrderReceived enterpriseId={enterpriseId}/>}
+               />
+
                <Route
               path='/orders/order-guide'
               element={<OrderGuide enterpriseId={enterpriseId} orderGuide={orderGuide} products={products}/>}

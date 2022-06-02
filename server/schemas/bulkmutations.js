@@ -7,14 +7,15 @@ const bulkMutations = {
         console.log(orderNumber)
         // specify enterprise
         const items = await Item.updateMany({orderNumber,enterprise:enterpriseId},{receivedDate,binLocation})
-        console.log(items)
-        return items
+        const result = await Item.find({orderNumber}).populate("product")
+        return result
     },
     makeSale: async (parent,{enterpriseId,saleId,buyer,saleDate,quantity,salesPrice,productId})=>{
         for(let i=0;i<quantity;i++){
             const item = await getOneItemInStock({enterpriseId,productId})
             console.log(item)
             const updateItem = await updateItemSale(null,{item:item._id,saleDate,buyer,saleNumber:saleId,salesPrice});
+
             console.log(updateItem)
         }
     },

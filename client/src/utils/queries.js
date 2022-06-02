@@ -208,7 +208,32 @@ query GetIncomingItems($enterpriseId: ID!) {
     fulfillmentDate
   }
 }
+`
 
-
-
+export const GET_OPEN_SALES =gql`
+query getOpenSales($enterpriseId: ID!) {
+  getOpenSales(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
+  }
+}
 `
