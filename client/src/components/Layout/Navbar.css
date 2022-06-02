@@ -2,7 +2,7 @@
     background-color: var(--darkest);
     display: flex;
     justify-content: space-evenly;
-    height: 3vh;
+    height: 5vh;
     align-items: center;
 }
 
@@ -10,6 +10,7 @@
     background-color: var(--darkest);
     color: var(--lightest);
     border: none;
+    font-size: 15pt;
 }
 
 .mini-nav-buttons:hover {
