@@ -48,7 +48,7 @@ export default function OrderReceived ({enterpriseId}) {
         </thead>
                 <tbody>
                     {incomingOrders.map((order,index)=>{
-                        return(<tr data-order={order.number}>
+                        return(<tr key={index} data-order={order.number}>
                             <td>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.supplier}</td>
