@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+
+import { FaUserCircle, FaEnvelope, FaLock, FaBuilding } from "react-icons/fa";
 
 import Auth from '../utils/auth';
 
@@ -55,6 +56,7 @@ const Signup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <FaUserCircle id="usernameIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="usernameInput-Signup"
                   className="form-input"
                   placeholder="Username"
@@ -64,6 +66,7 @@ const Signup = () => {
                   value={formState.name}
                   onChange={handleChange}
                 />
+              <FaEnvelope id="emailIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="emailInput-Signup"
                   className="form-input"
                   placeholder="Email"
@@ -73,6 +76,7 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
+              <FaLock id="passwordIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="passwordInput-Signup"
                   className="form-input"
                   placeholder="Password"
@@ -82,6 +86,7 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <FaBuilding id="enterpriseIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                   <input id="enterpriseInput-Signup"
                   className="form-input"
                   placeholder="Enterprise"
@@ -92,7 +97,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button id="submitBtn-Signup"
-                  className="btn btn-block btn-info"
+                  className="btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
+import { FaEnvelope, FaLock } from "react-icons/fa";
+
 import Auth from '../utils/auth';
 
 const Login = (props) => {
@@ -47,12 +49,13 @@ const Login = (props) => {
           <h4 className="card-header" id="loginHeader">Login</h4>
           <div className="card-body">
             {data ? (
-              <p>
+              <p id="success-Login">
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <FaEnvelope id="emailIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="emailInput-Login"
                   className="form-input"
                   placeholder="Email"
@@ -62,6 +65,7 @@ const Login = (props) => {
                   value={formState.email}
                   onChange={handleChange}
                 />
+              <FaLock id="passwordIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="passwordInput-Login"
                   className="form-input"
                   placeholder="Password"
@@ -72,12 +76,17 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <button id="submitBtn-Login"
-                  className="btn btn-block btn-info"
+                  className="btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
                 </button>
+                <p id="redirectSignup"
+                  className="signupLink"
+                >
+                  Create an Account
+                </p>
               {error && (
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg">
                 {error.message}
@@ -85,7 +94,6 @@ const Login = (props) => {
               )}
             </form>
             )}
-
           </div>
         </div>
       </div>

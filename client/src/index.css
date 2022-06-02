@@ -27,7 +27,7 @@ code {
   margin-bottom: 15%;
   margin-left: 35%;
   margin-right: 35%;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .loginCard {
@@ -56,17 +56,33 @@ code {
   height: 14em;
 }
 
+input, button {
+  border-style: solid;
+  border-width: 1px;
+}
+
 #emailInput-Login, #passwordInput-Login, #usernameInput-Signup,
-#emailInput-Signup, #passwordInput-Signup, #enterpriseInput-Signup {
+#emailInput-Signup, #passwordInput-Signup, #enterpriseInput-Signup, #success-Login, #errorMsg, #redirectSignup {
   height:35px;
   width: 275px;
   font-size:14pt;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 20px;
+  border-radius: 10px;
   text-align: center;
 }
+
+/* #emailIcon-Login {
+  position: absolute;
+  left: 42%;
+  top: 0;
+  font-size: 25px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 
 #usernameInput-Signup {
   top: 50%
@@ -91,9 +107,9 @@ code {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  border-radius: 20px;
+  border-radius: 5px;
   height: 40px;
-  width: 100px
+  width: 100px;
 }
 
 #submitBtn-Login {
@@ -105,13 +121,27 @@ code {
 }
 
 button:hover {
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(185, 185, 185);
   transition: 0.3s;
 }
 
+#redirectSignup {
+  top: 73%;
+}
+
+#success-Login {
+
+}
+
 #errorMsg {
-  font-size: 20px;
-  color: rgb(0, 0, 0);
-  position: absolute;
-  top: 75%;
+  font-size: 16px;
+  color: rgb(255, 109, 109);
+  top: 50%;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
