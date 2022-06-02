@@ -10,6 +10,19 @@ type Enterprise {
   orderGuide:[Product]
 }
 
+type Analysis {
+  name:String!
+  description:String!
+  msrp:Int!
+  category:String!
+  notes:String!
+  numberPurchased:Int
+  numberIncoming:Int
+  numberInStock:Int
+  numberOutgoing:Int
+  numberFulfilled:Int
+}
+
 type User {
     _id: ID!
     name: String!
@@ -78,6 +91,7 @@ type User {
     getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getEnterpriseUsers(enterpriseId:ID!):[User]
+    generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
   }
 
   type Mutation {

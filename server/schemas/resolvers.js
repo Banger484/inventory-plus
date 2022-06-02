@@ -1,9 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct} = require("./queries")
+const {singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct} = require("./queries")
 const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
+const {generateProductReport} = require("../analysis/productAnalysis")
 console.log(bulkMutations)
 
 const resolvers = {
@@ -17,9 +18,7 @@ const resolvers = {
     allProducts: async ()=>{
       return Product.find()
     },
-    singleProduct: async (parent,{id})=>{
-      return await Product.findById(id)
-    },
+
     singleCategoryProducts: async (parent,{category})=>{
       const result = await Product.find({category:category})
       return result
@@ -43,6 +42,8 @@ const resolvers = {
     getItems: async()=>{
       return Item.find()
     },
+    generateProductReport,
+    singleProduct,
     getEnterpriseUsers,
     getItemsByOrderNumber,
     getOrderedItems,
