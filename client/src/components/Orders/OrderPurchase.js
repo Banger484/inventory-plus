@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@apollo/client"
 import { useState, useEffect } from 'react'
 import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
-import { generatePurchaseTableData, groupItems } from "../../utils/remodeledData";
+import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import './Order.css'
 

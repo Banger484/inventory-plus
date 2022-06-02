@@ -347,4 +347,4 @@ const formatSales = (sales)=>{
 
 // generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
 
-module.exports = {groupSales,groupOrders,groupItems, generatePurchaseTableData, generateSalesTableData}
+module.exports = {groupSales, groupOrders, groupItems, generatePurchaseTableData, generateSalesTableData}
