@@ -77,7 +77,7 @@ export default function OrderPurchase (props) {
     return (
         <div>
             {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
-            <div className="buy-table-top">
+            <div className="table-top">
                 <h1>Purchase Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
             </div>

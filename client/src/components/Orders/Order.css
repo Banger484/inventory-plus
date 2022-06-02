@@ -1,21 +1,20 @@
-.buy-table-top {
+.table-top {
     height: 5vh;
     background-color: var(--lightest);
     display: flex;
     justify-content: space-between;
     background-color: var(--darkest);
     align-items: center;
-}
-.buy-table-top {
     color: var(--lightest);
+    max-width: 100%;
+    padding: 0 2%
 }
 
-.buy-table-top input {
+.table-top input {
     height: 80%;
     width: 25vw;
     text-align: center;
 }
-
 .order-submit {
     width: 100vw;
     height: 5vh;
@@ -43,4 +42,30 @@
 }
 .td-4 {
     width: 20vw;
+}
+
+/* modal styling */
+
+.modal {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    width: 500px;
+    height: auto;
+    overflow: auto;
+    background-color: var(--darkest);
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+.modal-header {
+    background-color: var(--darkest);
+    text-align: center;
+    color: var(--lightest)
+}
+.modal-body {
+    background-color: var(--middle-light);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

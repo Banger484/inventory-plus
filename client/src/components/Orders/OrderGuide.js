@@ -13,14 +13,16 @@ export default function OrderGuide (props) {
 
     return (
     <>
+            <div className='table-top'>
+            <h1>Order Guide</h1>
+            <h1>Full Product List</h1>
+            </div>
         <div className="order-guide-content">
             <div className="order-guide-sides">
-            <h1>Order Guide</h1>
                 <OrderList enterpriseId={props.enterpriseId} orderGuide={guideState} setGuideState={setGuideState} buttons={buttons} />
 
             </div>
             <div className="order-guide-sides">
-            <h1>Full Product List</h1>
 
                 <ProductList enterpriseId={props.enterpriseId} orderGuide={guideState} setGuideState={setGuideState} buttons={buttons} />
             </div>
