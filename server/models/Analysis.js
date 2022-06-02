@@ -47,4 +47,4 @@ numberFulfilled:{
 
 const Analysis = model('Analysis', AnalysisSchema);
 
-module.exports = {Analysis,AnalysisSchema};
+module.exports = {Analysis};
