@@ -14,7 +14,7 @@ export default function OrderPurchase (props) {
 
 
 
-    const [supplier, setSupplier] = useState('dummy')
+    let supplier = "not specified"
 
     const [buyItems, { error }] = useMutation(BUY_ITEMS)
 
@@ -40,7 +40,7 @@ export default function OrderPurchase (props) {
     console.log(tableData);
 
     const handleSupplierChange = (e) => {
-        setSupplier(e.target.value)
+        supplier = e.target.value
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index

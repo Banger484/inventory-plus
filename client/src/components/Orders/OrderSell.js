@@ -12,8 +12,10 @@ export default function OrderSell (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
 
-    const [buyer, setBuyer] = useState('dummy')
+    // const [buyer, setBuyer] = useState('dummy')
 
+
+    let buyer = "dummy"
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
 
     const { loading: currentStocksLoading, data: currentStocksData } = useQuery(GET_CURRENT_STOCKS, {
@@ -32,22 +34,23 @@ export default function OrderSell (props) {
 
 
     const handleSupplierChange = (e) => {
-        setBuyer(e.target.value)
+        buyer=e.target.value
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
         tableData[index][e.target.name] = parseInt(e.target.value)
+        console.log(tableData[0])
     }
     const handleSubmit = async () => {
-        
+        console.log(tableData[0])
         const filterTableData = tableData.filter(data => data.newSaleQty > 0)
-
+        console.log(filterTableData)
         try {
             await filterTableData.forEach(async (product) => {
                 const variables = {
                     quantity: product.newSaleQty,
                     productId: product._id,
-                    saleNumber,
+                    saleId:saleNumber,
                     salesPrice: product.newSalePricePerUnit,
                     saleDate: orderDate(),
                     buyer,
@@ -55,15 +58,7 @@ export default function OrderSell (props) {
                 }
                 console.log(variables);
                 await sellItems({
-                    variables: {
-                        quantity: product.newSaleQty,
-                        productId: product._id,
-                        saleNumber,
-                        salesPrice: product.newSalePricePerUnit,
-                        saleDate: orderDate(),
-                        buyer,
-                        enterpriseId: props.enterpriseId
-                    }
+                    variables
                 })
 
             })
