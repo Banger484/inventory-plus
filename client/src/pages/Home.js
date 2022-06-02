@@ -22,6 +22,7 @@ import OrderPurchase from '../components/Orders/OrderPurchase'
 import OrderSell from '../components/Orders/OrderSell'
 import OrderGuide from '../components/Orders/OrderGuide'
 import OrderHistory from '../components/Orders/OrderHistory'
+import OrderReceived from '../components/Orders/OrderReceived';
 //Reporting
 import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
@@ -40,7 +41,7 @@ import Roster from "../components/Users/Roster"
 const Home = () => {
     // getting logged in user
     const user = auth.getProfile()
-    console.log(user)
+    // console.log(user)
     // making queries
     const { loading: productsLoading, data: productsData} = useQuery(QUERY_ALL_PRODUCTS)
     const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
@@ -97,7 +98,7 @@ const Home = () => {
                />
                <Route
               path='/orders/purchase-order'
-              element={<OrderPurchase orderGuide={orderGuide} />}
+              element={<OrderPurchase user={user} enterpriseId={enterpriseId} orderGuide={orderGuide}/>}
                />
                <Route
               path='/orders/sell-order'
@@ -105,8 +106,13 @@ const Home = () => {
                />
                <Route
               path='/orders/order-fulfillment'
-              element={<OrderFulfillment />}
+              element={<OrderFulfillment enterpriseId={enterpriseId}/>}
                />
+                <Route
+              path='/orders/order-received'
+              element={<OrderReceived enterpriseId={enterpriseId}/>}
+               />
+
                <Route
               path='/orders/order-guide'
               element={<OrderGuide enterpriseId={enterpriseId} orderGuide={orderGuide} products={products}/>}
