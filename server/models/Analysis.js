@@ -41,6 +41,9 @@ numberOutgoing:{
 },
 numberFulfilled:{
     type:Number,
+},
+numberSold:{
+    type:Number,
 }
 
 });

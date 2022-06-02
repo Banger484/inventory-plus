@@ -35,8 +35,14 @@ const generateProductReport = async (parent,{enterpriseId,productId})=>{
     const numberInStock = inStockItems.length
     const outgoingItems = await Item.find({enterpriseId,productId,salesPrice:{$ne:null},fulfillmentDate:null})
     const numberOutgoing = outgoingItems.length
-    const fulfilledItems = await Item.find({enterpriseId,productId,fulfilledItems:{$ne:null}})
+    const fulfilledItems = await Item.find({enterpriseId,productId,fulfillmentDate:{$ne:null}})
+
     const numberFulfilled = fulfilledItems.length
+    const soldItems = [...fulfilledItems,...outgoingItems]
+    const numberSold = soldItems.length;
+    console.log(soldItems)
+    const totalSalesPrice = soldItems.reduce((a,b)=>{a.salesPrice+b.salesPrice},0)
+    console.log(totalSalesPrice)
     const analysis = await Analysis.create({
         name: product.name,
         description: product.name,
@@ -47,7 +53,8 @@ const generateProductReport = async (parent,{enterpriseId,productId})=>{
         numberIncoming,
         numberInStock,
         numberOutgoing,
-        numberFulfilled
+        numberFulfilled,
+        numberSold
         })
         console.log(analysis)
     return analysis
