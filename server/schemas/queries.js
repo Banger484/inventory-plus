@@ -67,4 +67,9 @@ const getOneItemInStock = async ({enterpriseId,productId}) =>{
     return item
 }
 
-module.exports = {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}
+const singleProduct = async (parent,{id})=>{
+    console.log(id)
+    return await Product.findById(id)
+  }
+
+module.exports = {singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}
