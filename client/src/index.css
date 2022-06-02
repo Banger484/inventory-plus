@@ -57,7 +57,7 @@ code {
 }
 
 #signupHeader {
-  height: 14em;
+  height: 12em;
 }
 
 input, button {
@@ -71,6 +71,7 @@ input, button {
 #emailInput-Signup,
 #passwordInput-Signup,
 #enterpriseInput-Signup,
+#locationInput-Signup,
 #success-Login,
 #errorMsg-Login,
 #errorMsg-Signup,
@@ -83,6 +84,16 @@ input, button {
   text-align: center;
   font-size:14pt;
   border-radius: 5px;
+}
+
+#emailInput-Login,
+#passwordInput-Login,
+#usernameInput-Signup,
+#emailInput-Signup,
+#passwordInput-Signup,
+#enterpriseInput-Signup,
+#locationInput-Signup {
+  background-color: white;
 }
 
 #usernameInput-Signup {
@@ -102,6 +113,10 @@ input, button {
   top: 65%
 }
 
+#locationInput-Signup {
+  top: 70%
+}
+
 #submitBtn-Login, #submitBtn-Signup {
   margin: 0;
   position: absolute;
@@ -118,7 +133,7 @@ input, button {
 }
 
 #submitBtn-Signup {
-  top: 72%;
+  top: 77%;
 }
 
 button:hover {
@@ -127,8 +142,8 @@ button:hover {
 }
 
 #redirectSignup {
-  top: 73%;
-  font-size: medium;
+  top: 72%;
+  font-size: 14px;
 }
 
 #success-Login {
@@ -142,7 +157,7 @@ button:hover {
 }
 
 #errorMsg-Login {
-  top: 50%;
+  top: 80%;
 }
 
 #errorMsg-Signup {

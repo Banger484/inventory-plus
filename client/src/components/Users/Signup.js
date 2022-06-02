@@ -99,11 +99,12 @@ const Signup = () => {
                   value={formState.enterpriseName}
                   onChange={handleChange}
                 />
-                <input
+                <input id="locationInput-Signup"
                   className="form-input"
                   placeholder="Location"
                   name="location"
                   type="text"
+                  autocomplete="off"
                   value={formState.location}
                   onChange={handleChange}
                 />
