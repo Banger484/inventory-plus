@@ -11,3 +11,9 @@
     color: var(--lightest);
     border: none;
 }
+
+.mini-nav-buttons:hover {
+    background-color: var(--lightest);
+    color: var(--darkest);
+    border: none;
+}
