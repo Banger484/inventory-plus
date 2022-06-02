@@ -252,7 +252,6 @@ query Query($enterpriseID: ID!) {
     purchaseDate
     binLocation
     receivedDate
-    purchaseDate
     binLocation
     supplier
   }`
