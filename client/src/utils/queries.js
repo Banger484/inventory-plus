@@ -235,5 +235,50 @@ query getOpenSales($enterpriseId: ID!) {
     saleDate
     fulfillmentDate
   }
-}
-`
+}`
+
+export const GET_SALES = gql `
+query Query($enterpriseID: ID!) {
+  getCompletedSales (enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    saleNumber
+    cost
+    purchaseDate
+    binLocation
+    buyer
+    saleDate
+    salesPrice
+    fulfillmentDate
+  }
+}`
+
+export const GET_INVENTORY = gql `
+query Query($enterpriseID: ID!) {
+  getInventory (enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    cost
+    purchaseDate
+    binLocation
+    receivedDate
+    supplier
+  }
+}`
+
