@@ -1,6 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
+const {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct} = require("./queries")
+const mutations = require('../schemas/mutation');
+const bulkMutations = require("./bulkmutations")
+console.log(bulkMutations)
 
 const resolvers = {
   Query: {
@@ -21,7 +25,7 @@ const resolvers = {
       return result
     },
     getEnterprises: async ()=>{
-      const results = await Enterprise.find()
+      const results = await Enterprise.find().populate("orderGuide")
       console.log(results[0]._id)
       return results
     },
@@ -32,36 +36,32 @@ const resolvers = {
       console.log(enterprise)
       return enterprise
     },
+    getEnterpriseById: async (parent, {_id}) => {
+      const enterprise = await Enterprise.findById(_id).populate('orderGuide')
+      return enterprise
+    },
     getItems: async()=>{
       return Item.find()
-    }
+    },
+    getEnterpriseUsers,
+    getItemsByOrderNumber,
+    getOrderedItems,
+    getCurrentStocks,
+    getOpenSales,
+    getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct
   },
 
   Mutation: {
-    addUser: async (parent, { name, email, password, enterprise,role }) => {
-      const user = await User.create({ name, email, password, enterprise,role });
-      const token = signToken(user);
-
-      return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    },
-    addProduct: async (parent,{sku,name,description,msrp,category,notes}) =>{
+    addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes}) =>{
+      console.log({enterprise,sku,name,description,msrp,category,notes})
       const product = await Product.create({sku,name,description,msrp,category,notes});
+      console.log(product)
+      console.log(enterprise)
+      const ent = await Enterprise.findById(enterprise);
+      console.log("here is the enterprise")
+      console.log(ent)
+      ent.orderGuide.push(product._id)
+      ent.save()     
       return product
     },
     updateProduct: async (parent,props)=>{
@@ -80,14 +80,17 @@ const resolvers = {
       return enterprise
     },
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
-      const newItems = [];
+      const ent = await Enterprise.findById(enterpriseId);
+      orderNumber = ent.orderNumber;
       for (let i=0;i<quantity;i++){
         const item = await Item.create({product:productId,enterprise:enterpriseId,orderNumber,cost,
           purchaseDate,supplier})
-          newItems.push(item)
-      }  
+      }
+      const newItems = await getItemsByOrderNumber(null,{orderNumber,enterpriseId})
       return newItems
-    }
+    },
+    ...mutations,
+    ...bulkMutations
   },
 };
 

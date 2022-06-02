@@ -1,0 +1,15 @@
+.product-list-table {
+    background-color: var(--lightest);
+    border: 1px solid var(--darkest);
+}
+
+th {
+    border: 1px solid var(--darkest);
+    padding: 5px;
+}
+
+td {
+    border: 1px solid var(--darkest);
+    text-align: center;
+    padding: 5px;
+}

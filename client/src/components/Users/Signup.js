@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER } from '../../utils/mutations';
 
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding } from "react-icons/fa";
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     password: '',
-    enterprise:''
+    enterpriseName:'',
+    location:''
   });
   const [addProfile, { error, data }] = useMutation(ADD_USER);
 
@@ -92,10 +93,22 @@ const Signup = () => {
                   <input id="enterpriseInput-Signup"
                   className="form-input"
                   placeholder="Enterprise"
-                  name="enterprise"
+                  name="enterpriseName"
                   type="text"
+<<<<<<< HEAD:client/src/pages/Signup.js
                   autocomplete="off"
                   value={formState.enterprise}
+=======
+                  value={formState.enterpriseName}
+                  onChange={handleChange}
+                />
+                                                <input
+                  className="form-input"
+                  placeholder="Location"
+                  name="location"
+                  type="text"
+                  value={formState.location}
+>>>>>>> main:client/src/components/Users/Signup.js
                   onChange={handleChange}
                 />
                 <button id="submitBtn-Signup"

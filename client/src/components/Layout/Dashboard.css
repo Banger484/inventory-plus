@@ -1,8 +1,8 @@
 .task-container {
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
@@ -16,7 +16,10 @@
     width: 300px;
     display: flex;
     flex-direction: column;
-    margin: 3%;
+
+}
+.task-links {
+    margin: 1%;
 }
 .task-header {
     background-color: var(--darkest);
@@ -25,6 +28,7 @@
     text-align: center;
     border-radius: 15px 15px 0 0;
 }
+
 .task-image {
     height: 75%;
     background-color: var(--lightest);

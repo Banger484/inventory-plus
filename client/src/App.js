@@ -7,15 +7,14 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Layout/Header';
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import auth from "./utils/auth"
+import Login from "./components/Users/Login"
 
 console.log("in react")
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: '/graphql'
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -38,33 +37,26 @@ const client = new ApolloClient({
 });
 
 function App() {
-    console.log("in app")
+    const token = auth.getToken()
+  function choose(){if (token){
+    return(<Home/>)
+  }else{
+    return(<Login/>)
+  }
+  }
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
           <div className="container">
             <Routes>
               <Route 
-                path="/" 
-                element={<Home />} 
+                path="/*" 
+                element={choose()} 
               />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
-              />
-              {/* <Route 
-                path="/profiles/:profileId" 
-                element={<Profile />} 
-              /> */}
             </Routes>
           </div>
-          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>

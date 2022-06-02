@@ -1,0 +1,34 @@
+[
+    {
+    "sku":"ABC123",
+    "name":"New Hampshire End Table",
+    "description":"Solid Oak with glass inset. Victorian Style",
+    "msrp":150,
+    "category":"tables",
+    "notes":"No assembly required"
+},
+{
+    "sku":"CFI395",
+    "name":"Prairie Dining",
+    "description":"Mahogany, Prairie Style",
+    "msrp":900,
+    "category":"tables",
+    "notes":"Two Leafs included"
+},
+{
+    "sku":"IEN830",
+    "name":"Elkwood Davenport",
+    "description":"Plush sofa with metal rivets, seats three",
+    "msrp":1500,
+    "category":"sofas",
+    "notes":"No assembly required"
+},
+{
+    "sku":"FEE980",
+    "name":"Visage Lamp",
+    "description":"Art Deco floor lamp",
+    "msrp":150,
+    "category":"lamps",
+    "notes":"Some assembly required, fragile"
+}
+]
