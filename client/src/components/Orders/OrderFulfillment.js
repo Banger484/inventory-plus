@@ -42,7 +42,7 @@ export default function OrderFulfillment ({enterpriseId}) {
         </thead>
                 <tbody>
                     {openSalesGroup.map((order,index)=>{
-                        return(<tr data-order={order.number}>
+                        return(<tr key={index} data-order={order.number}>
                             <td>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.buyer}</td>

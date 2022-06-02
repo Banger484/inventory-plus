@@ -29,4 +29,4 @@ const EnterpriseSchema = new Schema({
 
 const Enterprise = model('Enterprise', EnterpriseSchema);
 
-module.exports = {Enterprise,EnterpriseSchema};
+module.exports = {Enterprise};

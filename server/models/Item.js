@@ -59,4 +59,4 @@ const ItemSchema = new Schema({
 
 const Item = model("Item",ItemSchema)
 
-module.exports = {Item,ItemSchema}
+module.exports = {Item}
