@@ -101,7 +101,7 @@ const Home = () => {
                />
                <Route
               path='/orders/sell-order'
-              element={<OrderSell orderGuide={orderGuide} />}
+              element={<OrderSell user={user} enterpriseId={enterpriseId} orderGuide={orderGuide}/>}
                />
                <Route
               path='/orders/order-fulfillment'
