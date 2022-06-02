@@ -6,13 +6,11 @@ import { REMOVE_FROM_ORDERGUIDE, ADD_TO_ORDERGUIDE} from '../../utils/mutations'
 import {} from '../../utils/queries'
 
 export default function OrderGuide (props) {
-    console.log("order guide")
-    console.log(props.orderGuide)
+
 
     const [guideState, setGuideState] = useState(props.orderGuide)
     const buttons = true
-    console.log("guide state");
-    console.log(guideState)
+
     return (
     <>
         <div className="order-guide-content">
@@ -24,7 +22,7 @@ export default function OrderGuide (props) {
             <div className="order-guide-sides">
             <h1>Full Product List</h1>
 
-                <ProductList enterpriseId={props.enterpriseId} orderGuide={guideState} setGuideState={setGuideState} products={props.products} buttons={buttons} />
+                <ProductList enterpriseId={props.enterpriseId} orderGuide={guideState} setGuideState={setGuideState} buttons={buttons} />
             </div>
         </div>
     </>

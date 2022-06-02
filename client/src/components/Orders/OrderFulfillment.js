@@ -1,16 +1,14 @@
-import { useQuery,useMutation, from } from "@apollo/client"
-import {GET_INCOMING_ITEMS,GET_OPEN_SALES} from "../../utils/queries"; 
-import { groupOrders, groupSales } from "../../utils/remodeledData";
+import { useQuery,useMutation} from "@apollo/client"
+import {GET_OPEN_SALES} from "../../utils/queries"; 
+import {  groupSales } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
-import { FULFILL_ITEMS, RECEIVE_ITEMS } from "../../utils/mutations";
+import { FULFILL_ITEMS } from "../../utils/mutations";
 
 export default function OrderFulfillment ({enterpriseId}) {
     
     const [fulfillSale,{error}] = useMutation(FULFILL_ITEMS)
 
-    const { loading: incomingItemsLoading, data: incomingItemsData } = useQuery(GET_INCOMING_ITEMS, {
-        variables: { enterpriseId:enterpriseId}
-    })
+   
     const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
         variables: { enterpriseId:enterpriseId}
     })
@@ -31,7 +29,7 @@ export default function OrderFulfillment ({enterpriseId}) {
     return (
         <div>
             <h1>Fulfill Sale</h1>
-            {incomingItemsLoading &&openSaleItemsLoading
+            {openSaleItemsLoading
         ? <h2>Loading</h2>
         :  <table><thead>
              <tr>
