@@ -274,12 +274,10 @@ query Query($enterpriseID: ID!) {
       category
       notes
     }
-    saleNumber
     cost
     purchaseDate
     binLocation
     receivedDate
-    binLocation
     supplier
   }
 }`
