@@ -18,7 +18,7 @@ export default function OrderSell (props) {
     let buyer = "dummy"
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
 
-    const { loading: currentStocksLoading, data: currentStocksData } = useQuery(GET_CURRENT_STOCKS, {
+    const { loading: currentStocksLoading, data: currentStocksData, refetch } = useQuery(GET_CURRENT_STOCKS, {
         variables: { enterpriseId: props.enterpriseId}
     })
 
@@ -28,6 +28,7 @@ export default function OrderSell (props) {
 
     
     if(!currentStocksLoading ){
+        refetch()
         currentStocksGroups = groupItems(currentStocksData.getCurrentStocks)
         tableData = generateSalesTableData(props.orderGuide, currentStocksGroups)
     }

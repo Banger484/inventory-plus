@@ -9,10 +9,12 @@ export default function OrderFulfillment ({enterpriseId}) {
     const [fulfillSale,{error}] = useMutation(FULFILL_ITEMS)
 
    
-    const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
+    const { loading: openSaleItemsLoading, data: openSaleItemsData, refetch } = useQuery(GET_OPEN_SALES, {
         variables: { enterpriseId:enterpriseId}
     })
-
+    if (openSaleItemsData) {
+        refetch()
+    }
 
     const openSalesGroup = openSaleItemsLoading?[]:groupSales(openSaleItemsData.getOpenSales)
     console.log(openSalesGroup)
