@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
-import { FaUserCircle, FaEnvelope, FaLock, FaBuilding } from "react-icons/fa";
+import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
 
 import Auth from '../../utils/auth';
 
@@ -49,19 +49,18 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="signupCard">
-          <div style={{ backgroundImage: `url("https://i.pinimg.com/originals/4f/50/3c/4f503caa958fc1dcaec66c0b60a6ebd1.jpg")` }}>
-          <h4 className="card-header" id="signupHeader">Sign Up</h4>
-          <div className="card-body">
             {data ? (
-              <p>
+              <p id="success-Login">
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <form  className="signupForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <h4 className="card-header" id="signupHeader">Sign Up</h4>
+              <div>
               <FaUserCircle id="usernameIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="usernameInput-Signup"
-                  className="form-input"
+                  className="formInput-Signup"
                   placeholder="Username"
                   name="name"
                   type="text"
@@ -69,9 +68,12 @@ const Signup = () => {
                   value={formState.name}
                   onChange={handleChange}
                 />
+              </div>
+
+              <div id="emailForm-Signup">
               <FaEnvelope id="emailIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="emailInput-Signup"
-                  className="form-input"
+                  className="formInput-Signup"
                   placeholder="Email"
                   name="email"
                   type="email"
@@ -79,9 +81,12 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
+              </div>
+
+              <div id="passwordForm-Signup">
               <FaLock id="passwordIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="passwordInput-Signup"
-                  className="form-input"
+                  className="formInput-Signup"
                   placeholder="Password"
                   name="password"
                   type="password"
@@ -89,9 +94,12 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+              </div>
+              
+              <div id="enterpriseForm-Signup">
                 <FaBuilding id="enterpriseIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                   <input id="enterpriseInput-Signup"
-                  className="form-input"
+                  className="formInput-Signup"
                   placeholder="Enterprise"
                   name="enterpriseName"
                   type="text"
@@ -99,8 +107,12 @@ const Signup = () => {
                   value={formState.enterpriseName}
                   onChange={handleChange}
                 />
+              </div>
+
+              <div id="locationForm-Signup">
+                <FaMapMarkerAlt id="emailIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="locationInput-Signup"
-                  className="form-input"
+                  className="formInput-Signup"
                   placeholder="Location"
                   name="location"
                   type="text"
@@ -108,6 +120,8 @@ const Signup = () => {
                   value={formState.location}
                   onChange={handleChange}
                 />
+              </div>
+
                 <button id="submitBtn-Signup"
                   className="btn"
                   style={{ cursor: 'pointer' }}
@@ -123,9 +137,8 @@ const Signup = () => {
                 {error.message}
               </div>
             )}    </div>
-          </div>
         </div>
-      </div>
+      {/* </div> */}
     </main>
   );
 };

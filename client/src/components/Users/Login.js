@@ -43,22 +43,22 @@ const Login = (props) => {
   };
 
   return (
+
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="loginCard">
-        <div style={{ backgroundImage: `url("https://i.pinimg.com/originals/4f/50/3c/4f503caa958fc1dcaec66c0b60a6ebd1.jpg")` }}>
-          <h4 className="card-header" id="loginHeader">Login</h4>
-          <div className="card-body">
             {data ? (
               <p id="success-Login">
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <form className="loginForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <h4 className="card-header" id="loginHeader">Login</h4>
+              <div id="emailForm-Login">
               <FaEnvelope id="emailIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="emailInput-Login"
-                  className="form-input"
+                  className="formInput-Login"
                   placeholder="Email"
                   name="email"
                   type="email"
@@ -66,9 +66,12 @@ const Login = (props) => {
                   value={formState.email}
                   onChange={handleChange}
                 />
+              </div>
+
+              <div id="passwordForm-Login">
               <FaLock id="passwordIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="passwordInput-Login"
-                  className="form-input"
+                  className="formInput-Login"
                   placeholder="Password"
                   name="password"
                   type="password"
@@ -76,6 +79,8 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+              </div>
+
                 <button id="submitBtn-Login"
                   className="btn"
                   style={{ cursor: 'pointer' }}
@@ -83,11 +88,10 @@ const Login = (props) => {
                 >
                   Submit
                 </button>
-                <p id="redirectSignup"
-                  className="signupLink"
+                <div id="redirectSignup"
                 >
                   Create an Account
-                </p>
+                </div>
               {error && (
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Login">
                 {error.message}
@@ -97,8 +101,7 @@ const Login = (props) => {
             )}
           </div>
         </div>
-        </div>
-      </div>
+      {/* </div> */}
     </main>
   );
 };

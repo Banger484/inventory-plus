@@ -26,20 +26,19 @@ code {
     monospace;
 }
 
-.loginCard, .signupCard {
+.loginForm, .signupForm {
   background-color:#e2e2e2;
-  margin-bottom: 15%;
-  margin-left: 35%;
-  margin-right: 35%;
-  border-radius: 5px;
+  border-radius: 5px; 
+  padding-bottom: 80px;
 }
 
-.loginCard {
+.loginCard, .signupCard {
   margin-top: 10%;
-}
-
-.signupCard {
-  margin-top: 8%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 #loginHeader, #signupHeader {
@@ -47,22 +46,18 @@ code {
   display: flex;
   justify-content: center;
   position:relative;
-  top:90px;
-  margin: 0%;
   color: rgb(77, 77, 77);
-}
-
-#loginHeader {
-  height: 12em;
-}
-
-#signupHeader {
-  height: 12em;
 }
 
 input, button {
   border-style: solid;
   border-width: 1px;
+}
+
+#emailForm-Login, #passwordForm-Login {
+  display: flex;
+  justify-content: center;
+  position:relative;
 }
 
 #emailInput-Login,
@@ -78,10 +73,6 @@ input, button {
 #redirectSignup {
   height:35px;
   width: 275px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  text-align: center;
   font-size:14pt;
   border-radius: 5px;
 }
@@ -96,40 +87,23 @@ input, button {
   background-color: white;
 }
 
-#usernameInput-Signup {
-  top: 50%
-}
-
-#emailInput-Login, #emailInput-Signup {
-  top: 55%
-}
-
-#passwordInput-Login, #passwordInput-Signup {
-  top: 60%;
-  transform: translate(-50%, -50%);
-}
-
-#enterpriseInput-Signup {
-  top: 65%
-}
-
-#locationInput-Signup {
-  top: 70%
+.formInput-Login, .formInput-Signup {
+  margin-left: 10px;
+  margin-bottom: 5px;
 }
 
 #submitBtn-Login, #submitBtn-Signup {
   margin: 0;
   position: absolute;
   left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   border-radius: 5px;
   height: 40px;
   width: 100px;
 }
 
 #submitBtn-Login {
-  top: 67%;
+  top: 77%;
 }
 
 #submitBtn-Signup {
@@ -141,13 +115,15 @@ button:hover {
   transition: 0.3s;
 }
 
-#redirectSignup {
-  top: 72%;
-  font-size: 14px;
+#success-Login {
+  color: white;
+  top: 55%;
 }
 
-#success-Login {
-  top: 50%;
+#redirectSignup {
+  display: flex;
+  justify-content: center;
+  position:relative;
 }
 
 #errorMsg-Login, #errorMsg-Signup {
@@ -157,11 +133,13 @@ button:hover {
 }
 
 #errorMsg-Login {
-  top: 80%;
+  position: relative;
+  left: 10%;
+  text-align: center;
 }
 
 #errorMsg-Signup {
-  top: 78%;
+  top: 50%;
 }
 
 @keyframes blinker {
