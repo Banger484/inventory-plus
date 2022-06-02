@@ -281,5 +281,6 @@ query Query($enterpriseID: ID!) {
     receivedDate
     binLocation
     supplier
-  }`
+  }
+}`
 

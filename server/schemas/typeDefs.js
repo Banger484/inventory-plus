@@ -78,6 +78,8 @@ type User {
     getOpenSalesByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getFulfilledItemsByProduct(enterpriseId:ID!, productId:ID!):[Item]
     getEnterpriseUsers(enterpriseId:ID!):[User]
+    getCompletedSales(enterpriseId:ID!):[Item]
+    getInventory(enterpriseId:ID!):[Item]
   }
 
   type Mutation {
