@@ -143,10 +143,6 @@ const Home = () => {
                 path="/signup" 
                 element={<Signup />} 
               />
-              <Route 
-                path="/invite/*" 
-                element={<AcceptInvite />} 
-              />
               <Route
               path='/'
               element={<Dashboard />} 

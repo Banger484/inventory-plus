@@ -6,13 +6,13 @@ import { ADD_USER_TO_EXISTING } from '../../utils/mutations';
 export default function AcceptInvite () {
 
     const path = window.location.pathname.split("/")
-    const enterprise = path[path.length-1]
+
+    let enterprise = path[path.length - 2]
 
     const [formState, setFormState] = useState({
         name: '',
         email: '',
         password: '',
-        enterprise: enterprise
       });
       const [addUser, { error, data }] = useMutation(ADD_USER_TO_EXISTING);
       
@@ -29,8 +29,9 @@ export default function AcceptInvite () {
         event.preventDefault();
     
         try {
+          console.log('test timing');
           const { data } = await addUser({
-            variables: { ...formState},
+            variables: { ...formState, enterprise},
           });
         } catch (e) {
           console.error(e);
