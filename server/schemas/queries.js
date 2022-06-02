@@ -67,4 +67,14 @@ const getOneItemInStock = async ({enterpriseId,productId}) =>{
     return item
 }
 
-module.exports = {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock}
+const getCompletedSales = async (parent,{enterpriseId,productId})=>{
+    const items = await Item.find({product:productId,enterprise:enterpriseId,saleDate:{$ne:null},fulfillmentDate:{$ne:null}})
+    return items
+}
+
+const getInventory = async (parent,{enterpriseId,productId})=>{
+    const items = await Item.find({product:productId,enterprise:enterpriseId,receivedDate:{$ne:null}, saleDate:null,fulfillmentDate:null})
+    return items
+}
+
+module.exports = {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory}
