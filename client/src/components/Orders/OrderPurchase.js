@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@apollo/client"
 import { useState, useEffect } from 'react'
 import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
-import { generatePurchaseTableData, groupItems } from "../../utils/remodeledData";
+import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import './Order.css'
 
@@ -18,10 +18,10 @@ export default function OrderPurchase (props) {
 
     const [buyItems, { error }] = useMutation(BUY_ITEMS)
 
-    const { loading: currentStocksLoading, data: currentStocksData } = useQuery(GET_CURRENT_STOCKS, {
+    const { loading: currentStocksLoading, data: currentStocksData, refetch: currentRefetch } = useQuery(GET_CURRENT_STOCKS, {
         variables: { enterpriseId: props.enterpriseId}
     })
-    const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch: incomingRefetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId: props.enterpriseId}
     })
 
@@ -32,7 +32,8 @@ export default function OrderPurchase (props) {
 
     
     if(!currentStocksLoading && !incomingItemsLoading){
-        refetch()
+        incomingRefetch()
+        currentRefetch()
         currentStocksGroups = groupItems(currentStocksData.getCurrentStocks)
         incomingItemsGroups = groupItems(incomingItemsData.getOrderedItems)
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)

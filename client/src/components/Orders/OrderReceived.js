@@ -8,17 +8,20 @@ export default function OrderReceived ({enterpriseId}) {
     
     const [receiveOrder,{error}] = useMutation(RECEIVE_ITEMS)
 
-    const { loading: incomingItemsLoading, data: incomingItemsData } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
     // const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
     //     variables: { enterpriseId:enterpriseId}
     // })
 
-
+    if (incomingItemsData) {
+        refetch()
+    }
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
 
     const handleFulfill = (e)=>{
+        refetch()
         const index = e.target.dataset.index;
         const binLocation = e.target.parentNode.parentNode.lastElementChild.childNodes[0].value
         const variables = {
