@@ -43,11 +43,11 @@ const Home = () => {
     const user = auth.getProfile()
     // console.log(user)
     // making queries
-    const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
+    const { loading: enterpriseLoading, data: enterpriseData, refetch: enterpriseRefetch } = useQuery(GET_ENTERPRISE_BY_ID, {
     variables: { id: user.data.enterprise}
     })
     console.log(QUERY_ENT_USERS)
-    const {loading:rosterLoading,data:rosterData}=useQuery(QUERY_ENT_USERS,{
+    const {loading:rosterLoading,data:rosterData, refetch: rosterRefetch}=useQuery(QUERY_ENT_USERS,{
       variables:{ enterpriseId: user.data.enterprise}
   })
 
@@ -62,6 +62,8 @@ const Home = () => {
 
     console.log(enterpriseData)
     if(enterpriseData && rosterData) {
+      enterpriseRefetch()
+      rosterRefetch()
       enterpriseName = enterpriseData.getEnterpriseById.name;
       enterpriseId = enterpriseData.getEnterpriseById._id
       orderGuide = enterpriseData.getEnterpriseById.orderGuide;

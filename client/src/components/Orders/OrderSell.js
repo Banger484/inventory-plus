@@ -22,7 +22,7 @@ export default function OrderSell (props) {
 
     let currentStocksGroups
     let tableData = []
-    let orderNumber = Date.now() % 1000000
+    let saleNumber = Date.now() % 1000000
 
     
     if(!currentStocksLoading ){
@@ -46,19 +46,19 @@ export default function OrderSell (props) {
             await filterTableData.forEach(async (product) => {
                 const variables = {
                     quantity: product.newSaleQty,
-                        productId: product._id,
-                        saleId: orderNumber,
-                        salesPrice: product.newSalePricePerUnit,
-                        saleDate: orderDate(),
-                        buyer,
-                        enterpriseId: props.enterpriseId
+                    productId: product._id,
+                    saleNumber,
+                    salesPrice: product.newSalePricePerUnit,
+                    saleDate: orderDate(),
+                    buyer,
+                    enterpriseId: props.enterpriseId
                 }
                 console.log(variables);
                 await sellItems({
                     variables: {
                         quantity: product.newSaleQty,
                         productId: product._id,
-                        saleId: orderNumber,
+                        saleNumber,
                         salesPrice: product.newSalePricePerUnit,
                         saleDate: orderDate(),
                         buyer,
@@ -75,7 +75,7 @@ export default function OrderSell (props) {
 
     return (
         <div>
-            {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
+            {openModal && <OrderModal orderNumber={saleNumber} closeModal={setOpenModal}/>}
             <div className="buy-table-top">
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter buyer's name"/>
             </div>

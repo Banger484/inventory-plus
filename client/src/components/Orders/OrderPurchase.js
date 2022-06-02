@@ -44,6 +44,7 @@ export default function OrderPurchase (props) {
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
+        console.log(e);
         tableData[index][e.target.name] = parseInt(e.target.value)
     }
     const [updatedTable, setUpdatedTable] = useState([])
