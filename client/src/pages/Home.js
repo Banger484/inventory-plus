@@ -22,6 +22,7 @@ import OrderPurchase from '../components/Orders/OrderPurchase'
 import OrderSell from '../components/Orders/OrderSell'
 import OrderGuide from '../components/Orders/OrderGuide'
 import OrderHistory from '../components/Orders/OrderHistory'
+import OrderReceived from '../components/Orders/OrderReceived';
 //Reporting
 import ReportingDashboard from '../components/Reporting/ReportingDashboard';
 
@@ -40,14 +41,13 @@ import Roster from "../components/Users/Roster"
 const Home = () => {
     // getting logged in user
     const user = auth.getProfile()
-    console.log(user)
+    // console.log(user)
     // making queries
-    const { loading: productsLoading, data: productsData} = useQuery(QUERY_ALL_PRODUCTS)
-    const { loading: enterpriseLoading, data: enterpriseData } = useQuery(GET_ENTERPRISE_BY_ID, {
+    const { loading: enterpriseLoading, data: enterpriseData, refetch: enterpriseRefetch } = useQuery(GET_ENTERPRISE_BY_ID, {
     variables: { id: user.data.enterprise}
     })
     console.log(QUERY_ENT_USERS)
-    const {loading:rosterLoading,data:rosterData}=useQuery(QUERY_ENT_USERS,{
+    const {loading:rosterLoading,data:rosterData, refetch: rosterRefetch}=useQuery(QUERY_ENT_USERS,{
       variables:{ enterpriseId: user.data.enterprise}
   })
 
@@ -61,13 +61,16 @@ const Home = () => {
     let roster
 
     console.log(enterpriseData)
-    if(enterpriseData && productsData&&rosterData) {
+    if(enterpriseData && rosterData) {
+      enterpriseRefetch()
+      rosterRefetch()
       enterpriseName = enterpriseData.getEnterpriseById.name;
       enterpriseId = enterpriseData.getEnterpriseById._id
       orderGuide = enterpriseData.getEnterpriseById.orderGuide;
-      products = productsData.allProducts
       roster = rosterData.getEnterpriseUsers
     }
+
+
   return (
     <>
     <Header user={ user.data.name } enterprise={enterpriseName}/>
@@ -75,7 +78,7 @@ const Home = () => {
     <main className='home-main-content'>
       <div>
         <div>
-          {enterpriseLoading || productsLoading || rosterLoading? (
+          {enterpriseLoading || rosterLoading? (
             <div>Loading...</div>
           ) : (
             <Routes>
@@ -97,16 +100,21 @@ const Home = () => {
                />
                <Route
               path='/orders/purchase-order'
-              element={<OrderPurchase orderGuide={orderGuide} />}
+              element={<OrderPurchase user={user} enterpriseId={enterpriseId} orderGuide={orderGuide}/>}
                />
                <Route
               path='/orders/sell-order'
-              element={<OrderSell orderGuide={orderGuide} />}
+              element={<OrderSell user={user} enterpriseId={enterpriseId} orderGuide={orderGuide}/>}
                />
                <Route
               path='/orders/order-fulfillment'
-              element={<OrderFulfillment />}
+              element={<OrderFulfillment enterpriseId={enterpriseId}/>}
                />
+                <Route
+              path='/orders/order-received'
+              element={<OrderReceived enterpriseId={enterpriseId}/>}
+               />
+
                <Route
               path='/orders/order-guide'
               element={<OrderGuide enterpriseId={enterpriseId} orderGuide={orderGuide} products={products}/>}

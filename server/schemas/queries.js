@@ -29,7 +29,7 @@ const getCurrentStocks = async (parent,{enterpriseId}) =>{
 }
 
 const getOpenSales = async (parent,{enterpriseId})=>{
-    const items = await Item.find({enterprise:enterpriseId,saleDate:{$ne:null},fulfillmentDate:null})
+    const items = await Item.find({enterprise:enterpriseId,saleDate:{$ne:null},fulfillmentDate:null}).populate("product")
     return items
 }
 

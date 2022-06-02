@@ -183,7 +183,7 @@ query Query($enterpriseId: ID!) {
 `
 
 export const GET_INCOMING_ITEMS = gql`
-query ExampleQuery($enterpriseId: ID!) {
+query GetIncomingItems($enterpriseId: ID!) {
   getOrderedItems(enterpriseId: $enterpriseId) {
     _id
     product {
@@ -209,6 +209,33 @@ query ExampleQuery($enterpriseId: ID!) {
   }
 }
 `
+
+export const GET_OPEN_SALES =gql`
+query getOpenSales($enterpriseId: ID!) {
+  getOpenSales(enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    orderNumber
+    saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
+  }
+}`
 
 export const GET_SALES = gql `
 query Query($enterpriseID: ID!) {
@@ -255,3 +282,4 @@ query Query($enterpriseID: ID!) {
     binLocation
     supplier
   }`
+
