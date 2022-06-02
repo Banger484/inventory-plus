@@ -1,0 +1,40 @@
+.buy-table-top {
+    height: 5vh;
+    background-color: var(--lightest);
+    display: flex;
+    justify-content: center;
+    background-color: var(--darkest);
+    align-items: center;
+}
+
+.buy-table-top input {
+    height: 80%;
+    width: 25vw;
+    text-align: center;
+}
+
+.order-submit {
+    width: 100vw;
+    height: 5vh;
+    background-color: var(--darkest);
+    color: var(--lightest);
+    font-size: 1.5rem;
+}
+.place-order-table {
+    background-color: var(--middle-light);
+}
+.order-header {
+    background-color: var(--lightest);
+}
+.td-1 {
+    width: 5vw;
+}
+.td-2 {
+    width: 10vw;
+}
+.td-3 {
+    width: 15vw;
+}
+.td-4 {
+    width: 20vw;
+}

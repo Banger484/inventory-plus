@@ -253,6 +253,17 @@ const generatePurchaseTableData = (guide,current,incoming)=>{
     console.log(array)
     return array
 }
+const generateSalesTableData = (guide,current)=>{
+  const array = []
+  guide.forEach(product=>{
+      let obj;
+      const currentMatch = current.filter(el=>el.id===product._id) 
+      obj= {...product,current:(currentMatch[0]?.quantity||0),newSaleQty:0,newSalePricePerUnit:0}
+      array.push(obj)
+  })
+  console.log(array)
+  return array
+}
 
 const checkIfInList = (product,list)=>{
     const match = list.filter(li=>{
@@ -336,4 +347,4 @@ const formatSales = (sales)=>{
 
 // generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
 
-module.exports = {groupSales,groupOrders,groupItems,generatePurchaseTableData}
+module.exports = {groupSales,groupOrders,groupItems, generatePurchaseTableData, generateSalesTableData}

@@ -1,8 +1,13 @@
+.add-product-body {
+    display: flex;
+}
+
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
+    width: 40vw;
 }
 .add-product-header {
     display: flex;
@@ -42,4 +47,12 @@ label {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.add-product-list {
+    width: 60vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

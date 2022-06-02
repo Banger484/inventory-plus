@@ -11,9 +11,9 @@ export default function OrderReceived ({enterpriseId}) {
     const { loading: incomingItemsLoading, data: incomingItemsData } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
-    const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
-        variables: { enterpriseId:enterpriseId}
-    })
+    // const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
+    //     variables: { enterpriseId:enterpriseId}
+    // })
 
 
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
@@ -34,7 +34,7 @@ export default function OrderReceived ({enterpriseId}) {
     return (
         <div>
             <h1>Receive Order</h1>
-            {incomingItemsLoading &&openSaleItemsLoading
+            {incomingItemsLoading
         ? <h2>Loading</h2>
         :  <table><thead>
              <tr>
