@@ -9,14 +9,17 @@ export default function OrderFulfillment ({enterpriseId}) {
     const [fulfillSale,{error}] = useMutation(FULFILL_ITEMS)
 
    
-    const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
+    const { loading: openSaleItemsLoading, data: openSaleItemsData, refetch } = useQuery(GET_OPEN_SALES, {
         variables: { enterpriseId:enterpriseId}
     })
-
+    if (openSaleItemsData) {
+        refetch()
+    }
 
     const openSalesGroup = openSaleItemsLoading?[]:groupSales(openSaleItemsData.getOpenSales)
     console.log(openSalesGroup)
     const handleFulfill = (e)=>{
+        refetch()
         const index = e.target.dataset.index;
         const variables = {
             enterpriseId:enterpriseId,
@@ -31,7 +34,7 @@ export default function OrderFulfillment ({enterpriseId}) {
             <h1>Fulfill Sale</h1>
             {openSaleItemsLoading
         ? <h2>Loading</h2>
-        :  <table><thead>
+        :  <table  className="product-list-table"><thead>
              <tr>
                         <th>Sale #</th>
                         <th>Sale Date</th>
@@ -42,7 +45,7 @@ export default function OrderFulfillment ({enterpriseId}) {
         </thead>
                 <tbody>
                     {openSalesGroup.map((order,index)=>{
-                        return(<tr data-order={order.number}>
+                        return(<tr key={index} data-order={order.number}>
                             <td>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.buyer}</td>

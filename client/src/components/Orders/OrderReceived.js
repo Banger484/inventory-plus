@@ -3,7 +3,8 @@ import {GET_INCOMING_ITEMS,GET_OPEN_SALES} from "../../utils/queries";
 import { groupOrders } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import { RECEIVE_ITEMS } from "../../utils/mutations";
-import './Order.css'
+import "./orderReceived.css"
+
 export default function OrderReceived ({enterpriseId}) {
     
     const [receiveOrder,{error}] = useMutation(RECEIVE_ITEMS)
@@ -14,13 +15,14 @@ export default function OrderReceived ({enterpriseId}) {
     // const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
     //     variables: { enterpriseId:enterpriseId}
     // })
-    if(incomingItemsData) {
+
+    if (incomingItemsData) {
         refetch()
     }
-
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
     
     const handleFulfill = (e)=>{
+        refetch()
         const index = e.target.dataset.index;
         const binLocation = e.target.parentNode.parentNode.lastElementChild.childNodes[0].value
         const variables = {
@@ -34,24 +36,23 @@ export default function OrderReceived ({enterpriseId}) {
     }
 
     return (
-        <div>
+        <div className="big-center-flex">
             <h1>Receive Order</h1>
             {incomingItemsLoading
         ? <h2>Loading</h2>
-        :  <table className="order-table">
-            <thead>
-                <tr className="order-header">
-                    <th>Order #</th>
-                    <th>Order Date</th>
-                    <th>Seller</th>
-                    <th>Items</th>
-                    <th>Receive!</th>
-                    <th>Bin #</th>
-                </tr>
+        :  <table  className="product-list-table" id="order-received-table"><thead>
+             <tr>
+                        <th>Order #</th>
+                        <th>Order Date</th>
+                        <th>Seller</th>
+                        <th>Items</th>
+                        <th>Receive!</th>
+                        <th>Bin #</th>
+                    </tr>
         </thead>
                 <tbody>
                     {incomingOrders.map((order,index)=>{
-                        return(<tr data-order={order.number}>
+                        return(<tr key={index} data-order={order.number}>
                             <td>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.supplier}</td>

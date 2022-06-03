@@ -181,6 +181,29 @@ query Query($enterpriseId: ID!) {
   }
 }
 `
+export const PRODUCT_ANALYSIS = gql`
+query generateProductReport($enterpriseId: ID!, $productId:ID!){
+  generateProductReport(enterpriseId: $enterpriseId, productId: $productId){
+    name
+    description
+    msrp
+    category
+    notes
+    numberPurchased 
+    numberIncoming
+    numberInStock
+    numberOutgoing
+    numberFulfilled
+    numberSold
+    totalSalesRevenue
+    averageSalesPrice
+    totalCost
+    averageCost
+
+  }
+}
+`
+
 
 export const GET_INCOMING_ITEMS = gql`
 query GetIncomingItems($enterpriseId: ID!) {
@@ -235,5 +258,50 @@ query getOpenSales($enterpriseId: ID!) {
     saleDate
     fulfillmentDate
   }
-}
-`
+}`
+
+export const GET_SALES = gql `
+query Query($enterpriseID: ID!) {
+  getCompletedSales (enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    saleNumber
+    cost
+    purchaseDate
+    binLocation
+    buyer
+    saleDate
+    salesPrice
+    fulfillmentDate
+  }
+}`
+
+export const GET_INVENTORY = gql `
+query Query($enterpriseID: ID!) {
+  getInventory (enterpriseId: $enterpriseId) {
+    _id
+    product {
+      _id
+      sku
+      name
+      description
+      msrp
+      category
+      notes
+    }
+    cost
+    purchaseDate
+    binLocation
+    receivedDate
+    supplier
+  }
+}`
+

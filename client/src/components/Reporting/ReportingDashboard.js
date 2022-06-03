@@ -14,10 +14,10 @@ export default function ReportingDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/reporting/second-report">
+            <Link className='task-links' to="/reporting/product">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Second Report</h2>
+                    <h2>Product Report</h2>
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/reporting1.png" alt='icon'/>
