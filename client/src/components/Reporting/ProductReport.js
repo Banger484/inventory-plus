@@ -2,7 +2,7 @@ import {useQuery} from "@apollo/client"
 import { useState } from "react"
 import { GET_ENTERPRISE_BY_ID,PRODUCT_ANALYSIS } from "../../utils/queries"
 import ProductDetails from "./ProductDetails"
-
+import './productReport.css'
 
 export default function ProductReport ({enterpriseId}){
     console.log(enterpriseId)

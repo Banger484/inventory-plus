@@ -1,0 +1,17 @@
+#order-received-table input{
+    width:90px
+}
+
+.big-center-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#order-received-table button{
+    height:40px 
+}
+
+.big-center-flex h1{
+    color: whitesmoke;
+}

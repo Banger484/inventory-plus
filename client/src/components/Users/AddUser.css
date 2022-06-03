@@ -1,0 +1,26 @@
+.add-user-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-user-section h1{
+    text-align: center;
+    color: white;
+}
+
+.add-user-section form{
+    width: 300px;
+}
+
+.add-user-section input{
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    padding:.3em 0;
+    text-align: center;
+}
+
+.add-user-section button{
+    font-size: 1.5rem;
+    padding: 10px 0px;
+}
