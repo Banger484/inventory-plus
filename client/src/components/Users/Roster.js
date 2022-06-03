@@ -1,6 +1,7 @@
 import { useQuery,useMutation } from '@apollo/client';
 import React, { useRef,useState } from 'react';
 import auth from '../../utils/auth'
+import "./Roster.css"
 
 import { REMOVE_USER } from '../../utils/mutations';
 

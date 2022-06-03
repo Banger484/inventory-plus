@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import Auth from '../../utils/auth';
+import "./AddUser.css"
 
 export default function AddUser () {
     const form = useRef();
@@ -23,7 +24,7 @@ export default function AddUser () {
         e.target.reset();
     }
     return (
-        <div>
+        <div className='add-user-section'>
             <h1>Invite User</h1>
             <form ref={form} onSubmit= {sendEmail}>
                 <input name="user_email" type="email"></input>
