@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import auth from "./utils/auth"
 import Login from "./components/Users/Login"
+import AcceptInvite from './components/Users/AcceptInvite'
 
 console.log("in react")
 // Construct our main GraphQL API endpoint
@@ -52,6 +53,10 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             <Routes>
+              <Route
+                path='/invite/*'
+                element={<AcceptInvite />} 
+              />
               <Route 
                 path="/*" 
                 element={choose()} 

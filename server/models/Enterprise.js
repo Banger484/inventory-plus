@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-
-
 const EnterpriseSchema = new Schema({
   name: {
     type: String,

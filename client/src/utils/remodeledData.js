@@ -1,5 +1,5 @@
 
-const groupItems = (data)=>{
+export const groupItems = (data)=>{
     const array = [];
     // console.log('data',data);
     data.forEach(item=>{
@@ -179,11 +179,11 @@ const testIncomingItems = [
       }
     ]
 
-const currentGroup = groupItems(testCurrentItems)
+export const currentGroup = groupItems(testCurrentItems)
 
-const incomingGroup = groupItems(testIncomingItems)
+export const incomingGroup = groupItems(testIncomingItems)
 
-const testOrderGuide = [
+export const testOrderGuide = [
     {
       "_id": "6296a255dbeac327b8a9a7ee",
       "sku": "ABC123",
@@ -241,7 +241,7 @@ const testOrderGuide = [
   ]
 
 
-const generatePurchaseTableData = (guide,current,incoming)=>{
+export const generatePurchaseTableData = (guide,current,incoming)=>{
     const array = []
     guide.forEach(product=>{
         let obj;
@@ -253,7 +253,7 @@ const generatePurchaseTableData = (guide,current,incoming)=>{
     console.log(array)
     return array
 }
-const generateSalesTableData = (guide,current)=>{
+export const generateSalesTableData = (guide,current)=>{
   const array = []
   guide.forEach(product=>{
       let obj;
@@ -265,7 +265,7 @@ const generateSalesTableData = (guide,current)=>{
   return array
 }
 
-const checkIfInList = (product,list)=>{
+export const checkIfInList = (product,list)=>{
     const match = list.filter(li=>{
         return li._id===product._id
     })
@@ -277,7 +277,7 @@ const checkIfInList = (product,list)=>{
     }
 }
 
-const groupOrders = (items)=>{
+export const groupOrders = (items)=>{
     const orders = {};
     items.forEach(item=>{
         if(orders?.[item.orderNumber]){
@@ -292,7 +292,7 @@ const groupOrders = (items)=>{
 }
 
 
-const groupSales = (items)=>{
+export const groupSales = (items)=>{
     const sales = {};
     items.forEach(item=>{
         if(sales?.[item.saleNumber]){
@@ -306,7 +306,7 @@ const groupSales = (items)=>{
     return formatSales(sales)
 }
 
-const stringItems = (items)=>{
+export const stringItems = (items)=>{
     let string = ""
     items.forEach(item=>{
         string+=`${item.name}: ${item.quantity}, `
@@ -315,7 +315,7 @@ const stringItems = (items)=>{
     return string
 }
 
-const formatOrders = (orders)=>{
+export const formatOrders = (orders)=>{
     const array = [];
     for(let key in orders){
         const obj={}
@@ -329,7 +329,7 @@ const formatOrders = (orders)=>{
     return array
 }
 
-const formatSales = (sales)=>{
+export const formatSales = (sales)=>{
     const array = [];
     for(let key in sales){
         const obj={}
@@ -347,4 +347,4 @@ const formatSales = (sales)=>{
 
 // generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
 
-module.exports = {groupSales,groupOrders,groupItems, generatePurchaseTableData, generateSalesTableData}
+// module.exports = {groupSales, groupOrders, groupItems, generatePurchaseTableData, generateSalesTableData}
