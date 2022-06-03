@@ -57,7 +57,7 @@ const Signup = () => {
             ) : (
               <form  className="signupForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
               <h4 className="card-header" id="signupHeader">Sign Up</h4>
-              <div>
+              <div id="usernameForm-Signup">
               <FaUserCircle id="usernameIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
                 <input id="usernameInput-Signup"
                   className="formInput-Signup"
@@ -136,7 +136,9 @@ const Signup = () => {
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Signup">
                 {error.message}
               </div>
-            )}    </div>
+            )}
+            
+          </div>
         </div>
       {/* </div> */}
     </main>

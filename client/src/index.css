@@ -54,7 +54,13 @@ input, button {
   border-width: 1px;
 }
 
-#emailForm-Login, #passwordForm-Login {
+#emailForm-Login,
+#passwordForm-Login,
+#usernameForm-Signup,
+#emailForm-Signup,
+#passwordForm-Signup,
+#enterpriseForm-Signup,
+#locationForm-Signup {
   display: flex;
   justify-content: center;
   position:relative;
@@ -107,7 +113,7 @@ input, button {
 }
 
 #submitBtn-Signup {
-  top: 77%;
+  top: 85%;
 }
 
 button:hover {
@@ -124,6 +130,13 @@ button:hover {
   display: flex;
   justify-content: center;
   position:relative;
+  left: 41px;
+  font-size: small;
+}
+
+#redirectSignup:hover {
+  color: rgb(116, 116, 116);
+  transition: 0.3s;
 }
 
 #errorMsg-Login, #errorMsg-Signup {
@@ -133,9 +146,15 @@ button:hover {
 }
 
 #errorMsg-Login {
-  position: relative;
-  left: 10%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  position:relative;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding-bottom: 30px;
 }
 
 #errorMsg-Signup {
