@@ -144,6 +144,7 @@ const Home = () => {
               />
               <Route
               path="/"
+              element={<Dashboard/>}
               />
               <Route
               path='/reporting/product'
