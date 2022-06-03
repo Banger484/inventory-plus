@@ -33,7 +33,7 @@ code {
 }
 
 .loginCard, .signupCard {
-  margin-top: 10%;
+  margin-top: 15%;
   display: flex;
   justify-content: center;
   position: absolute;
