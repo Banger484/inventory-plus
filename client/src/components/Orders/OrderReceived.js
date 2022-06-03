@@ -3,6 +3,7 @@ import {GET_INCOMING_ITEMS,GET_OPEN_SALES} from "../../utils/queries";
 import { groupOrders } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import { RECEIVE_ITEMS } from "../../utils/mutations";
+import "./orderReceived.css"
 
 export default function OrderReceived ({enterpriseId}) {
     
@@ -35,11 +36,11 @@ export default function OrderReceived ({enterpriseId}) {
     }
 
     return (
-        <div>
+        <div className="big-center-flex">
             <h1>Receive Order</h1>
             {incomingItemsLoading
         ? <h2>Loading</h2>
-        :  <table  className="product-list-table"><thead>
+        :  <table  className="product-list-table" id="order-received-table"><thead>
              <tr>
                         <th>Order #</th>
                         <th>Order Date</th>
