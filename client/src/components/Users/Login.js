@@ -88,11 +88,10 @@ const Login = (props) => {
                 >
                   Submit
                 </button>
-                
-                <div id="redirectSignup"
-                >
+
+                <Link to="/signup" id="redirectSignup">
                   Create an Account
-                </div>
+                </Link>
 
               {error && (
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Login">

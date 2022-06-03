@@ -137,10 +137,8 @@ const Signup = () => {
                 {error.message}
               </div>
             )}
-            
           </div>
         </div>
-      {/* </div> */}
     </main>
   );
 };

@@ -140,12 +140,6 @@ button:hover {
 }
 
 #errorMsg-Login, #errorMsg-Signup {
-  font-size: 16px;
-  color: rgb(255, 109, 109);
-  animation: blinker 1s linear infinite;
-}
-
-#errorMsg-Login {
   display: flex;
   justify-content: center;
   position:relative;
@@ -155,10 +149,9 @@ button:hover {
   height: 40px;
   width: 100px;
   padding-bottom: 30px;
-}
-
-#errorMsg-Signup {
-  top: 50%;
+  font-size: 16px;
+  color: rgb(255, 109, 109);
+  animation: blinker 1s linear infinite;
 }
 
 @keyframes blinker {
