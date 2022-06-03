@@ -36,7 +36,7 @@ export default function OrderReceived ({enterpriseId}) {
             <h1>Receive Order</h1>
             {incomingItemsLoading
         ? <h2>Loading</h2>
-        :  <table><thead>
+        :  <table  className="product-list-table"><thead>
              <tr>
                         <th>Order #</th>
                         <th>Order Date</th>
