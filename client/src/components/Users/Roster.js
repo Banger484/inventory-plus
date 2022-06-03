@@ -1,14 +1,16 @@
+// Imports custom css file and requires all dependant files
 import { useQuery, useMutation } from "@apollo/client";
 import React, { useRef, useState } from "react";
 import auth from "../../utils/auth";
 import "./Roster.css";
-
 import { REMOVE_USER } from "../../utils/mutations";
 
+//exports function to render employee roster
 export default function Roster({ roster, rosterRefetch }) {
   const [userList, setUserList] = useState(roster);
   const [removeUser, { error }] = useMutation(REMOVE_USER);
 
+  // function to remove user from enterprise roster
   const handleRemoveUser = async (id) => {
     try {
       const { data } = await removeUser({
@@ -24,6 +26,7 @@ export default function Roster({ roster, rosterRefetch }) {
     }
   };
   return (
+    // displayes HTML for employee roster
     <div>
       <h1>Employee Roster</h1>
       {userList.map((u, i) => {
