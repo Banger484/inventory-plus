@@ -12,6 +12,14 @@ a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  
+  background: transparent;  
+}
 body {
   margin: 0;
   background-color: var(--middle);

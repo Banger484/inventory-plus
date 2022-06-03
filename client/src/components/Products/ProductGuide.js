@@ -1,12 +1,18 @@
-import './ProductGuide.css'
+import "./ProductGuide.css";
 import ProductList from "./ProductList";
 
-export default function ProductGuide (props) {
-    console.log(props)
-    return (
-        <div className='product-guide-container'>
-            <h1>Product Guide</h1>
-            <ProductList />
-        </div>
-    )
+export default function ProductGuide(props) {
+  return (
+    <>
+      <div className="table-top">
+        <h1>Product Guide</h1>
+      </div>
+      <div className="product-guide-container">
+        <ProductList
+          products={props.products}
+          productsRefetch={props.productsRefetch}
+        />
+      </div>
+    </>
+  );
 }

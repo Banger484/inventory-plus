@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 
 export default function OrderModal ({closeModal, orderNumber}) {
     return (
-        <div className="modal-background">
+        <div className="modal">
             <div className="modal-container">
-                <button onClick={() => closeModal(false)}> X </button>
                 <div className="modal-header">
                     <h1>Order Successfully Placed</h1>
                 </div>
@@ -13,7 +12,10 @@ export default function OrderModal ({closeModal, orderNumber}) {
                     <p>Order number #{orderNumber} is now processing...</p>
                 </div>
                 <div className="modal-footer">
-                    <button>Return to Order Dashboard</button>
+                    <Link to='/orders/'>
+                        <button>Return to Order Dashboard</button>
+                    </Link>
+                    <button onClick={() => closeModal(false)}>Close</button>
                 </div>
             </div>
         </div>

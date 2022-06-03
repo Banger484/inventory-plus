@@ -4,9 +4,10 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_FROM_ORDERGUIDE } from '../../utils/mutations'
 
 export default function OrderList (props) {
-
+    if(props.orderGuide) {
+        props.enterpriseRefetch()
+    }
     const [removeProduct, { error }] = useMutation(REMOVE_FROM_ORDERGUIDE)
-
     const handleRemove = async (pid) => {
         const newList = props.orderGuide.filter((product) => {
             return product._id !== pid
@@ -19,10 +20,7 @@ export default function OrderList (props) {
         } catch (err) {
             console.error(err);
         }
-
     }
-    
-
     return (
         <div>
             <table className='order-list-table'>
