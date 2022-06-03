@@ -23,18 +23,15 @@ export default function Roster({ roster, rosterRefetch }) {
     } catch (err) {
       console.log(err);
     }
-  };
-  return (
-    <div>
-      <h1>Employee Roster</h1>
-      {userList.map((u, i) => {
-        return (
-          <div key={i}>
-            <h2>{u.name}</h2>
-            <button onClick={() => handleRemoveUser(u._id)}>Remove</button>
-          </div>
-        );
-      })}
-    </div>
-  );
+
+    return (
+        <div className='employee-roster-cont'>
+            <h1>Employee Roster</h1>
+            {userList.map((u,i)=>{
+                return(<div className='employee-cont' key={i}><h3>{u.name}</h3><h3>{u.email}</h3><button onClick={()=>handleRemoveUser(u._id)}>Remove</button></div>)
+            })}
+        </div>
+    )
 }
+
+
