@@ -12,7 +12,6 @@ export default function Roster ({roster}) {
 
     const handleRemoveUser = async (id)=>{
         try{
-            console.log("in function")
             const {data} = await removeUser({
                 variables:{userId:id}
             })
@@ -21,7 +20,7 @@ export default function Roster ({roster}) {
             });
             setUserList(newList)
         }catch(err){
-            console.log(err)
+            console.error(err)
         }
     }
     return (

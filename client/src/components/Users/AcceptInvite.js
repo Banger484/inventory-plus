@@ -29,7 +29,6 @@ export default function AcceptInvite () {
         event.preventDefault();
     
         try {
-          console.log('test timing');
           const { data } = await addUser({
             variables: { ...formState, enterprise},
           });

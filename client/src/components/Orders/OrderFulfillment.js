@@ -17,7 +17,6 @@ export default function OrderFulfillment ({enterpriseId}) {
     }
 
     const openSalesGroup = openSaleItemsLoading?[]:groupSales(openSaleItemsData.getOpenSales)
-    console.log(openSalesGroup)
     const handleFulfill = (e)=>{
         refetch()
         const index = e.target.dataset.index;
