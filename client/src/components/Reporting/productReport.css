@@ -1,0 +1,13 @@
+.product-report-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+.product-report {
+    display: flex;
+    justify-content: center;
+}
+.p-details {
+    margin: 0 auto;
+}
+

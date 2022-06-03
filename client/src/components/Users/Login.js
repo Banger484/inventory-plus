@@ -90,8 +90,8 @@ const Login = (props) => {
                   Submit
                 </button>
 
-                <p id="redirectSignup">
-                <Link to="/signup">
+                <p className="redirectSignup">
+                <Link className='link-text-ls' to="/signup">
                   Create an Account
                 </Link>
                 </p>

@@ -35,9 +35,9 @@ export default function ProductList (props) {
 
     return (
         <div>
-            <table className='product-list-table'>
+            <table className='order-table'>
                 <thead>
-                    <tr>
+                    <tr className='order-header'>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>

@@ -1,5 +1,6 @@
 .add-product-body {
     display: flex;
+    align-items: center;
 }
 
 .form-container {
@@ -50,11 +51,11 @@ label {
 
 .add-product-list {
     width: 60vw;
-    height: 80vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
+
 
 @media screen and (max-width:900px){
  .add-product-body{
