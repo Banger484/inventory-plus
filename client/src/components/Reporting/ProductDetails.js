@@ -20,6 +20,14 @@ export default function ProductDetails ({enterpriseId,productId}){
         const subArray = [key,analysis[key]];
         analysisArray.push(subArray)
     }
+
+    if (!analysisArray?.length>0){
+        return(
+            <h2>No History With this Product</h2>
+            )
+    }
+
+
     return(
         <>
         <table className="product-list-table">

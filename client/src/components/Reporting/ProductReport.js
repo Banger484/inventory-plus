@@ -21,8 +21,8 @@ export default function ProductReport ({enterpriseId}){
     }
 
     const handleProductClick = (e)=>{
-        const productId = e.target.dataset.productId
-        setProductId(e.target.dataset.productId)
+        const productId = e.target.value
+        setProductId(productId)
     }
 
     return(
@@ -30,9 +30,12 @@ export default function ProductReport ({enterpriseId}){
 
         <div className="card">
             <h3>Products</h3>
+            <select defaultValue="Choose a Product" placeholder="Choose a product"  onChange={handleProductClick}>
+            <option selected value="">Select a Product</option>
             {products.map((product,index)=>{
-                return(<button data-product-id={product._id} onClick={handleProductClick} >{product.name}</button>)
+                return(<option data-product-id={product._id} value={product._id} >{product.name}</option>)
             })}
+            </select>
         </div>
             {productId?<ProductDetails enterpriseId={enterpriseId} productId={productId}/>:null}
         </div>

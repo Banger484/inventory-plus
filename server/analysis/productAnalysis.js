@@ -8,15 +8,16 @@ const {singleProduct} = require("../schemas/queries")
 const generateProductReport = async (parent,{enterpriseId,productId})=>{
    try{
     const product = await Product.findById(productId)
-    const purchasedItems = await Item.find({enterpriseId:enterpriseId,product:productId})
+    const purchasedItems = await Item.find({enterprise:enterpriseId,product:productId})
     const numberPurchased = purchasedItems.length
-    const incomingItems = await Item.find({enterpriseId,product:productId,receivedDate:null})
+    const incomingItems = await Item.find({enterprise:enterpriseId,product:productId,receivedDate:null})
     const numberIncoming = incomingItems.length
-    const inStockItems = await Item.find({enterpriseId,product:productId,receivedDate:{$ne:null},saleNumber:null})
+    const inStockItems = await Item.find({enterprise:enterpriseId,product:productId,receivedDate:{$ne:null},saleNumber:null})
     const numberInStock = inStockItems.length
-    const outgoingItems = await Item.find({enterpriseId,product:productId,saleNumber:{$ne:null},fulfillmentDate:null})
+    const outgoingItems = await Item.find({enterprise:enterpriseId,product:productId,saleNumber:{$ne:null},fulfillmentDate:null})
     const numberOutgoing = outgoingItems.length
-    const fulfilledItems = await Item.find({enterpriseId,product:productId,fulfillmentDate:{$ne:null}})
+    const fulfilledItems = await Item.find({enterprise:enterpriseId,product:productId,fulfillmentDate:{$ne:null}})
+    
     const numberFulfilled = fulfilledItems.length
     const soldItems = [...fulfilledItems,...outgoingItems]
     const numberSold = soldItems.length;
