@@ -6,7 +6,7 @@ import ProductList from './ProductList';
 
 import Auth from '../../utils/auth';
 
-export default function AddProduct () {
+export default function AddProduct (props) {
     
     const enterprise = Auth.getProfile().data.enterprise
     const [ formData, setFormData ] = useState({
@@ -75,7 +75,10 @@ export default function AddProduct () {
             </form>
         </div>
         <div className='add-product-list'>
-            <ProductList />
+        <ProductList
+          products={props.products}
+          productsRefetch={props.productsRefetch}
+        />
         </div>
     </div>
         
