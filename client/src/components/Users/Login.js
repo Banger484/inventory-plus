@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
+import { FaEnvelope, FaLock } from "react-icons/fa";
+
 import Auth from '../../utils/auth';
 
 const Login = (props) => {
@@ -41,52 +43,67 @@ const Login = (props) => {
   };
 
   return (
+
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+        <div className="loginCard">
             {data ? (
-              <p>
+              <p id="success-Login">
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
+              <form className="loginForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <h4 className="card-header" id="loginHeader">Login</h4>
+              <div id="emailForm-Login">
+              <FaEnvelope id="emailIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="emailInput-Login"
+                  className="formInput-Login"
+                  placeholder="Email"
                   name="email"
                   type="email"
+                  autocomplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="******"
+              </div>
+
+              <div id="passwordForm-Login">
+              <FaLock id="passwordIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="passwordInput-Login"
+                  className="formInput-Login"
+                  placeholder="Password"
                   name="password"
                   type="password"
+                  autocomplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-info"
+              </div>
+
+                <button id="submitBtn-Login"
+                  className="btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
                 </button>
-              </form>
-            )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+                <p id="redirectSignup">
+                <Link to="/signup">
+                  Create an Account
+                </Link>
+                </p>
+
+              {error && (
+              <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Login">
                 {error.message}
               </div>
+              )}
+            </form>
             )}
           </div>
         </div>
-      </div>
     </main>
   );
 };
