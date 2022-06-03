@@ -28,7 +28,8 @@ code {
 
 .loginForm, .signupForm {
   background-color:#e2e2e2;
-  border-radius: 5px; 
+  border-radius: 5px;
+  padding: 40px;
   padding-bottom: 80px;
 }
 
@@ -39,6 +40,7 @@ code {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+
 }
 
 #loginHeader, #signupHeader {
@@ -130,7 +132,7 @@ button:hover {
   display: flex;
   justify-content: center;
   position:relative;
-  left: 41px;
+  left: 20px;
   font-size: small;
 }
 
@@ -148,7 +150,7 @@ button:hover {
   border-radius: 5px;
   height: 40px;
   width: 100px;
-  padding-bottom: 30px;
+  padding-bottom: 60px;
   font-size: 16px;
   color: rgb(255, 109, 109);
   animation: blinker 1s linear infinite;
