@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import auth from "./utils/auth"
 import Login from "./components/Users/Login"
+import Signup from './components/Users/Signup';
 import AcceptInvite from './components/Users/AcceptInvite'
 
 console.log("in react")
@@ -56,6 +57,10 @@ function App() {
               <Route
                 path='/invite/*'
                 element={<AcceptInvite />} 
+              />
+              <Route
+                path='/signup'
+                element={<Signup />}
               />
               <Route 
                 path="/*" 
