@@ -14,16 +14,6 @@ export default function UserDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/users/remove-user">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Remove User</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/removeUser.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
             <Link className='task-links' to="/users/roster">
             <div className='task'>
                 <div className='task-header'>

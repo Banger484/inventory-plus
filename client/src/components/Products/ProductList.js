@@ -1,19 +1,12 @@
 import './ProductList.css'
-import React, { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client';
+import React from 'react'
+import { useMutation } from '@apollo/client';
 import { ADD_TO_ORDERGUIDE } from '../../utils/mutations'
-import { QUERY_ALL_PRODUCTS } from '../../utils/queries'
 
 export default function ProductList (props) {
-    
-    const { loading: productsLoading, data: productsData, refetch } = useQuery(QUERY_ALL_PRODUCTS)
-    let products
-
-    if(productsData) {
-        refetch()
-        products = productsData.allProducts
+    if(props.products) {
+        props.productsRefetch()
     }
-
     const [addProduct, { error }] = useMutation(ADD_TO_ORDERGUIDE)
     const checkIfInList = (product,list)=>{
         const match = list.filter(li=>{
@@ -26,7 +19,6 @@ export default function ProductList (props) {
             return false
         }
     }
-
     const handleAdd = async (product) => {
         let newList = [...props.orderGuide, product]
         
@@ -56,8 +48,8 @@ export default function ProductList (props) {
 
                     </tr>
                 </thead>
-                    <tbody>{productsLoading? (<tr><td>Loading...</td></tr>) : (
-                        products.map((product, index) => {
+                    <tbody>
+                        {props.products.map((product, index) => {
                         const check = checkIfInList(product, (props?.orderGuide||[]))
                         if(!check) {
                          return (
@@ -72,8 +64,7 @@ export default function ProductList (props) {
 
                         </tr>
                         )   
-                        }})
-                    )}
+                        }})}
                     
                     </tbody>
                 </table>

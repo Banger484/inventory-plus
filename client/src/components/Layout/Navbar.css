@@ -2,12 +2,13 @@
     background-color: var(--darkest);
     display: flex;
     justify-content: space-evenly;
-    height: 3vh;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .mini-nav-buttons {
     background-color: var(--darkest);
     color: var(--lightest);
     border: none;
+    padding:5px;
 }
