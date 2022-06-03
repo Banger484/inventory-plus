@@ -69,3 +69,20 @@
     justify-content: center;
     align-items: center;
 }
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.modal-footer-button {
+    border: none;
+    background-color: var(--darkest);
+    color: var(--lightest);
+    margin: 5px;
+}
+.modal-footer-button:hover {
+    cursor: pointer;
+    background-color: var(--darkest);
+}

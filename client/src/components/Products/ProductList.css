@@ -1,8 +1,9 @@
 .product-list-table {
-    background-color: var(--lightest);
+    background-color: var(--middle-light);
     border: 1px solid var(--darkest);
     width: 50vw;
 }
+
 
 th {
     border: 1px solid var(--darkest);

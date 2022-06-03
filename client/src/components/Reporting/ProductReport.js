@@ -29,10 +29,11 @@ export default function ProductReport ({enterpriseId}){
     }
 
     return(
-        <div>
-
-        <div className="card">
-            <h3>Products</h3>
+        <div className="">
+        <div className="table-top product-report">
+        <h1>Product Report</h1>
+        </div>
+        <div className="card product-report-container">
             {products.map((product,index)=>{
                 console.log(product)
                 return(<button data-product-id={product._id} onClick={handleProductClick} >{product.name}</button>)

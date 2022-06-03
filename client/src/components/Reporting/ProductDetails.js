@@ -25,7 +25,7 @@ export default function ProductDetails ({enterpriseId,productId}){
     }
     return(
         <>
-        <table className="product-list-table">
+        <table className="product-list-table p-details">
 
         {analysisArray.map((array,index)=>{
             return(<tr>
@@ -33,7 +33,6 @@ export default function ProductDetails ({enterpriseId,productId}){
           </tr>)
         })}
         </table>
-        <h1>Loaded</h1>
         </>
     )
 

@@ -37,7 +37,7 @@ code {
   height: 100px;
 }
 .loginForm, .signupForm {
-  background-color:#e2e2e2;
+  background-color: var(--lightest);
   border-radius: 5px;
   padding: 40px;
   padding-bottom: 80px;
@@ -59,7 +59,7 @@ code {
   display: flex;
   justify-content: center;
   position:relative;
-  color: rgb(77, 77, 77);
+  color: var(--darkest);
 }
 
 input, button {
@@ -131,24 +131,27 @@ input, button {
 }
 
 button:hover {
-  background-color: rgb(212, 212, 212);
+  background-color: var(--lightest);
   transition: 0.3s;
 }
 
 #success-Login {
-  color: white;
+  color: var(--lightest);
   top: 55%;
 }
 
-#redirectSignup {
+.redirectSignup {
   display: flex;
   justify-content: center;
   font-size: 1rem;
   cursor: pointer;
-  text-decoration: none;
+}
+.link-text-ls {
+  color: var(--darkest) !important;
 }
 
-#redirectSignup:hover {
+
+.redirectSignup:hover {
   color: rgb(116, 116, 116);
   transition: 0.3s;
 }
