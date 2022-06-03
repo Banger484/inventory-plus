@@ -1,0 +1,36 @@
+.employee-roster-cont{
+
+    
+    display: flex;
+    color: #ddd8d8;
+    flex-direction: column;
+    align-items: center;
+}
+
+.employee-cont{
+    display: flex;
+    align-items: center;
+    background-color: var(--lightest);
+}
+
+.employee-cont h2,h3{
+    color: var(--darkest);
+    padding:1rem;
+    border:2px solid var(--darkest);
+    height: 4.75rem;
+    margin:0;
+    line-height: 72px;
+}
+
+
+.employee-cont button{
+    height: 7rem;
+    font-size: 1.3rem;
+    border:2px solid var(--darkest);
+    background-color: var(--lightest);
+    cursor: pointer;
+}
+
+.employee-cont button:hover{
+    background-color:  hsl(0, 0%, 75%);
+}
