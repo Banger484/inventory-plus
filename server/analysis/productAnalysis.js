@@ -4,24 +4,6 @@ const {Schema,model}=require("mongoose")
 const resolvers = require("../schemas/resolvers")
 const {singleProduct} = require("../schemas/queries")
 
-const generateProductReportFail = async (parent,{enterpriseId,productId})=>{
-    try{
-        const product = await Product.findById(productId)
-    const items = await Item.find({enterpriseId,productId})
-    const analysis = {
-        sku:product.sku,
-        name:product.name,
-        description: product.description,
-        msrp:product.msrp,
-        category:product.category,
-        notes:product.notes
-    }
-    return analysis
-}catch(err){
-    console.error(err)
-}
-}
-
 // Function to gernerate a Product report for an Enterprise
 const generateProductReport = async (parent,{enterpriseId,productId})=>{
    try{
@@ -46,8 +28,6 @@ const generateProductReport = async (parent,{enterpriseId,productId})=>{
     const averageSalesPrice = numberSold>0?Math.round(totalSalesRevenue/numberSold):0
 
     const averageCost = numberPurchased>0?Math.round(totalCost/numberPurchased):0
-    // const totalCost = purchasedItems.reduce((a,b)=>parseInt(a.cost)+parseInt(b.cost),0)
-    // const totalSalesPrice = soldItems.reduce((a,b)=>{a.salesPrice+b.salesPrice},0)
     const analysis = await Analysis.create({
         name: product.name,
         description: product.description,
