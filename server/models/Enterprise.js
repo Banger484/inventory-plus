@@ -1,6 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { UserSchema } =require( './User');
-
 
 const EnterpriseSchema = new Schema({
   name: {
@@ -29,4 +27,4 @@ const EnterpriseSchema = new Schema({
 
 const Enterprise = model('Enterprise', EnterpriseSchema);
 
-module.exports = {Enterprise,EnterpriseSchema};
+module.exports = {Enterprise};

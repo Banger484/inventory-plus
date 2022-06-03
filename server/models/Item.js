@@ -1,6 +1,4 @@
 const {Schema, model} = require("mongoose")
-const {EnterpriseSchema} = require("./Enterprise")
-const {ProductSchema} = require("./Product")
 
 const ItemSchema = new Schema({
     enterprise: {
@@ -59,4 +57,4 @@ const ItemSchema = new Schema({
 
 const Item = model("Item",ItemSchema)
 
-module.exports = {Item,ItemSchema}
+module.exports = {Item}

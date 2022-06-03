@@ -1,5 +1,5 @@
 
-const groupItems = (data)=>{
+export const groupItems = (data)=>{
     const array = [];
     // console.log('data',data);
     data.forEach(item=>{
@@ -179,11 +179,11 @@ const testIncomingItems = [
       }
     ]
 
-const currentGroup = groupItems(testCurrentItems)
+export const currentGroup = groupItems(testCurrentItems)
 
-const incomingGroup = groupItems(testIncomingItems)
+export const incomingGroup = groupItems(testIncomingItems)
 
-const testOrderGuide = [
+export const testOrderGuide = [
     {
       "_id": "6296a255dbeac327b8a9a7ee",
       "sku": "ABC123",
@@ -241,7 +241,7 @@ const testOrderGuide = [
   ]
 
 
-const generatePurchaseTableData = (guide,current,incoming)=>{
+export const generatePurchaseTableData = (guide,current,incoming)=>{
     const array = []
     guide.forEach(product=>{
         let obj;
@@ -253,8 +253,19 @@ const generatePurchaseTableData = (guide,current,incoming)=>{
     console.log(array)
     return array
 }
+export const generateSalesTableData = (guide,current)=>{
+  const array = []
+  guide.forEach(product=>{
+      let obj;
+      const currentMatch = current.filter(el=>el.id===product._id) 
+      obj= {...product,current:(currentMatch[0]?.quantity||0),newSaleQty:0,newSalePricePerUnit:0}
+      array.push(obj)
+  })
+  console.log(array)
+  return array
+}
 
-const checkIfInList = (product,list)=>{
+export const checkIfInList = (product,list)=>{
     const match = list.filter(li=>{
         return li._id===product._id
     })
@@ -266,8 +277,74 @@ const checkIfInList = (product,list)=>{
     }
 }
 
+export const groupOrders = (items)=>{
+    const orders = {};
+    items.forEach(item=>{
+        if(orders?.[item.orderNumber]){
+            orders[item.orderNumber].push(item)
+        }else{
+            orders[item.orderNumber]=[item]
+        }
+    }
+    )
+
+    return formatOrders(orders)
+}
+
+
+export const groupSales = (items)=>{
+    const sales = {};
+    items.forEach(item=>{
+        if(sales?.[item.saleNumber]){
+            sales[item.saleNumber].push(item)
+        }else{
+            sales[item.saleNumber]=[item]
+        }
+    }
+    )
+
+    return formatSales(sales)
+}
+
+export const stringItems = (items)=>{
+    let string = ""
+    items.forEach(item=>{
+        string+=`${item.name}: ${item.quantity}, `
+    })
+    string = string.slice(0,-2)
+    return string
+}
+
+export const formatOrders = (orders)=>{
+    const array = [];
+    for(let key in orders){
+        const obj={}
+        obj.number=key;
+        obj.date = orders[key][0].purchaseDate
+        obj.supplier = orders[key][0].supplier
+        obj.items = groupItems(orders[key])
+        obj.itemList = stringItems(obj.items)
+        array.push(obj)
+    }
+    return array
+}
+
+export const formatSales = (sales)=>{
+    const array = [];
+    for(let key in sales){
+        const obj={}
+        obj.number=key;
+        obj.date = sales[key][0].saleDate
+        obj.buyer = sales[key][0].buyer
+        obj.items = groupItems(sales[key])
+        obj.itemList = stringItems(obj.items)
+        array.push(obj)
+    }
+    return array
+}
+
 
 
 // generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
 
-module.exports = {groupItems,generatePurchaseTableData}
+// module.exports = {groupSales, groupOrders, groupItems, generatePurchaseTableData, generateSalesTableData}

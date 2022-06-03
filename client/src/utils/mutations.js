@@ -185,12 +185,20 @@ mutation Mutation($quantity: Int!, $productId: ID!, $orderNumber: Int!, $cost: I
 }
 `
 export const RECEIVE_ITEMS = gql`
-mutation receiveItems($enterpriseId: ID!, $orderNumber: Int!, $receivedDate: String!, $binLocation: String!) {
+mutation Mutation($enterpriseId: ID!, $orderNumber: Int!, $receivedDate: String!, $binLocation: String!) {
   receiveOrder(enterpriseId: $enterpriseId, orderNumber: $orderNumber, receivedDate: $receivedDate, binLocation: $binLocation) {
     _id
-    product
     orderNumber
     saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
   }
 }
 `
@@ -198,19 +206,35 @@ export const SELL_ITEMS = gql`
 mutation sellItems($enterpriseId: ID!, $saleId: Int!, $buyer: String!, $saleDate: String!, $quantity: Int!, $salesPrice: Float!, $productId: ID!) {
   makeSale(enterpriseId: $enterpriseId, saleId: $saleId, buyer: $buyer, saleDate: $saleDate, quantity: $quantity, salesPrice: $salesPrice, productId: $productId) {
     _id
-    product
     orderNumber
     saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
   }
 }`
 
 export const FULFILL_ITEMS = gql`
-query Query($enterpriseId: ID!) {
-  getFulfilledItems(enterpriseId: $enterpriseId) {
+mutation Mutation($enterpriseId: ID!, $saleNumber: Int!, $fulfillmentDate: String!) {
+  fulfillSale(enterpriseId: $enterpriseId, saleNumber: $saleNumber, fulfillmentDate: $fulfillmentDate) {
     _id
-    product
     orderNumber
     saleNumber
+    cost
+    purchaseDate
+    supplier
+    receivedDate
+    binLocation
+    buyer
+    salesPrice
+    saleDate
+    fulfillmentDate
   }
 }
 

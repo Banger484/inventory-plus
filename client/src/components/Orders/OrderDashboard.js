@@ -24,6 +24,16 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
+            <Link className='task-links' to="/orders/order-received">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Receive Order</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
             <Link className='task-links' to="/orders/order-fulfillment">
             <div className='task'>
                 <div className='task-header'>

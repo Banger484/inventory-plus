@@ -2,46 +2,57 @@ import { useQuery, useMutation } from "@apollo/client"
 import { useState, useEffect } from 'react'
 import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
-import { generatePurchaseTableData, groupItems } from "../../utils/remodeledData";
+import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
+import './Order.css'
+
+import OrderModal from "./OrderModal";
 
 export default function OrderPurchase (props) {
+    //modal junk
+    const [openModal, setOpenModal] = useState(false)
 
-    const [supplier, setSupplier] = useState('dummy')
+
+
+    let supplier = "not specified"
 
     const [buyItems, { error }] = useMutation(BUY_ITEMS)
 
-    const { loading: currentStocksLoading, data: currentStocksData } = useQuery(GET_CURRENT_STOCKS, {
+    const { loading: currentStocksLoading, data: currentStocksData, refetch: currentRefetch } = useQuery(GET_CURRENT_STOCKS, {
         variables: { enterpriseId: props.enterpriseId}
     })
-    const { loading: incomingItemsLoading, data: incomingItemsData } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch: incomingRefetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId: props.enterpriseId}
     })
+
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
+    let orderNumber = Date.now() % 1000000
 
     
     if(!currentStocksLoading && !incomingItemsLoading){
+        incomingRefetch()
+        currentRefetch()
         currentStocksGroups = groupItems(currentStocksData.getCurrentStocks)
         incomingItemsGroups = groupItems(incomingItemsData.getOrderedItems)
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
-        }
-
+    }
+    console.log(tableData);
 
     const handleSupplierChange = (e) => {
-        setSupplier(e.target.value)
+        supplier = e.target.value
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
+        console.log(e);
         tableData[index][e.target.name] = parseInt(e.target.value)
     }
     const [updatedTable, setUpdatedTable] = useState([])
-    
     const handleSubmit = async () => {
         
         const filterTableData = tableData.filter(data => data.newOrderQty > 0)
-        const orderNumber = Date.now() % 1000000
+
         console.log(orderNumber);
         try {
             await filterTableData.forEach(async (product) => {
@@ -58,6 +69,7 @@ export default function OrderPurchase (props) {
                 })
 
             })
+            setOpenModal(true)
         } catch (err) {
             console.error(err);
         }
@@ -65,13 +77,13 @@ export default function OrderPurchase (props) {
     }
     return (
         <div>
-            <div>
-                <input type='text' placeholder="supplier" onChange={handleSupplierChange}/>
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+            {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
+            <div className="buy-table-top">
+                <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
             </div>
-            <table className='order-list-table'>
+            <table className='place-order-table'>
                 <thead>
-                    <tr>
+                    <tr className="order-header">
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
@@ -88,21 +100,24 @@ export default function OrderPurchase (props) {
                     {tableData.map((product, index) => {
                         return (
                         <tr data-pid={product._id} key={index}>
-                            <td data-pid={product._id}>{product.sku}</td>
-                            <td data-pid={product._id}>{product.name}</td>
-                            <td data-pid={product._id}>{product.description}</td>
-                            <td data-pid={product._id}>${product.msrp}</td>
-                            <td data-pid={product._id}>{product.category}</td>
-                            <td data-pid={product._id}>{product.notes}</td>
-                            <td data-pid={product._id}>{product.current}</td>
-                            <td data-pid={product._id}>{product.incoming}</td>
-                            <td data-pid={product._id}><input data-index={index} name="newOrderCostPerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
-                            <td><input data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange}/></td>
+                            <td className="td-1" data-pid={product._id}>{product.sku}</td>
+                            <td className="td-3" data-pid={product._id}>{product.name}</td>
+                            <td className="td-4" data-pid={product._id}>{product.description}</td>
+                            <td className="td-1" data-pid={product._id}>${product.msrp}</td>
+                            <td className="td-2" data-pid={product._id}>{product.category}</td>
+                            <td className="td-4" data-pid={product._id}>{product.notes}</td>
+                            <td className="td-1" data-pid={product._id}>{product.current}</td>
+                            <td className="td-1" data-pid={product._id}>{product.incoming}</td>
+                            <td className="td-1" data-pid={product._id}><input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
                         </tr>
                         )
                     })}
                     </tbody>
                 </table>
+                <div>
+                <button className="order-submit" type="submit" onClick={handleSubmit}>Submit Order</button>
+                </div>
         </div>
     )
 }

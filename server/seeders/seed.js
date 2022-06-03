@@ -49,8 +49,6 @@ db.once('open', async () => {
 
     await fulfillSale(null,{enterpriseId:newUser.enterprise.id,saleNumber:0,fulfillmentDate:"9/20/2022"})
 
-
-
     process.exit(0);
   } catch (err) {
     throw err;
