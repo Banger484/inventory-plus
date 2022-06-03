@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
+
+import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
 
 import Auth from '../../utils/auth';
 
@@ -44,60 +45,85 @@ const Signup = () => {
   };
 
   return (
+
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+        <div className="signupCard">
             {data ? (
-              <p>
+              <p id="success-Login">
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
+              <form  className="signupForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <h4 className="card-header" id="signupHeader">Sign Up</h4>
+              <div id="usernameForm-Signup">
+              <FaUserCircle id="usernameIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="usernameInput-Signup"
+                  className="formInput-Signup"
+                  placeholder="Username"
                   name="name"
                   type="text"
+                  autocomplete="off"
                   value={formState.name}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
+              </div>
+
+              <div id="emailForm-Signup">
+              <FaEnvelope id="emailIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="emailInput-Signup"
+                  className="formInput-Signup"
+                  placeholder="Email"
                   name="email"
                   type="email"
+                  autocomplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="******"
+              </div>
+
+              <div id="passwordForm-Signup">
+              <FaLock id="passwordIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="passwordInput-Signup"
+                  className="formInput-Signup"
+                  placeholder="Password"
                   name="password"
                   type="password"
+                  autocomplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                                <input
-                  className="form-input"
+              </div>
+              
+              <div id="enterpriseForm-Signup">
+                <FaBuilding id="enterpriseIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                  <input id="enterpriseInput-Signup"
+                  className="formInput-Signup"
                   placeholder="Enterprise"
                   name="enterpriseName"
                   type="text"
+                  autocomplete="off"
                   value={formState.enterpriseName}
                   onChange={handleChange}
                 />
-                                                <input
-                  className="form-input"
+              </div>
+
+              <div id="locationForm-Signup">
+                <FaMapMarkerAlt id="emailIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="locationInput-Signup"
+                  className="formInput-Signup"
                   placeholder="Location"
                   name="location"
                   type="text"
+                  autocomplete="off"
                   value={formState.location}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-info"
+              </div>
+
+                <button id="submitBtn-Signup"
+                  className="btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
@@ -107,13 +133,12 @@ const Signup = () => {
             )}
 
             {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Signup">
                 {error.message}
               </div>
             )}
           </div>
         </div>
-      </div>
     </main>
   );
 };

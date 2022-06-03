@@ -33,3 +33,139 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loginForm, .signupForm {
+  background-color:#e2e2e2;
+  border-radius: 5px;
+  padding: 40px;
+  padding-bottom: 80px;
+}
+
+.loginCard, .signupCard {
+  margin-top: 15%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+}
+
+#loginHeader, #signupHeader {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  position:relative;
+  color: rgb(77, 77, 77);
+}
+
+input, button {
+  border-style: solid;
+  border-width: 1px;
+}
+
+#emailForm-Login,
+#passwordForm-Login,
+#usernameForm-Signup,
+#emailForm-Signup,
+#passwordForm-Signup,
+#enterpriseForm-Signup,
+#locationForm-Signup {
+  display: flex;
+  justify-content: center;
+  position:relative;
+}
+
+#emailInput-Login,
+#passwordInput-Login,
+#usernameInput-Signup,
+#emailInput-Signup,
+#passwordInput-Signup,
+#enterpriseInput-Signup,
+#locationInput-Signup,
+#success-Login,
+#errorMsg-Login,
+#errorMsg-Signup,
+#redirectSignup {
+  height:35px;
+  width: 275px;
+  font-size:14pt;
+  border-radius: 5px;
+}
+
+#emailInput-Login,
+#passwordInput-Login,
+#usernameInput-Signup,
+#emailInput-Signup,
+#passwordInput-Signup,
+#enterpriseInput-Signup,
+#locationInput-Signup {
+  background-color: white;
+}
+
+.formInput-Login, .formInput-Signup {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#submitBtn-Login, #submitBtn-Signup {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+}
+
+#submitBtn-Login {
+  top: 77%;
+}
+
+#submitBtn-Signup {
+  top: 85%;
+}
+
+button:hover {
+  background-color: rgb(212, 212, 212);
+  transition: 0.3s;
+}
+
+#success-Login {
+  color: white;
+  top: 55%;
+}
+
+#redirectSignup {
+  display: flex;
+  justify-content: center;
+  position:relative;
+  left: 20px;
+  font-size: small;
+}
+
+#redirectSignup:hover {
+  color: rgb(116, 116, 116);
+  transition: 0.3s;
+}
+
+#errorMsg-Login, #errorMsg-Signup {
+  display: flex;
+  justify-content: center;
+  position:relative;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding-bottom: 60px;
+  font-size: 16px;
+  color: rgb(255, 109, 109);
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
