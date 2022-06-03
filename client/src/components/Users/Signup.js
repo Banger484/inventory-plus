@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-
+import auth from '../../utils/auth';
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
-
-import Auth from '../../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -35,7 +33,7 @@ const Signup = () => {
       const { data } = await addProfile({
         variables: { ...formState },
       });
-      Auth.login(data.addUser.token);
+      auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -52,7 +50,8 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form  className="signupForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <form  className="signupForm" onSubmit={handleFormSubmit} autoComplete="off" method="post" action="">
+              <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />
               <h4 className="card-header" id="signupHeader">Sign Up</h4>
               <div id="usernameForm-Signup">
               <FaUserCircle id="usernameIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
@@ -61,7 +60,7 @@ const Signup = () => {
                   placeholder="Username"
                   name="name"
                   type="text"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.name}
                   onChange={handleChange}
                 />
@@ -74,7 +73,7 @@ const Signup = () => {
                   placeholder="Email"
                   name="email"
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
@@ -87,7 +86,7 @@ const Signup = () => {
                   placeholder="Password"
                   name="password"
                   type="password"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />
@@ -100,7 +99,7 @@ const Signup = () => {
                   placeholder="Enterprise"
                   name="enterpriseName"
                   type="text"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.enterpriseName}
                   onChange={handleChange}
                 />
@@ -113,7 +112,7 @@ const Signup = () => {
                   placeholder="Location"
                   name="location"
                   type="text"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.location}
                   onChange={handleChange}
                 />
@@ -126,6 +125,12 @@ const Signup = () => {
                 >
                   Submit
                 </button>
+
+                <p id="redirectSignup">
+                <Link to="/login">
+                  Back to Login
+                </Link>
+                </p>
               </form>
             )}
 

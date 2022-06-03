@@ -52,7 +52,8 @@ const Login = (props) => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form className="loginForm" onSubmit={handleFormSubmit} autocomplete="off" method="post" action="">
+              <form className="loginForm" onSubmit={handleFormSubmit} autoComplete="off" method="post" action="">
+              <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />
               <h4 className="card-header" id="loginHeader">Login</h4>
               <div id="emailForm-Login">
               <FaEnvelope id="emailIcon-Login" style={{color: 'gray', fontSize: '25px'}} />
@@ -61,7 +62,7 @@ const Login = (props) => {
                   placeholder="Email"
                   name="email"
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.email}
                   onChange={handleChange}
                 />
@@ -74,7 +75,7 @@ const Login = (props) => {
                   placeholder="Password"
                   name="password"
                   type="password"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={formState.password}
                   onChange={handleChange}
                 />

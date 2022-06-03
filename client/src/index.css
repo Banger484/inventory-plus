@@ -33,16 +33,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.login-signup-logo {
+  height: 100px;
+}
 .loginForm, .signupForm {
   background-color:#e2e2e2;
   border-radius: 5px;
   padding: 40px;
   padding-bottom: 80px;
+  align-items: center;
 }
 
 .loginCard, .signupCard {
-  margin-top: 15%;
+  margin-top: 10%;
   display: flex;
   justify-content: center;
   position: absolute;
@@ -74,6 +77,8 @@ input, button {
   display: flex;
   justify-content: center;
   position:relative;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 #emailInput-Login,
@@ -105,24 +110,23 @@ input, button {
 
 .formInput-Login, .formInput-Signup {
   margin-left: 10px;
-  margin-bottom: 5px;
 }
 
 #submitBtn-Login, #submitBtn-Signup {
   margin: 0;
-  position: absolute;
   left: 50%;
-  transform: translate(-50%);
   border-radius: 5px;
   height: 40px;
   width: 100px;
 }
 
 #submitBtn-Login {
+  margin-top: 3%;
   top: 77%;
 }
 
 #submitBtn-Signup {
+  margin-top: 3%;
   top: 85%;
 }
 
@@ -139,9 +143,9 @@ button:hover {
 #redirectSignup {
   display: flex;
   justify-content: center;
-  position:relative;
-  left: 20px;
-  font-size: small;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 #redirectSignup:hover {

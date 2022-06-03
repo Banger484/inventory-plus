@@ -26,11 +26,10 @@ const bulkMutations = {
     fulfillSale: async (parent,{enterpriseId,saleNumber,fulfillmentDate})=>{
         try{
             const items = await Item.updateMany({enterpriseId,saleNumber},{fulfillmentDate},{new:true})
-            return items
-        }catch(err){
-            console.error(err)
+            return []}catch(err){
+                console.error(err)
+            }
         }
-    }
 }
 
 // Exports functions

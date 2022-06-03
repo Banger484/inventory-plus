@@ -8,12 +8,11 @@ export default function OrderGuide(props) {
   const buttons = true;
   return (
     <>
-      <div className="table-top">
-        <h1>Order Guide</h1>
-        <h1>Full Product List</h1>
-      </div>
       <div className="order-guide-content">
         <div className="order-guide-sides">
+      <div className="table-top-og">
+        <h1>Order Guide</h1>
+      </div>
           <OrderList
             enterpriseRefetch={props.enterpriseRefetch}
             enterpriseId={props.enterpriseId}
@@ -23,6 +22,9 @@ export default function OrderGuide(props) {
           />
         </div>
         <div className="order-guide-sides">
+        <div className="table-top-og">
+        <h1>Full Product List</h1>
+      </div>
           <ProductList
             productsRefetch={props.productsRefetch}
             products={props.products}
