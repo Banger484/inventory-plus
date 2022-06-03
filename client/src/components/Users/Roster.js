@@ -11,7 +11,6 @@ export default function Roster({ roster, rosterRefetch }) {
 
   const handleRemoveUser = async (id) => {
     try {
-      console.log("in function");
       const { data } = await removeUser({
         variables: { userId: id },
       });
