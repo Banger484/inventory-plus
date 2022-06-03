@@ -25,7 +25,9 @@ const mutation = {
     },
     register : async (parent,{name,email,password,location,enterpriseName})=>{
         try{
+
             console.log("registering")
+
             const enterprise = await Enterprise.create({name:enterpriseName,location})
             const user = await User.create({name,email,password,enterprise:enterprise._id})
             console.log(user)
