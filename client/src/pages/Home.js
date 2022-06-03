@@ -168,7 +168,7 @@ const Home = () => {
                 <Route path="/users/add-user" element={<AddUser />} />
                 <Route
                   path="users/roster"
-                  element={<Roster roster={roster} />}
+                  element={<Roster rosterRefetch={rosterRefetch} roster={roster} />}
                 />
                 <Route path="/reporting" element={<ReportingDashboard />} />
                 <Route path="/signup" element={<Signup />} />

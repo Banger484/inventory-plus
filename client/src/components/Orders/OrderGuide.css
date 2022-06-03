@@ -3,12 +3,17 @@
 }
 .order-guide-content {
     display: flex;
-    height: 80vh;
+    flex-wrap: wrap;
 }
 .order-guide-sides {
-    max-width: 50vw;
-    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.table-top-og {
+    background-color: var(--darkest);
+    color: var(--lightest);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

@@ -31,7 +31,7 @@ const bulkMutations = {
 
             const items = await Item.updateMany({enterpriseId,saleNumber},{fulfillmentDate},{new:true})
             console.log(items)
-            return items}catch(err){
+            return []}catch(err){
                 console.log(err)
             }
         }

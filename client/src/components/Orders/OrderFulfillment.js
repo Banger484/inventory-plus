@@ -19,7 +19,6 @@ export default function OrderFulfillment ({enterpriseId}) {
     const openSalesGroup = openSaleItemsLoading?[]:groupSales(openSaleItemsData.getOpenSales)
     console.log(openSalesGroup)
     const handleFulfill = (e)=>{
-        refetch()
         const index = e.target.dataset.index;
         const variables = {
             enterpriseId:enterpriseId,
@@ -27,6 +26,8 @@ export default function OrderFulfillment ({enterpriseId}) {
             fulfillmentDate:orderDate(new Date()),
         }
         fulfillSale({variables})
+        refetch()
+
     }
 
     return (
