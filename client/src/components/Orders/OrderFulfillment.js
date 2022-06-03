@@ -34,7 +34,7 @@ export default function OrderFulfillment ({enterpriseId}) {
             <h1>Fulfill Sale</h1>
             {openSaleItemsLoading
         ? <h2>Loading</h2>
-        :  <table><thead>
+        :  <table  className="product-list-table"><thead>
              <tr>
                         <th>Sale #</th>
                         <th>Sale Date</th>

@@ -39,6 +39,7 @@ const client = new ApolloClient({
 
 function App() {
     const token = auth.getToken()
+    console.log("token",token)
   function choose(){if (token){
     return(<Home/>)
   }else{

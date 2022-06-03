@@ -181,6 +181,29 @@ query Query($enterpriseId: ID!) {
   }
 }
 `
+export const PRODUCT_ANALYSIS = gql`
+query generateProductReport($enterpriseId: ID!, $productId:ID!){
+  generateProductReport(enterpriseId: $enterpriseId, productId: $productId){
+    name
+    description
+    msrp
+    category
+    notes
+    numberPurchased 
+    numberIncoming
+    numberInStock
+    numberOutgoing
+    numberFulfilled
+    numberSold
+    totalSalesRevenue
+    averageSalesPrice
+    totalCost
+    averageCost
+
+  }
+}
+`
+
 
 export const GET_INCOMING_ITEMS = gql`
 query GetIncomingItems($enterpriseId: ID!) {

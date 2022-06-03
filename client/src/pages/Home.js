@@ -34,6 +34,7 @@ import Login from '../components/Users/Login';
 import AddUser from '../components/Users/AddUser';
 import AcceptInvite from '../components/Users/AcceptInvite';
 import Roster from "../components/Users/Roster"
+import ProductReport from '../components/Reporting/ProductReport';
 
 
 
@@ -59,8 +60,6 @@ const Home = () => {
     let products
     let enterpriseId
     let roster
-
-    console.log(enterpriseData)
     if(enterpriseData && rosterData) {
       enterpriseRefetch()
       rosterRefetch()
@@ -144,8 +143,12 @@ const Home = () => {
                 element={<Signup />} 
               />
               <Route
-              path='/'
-              element={<Dashboard />} 
+              path="/"
+              element={<Dashboard/>}
+              />
+              <Route
+              path='/reporting/product'
+              element={<ProductReport  enterpriseId={enterpriseId}/>} 
               />
             </Routes> 
           

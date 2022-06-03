@@ -41,8 +41,22 @@ numberOutgoing:{
 },
 numberFulfilled:{
     type:Number,
+},
+numberSold:{
+    type:Number,
+},
+totalSalesRevenue:{
+  type:Number
+},
+averageSalesPrice:{
+  type:Number
+},
+totalCost:{
+  type:Number
+},
+averageCost:{
+  type:Number
 }
-
 });
 
 const Analysis = model('Analysis', AnalysisSchema);

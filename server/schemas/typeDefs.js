@@ -21,6 +21,11 @@ type Analysis {
   numberInStock:Int
   numberOutgoing:Int
   numberFulfilled:Int
+  numberSold:Int
+  totalSalesRevenue:Int
+  averageSalesPrice:Int
+  totalCost:Int
+  averageCost:Int
 }
 
 type User {
