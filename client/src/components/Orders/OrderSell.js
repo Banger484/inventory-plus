@@ -72,7 +72,7 @@ export default function OrderSell (props) {
     return (
         <div>
             {openModal && <OrderModal orderNumber={saleNumber} closeModal={setOpenModal}/>}
-            <div className="buy-table-top">
+            <div className="table-top">
                 <h1>Sell Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter buyer's name"/>
             </div>

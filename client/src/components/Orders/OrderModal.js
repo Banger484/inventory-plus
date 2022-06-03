@@ -12,10 +12,13 @@ export default function OrderModal ({closeModal, orderNumber}) {
                     <p>Order number #{orderNumber} is now processing...</p>
                 </div>
                 <div className="modal-footer">
-                    <Link to='/orders/'>
-                        <button>Return to Order Dashboard</button>
+                    <Link className="modal-footer-button" to='/orders/'>
+                        Return to Order Dashboard
                     </Link>
-                    <button onClick={() => closeModal(false)}>Close</button>
+                    <div>
+                    <button className="modal-footer-button" onClick={() => closeModal(false)}>Close</button>
+                    </div>
+
                 </div>
             </div>
         </div>

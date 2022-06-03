@@ -30,8 +30,10 @@ export default function ProductReport ({enterpriseId}){
 
     return(
         <div>
-
-        <div className="card">
+        <div className="table-top product-report">
+            <h1>Product Report</h1>
+        </div>
+        <div className="card product-report-container">
             <h3>Products</h3>
             <select defaultValue="Choose a Product" placeholder="Choose a product"  onChange={handleProductClick}>
             <option selected value="">Select a Product</option>
