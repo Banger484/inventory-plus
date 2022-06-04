@@ -40,6 +40,7 @@ import ProductReport from "../components/Reporting/ProductReport";
 const Home = () => {
   // getting logged in user
   const user = auth.getProfile();
+  console.log(user);
   // console.log(user)
   // making queries
   const {
@@ -49,7 +50,6 @@ const Home = () => {
   } = useQuery(GET_ENTERPRISE_BY_ID, {
     variables: { id: user.data.enterprise },
   });
-  console.log(QUERY_ENT_USERS);
   const {
     loading: rosterLoading,
     data: rosterData,
