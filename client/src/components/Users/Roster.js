@@ -23,7 +23,7 @@ export default function Roster({ roster, rosterRefetch }) {
     } catch (err) {
       console.log(err);
     }
-
+  }
     return (
         <div className='employee-roster-cont'>
             <h1>Employee Roster</h1>
@@ -33,5 +33,4 @@ export default function Roster({ roster, rosterRefetch }) {
         </div>
     )
 }
-
 
