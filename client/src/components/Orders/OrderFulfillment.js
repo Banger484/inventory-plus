@@ -31,7 +31,7 @@ export default function OrderFulfillment ({enterpriseId}) {
     }
 
     return (
-        <div>
+        <div className="big-center-flex">
             <h1>Fulfill Sale</h1>
             {openSaleItemsLoading
         ? <h2>Loading</h2>
