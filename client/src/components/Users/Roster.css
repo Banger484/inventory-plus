@@ -11,26 +11,28 @@
     display: flex;
     align-items: center;
     background-color: var(--lightest);
+    justify-content: space-between;
+    width:500px;
 }
 
 .employee-cont h2,h3{
     color: var(--darkest);
     padding:1rem;
-    border:2px solid var(--darkest);
-    height: 4.75rem;
+    /* border:2px solid var(--darkest); */
     margin:0;
-    line-height: 72px;
+    font-size: 0.9rem;
 }
 
 
 .employee-cont button{
-    height: 7rem;
-    font-size: 1.3rem;
+
+    font-size: 0.9rem;
     border:2px solid var(--darkest);
     background-color: var(--lightest);
     cursor: pointer;
+    height: 3rem;
 }
 
 .employee-cont button:hover{
-    background-color:  hsl(0, 0%, 75%);
+    background-color:  hsl(0, 0%, 80%);
 }

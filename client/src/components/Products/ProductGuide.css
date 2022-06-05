@@ -4,3 +4,7 @@
     align-items: center;
     flex-direction: column;
 }
+
+.product-guide-header.table-top{
+    justify-content: center;
+}
