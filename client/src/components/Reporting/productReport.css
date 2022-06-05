@@ -1,3 +1,4 @@
+
 .analysis-main{
     display: flex;
     flex-direction: column;
@@ -27,4 +28,17 @@
 
 .analysis-main select{
     margin-bottom: 10px;
+}
+
+.product-report-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+.product-report {
+    display: flex;
+    justify-content: center;
+}
+.p-details {
+    margin: 0 auto;
 }

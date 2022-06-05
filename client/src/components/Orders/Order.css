@@ -74,13 +74,18 @@
 }
 
 
+
 .buy-table-top{
     color: white;
     /* background-color: var(--darkest); */
+}
+.modal-footer {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     padding-bottom: 1rem;
 }
 
@@ -91,4 +96,16 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
+    padding: 10px;
+}
+.modal-footer-button {
+    border: none;
+    background-color: var(--darkest);
+    color: var(--lightest);
+    margin: 5px;
+}
+.modal-footer-button:hover {
+    cursor: pointer;
+    background-color: var(--darkest);
 }

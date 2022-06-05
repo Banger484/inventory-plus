@@ -51,7 +51,12 @@ export default function AddProduct (props) {
             notes: '',
         })
     }
-    return (
+    return (<>
+    
+
+        {/* <div className="table-top apl-top">
+            <h1>Product Guide</h1>
+        </div> */}
     <div className='add-product-body'>
     <div className='form-container'>
             <form  onSubmit={handleFormSubmit}>
@@ -75,12 +80,13 @@ export default function AddProduct (props) {
             </form>
         </div>
         <div className='add-product-list'>
+        
         <ProductList
           products={props.products}
           productsRefetch={props.productsRefetch}
         />
         </div>
     </div>
-        
+    </>  
     )
 }
