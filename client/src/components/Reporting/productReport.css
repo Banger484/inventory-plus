@@ -27,13 +27,14 @@
 }
 
 .analysis-main select{
-    margin-bottom: 10px;
+
 }
 
 .product-report-container {
     display: flex;
     justify-content: center;
     margin: 10px 0;
+padding: 10px; 
 }
 .product-report {
     display: flex;
@@ -41,4 +42,13 @@
 }
 .p-details {
     margin: 0 auto;
+}
+
+.product-report-container h3{
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.product-report.table-top h1{
+    width: 300px;
 }
