@@ -38,6 +38,8 @@ export default function ProductReport ({enterpriseId}){
         <div className="table-top product-report">
             <h1>Product Report</h1>
         </div>
+            </div>
+            </div>
         <div className="card product-report-container">
 
             <h3>Products</h3>
