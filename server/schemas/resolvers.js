@@ -22,7 +22,11 @@ const resolvers = {
 
     // Function to get all Products
     allProducts: async ()=>{
-      return Product.find()
+      const all = await Product.find()
+      const result = all.filter(p=>{
+        return !p.disabled
+      });
+      return result
     },
 
     // Function to get all Products by category

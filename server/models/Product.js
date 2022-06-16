@@ -26,8 +26,14 @@ const ProductSchema = new Schema({
     default:"Other"
   },
   notes:{
-    type:String,
-    required:false
+
+      type:String,
+      required:false
+  },
+  disabled:{
+    type:Boolean,
+    default:false
+
   }
 });
 
