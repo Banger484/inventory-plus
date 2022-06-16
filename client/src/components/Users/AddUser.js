@@ -15,11 +15,8 @@ export default function AddUser () {
         e.preventDefault();
 
         emailjs.sendForm('service_ikwf2if', 'template_op0417e', form.current, 'LXAuyeYFRIN_Vzkeh')
-        // console.log(enterprise)
         .then((result) => {
-            console.log(result.text);
         }, (error) => {
-            console.log(error.text);
         });
         e.target.reset();
     }
