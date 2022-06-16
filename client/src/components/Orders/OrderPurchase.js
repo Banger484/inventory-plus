@@ -38,14 +38,12 @@ export default function OrderPurchase (props) {
         incomingItemsGroups = groupItems(incomingItemsData.getOrderedItems)
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
     }
-    console.log(tableData);
 
     const handleSupplierChange = (e) => {
         supplier = e.target.value
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
-        console.log(e);
         tableData[index][e.target.name] = parseInt(e.target.value)
     }
     const [updatedTable, setUpdatedTable] = useState([])
@@ -53,7 +51,6 @@ export default function OrderPurchase (props) {
         
         const filterTableData = tableData.filter(data => data.newOrderQty > 0)
 
-        console.log(orderNumber);
         try {
             await filterTableData.forEach(async (product) => {
                 await buyItems({

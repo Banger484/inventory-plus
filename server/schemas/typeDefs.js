@@ -122,7 +122,7 @@ type User {
 
 
 `
-// makeSale(enterpriseId:ID!,saleId:Int!,buyer:String!,saleDate:String!,order:Sale):[Item]
+
 module.exports = {typeDefs}
 
 

@@ -1,5 +1,7 @@
+// Imports required Schema class and model function from mongoose npm package
 const { Schema, model } = require('mongoose');
 
+// Sets schema for Product model
 const ProductSchema = new Schema({
   sku: {
     type: String,
@@ -24,12 +26,13 @@ const ProductSchema = new Schema({
     default:"Other"
   },
   notes:{
-      type:String,
-      required:false
+    type:String,
+    required:false
   }
-
 });
 
+// Creates Product model
 const Product = model('Product', ProductSchema);
 
+// Exports model
 module.exports = {Product};

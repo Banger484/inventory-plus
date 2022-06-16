@@ -1,6 +1,8 @@
+// Imports required Schema class and model function from mongoose and bcrypt npm packages
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// Sets schema for User model
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -39,7 +41,6 @@ UserSchema.pre('save', async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 
@@ -48,6 +49,8 @@ UserSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+// Creates User model
 const User = model('User', UserSchema);
 
+// Exports model
 module.exports = {User};

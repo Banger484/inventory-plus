@@ -1,5 +1,7 @@
+// Imports required Schema class and model function from mongoose npm package
 const {Schema, model} = require("mongoose")
 
+//Sets schema for Item model
 const ItemSchema = new Schema({
     enterprise: {
         type:Schema.Types.ObjectId,
@@ -55,6 +57,8 @@ const ItemSchema = new Schema({
     }
 })
 
+// Creates Item model
 const Item = model("Item",ItemSchema)
 
+// Exports model
 module.exports = {Item}

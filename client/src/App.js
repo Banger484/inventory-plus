@@ -13,7 +13,6 @@ import Login from "./components/Users/Login"
 import Signup from './components/Users/Signup';
 import AcceptInvite from './components/Users/AcceptInvite'
 
-console.log("in react")
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -40,7 +39,6 @@ const client = new ApolloClient({
 
 function App() {
     const token = auth.getToken()
-    console.log("token",token)
   function choose(){if (token){
     return(<Home/>)
   }else{

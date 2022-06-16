@@ -1,7 +1,6 @@
 
 export const groupItems = (data)=>{
     const array = [];
-    // console.log('data',data);
     data.forEach(item=>{
         const matches = array.filter(el=>el.id==item.product._id)
         if(matches.length===0){
@@ -250,7 +249,6 @@ export const generatePurchaseTableData = (guide,current,incoming)=>{
         obj= {...product,current:(currentMatch[0]?.quantity||0),incoming:(incomingMatch[0]?.quantity||0),newOrderQty:0,newOrderCostPerUnit:0}
         array.push(obj)
     })
-    console.log(array)
     return array
 }
 export const generateSalesTableData = (guide,current)=>{
@@ -261,7 +259,6 @@ export const generateSalesTableData = (guide,current)=>{
       obj= {...product,current:(currentMatch[0]?.quantity||0),newSaleQty:0,newSalePricePerUnit:0}
       array.push(obj)
   })
-  console.log(array)
   return array
 }
 
@@ -342,9 +339,3 @@ export const formatSales = (sales)=>{
     }
     return array
 }
-
-
-
-// generatePurchaseTableData(testOrderGuide,currentGroup,incomingGroup)
-
-// module.exports = {groupSales, groupOrders, groupItems, generatePurchaseTableData, generateSalesTableData}

@@ -5,7 +5,6 @@ import ProductDetails from "./ProductDetails"
 import './productReport.css'
 
 export default function ProductReport ({enterpriseId}){
-    console.log(enterpriseId)
 
     const{loading: enterpriseLoading,data:enterpriseData} = useQuery(GET_ENTERPRISE_BY_ID,{
         variables:{id:enterpriseId}
@@ -14,9 +13,7 @@ export default function ProductReport ({enterpriseId}){
 
     let products;
     if (!enterpriseLoading){
-        console.log(enterpriseData)
         products = enterpriseData.getEnterpriseById.orderGuide;
-        console.log(products)
     }
 
     if(enterpriseLoading){
