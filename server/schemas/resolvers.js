@@ -16,7 +16,11 @@ const resolvers = {
       return User.findOne({ _id: userId });
     },
     allProducts: async ()=>{
-      return Product.find()
+      const all = await Product.find()
+      const result = all.filter(p=>{
+        return !p.disabled
+      });
+      return result
     },
 
     singleCategoryProducts: async (parent,{category})=>{
