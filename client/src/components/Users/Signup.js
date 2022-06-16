@@ -126,8 +126,8 @@ const Signup = () => {
                   Submit
                 </button>
 
-                <p id="redirectSignup">
-                <Link to="/login">
+                <p className="redirectSignup">
+                <Link className='link-text-ls' to="/login">
                   Back to Login
                 </Link>
                 </p>

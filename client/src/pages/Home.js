@@ -40,6 +40,7 @@ import ProductReport from "../components/Reporting/ProductReport";
 const Home = () => {
   // getting logged in user
   const user = auth.getProfile();
+
   // making queries
   const {
     loading: enterpriseLoading,

@@ -1,12 +1,13 @@
 import './AcceptInvite.css'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 import { ADD_USER_TO_EXISTING } from '../../utils/mutations';
 
 export default function AcceptInvite () {
 
     const path = window.location.pathname.split("/")
-
+    const navigate = useNavigate()
     let enterprise = path[path.length - 2]
 
     const [formState, setFormState] = useState({
@@ -35,6 +36,7 @@ export default function AcceptInvite () {
         } catch (e) {
           console.error(e);
         }
+        navigate('/login')
       };
     return (
         <div className="accept-invite-body">

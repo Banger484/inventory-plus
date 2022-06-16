@@ -1,3 +1,4 @@
+
 // Imports custom css file and requires all dependant files
 import './Header.css'
 import React from 'react'
@@ -19,3 +20,4 @@ export default function Header(props) {
     </header>
   )
 }
+

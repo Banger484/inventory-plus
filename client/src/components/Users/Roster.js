@@ -25,6 +25,8 @@ export default function Roster({ roster, rosterRefetch }) {
       console.error(err);
     }
   }
+
+
     return (
       //HTML for employee roster
         <div className='employee-roster-cont'>

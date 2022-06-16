@@ -26,9 +26,19 @@ export default function ProductReport ({enterpriseId}){
     }
 
     return(
-        <div>
 
-        <div className="card">
+        <div className="analysis-main">
+
+        <div className="card analysis-header">
+
+        <div>
+        <div className="table-top product-report">
+            <h1>Product Report</h1>
+        </div>
+            </div>
+            </div>
+        <div className="card product-report-container">
+
             <h3>Products</h3>
             <select defaultValue="Choose a Product" placeholder="Choose a product"  onChange={handleProductClick}>
             <option selected value="">Select a Product</option>
@@ -39,6 +49,7 @@ export default function ProductReport ({enterpriseId}){
         </div>
             {productId?<ProductDetails enterpriseId={enterpriseId} productId={productId}/>:null}
         </div>
+
     )
 
 

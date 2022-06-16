@@ -42,7 +42,7 @@ export default function OrderDashboard () {
                     <h2>Order Fulfillment</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/sale.png" alt='icon'/>
                 </div>
             </div>
             </Link>
@@ -56,7 +56,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link to="/orders/order-history">
+            {/* <Link to="/orders/order-history">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order History</h2>
@@ -65,7 +65,7 @@ export default function OrderDashboard () {
                 <img className="button-icon" src="/images/icons/history.png" alt='icon'/>
                 </div>
             </div>
-            </Link>
+            </Link> */}
         </section>
     )
 }

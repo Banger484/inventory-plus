@@ -11,4 +11,9 @@
     color: var(--lightest);
     border: none;
     padding:5px;
+    font-size: 15pt;
+}
+.mini-nav-buttons:hover {
+    cursor: pointer;
+    background-color: var(--darkest);
 }

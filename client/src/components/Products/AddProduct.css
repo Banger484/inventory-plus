@@ -1,5 +1,6 @@
 .add-product-body {
     display: flex;
+    align-items: center;
 }
 
 .form-container {
@@ -33,6 +34,7 @@ input {
     background-color: var(--lightest);
     color: var(--darkest);
     font-size: 14pt;
+    overflow-x: hidden;
 }
 #add-product-submit {
     height: 100px;
@@ -50,11 +52,11 @@ label {
 
 .add-product-list {
     width: 60vw;
-    height: 80vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
+
 
 @media screen and (max-width:900px){
  .add-product-body{
