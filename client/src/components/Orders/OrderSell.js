@@ -39,7 +39,13 @@ export default function OrderSell (props) {
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
-        tableData[index][e.target.name] = parseInt(e.target.value)
+        let val;
+        if(e.target.name==="newOrderQty"){
+            val = parseInt(e.target.value)
+        }else{
+            val = parseFloat(e.target.value)
+        }
+        tableData[index][e.target.name] = val
     }
     const handleSubmit = async () => {
         const filterTableData = tableData.filter(data => data.newSaleQty > 0)
@@ -97,7 +103,7 @@ export default function OrderSell (props) {
                             <td className="td-2" data-pid={product._id}>{product.category}</td>
                             <td className="td-4" data-pid={product._id}>{product.notes}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
-                            <td className="td-1" data-pid={product._id}><input className="td-1" data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
+                            <td className="td-1" data-pid={product._id}><input className="td-1" step={0.01} data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
                             <td className="td-1" ><input className="td-1" data-index={index} name="newSaleQty" type="number" min="0" max={product.current} onChange={handleInputChange}/></td>
                         </tr>
                         )
