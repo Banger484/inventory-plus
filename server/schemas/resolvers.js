@@ -5,7 +5,7 @@ const {singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,ge
 const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
-console.log(bulkMutations)
+const {orderDetails} = require("../analysis/orderAnalysis")
 
 const resolvers = {
   Query: {
@@ -46,6 +46,7 @@ const resolvers = {
     getItems: async()=>{
       return Item.find()
     },
+    orderDetails,
     generateProductReport,
     singleProduct,
     getEnterpriseUsers,
