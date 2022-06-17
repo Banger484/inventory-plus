@@ -40,12 +40,9 @@ export default function OrderSell (props) {
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
         tableData[index][e.target.name] = parseInt(e.target.value)
-        console.log(tableData[0])
     }
     const handleSubmit = async () => {
-        console.log(tableData[0])
         const filterTableData = tableData.filter(data => data.newSaleQty > 0)
-        console.log(filterTableData)
         try {
             await filterTableData.forEach(async (product) => {
                 const variables = {
@@ -57,7 +54,6 @@ export default function OrderSell (props) {
                     buyer,
                     enterpriseId: props.enterpriseId
                 }
-                console.log(variables);
                 await sellItems({
                     variables
                 })
