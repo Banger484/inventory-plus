@@ -1,6 +1,8 @@
+// Imports custom css file and requires all dependant files
 import './Dashboard.css'
 import { Link } from 'react-router-dom'
 
+// Function to create icons and link html for application dasbboard. exports function
 export default function Dashboard () {
     return (
         <section className='task-container'>

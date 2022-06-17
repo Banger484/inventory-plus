@@ -1,5 +1,7 @@
+// Imports required Schema class and model function from mongoose npm package
 const { Schema, model } = require('mongoose');
 
+// Sets schema for Analysis model
 const AnalysisSchema = new Schema({
   sku: {
     type: String,
@@ -59,6 +61,8 @@ averageCost:{
 }
 });
 
+// Creates Analysis model 
 const Analysis = model('Analysis', AnalysisSchema);
 
+// Exports model
 module.exports = {Analysis};

@@ -1,5 +1,7 @@
+// Imports required Schema class and model function from mongoose npm package
 const { Schema, model } = require('mongoose');
 
+// Sets schema for Enterprise model
 const EnterpriseSchema = new Schema({
   name: {
     type: String,
@@ -25,6 +27,8 @@ const EnterpriseSchema = new Schema({
 
 });
 
+// Creates Enterprise model
 const Enterprise = model('Enterprise', EnterpriseSchema);
 
+// Exports model
 module.exports = {Enterprise};

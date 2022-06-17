@@ -1,3 +1,4 @@
+// imports all requiered files and functions
 const db = require('../config/connection');
 const { User, Product,Enterprise, Item } = require('../models');
 const { register } = require('../schemas/mutation');
@@ -7,7 +8,7 @@ const userSeeds = require('./userSeeds.json');
 const productSeeds = require("./productSeeds.json");
 const { fulfillSale } = require('../schemas/bulkmutations');
 
-
+// Function to seed database data
 db.once('open', async () => {
   try {
     await User.deleteMany()

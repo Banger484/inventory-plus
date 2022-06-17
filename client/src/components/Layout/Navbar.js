@@ -1,13 +1,18 @@
+// Imports custom css file and requires all dependant files
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import Auth from '../../utils/auth';
 
+// function to create Navigation bar html for application. exports function
 export default function Navbar() {
+
+  //function to logout user when logout button in navigation bar is used.
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   }
   return (
+    //Navigation bar html 
     <nav className="mini-nav">
         <Link to='/'>
         <button className='mini-nav-buttons'>Dashboard</button>
