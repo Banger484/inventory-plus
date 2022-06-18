@@ -44,7 +44,13 @@ export default function OrderPurchase (props) {
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
-        tableData[index][e.target.name] = parseInt(e.target.value)
+        let val;
+        if(e.target.name==="newOrderQty"){
+            val = parseInt(e.target.value)
+        }else{
+            val = parseFloat(e.target.value)
+        }
+        tableData[index][e.target.name] = val
     }
     const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
@@ -53,6 +59,7 @@ export default function OrderPurchase (props) {
 
         try {
             await filterTableData.forEach(async (product) => {
+                console.log("this is the input",product.newOrderCostPerUnit)
                 await buyItems({
                     variables: {
                         quantity: product.newOrderQty,
@@ -106,7 +113,9 @@ export default function OrderPurchase (props) {
                             <td className="td-4" data-pid={product._id}>{product.notes}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
-                            <td className="td-1" data-pid={product._id}><input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" data-pid={product._id}>
+                                <input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
+                            </td>
                             <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
                         </tr>
                         )
