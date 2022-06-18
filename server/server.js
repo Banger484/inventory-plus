@@ -14,6 +14,8 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+console.log(path.join(__dirname, '../client/build'))
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -22,15 +24,18 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/', (req, res) => {
+  console.log("req")
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.get("*", (req, res) => {
-  let url = path.join(__dirname, '../client/build', 'index.html');
-  if (!url.startsWith('/app/')) // since we're on local windows
-    url = url.substring(1);
-  res.sendFile(url);
-});
+// uncomment this for production
+
+// app.get("*", (req, res) => {
+//   let url = path.join(__dirname, '../client/build', 'index.html');
+//   if (!url.startsWith('/app/'))
+//     url = url.substring(1);
+//   res.sendFile(url);
+// });
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {

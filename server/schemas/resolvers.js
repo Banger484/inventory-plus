@@ -5,7 +5,7 @@ const {singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,ge
 const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
-
+const {orderDetails} = require("../analysis/orderAnalysis")
 
 const resolvers = {
   Query: {
@@ -58,8 +58,7 @@ const resolvers = {
     getItems: async()=>{
       return Item.find()
     },
-
-    // Imported functions from queries.js
+    orderDetails,
     generateProductReport,
     singleProduct,
     getEnterpriseUsers,

@@ -4,6 +4,9 @@ import { groupOrders } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import { RECEIVE_ITEMS } from "../../utils/mutations";
 import "./orderReceived.css"
+import { useState } from "react";
+import { OrderDetails } from "../Reporting/OrderDetails";
+import { t } from "../../utils/translation/translator";
 
 export default function OrderReceived ({enterpriseId}) {
     
@@ -12,13 +15,13 @@ export default function OrderReceived ({enterpriseId}) {
     const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
-    // const { loading: openSaleItemsLoading, data: openSaleItemsData } = useQuery(GET_OPEN_SALES, {
-    //     variables: { enterpriseId:enterpriseId}
-    // })
+
+    const [orderNumberSelected,setOrderNumberSelected] = useState(false)
 
     if (incomingItemsData) {
         refetch()
     }
+
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
     
     const handleFulfill = (e)=>{
@@ -33,6 +36,12 @@ export default function OrderReceived ({enterpriseId}) {
         }
         receiveOrder({variables})
         refetch()
+    }
+
+    const handleSelect = (e)=>{
+        const {order} = e.target.dataset
+        console.log("selected",order)
+        setOrderNumberSelected(order)
     }
 
     return (
@@ -52,8 +61,8 @@ export default function OrderReceived ({enterpriseId}) {
         </thead>
                 <tbody>
                     {incomingOrders.map((order,index)=>{
-                        return(<tr key={index} data-order={order.number}>
-                            <td>{order.number}</td>
+                        return(<tr key={index} onClick={handleSelect} data-order={order.number}>
+                            <td data-order={order.number}>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.supplier}</td>
                             <td>{order.itemList}</td>
@@ -65,18 +74,9 @@ export default function OrderReceived ({enterpriseId}) {
 
                 </tbody>
             </table>
-
-
-
-
-
-
-
-
-
-
-
-
+      }
+      {
+        orderNumberSelected?(<OrderDetails orderNumber={orderNumberSelected} enterpriseId={enterpriseId}/>):null
       }
                 
         </div>

@@ -71,6 +71,17 @@ type User {
     salesPrice:Float!
   }
 
+  type ProductRow {
+    productName:String
+    units:Int
+    sku:String
+    binLocation:String
+    totalCost:Float
+    costPerUnit:Float
+    totalSales:Float
+    salePerUnit:Float
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -99,6 +110,7 @@ type User {
     getCompletedSales(enterpriseId:ID!):[Item]
     getInventory(enterpriseId:ID!):[Item]
     generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
+    orderDetails(enterpriseId: ID!,orderNumber: Int!):[ProductRow]
   }
 
   type Mutation {

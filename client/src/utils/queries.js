@@ -305,3 +305,17 @@ query Query($enterpriseID: ID!) {
   }
 }`
 
+export const QUERY_ORDER_DETAILS = gql`
+query OrderDetails($enterpriseId: ID!, $orderNumber: Int!) {
+  orderDetails(enterpriseId: $enterpriseId, orderNumber: $orderNumber) {
+    productName
+    units
+    sku
+    binLocation
+    totalCost
+    costPerUnit
+    totalSales
+    salePerUnit
+  }
+}
+` 
