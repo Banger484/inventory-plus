@@ -15,6 +15,7 @@ export default function ProductDetails ({enterpriseId,productId}){
         )
     }
     const analysis = analysisData.generateProductReport
+    console.log(analysis)
     const analysisArray = []
     for (let key in analysis){
         const subArray = [key,analysis[key]];

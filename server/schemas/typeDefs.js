@@ -13,7 +13,7 @@ type Enterprise {
 type Analysis {
   name:String!
   description:String!
-  msrp:Int!
+  msrp:Float!
   category:String!
   notes:String!
   numberPurchased:Int
@@ -22,10 +22,10 @@ type Analysis {
   numberOutgoing:Int
   numberFulfilled:Int
   numberSold:Int
-  totalSalesRevenue:Int
-  averageSalesPrice:Int
-  totalCost:Int
-  averageCost:Int
+  totalSalesRevenue:Float
+  averageSalesPrice:Float
+  totalCost:Float
+  averageCost:Float
 }
 
 type User {
@@ -103,10 +103,10 @@ type User {
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addProduct(enterprise:ID!,sku: String!, name: String!, description: String!, msrp: Int!, category: String! notes: String!): Product
+    addProduct(enterprise:ID!,sku: String!, name: String!, description: String!, msrp: Float!, category: String! notes: String!): Product
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
     addEnterprise(name:String!,location:String!,userId:ID!): Enterprise
-    addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Int!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
+    addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Float!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
     updateItemReceived(item:ID!,receivedDate:String!,binLocation:String!): Item
     updateItemSale(item:ID!, saleDate:String!, buyer:String!): Item
     updateItemFulf(item:ID!, fulfillmentDate:String!):Item
