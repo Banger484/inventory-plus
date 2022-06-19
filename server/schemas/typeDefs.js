@@ -3,6 +3,13 @@ const { GraphQLFloat } = require('graphql');
 
 
 const typeDefs = gql`
+
+input ProductOrder {
+  cost:Float!
+  quantity:Int!
+  product:ID!
+}
+
 type Enterprise {
   _id: ID!
   name: String!
@@ -82,6 +89,11 @@ type User {
     salePerUnit:Float
   }
 
+  type StockGuide {
+    product:ID!
+    requiredStock:Int!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -111,6 +123,7 @@ type User {
     getInventory(enterpriseId:ID!):[Item]
     generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
     orderDetails(enterpriseId: ID!,orderNumber: Int!):[ProductRow]
+    getStockGuide(enterpriseId:ID!):[StockGuide]
   }
 
   type Mutation {
@@ -130,6 +143,8 @@ type User {
     addToOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
     removeFromOrderGuide(enterpriseId:ID!,productId:ID!):Enterprise
     removeUser(userId:ID!):User
+    setStockGuide(enterpriseId:ID!,product:ID!,requiredStock:Int!):String!
+    purchaseProducts(orderNumber:Int!,enterpriseId:ID!,purchaseDate:String!,supplier:String!,products:[ProductOrder]):String
   }
 
 

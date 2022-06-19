@@ -33,6 +33,7 @@ const UserSchema = new Schema({
     type:Schema.Types.ObjectId,
     ref:"Enterprise"
 },
+  
 });
 
 // set up pre-save middleware to create password

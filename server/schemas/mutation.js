@@ -94,6 +94,21 @@ const mutation = {
         await ent.save()
         const result = await Enterprise.findById(enterpriseId).populate("orderGuide")
         return result
+    },
+    setStockGuide: async (parent,{enterpriseId,product,requiredStock})=>{
+        const enterprise = await Enterprise.findById(enterpriseId);
+        const stockGuideItem = enterprise.stockGuide.filter(s=>{
+            return s.product === product
+        })?.[0];
+        if (stockGuideItem){
+            stockGuideItem.requiredStock = requiredStock;
+        }else{
+            enterprise.stockGuide.push({
+                product,requiredStock
+            })
+        }
+        await enterprise.save();
+        return "success"
     }
 
 }
