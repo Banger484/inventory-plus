@@ -25,10 +25,10 @@ const generateProductReport = async (parent,{enterpriseId,productId})=>{
     let totalCost = 0;
     purchasedItems.forEach(i=>totalCost+=i.cost)
     let totalSalesRevenue = 0;
-    soldItems.forEach(i=>totalSalesRevenue+=i.cost)
-    const averageSalesPrice = numberSold>0?Math.round(totalSalesRevenue/numberSold):0
+    soldItems.forEach(i=>totalSalesRevenue+=i.salesPrice)
+    const averageSalesPrice = numberSold>0?Math.round(totalSalesRevenue*100/numberSold)/100:0
 
-    const averageCost = numberPurchased>0?Math.round(totalCost/numberPurchased):0
+    const averageCost = numberPurchased>0?Math.round(totalCost*100/numberPurchased)/100:0
     const analysis = await Analysis.create({
         name: product.name,
         description: product.description,
