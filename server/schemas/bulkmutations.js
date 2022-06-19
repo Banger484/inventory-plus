@@ -3,6 +3,15 @@ const {updateItemSale} = require("./mutation")
 const {getOneItemInStock} = require("./queries")
 
 const bulkMutations = {
+    purchaseProducts: async (parent,{orderNumber,enterpriseId,purchaseDate,supplier,products})=>{
+        products.forEach(async p=>{
+            for (let i=0;i<p.quantity;i++){
+                await Item.create({enterprise:enterpriseId,product:p.product,orderNumber,cost:p.cost,supplier,purchaseDate})
+            }
+        })
+        return "Success"
+    },
+
     // Function to recieve all items on order
     receiveOrder: async (parent,{enterpriseId,orderNumber,receivedDate,binLocation})=>{
         const items = await Item.updateMany({orderNumber,enterprise:enterpriseId},{receivedDate,binLocation})

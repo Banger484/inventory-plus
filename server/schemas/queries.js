@@ -1,4 +1,4 @@
-const {Item,Product,User} = require("../models")
+const {Item,Product,User,Enterprise} = require("../models")
 const { Schema, model } = require('mongoose');
 
 // Function to get all Users for an Enterprise
@@ -85,8 +85,14 @@ const singleProduct = async (parent,{id})=>{
     return await Product.findById(id)
   }
 
+const getStockGuide = async (parent,{enterpriseId})=>{
+    const enterprise = await Enterprise.findById(enterpriseId);
+    console.log(enterprise._id)
+    return enterprise.stockGuide
+}
+
 // Exports functions 
-module.exports = {getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
+module.exports = {getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
 
 
 

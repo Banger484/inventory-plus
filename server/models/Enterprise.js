@@ -1,6 +1,6 @@
 // Imports required Schema class and model function from mongoose npm package
 const { Schema, model } = require('mongoose');
-
+const {stockGuideSchema} = require("./StockGuide")
 // Sets schema for Enterprise model
 const EnterpriseSchema = new Schema({
   name: {
@@ -23,7 +23,10 @@ const EnterpriseSchema = new Schema({
   saleNumber:{
     type:Number,
     default:0
-  }
+  },
+  stockGuide:[{
+    type:stockGuideSchema,
+  }]
 
 });
 
