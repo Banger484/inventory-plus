@@ -36,8 +36,10 @@ import Signup from "../components/Users/Signup";
 import AddUser from "../components/Users/AddUser";
 import Roster from "../components/Users/Roster";
 import ProductReport from "../components/Reporting/ProductReport";
+import { Settings } from "../components/Users/Settings";
 
-const Home = () => {
+
+const Home = ({handleThemeChange}) => {
   // getting logged in user
   const user = auth.getProfile();
 
@@ -106,6 +108,11 @@ const Home = () => {
                   }
                 />
                 <Route path="/orders" element={<OrderDashboard />} />
+                <Route
+                  path="/users/settings"
+                  element={
+                    <Settings handleThemeChange={handleThemeChange}/>
+                  }/>
                 <Route
                   path="/orders/purchase-order"
                   element={

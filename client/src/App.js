@@ -12,7 +12,7 @@ import auth from "./utils/auth"
 import Login from "./components/Users/Login"
 import Signup from './components/Users/Signup';
 import AcceptInvite from './components/Users/AcceptInvite'
-
+import {themes} from "./themes"
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -40,10 +40,20 @@ const client = new ApolloClient({
 function App() {
     const token = auth.getToken()
   function choose(){if (token){
-    return(<Home/>)
+    return(<Home handleThemeChange={handleThemeChange}/>)
   }else{
     return(<Login/>)
   }
+  }
+
+  const handleThemeChange = (e)=>{
+    const choice = e.target.value;
+    const theme = themes[choice]
+    Object.entries(theme).forEach(([k,v])=>{
+      console.log(k,v)
+      document.documentElement.style.setProperty(k,v)
+    })
+
   }
 
   return (
