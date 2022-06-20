@@ -11,11 +11,11 @@ import OrderModal from "./OrderModal";
 export default function OrderSell (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
-
+    const [date, setDate] = useState( orderDate())
     // const [buyer, setBuyer] = useState('dummy')
 
 
-    let buyer = "dummy"
+    const [buyer,setBuyer] = useState("Not specified")
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
 
     const { loading: currentStocksLoading, data: currentStocksData, refetch } = useQuery(GET_CURRENT_STOCKS, {
@@ -35,7 +35,7 @@ export default function OrderSell (props) {
 
 
     const handleSupplierChange = (e) => {
-        buyer=e.target.value
+        setBuyer(e.target.value)
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
@@ -47,6 +47,12 @@ export default function OrderSell (props) {
         }
         tableData[index][e.target.name] = val
     }
+
+    const handleDateChange = (e)=>{
+        console.log(e)
+        setDate(e.target.value)
+    }
+
     const handleSubmit = async () => {
         const filterTableData = tableData.filter(data => data.newSaleQty > 0)
         try {
@@ -56,10 +62,11 @@ export default function OrderSell (props) {
                     productId: product._id,
                     saleId:saleNumber,
                     salesPrice: product.newSalePricePerUnit,
-                    saleDate: orderDate(),
+                    saleDate: date,
                     buyer,
                     enterpriseId: props.enterpriseId
                 }
+                console.log(variables)
                 await sellItems({
                     variables
                 })
@@ -77,6 +84,7 @@ export default function OrderSell (props) {
             <div className="table-top">
                 <h1>Sell Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Enter Buyer"/>
+                <input onChange={handleDateChange} type="date"/>
             </div>
             <table className='order-table'>
                 <thead>

@@ -10,6 +10,7 @@ const groupItemsByProduct = async (items)=>{
             products[item.product] = [item]
         }
     }
+    // console.log(products)
     return products
 }
 

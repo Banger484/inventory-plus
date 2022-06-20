@@ -319,3 +319,15 @@ query OrderDetails($enterpriseId: ID!, $orderNumber: Int!) {
   }
 }
 ` 
+
+export const GET_MONTH_TO_MONTH = gql`
+query Query($enterpriseId: ID!, $sales: Boolean) {
+  groupItemsByMonth(enterpriseId: $enterpriseId, sales: $sales) {
+    month
+    year
+    items {
+      _id
+    }
+  }
+}
+`

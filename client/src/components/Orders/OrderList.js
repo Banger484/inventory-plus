@@ -32,7 +32,7 @@ export default function OrderList (props) {
                         <th>MSRP</th>
                         <th>Category</th>
                         <th>Notes</th>
-                        {props.buttons?<th>Remove</th> : null}
+                        {props.buttons?<th>Rem</th> : null}
                     </tr>
                 </thead>
                     <tbody>

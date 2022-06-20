@@ -11,10 +11,10 @@ import OrderModal from "./OrderModal";
 export default function OrderPurchase (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
+    const [date, setDate] = useState( orderDate())
 
 
-
-    let supplier = "not specified"
+    const [supplier,setSupplier] = useState("Not specified")
 
     const [buyItems, { error }] = useMutation(BUY_ITEMS)
 
@@ -40,7 +40,7 @@ export default function OrderPurchase (props) {
     }
 
     const handleSupplierChange = (e) => {
-        supplier = e.target.value
+        setSupplier(e.target.value)
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
@@ -52,24 +52,33 @@ export default function OrderPurchase (props) {
         }
         tableData[index][e.target.name] = val
     }
+
+    const handleDateChange = (e)=>{
+        console.log(e)
+        setDate(e.target.value)
+    }
+
     const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
+
         
         const filterTableData = tableData.filter(data => data.newOrderQty > 0)
 
         try {
             await filterTableData.forEach(async (product) => {
                 console.log("this is the input",product.newOrderCostPerUnit)
+                const variables = {
+                    quantity: product.newOrderQty,
+                    productId: product._id,
+                    orderNumber,
+                    cost: product.newOrderCostPerUnit,
+                    purchaseDate: date,
+                    supplier,
+                    enterpriseId: props.enterpriseId
+                }
+                console.log(variables)
                 await buyItems({
-                    variables: {
-                        quantity: product.newOrderQty,
-                        productId: product._id,
-                        orderNumber,
-                        cost: product.newOrderCostPerUnit,
-                        purchaseDate: orderDate(),
-                        supplier,
-                        enterpriseId: props.enterpriseId
-                    }
+                    variables
                 })
 
             })
@@ -85,6 +94,7 @@ export default function OrderPurchase (props) {
             <div className="table-top purchase-order-header">
                 <h1>Purchase Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
+                <input onChange={handleDateChange} type="date"/>
             </div>
             <table className='order-table'>
                 <thead>
