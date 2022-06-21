@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function UserDashboard () {
     return (
-        <section className='task-container grid-container grid-container-settings'>
+        <section className='grid-container grid-container-settings'>
             <Link className='dash-grid-main' to="/users/add-user">
             <div className='task'>
                 <div className='task-header'>

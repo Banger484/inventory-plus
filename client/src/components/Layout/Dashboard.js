@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // Function to create icons and link html for application dasbboard. exports function
 export default function Dashboard () {
     return (
-        <section className='task-container grid-container'>
+        <section className='grid-container'>
             <Link className='dash-grid-main' to="/products">
             <div className='task'>
                 <div className='task-header'>

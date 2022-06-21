@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 // Function to create icons and link html for order dasbboard. exports function
 export default function OrderDashboard () {
     return (
-        <section className='task-container grid-container grid-container-order'>
-            <Link className='task-links grid-item dash-grid-main' to="/orders/purchase-order">
+        <section className='grid-container grid-container-order'>
+            <Link className='dash-grid-main' to="/orders/purchase-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Purchase Order</h2>
@@ -17,7 +17,7 @@ export default function OrderDashboard () {
             </div>
             </Link>
             <p className='order-arrows  dash-grid-main'>➤</p>
-            <Link className='task-links grid-item dash-grid-main' to="/orders/order-received">
+            <Link className='dash-grid-main' to="/orders/order-received">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Receive Order</h2>
@@ -28,7 +28,7 @@ export default function OrderDashboard () {
             </div>
             </Link>
             <p className='order-arrows dash-grid-main'>➤</p>
-            <Link className='task-links grid-item dash-grid-main' to="/orders/sell-order">
+            <Link className='dash-grid-main' to="/orders/sell-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Sell Order</h2>
@@ -39,7 +39,7 @@ export default function OrderDashboard () {
             </div>
             </Link>
             <p className='order-arrows dash-grid-main'>➤</p>
-            <Link className='task-links grid-item dash-grid-main' to="/orders/order-fulfillment">
+            <Link className='dash-grid-main' to="/orders/order-fulfillment">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order Fulfillment</h2>
@@ -49,7 +49,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links grid-item gi-8' to="/orders/order-guide">
+            <Link className='gi-8' to="/orders/order-guide">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order Guide</h2>
@@ -59,7 +59,7 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links grid-item gi-9' to="/orders/order-history">
+            <Link className='gi-9' to="/orders/order-history">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order History</h2>
