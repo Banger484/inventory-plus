@@ -1,3 +1,4 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { Enterprise, Item, Product, User } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -66,6 +67,10 @@ const mutation = {
           throw new AuthenticationError('No profile with this email found!');
         }
   
+        if(user.disabled){
+            throw new AuthenticationError("User Disabled")
+        }
+
         const correctPw = await user.isCorrectPassword(password);
         
         // validation to check if password is correct for user
@@ -109,9 +114,25 @@ const mutation = {
         }
         await enterprise.save();
         return "success"
-    }
+    },
+    toggleUser: async (parent,{id})=>{
+        console.log("this user is being toggled",id)
+        const user = await User.findById(id)
+        user.disabled = !user.disabled;
+        user.save()
+        return "success"
+    },
+    toggleProduct: async (parent,{id})=>{
+        console.log("this product is being toggled",id)
+        const product = await Product.findById(id)
+        product.disabled = !product.disabled;
+        product.save()
+        return "success"
+    },
 
 }
+
+
 
 // exports mutations
 module.exports = mutation;
