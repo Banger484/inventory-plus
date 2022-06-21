@@ -6,5 +6,20 @@ export const translations = {
     costPerUnit:"Cost/Unit",
     sku:"SKU",
     totalSales:"Total Sales",
-    salePerUnit:"Sales Price/Unit"
+    salePerUnit:"Sales Price/Unit",
+    __typename:"",
+    name:"Product Name",
+    description:"Description",
+    msrp:"MSRP",
+    category:"Category",
+    numberPurchased:"# Purchased",
+    numberIncoming:"# Incoming",
+    numberInStock:"# in Stock",
+    numberOutgoing:"# Outgoing",
+    numberSold:"# Sold",
+    numberFulfilled:"# Fulfilled",
+    totalSalesRevenue:"Sales Revenue",
+    averageSalesPrice:"Sales Price/Unit",
+    averageCost:"Cost/Unit"
 }
+

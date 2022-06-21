@@ -15,6 +15,8 @@ type Enterprise {
   name: String!
   location: String!
   orderGuide:[Product]
+  orderNumber:Int
+  saleNumber:Int
 }
 
 type Analysis {
@@ -94,6 +96,12 @@ type User {
     requiredStock:Int!
   }
 
+  type Month {
+    month: Int
+    year: Int
+    items: [Item]
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -124,6 +132,7 @@ type User {
     generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
     orderDetails(enterpriseId: ID!,orderNumber: Int!):[ProductRow]
     getStockGuide(enterpriseId:ID!):[StockGuide]
+    groupItemsByMonth(enterpriseId:ID!,sales:Boolean):[Month]
   }
 
   type Mutation {
