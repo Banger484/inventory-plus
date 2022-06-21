@@ -5,7 +5,6 @@
     grid-gap: 30px;
     justify-content: center;
     height: 80vh;
-    border: 1px solid red;
 }
 .grid-container-order {
     grid-template-columns: 250px 50px 250px 50px 250px 50px 250px;
@@ -13,9 +12,7 @@
 .grid-container-settings {
     grid-template-columns: repeat(3, 250px);
 }
-.grid-container-reporting {
-    grid-template-columns: 250px;
-}
+
 .dash-grid-main {
     grid-row-start: 2;
 }

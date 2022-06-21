@@ -4,6 +4,8 @@ import {
   GET_ENTERPRISE_BY_ID,
   QUERY_ALL_PRODUCTS,
   QUERY_ENT_USERS,
+  GET_INCOMING_ITEMS,
+  GET_OPEN_SALES
 } from "../utils/queries";
 import auth from "../utils/auth";
 import { Route, Routes } from "react-router-dom";
@@ -39,11 +41,10 @@ import AddUser from "../components/Users/AddUser";
 import Roster from "../components/Users/Roster";
 import { Settings } from "../components/Users/Settings";
 
-
-const Home = ({handleThemeChange}) => {
+const Home = ({ handleThemeChange }) => {
   // getting logged in user
   const user = auth.getProfile();
-
+  console.log('user info here', user.data.enterprise);
   // making queries
   const {
     loading: enterpriseLoading,
@@ -64,6 +65,13 @@ const Home = ({handleThemeChange}) => {
     data: productsData,
     refetch: productsRefetch,
   } = useQuery(QUERY_ALL_PRODUCTS);
+  const {
+    loading: incomingItemsLoading,
+    data: incomingItemsData,
+    refetch: incomingItemsRefetch,
+  } = useQuery(GET_INCOMING_ITEMS, {
+    variables: { enterpriseId: user.data.enterprise },
+  });
 
   // setting variables to be passed through props
   let enterpriseName;
@@ -71,16 +79,21 @@ const Home = ({handleThemeChange}) => {
   let products;
   let enterpriseId;
   let roster;
+  let incomingOrders;
+  let incomingOrderCount
 
-  if (enterpriseData && rosterData && productsData) {
+  if (enterpriseData && rosterData && productsData && incomingItemsData) {
     productsRefetch();
     enterpriseRefetch();
     rosterRefetch();
+    incomingItemsRefetch();
     enterpriseName = enterpriseData.getEnterpriseById.name;
     enterpriseId = enterpriseData.getEnterpriseById._id;
     orderGuide = enterpriseData.getEnterpriseById.orderGuide;
     roster = rosterData.getEnterpriseUsers;
     products = productsData.allProducts;
+    incomingOrders = incomingItemsData.getOrderedItems
+    incomingOrderCount = incomingOrders.length
   }
 
   return (
@@ -90,14 +103,19 @@ const Home = ({handleThemeChange}) => {
       <main className="home-main-content">
         <div>
           <div>
-            {enterpriseLoading || rosterLoading || productsLoading ? (
+            {enterpriseLoading || rosterLoading || productsLoading || incomingItemsLoading ? (
               <div>Loading...</div>
             ) : (
               <Routes>
                 <Route path="/products" element={<ProductDashboard />} />
                 <Route
                   path="/products/add-product"
-                  element={<AddProduct productsRefetch={productsRefetch} products={products} />}
+                  element={
+                    <AddProduct
+                      productsRefetch={productsRefetch}
+                      products={products}
+                    />
+                  }
                 />
                 <Route
                   path="/products/product-guide"
@@ -108,12 +126,11 @@ const Home = ({handleThemeChange}) => {
                     />
                   }
                 />
-                <Route path="/orders" element={<OrderDashboard />} />
+                <Route path="/orders" element={<OrderDashboard incomingOrderCount={incomingOrderCount} />} />
                 <Route
                   path="/users/settings"
-                  element={
-                    <Settings handleThemeChange={handleThemeChange}/>
-                  }/>
+                  element={<Settings handleThemeChange={handleThemeChange} />}
+                />
                 <Route
                   path="/orders/purchase-order"
                   element={
@@ -153,6 +170,9 @@ const Home = ({handleThemeChange}) => {
                     <OrderReceived
                       enterpriseRefetch={enterpriseRefetch}
                       enterpriseId={enterpriseId}
+                      incomingItemsData={incomingItemsData}
+                      incomingItemsRefetch={incomingItemsRefetch}
+                      incomingOrders={incomingOrders}
                     />
                   }
                 />
@@ -177,7 +197,9 @@ const Home = ({handleThemeChange}) => {
                 <Route path="/users/add-user" element={<AddUser />} />
                 <Route
                   path="users/roster"
-                  element={<Roster rosterRefetch={rosterRefetch} roster={roster} />}
+                  element={
+                    <Roster rosterRefetch={rosterRefetch} roster={roster} />
+                  }
                 />
                 <Route path="/reporting" element={<ReportingDashboard />} />
                 <Route path="/signup" element={<Signup />} />
@@ -186,7 +208,7 @@ const Home = ({handleThemeChange}) => {
                   path="/reporting/product"
                   element={<ProductReport enterpriseId={enterpriseId} />}
                 />
-                  <Route
+                <Route
                   path="/reporting/month-to-month-report"
                   element={<MonthlyAnalysis enterpriseId={enterpriseId} />}
                 />

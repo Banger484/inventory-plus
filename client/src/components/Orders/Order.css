@@ -91,7 +91,21 @@
     padding-bottom: 1rem;
 }
 
-
+.order-count {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    background-color: red;
+    border: 3px solid var(--darkest);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 250px;
+    top: -90px;
+    left: 220px;
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
 
 @media screen and (max-width:700px) {
     .table-top.purchase-order-header{

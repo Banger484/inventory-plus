@@ -3,7 +3,8 @@ import '../Layout/Dashboard.css'
 import { Link } from 'react-router-dom'
 
 // Function to create icons and link html for order dasbboard. exports function
-export default function OrderDashboard () {
+export default function OrderDashboard ({ incomingOrderCount }) {
+    console.log(incomingOrderCount);
     return (
         <section className='grid-container grid-container-order'>
             <Link className='dash-grid-main' to="/orders/purchase-order">
@@ -20,7 +21,7 @@ export default function OrderDashboard () {
             <Link className='dash-grid-main' to="/orders/order-received">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Receive Order</h2>
+                    <h2>Receive Order</h2><div className='order-count'>{incomingOrderCount}</div>
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>
