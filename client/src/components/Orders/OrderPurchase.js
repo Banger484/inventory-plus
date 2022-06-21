@@ -7,6 +7,7 @@ import orderDate from "../../utils/orderDate";
 import './Order.css'
 
 import OrderModal from "./OrderModal";
+import { stringifyProperties } from "../../utils/filter";
 
 export default function OrderPurchase (props) {
     //modal junk
@@ -28,7 +29,7 @@ export default function OrderPurchase (props) {
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
-    console.log(props)
+    const [searchTerm,setSearchTerm] = useState("")
     
     if(!currentStocksLoading && !incomingItemsLoading){
         incomingRefetch()
@@ -88,6 +89,11 @@ export default function OrderPurchase (props) {
         }
 
     }
+
+    const searchedRows = tableData.filter(p=>{
+        return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+    })
+
     return (
         <div>
             {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
@@ -95,6 +101,9 @@ export default function OrderPurchase (props) {
                 <h1>Purchase Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
                 <input onChange={handleDateChange} type="date"/>
+            </div>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>
@@ -113,8 +122,9 @@ export default function OrderPurchase (props) {
                 </thead>
                     <tbody>
                     {tableData.map((product, index) => {
+                        console.log(product)
                         return (
-                        <tr data-pid={product._id} key={index}>
+                        <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>

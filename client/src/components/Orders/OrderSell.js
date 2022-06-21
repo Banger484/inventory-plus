@@ -5,6 +5,7 @@ import { SELL_ITEMS } from '../../utils/mutations'
 import { generateSalesTableData, groupItems } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import './Order.css'
+import { stringifyProperties } from "../../utils/filter";
 
 import OrderModal from "./OrderModal";
 
@@ -25,7 +26,7 @@ export default function OrderSell (props) {
 
     let currentStocksGroups
     let tableData = []
-
+    const [searchTerm,setSearchTerm] = useState("")
     
     if(!currentStocksLoading ){
         refetch()
@@ -78,6 +79,9 @@ export default function OrderSell (props) {
             console.error(err);
         }}
 
+        const searchedRows = tableData.filter(p=>{
+            return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+        })
 
     return (
         <div>
@@ -86,6 +90,9 @@ export default function OrderSell (props) {
                 <h1>Sell Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Enter Buyer"/>
                 <input onChange={handleDateChange} type="date"/>
+            </div>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>
@@ -104,7 +111,7 @@ export default function OrderSell (props) {
                     <tbody>
                     {tableData.map((product, index) => {
                         return (
-                        <tr data-pid={product._id} key={index}>
+                        <tr className={searchedRows.includes(product)?"":"hide"}  data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>
