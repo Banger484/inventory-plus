@@ -23,7 +23,7 @@ export default function OrderList (props) {
     }
     return (
         <div>
-            <table className='order-list-table'>
+            <table className='order-table'>
                 <thead>
                     <tr>
                         <th>SKU</th>
