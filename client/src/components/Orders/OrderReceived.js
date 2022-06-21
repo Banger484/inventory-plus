@@ -11,7 +11,7 @@ import { t } from "../../utils/translation/translator";
 export default function OrderReceived ({enterpriseId}) {
     
     const [receiveOrder,{error}] = useMutation(RECEIVE_ITEMS)
-
+    const [date,setDate] = useState(null)
     const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
@@ -25,13 +25,14 @@ export default function OrderReceived ({enterpriseId}) {
     const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
     
     const handleFulfill = (e)=>{
+        console.log("this is the date input",date)
         refetch()
         const index = e.target.dataset.index;
         const binLocation = e.target.parentNode.parentNode.lastElementChild.childNodes[0].value
         const variables = {
             enterpriseId:enterpriseId,
             orderNumber:parseInt(e.target.dataset.orderNumber),
-            receivedDate:orderDate(new Date()),
+            receivedDate:date,
             binLocation
         }
         receiveOrder({variables})
@@ -44,9 +45,14 @@ export default function OrderReceived ({enterpriseId}) {
         setOrderNumberSelected(order)
     }
 
+    const handleDateChange = (e)=>{
+        setDate(e.target.value)
+    }
+
     return (
         <div className="big-center-flex">
             <h1>Receive Order</h1>
+            <input type="date" onChange={handleDateChange}></input>
             {incomingItemsLoading
         ? <h2>Loading</h2>
         :  <table  className="product-list-table" id="order-received-table"><thead>
