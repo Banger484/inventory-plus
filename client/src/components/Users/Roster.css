@@ -35,4 +35,5 @@
 
 .employee-cont button:hover{
     background-color:  hsl(0, 0%, 80%);
+    color: var(--darkest);
 }

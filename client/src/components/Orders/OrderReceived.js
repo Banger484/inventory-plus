@@ -47,7 +47,10 @@ export default function OrderReceived ({enterpriseId, incomingItemsData, incomin
 
     return (
         <div className="big-center-flex">
+            <div className="table-top rec-order-tt">
             <h1>Receive Order</h1>
+            </div>
+
             <input type="date" onChange={handleDateChange}></input>
 
             <table  className="product-list-table" id="order-received-table"><thead>

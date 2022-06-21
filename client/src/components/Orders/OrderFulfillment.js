@@ -38,7 +38,10 @@ export default function OrderFulfillment({ enterpriseId }) {
 
     return (
         <div className="big-center-flex">
+            <div className="table-top rec-order-tt">
             <h1>Fulfill Sale</h1>
+            </div>
+
             <input onChange={handleDateChange} type="date"/>
 
             {openSaleItemsLoading

@@ -60,13 +60,13 @@ export default function OrderDashboard ({ incomingOrderCount }) {
                 </div>
             </div>
             </Link>
-            <Link className='gi-9' to="/orders/order-history">
+            <Link className='gi-9' to="/orders/stock-guide">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Order History</h2>
+                    <h2>Stock Guide</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/history.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
                 </div>
             </div>
             </Link>

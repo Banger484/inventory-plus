@@ -107,6 +107,11 @@
     font-size: 1.8rem;
     font-weight: bolder;
 }
+.rec-order-tt {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width:700px) {
     .table-top.purchase-order-header{

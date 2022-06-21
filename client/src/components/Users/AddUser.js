@@ -22,7 +22,10 @@ export default function AddUser () {
     }
     return (
         <div className='add-user-section'>
+            <div className='table-top rec-order-tt'>
             <h1>Invite User</h1>
+
+            </div>
             <form ref={form} onSubmit= {sendEmail}>
                 <input name="user_email" type="email"></input>
                 <input name="enterpriseId" type="hidden" value={link}></input>
