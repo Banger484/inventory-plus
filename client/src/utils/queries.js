@@ -114,6 +114,8 @@ query GetEnterpriseById($id: ID!) {
     _id
     name
     location
+    orderNumber
+    saleNumber
     orderGuide {
       _id
       sku

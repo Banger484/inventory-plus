@@ -12,7 +12,7 @@ export default function OrderPurchase (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
     const [date, setDate] = useState( orderDate())
-
+    const [orderNumber,setOrderNumber] =useState(props.enterprise.getEnterpriseById.orderNumber)
 
     const [supplier,setSupplier] = useState("Not specified")
 
@@ -28,8 +28,7 @@ export default function OrderPurchase (props) {
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
-    let orderNumber = Date.now() % 1000000
-
+    console.log(props)
     
     if(!currentStocksLoading && !incomingItemsLoading){
         incomingRefetch()
@@ -54,7 +53,6 @@ export default function OrderPurchase (props) {
     }
 
     const handleDateChange = (e)=>{
-        console.log(e)
         setDate(e.target.value)
     }
 
@@ -82,7 +80,9 @@ export default function OrderPurchase (props) {
                 })
 
             })
-            setOpenModal(true)
+            setOpenModal(true);
+            setOrderNumber(orderNumber+1)
+
         } catch (err) {
             console.error(err);
         }

@@ -12,8 +12,9 @@ export default function OrderSell (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
     const [date, setDate] = useState( orderDate())
+    const [saleNumber,setSaleNumber] = useState(props.enterprise.getEnterpriseById.saleNumber)
     // const [buyer, setBuyer] = useState('dummy')
-
+    console.log(props)
 
     const [buyer,setBuyer] = useState("Not specified")
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
@@ -24,7 +25,6 @@ export default function OrderSell (props) {
 
     let currentStocksGroups
     let tableData = []
-    let saleNumber = Date.now() % 1000000
 
     
     if(!currentStocksLoading ){
@@ -73,6 +73,7 @@ export default function OrderSell (props) {
 
             })
             setOpenModal(true)
+            setSaleNumber(saleNumber+1)
         } catch (err) {
             console.error(err);
         }}
@@ -80,7 +81,7 @@ export default function OrderSell (props) {
 
     return (
         <div>
-            {openModal && <OrderModal orderNumber={saleNumber} closeModal={setOpenModal}/>}
+            {openModal && <OrderModal orderNumber={saleNumber-1} closeModal={setOpenModal}/>}
             <div className="table-top">
                 <h1>Sell Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Enter Buyer"/>

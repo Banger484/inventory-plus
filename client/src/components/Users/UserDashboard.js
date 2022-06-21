@@ -27,7 +27,7 @@ export default function UserDashboard () {
             <Link className='task-links' to="/users/settings">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>User Settings</h2>
+                    <h2>Preferences</h2>
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/users.png" alt='icon'/>

@@ -15,6 +15,8 @@ type Enterprise {
   name: String!
   location: String!
   orderGuide:[Product]
+  orderNumber:Int
+  saleNumber:Int
 }
 
 type Analysis {

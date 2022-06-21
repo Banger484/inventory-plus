@@ -122,6 +122,7 @@ const Home = ({handleThemeChange}) => {
                       enterpriseId={enterpriseId}
                       orderGuide={orderGuide}
                       enterpriseRefetch={enterpriseRefetch}
+                      enterprise={enterpriseData}
                     />
                   }
                 />
@@ -133,6 +134,7 @@ const Home = ({handleThemeChange}) => {
                       enterpriseId={enterpriseId}
                       orderGuide={orderGuide}
                       enterpriseRefetch={enterpriseRefetch}
+                      enterprise={enterpriseData}
                     />
                   }
                 />
