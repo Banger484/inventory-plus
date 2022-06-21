@@ -46,7 +46,9 @@
 .td-4 {
     width: 20vw;
 }
-
+.order-arrows {
+    font-size: 3rem;
+}
 /* modal styling */
 
 .modal {

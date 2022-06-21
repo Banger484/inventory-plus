@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 // Function to create icons and link html for application dasbboard. exports function
 export default function Dashboard () {
     return (
-        <section className='task-container'>
-            <Link className='task-links' to="/products">
+        <section className='task-container grid-container'>
+            <Link className='dash-grid-main' to="/products">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Products</h2>
@@ -16,33 +16,33 @@ export default function Dashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/orders">
+            <Link className='dash-grid-main' to="/orders">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Orders</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/gear.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/write.png" alt='icon'/>
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/users">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Users</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/users.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
-            <Link className='task-links' to="/reporting">
+            <Link className='dash-grid-main' to="/reporting">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Reporting</h2>
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/reporting2.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
+            <Link className='dash-grid-main' to="/users">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Settings</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/gear.png" alt='icon'/>
                 </div>
             </div>
             </Link>

@@ -4,6 +4,7 @@
   --middle: #3a3b3c;
   --middle-dark: #242526;
   --darkest: #171717;
+  --shadow: 0.8;
 }
 * {
   font-family: 'Comfortaa', cursive;
@@ -22,7 +23,7 @@ html {
 }
 body {
   margin: 0;
-  background-color: var(--middle);
+  background-color: var(--middle-light);
   font-family: 'Comfortaa', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
