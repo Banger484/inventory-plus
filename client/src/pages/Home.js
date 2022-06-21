@@ -29,15 +29,18 @@ import OrderHistory from "../components/Orders/OrderHistory";
 import OrderReceived from "../components/Orders/OrderReceived";
 //Reporting
 import ReportingDashboard from "../components/Reporting/ReportingDashboard";
+import ProductReport from "../components/Reporting/ProductReport";
+import { MonthlyAnalysis } from "../components/Reporting/MonthlyAnalysis";
 
 //Users
 import UserDashboard from "../components/Users/UserDashboard";
 import Signup from "../components/Users/Signup";
 import AddUser from "../components/Users/AddUser";
 import Roster from "../components/Users/Roster";
-import ProductReport from "../components/Reporting/ProductReport";
+import { Settings } from "../components/Users/Settings";
 
-const Home = () => {
+
+const Home = ({handleThemeChange}) => {
   // getting logged in user
   const user = auth.getProfile();
 
@@ -107,6 +110,11 @@ const Home = () => {
                 />
                 <Route path="/orders" element={<OrderDashboard />} />
                 <Route
+                  path="/users/settings"
+                  element={
+                    <Settings handleThemeChange={handleThemeChange}/>
+                  }/>
+                <Route
                   path="/orders/purchase-order"
                   element={
                     <OrderPurchase
@@ -114,6 +122,7 @@ const Home = () => {
                       enterpriseId={enterpriseId}
                       orderGuide={orderGuide}
                       enterpriseRefetch={enterpriseRefetch}
+                      enterprise={enterpriseData}
                     />
                   }
                 />
@@ -125,6 +134,7 @@ const Home = () => {
                       enterpriseId={enterpriseId}
                       orderGuide={orderGuide}
                       enterpriseRefetch={enterpriseRefetch}
+                      enterprise={enterpriseData}
                     />
                   }
                 />
@@ -175,6 +185,10 @@ const Home = () => {
                 <Route
                   path="/reporting/product"
                   element={<ProductReport enterpriseId={enterpriseId} />}
+                />
+                  <Route
+                  path="/reporting/month-to-month-report"
+                  element={<MonthlyAnalysis enterpriseId={enterpriseId} />}
                 />
               </Routes>
             )}

@@ -7,14 +7,15 @@ import orderDate from "../../utils/orderDate";
 import './Order.css'
 
 import OrderModal from "./OrderModal";
+import { stringifyProperties } from "../../utils/filter";
 
 export default function OrderPurchase (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
+    const [date, setDate] = useState( orderDate())
+    const [orderNumber,setOrderNumber] =useState(props.enterprise.getEnterpriseById.orderNumber)
 
-
-
-    let supplier = "not specified"
+    const [supplier,setSupplier] = useState("Not specified")
 
     const [buyItems, { error }] = useMutation(BUY_ITEMS)
 
@@ -28,8 +29,7 @@ export default function OrderPurchase (props) {
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
-    let orderNumber = Date.now() % 1000000
-
+    const [searchTerm,setSearchTerm] = useState("")
     
     if(!currentStocksLoading && !incomingItemsLoading){
         incomingRefetch()
@@ -40,7 +40,7 @@ export default function OrderPurchase (props) {
     }
 
     const handleSupplierChange = (e) => {
-        supplier = e.target.value
+        setSupplier(e.target.value)
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
@@ -52,39 +52,58 @@ export default function OrderPurchase (props) {
         }
         tableData[index][e.target.name] = val
     }
+
+    const handleDateChange = (e)=>{
+        setDate(e.target.value)
+    }
+
     const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
+
         
         const filterTableData = tableData.filter(data => data.newOrderQty > 0)
 
         try {
             await filterTableData.forEach(async (product) => {
                 console.log("this is the input",product.newOrderCostPerUnit)
+                const variables = {
+                    quantity: product.newOrderQty,
+                    productId: product._id,
+                    orderNumber,
+                    cost: product.newOrderCostPerUnit,
+                    purchaseDate: date,
+                    supplier,
+                    enterpriseId: props.enterpriseId
+                }
+                console.log(variables)
                 await buyItems({
-                    variables: {
-                        quantity: product.newOrderQty,
-                        productId: product._id,
-                        orderNumber,
-                        cost: product.newOrderCostPerUnit,
-                        purchaseDate: orderDate(),
-                        supplier,
-                        enterpriseId: props.enterpriseId
-                    }
+                    variables
                 })
 
             })
-            setOpenModal(true)
+            setOpenModal(true);
+            setOrderNumber(orderNumber+1)
+
         } catch (err) {
             console.error(err);
         }
 
     }
+
+    const searchedRows = tableData.filter(p=>{
+        return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+    })
+
     return (
         <div>
             {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
             <div className="table-top purchase-order-header">
                 <h1>Purchase Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
+                <input onChange={handleDateChange} type="date"/>
+            </div>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>
@@ -103,8 +122,9 @@ export default function OrderPurchase (props) {
                 </thead>
                     <tbody>
                     {tableData.map((product, index) => {
+                        console.log(product)
                         return (
-                        <tr data-pid={product._id} key={index}>
+                        <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>

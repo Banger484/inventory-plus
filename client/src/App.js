@@ -12,12 +12,16 @@ import auth from "./utils/auth"
 import Login from "./components/Users/Login"
 import Signup from './components/Users/Signup';
 import AcceptInvite from './components/Users/AcceptInvite'
+import {themes} from "./themes"
 
+// Admin
+import { AdminDashboard } from './components/Admin/AdminDashboard';
+import { UsersAdmin } from './components/Admin/UsersAdmin';
+import { ProductAdmin } from './components/Admin/ProductAdmin';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql'
 });
-
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -40,11 +44,53 @@ const client = new ApolloClient({
 function App() {
     const token = auth.getToken()
   function choose(){if (token){
-    return(<Home/>)
+    return(<Home handleThemeChange={handleThemeChange}/>)
   }else{
     return(<Login/>)
   }
   }
+
+  const handleThemeChange = (e)=>{
+    const choice = e.target.value;
+    const theme = themes[choice]
+    Object.entries(theme).forEach(([k,v])=>{
+      console.log(k,v)
+      document.documentElement.style.setProperty(k,v)
+    })
+
+  }
+
+  
+// if (auth.getProfile().data.email==="admin@inventoryplus.com"){
+//   return <ApolloClient client={client}>
+//     <Router>
+//     <div className="flex-column justify-flex-start min-100-vh">
+//           <div className="container">
+//             <Routes>
+//             {ifauth.getProfile.data.email==="admin@invetoryplus.com"?(
+//               </div>
+//               </div>
+//     </Router>
+//   </ApolloClient>
+// }
+
+const checkAdmin = ()=>{
+  if (auth.loggedIn() && auth?.getProfile()?.data?.email==="admin@inventoryplus.com"){
+return(<><Route
+                path='/admin/users'
+                element={<UsersAdmin />} 
+              />
+              <Route
+                path='/admin/products'
+                element={<ProductAdmin />}
+              />
+              <Route 
+                path="/*" 
+                element={<AdminDashboard/>} 
+              /></>)
+  }
+}
+
 
   return (
     <ApolloProvider client={client}>
@@ -52,7 +98,8 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             <Routes>
-              <Route
+              {checkAdmin()}
+             <Route
                 path='/invite/*'
                 element={<AcceptInvite />} 
               />

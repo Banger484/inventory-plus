@@ -1,11 +1,12 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const {getStockGuide,singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getCompletedSales,getInventory} = require("./queries")
+const {getAllUsers,getStockGuide,singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getCompletedSales,getInventory} = require("./queries")
 const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
 const {orderDetails} = require("../analysis/orderAnalysis")
+const {groupItemsByMonth} = require("../analysis/monthlyAnalysis")
 
 const resolvers = {
   Query: {
@@ -21,11 +22,17 @@ const resolvers = {
     },
 
     // Function to get all Products
-    allProducts: async ()=>{
-      const all = await Product.find()
-      const result = all.filter(p=>{
-        return !p.disabled
-      });
+    allProducts: async (parent,{all})=>{
+      console.log("in it")
+      const products = await Product.find()
+      let result
+      if (!all){
+        result = products.filter(p=>{
+          return !p.disabled
+        });
+      }else{
+        result=products
+      }
       return result
     },
 
@@ -73,7 +80,9 @@ const resolvers = {
     getFulfilledItemsByProduct,
     getCompletedSales,
     getInventory,
-    getStockGuide
+    getStockGuide,
+    groupItemsByMonth,
+    getAllUsers
   },
 
   Mutation: {
@@ -105,6 +114,7 @@ const resolvers = {
 
     // Function to add new Items to an order for a enterprise
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
+      console.log(purchaseDate)
       const ent = await Enterprise.findById(enterpriseId);
       orderNumber = ent.orderNumber;
       ent.orderNumber = orderNumber+1;

@@ -1,4 +1,4 @@
-const {Item} = require("../models")
+const {Item, Enterprise} = require("../models")
 const {updateItemSale} = require("./mutation")
 const {getOneItemInStock} = require("./queries")
 
@@ -26,6 +26,9 @@ const bulkMutations = {
                 const item = await getOneItemInStock({enterpriseId,productId})
                 const updateItem = await updateItemSale(null,{item:item._id,saleDate,buyer,saleNumber:saleId,salesPrice});
             }
+            const enterprise = await Enterprise.findById(enterpriseId);
+            enterprise.saleNumber = (saleId+1);
+            enterprise.save()
         }catch(err){
             console.error(err)
             }

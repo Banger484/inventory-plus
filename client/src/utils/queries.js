@@ -1,16 +1,22 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USERS = gql`
-query allUsers {
-    users {
+query GetAllUsers {
+  getAllUsers {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+    disabled
+    enterprise {
       _id
       name
-      email
-      password
-      credentials
-      enterprise
+      location
     }
   }
+}
 `;
 
 export const QUERY_ENT_USERS=gql`
@@ -40,8 +46,8 @@ query getUser($userId: ID!) {
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-query QueryAllProducts {
-  allProducts {
+query Query($all: Boolean) {
+  allProducts(all: $all) {
     _id
     sku
     name
@@ -49,6 +55,7 @@ query QueryAllProducts {
     msrp
     category
     notes
+    disabled
   }
 }
 `
@@ -114,6 +121,8 @@ query GetEnterpriseById($id: ID!) {
     _id
     name
     location
+    orderNumber
+    saleNumber
     orderGuide {
       _id
       sku
@@ -319,3 +328,16 @@ query OrderDetails($enterpriseId: ID!, $orderNumber: Int!) {
   }
 }
 ` 
+
+export const GET_MONTH_TO_MONTH = gql`
+query GroupItemsByMonth($enterpriseId: ID!, $productId: ID) {
+  groupItemsByMonth(enterpriseId: $enterpriseId, productId: $productId) {
+    month
+    year
+    numberPurchased
+    numberSold
+    totalIncome
+    totalCost
+  }
+}`
+

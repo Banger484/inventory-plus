@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { PRODUCT_ANALYSIS } from "../../utils/queries"
-
+import { t } from "../../utils/translation/translator"
 export default function ProductDetails ({enterpriseId,productId}){
 
     const{loading:analysisLoading,data:analysisData} = useQuery(
@@ -35,7 +35,7 @@ export default function ProductDetails ({enterpriseId,productId}){
 
         {analysisArray.map((array,index)=>{
             return(<tr>
-              <td>{array[0]}</td><td>{array[1]}</td>    
+              <td>{t(array[0])}</td><td>{array[1]}</td>    
           </tr>)
         })}
         </table>

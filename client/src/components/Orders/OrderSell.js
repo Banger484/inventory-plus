@@ -5,17 +5,19 @@ import { SELL_ITEMS } from '../../utils/mutations'
 import { generateSalesTableData, groupItems } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import './Order.css'
+import { stringifyProperties } from "../../utils/filter";
 
 import OrderModal from "./OrderModal";
 
 export default function OrderSell (props) {
     //modal junk
     const [openModal, setOpenModal] = useState(false)
-
+    const [date, setDate] = useState( orderDate())
+    const [saleNumber,setSaleNumber] = useState(props.enterprise.getEnterpriseById.saleNumber)
     // const [buyer, setBuyer] = useState('dummy')
+    console.log(props)
 
-
-    let buyer = "dummy"
+    const [buyer,setBuyer] = useState("Not specified")
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
 
     const { loading: currentStocksLoading, data: currentStocksData, refetch } = useQuery(GET_CURRENT_STOCKS, {
@@ -24,8 +26,7 @@ export default function OrderSell (props) {
 
     let currentStocksGroups
     let tableData = []
-    let saleNumber = Date.now() % 1000000
-
+    const [searchTerm,setSearchTerm] = useState("")
     
     if(!currentStocksLoading ){
         refetch()
@@ -35,7 +36,7 @@ export default function OrderSell (props) {
 
 
     const handleSupplierChange = (e) => {
-        buyer=e.target.value
+        setBuyer(e.target.value)
     }
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
@@ -47,6 +48,12 @@ export default function OrderSell (props) {
         }
         tableData[index][e.target.name] = val
     }
+
+    const handleDateChange = (e)=>{
+        console.log(e)
+        setDate(e.target.value)
+    }
+
     const handleSubmit = async () => {
         const filterTableData = tableData.filter(data => data.newSaleQty > 0)
         try {
@@ -56,27 +63,36 @@ export default function OrderSell (props) {
                     productId: product._id,
                     saleId:saleNumber,
                     salesPrice: product.newSalePricePerUnit,
-                    saleDate: orderDate(),
+                    saleDate: date,
                     buyer,
                     enterpriseId: props.enterpriseId
                 }
+                console.log(variables)
                 await sellItems({
                     variables
                 })
 
             })
             setOpenModal(true)
+            setSaleNumber(saleNumber+1)
         } catch (err) {
             console.error(err);
         }}
 
+        const searchedRows = tableData.filter(p=>{
+            return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+        })
 
     return (
         <div>
-            {openModal && <OrderModal orderNumber={saleNumber} closeModal={setOpenModal}/>}
+            {openModal && <OrderModal orderNumber={saleNumber-1} closeModal={setOpenModal}/>}
             <div className="table-top">
                 <h1>Sell Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Enter Buyer"/>
+                <input onChange={handleDateChange} type="date"/>
+            </div>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>
@@ -95,7 +111,7 @@ export default function OrderSell (props) {
                     <tbody>
                     {tableData.map((product, index) => {
                         return (
-                        <tr data-pid={product._id} key={index}>
+                        <tr className={searchedRows.includes(product)?"":"hide"}  data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>
