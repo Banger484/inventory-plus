@@ -133,6 +133,7 @@ input, button {
 
 button:hover {
   background-color: var(--lightest);
+  color: var(--darkest);
   transition: 0.3s;
 }
 
