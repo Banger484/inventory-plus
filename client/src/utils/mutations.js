@@ -30,6 +30,11 @@ mutation removeUser($userId: ID!) {
   }
 }
 `
+export const TOGGLE_USER = gql`
+mutation Mutation($toggleUserId: ID!) {
+  toggleUser(id: $toggleUserId)
+}
+`
 
 export const ADD_USER_TO_EXISTING = gql`
 mutation addUserToExisting($name: String!, $email: String!, $password: String!, $enterprise: ID!) {
@@ -141,6 +146,12 @@ mutation updateProductNotes($id: ID!, $notes: String) {
     _id
     notes
   }
+}
+`
+
+export const TOGGLE_PRODUCT = gql`
+mutation ToggleProduct($toggleProductId: ID!) {
+  toggleProduct(id: $toggleProductId)
 }
 `
 

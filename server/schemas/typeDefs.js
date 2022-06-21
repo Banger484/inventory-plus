@@ -45,6 +45,7 @@ type User {
     credentials: String
     enterprise: Enterprise
     role: String
+    disabled: Boolean
   }
 
   type Product {
@@ -55,6 +56,7 @@ type User {
     msrp: Float!
     category: String!
     notes: String!
+    disabled: Boolean
   }
 
   type Item {
@@ -99,7 +101,10 @@ type User {
   type Month {
     month: Int
     year: Int
-    items: [Item]
+    numberPurchased: Int
+    numberSold: Int
+    totalCost:Float
+    totalIncome:Float
   }
 
   type Auth {
@@ -110,7 +115,7 @@ type User {
   type Query {
     users: [User]
     user(userId: ID!): User
-    allProducts: [Product]
+    allProducts(all: Boolean): [Product]
     singleProduct(id:ID!): Product
     singleCategoryProducts(category: String!): [Product]
     getEnterprises: [Enterprise]
@@ -132,7 +137,8 @@ type User {
     generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
     orderDetails(enterpriseId: ID!,orderNumber: Int!):[ProductRow]
     getStockGuide(enterpriseId:ID!):[StockGuide]
-    groupItemsByMonth(enterpriseId:ID!,sales:Boolean):[Month]
+    groupItemsByMonth(enterpriseId:ID!,productId:ID):[Month]
+    getAllUsers:[User]
   }
 
   type Mutation {
@@ -154,6 +160,8 @@ type User {
     removeUser(userId:ID!):User
     setStockGuide(enterpriseId:ID!,product:ID!,requiredStock:Int!):String!
     purchaseProducts(orderNumber:Int!,enterpriseId:ID!,purchaseDate:String!,supplier:String!,products:[ProductOrder]):String
+    toggleUser(id:ID!):String
+    toggleProduct(id:ID!):String
   }
 
 
