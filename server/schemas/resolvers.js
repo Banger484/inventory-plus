@@ -6,6 +6,7 @@ const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
 const {orderDetails} = require("../analysis/orderAnalysis")
+const {groupItemsByMonth} = require("../analysis/monthlyAnalysis")
 
 const resolvers = {
   Query: {
@@ -73,7 +74,8 @@ const resolvers = {
     getFulfilledItemsByProduct,
     getCompletedSales,
     getInventory,
-    getStockGuide
+    getStockGuide,
+    groupItemsByMonth
   },
 
   Mutation: {
@@ -105,6 +107,7 @@ const resolvers = {
 
     // Function to add new Items to an order for a enterprise
     addItems: async (parent,{enterpriseId,quantity,productId,orderNumber,cost,purchaseDate,supplier})=>{
+      console.log(purchaseDate)
       const ent = await Enterprise.findById(enterpriseId);
       orderNumber = ent.orderNumber;
       ent.orderNumber = orderNumber+1;

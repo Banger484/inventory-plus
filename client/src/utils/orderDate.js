@@ -1,6 +1,7 @@
 
-export default function orderDate () {
-    let today = new Date();
+export default function orderDate (date) {
+    console.log("date",date)
+    let today = new Date(parseInt(date));
     const yyyy = today.getFullYear();
     let mm = today.getMonth() + 1;
     let dd = today.getDate();
