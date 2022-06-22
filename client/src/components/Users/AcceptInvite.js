@@ -40,15 +40,21 @@ export default function AcceptInvite () {
       };
     return (
         <div className="accept-invite-body">
-        <h1>Complete Registration</h1>
-
-        <form onSubmit={handleFormSubmit}>
-            <input onChange={handleChange} name="name" type="text" placeholder="username"/>
-            <input onChange={handleChange} name="email" type="email" placeholder="email"/>
-            <input onChange={handleChange} name="password" type="password" placeholder="password"/>
+        <main className="flex-row justify-center mb-4">
+      <div className="col-12 col-lg-10">
+        <div className="loginCard">
+        <form  className="loginForm"  onSubmit={handleFormSubmit}>
+        <h2>Complete Registration</h2>
+            <input                   className="new-user-input formInput-Login" onChange={handleChange} name="name" type="text" placeholder="username"/>
+            <input                   className="new-user-input formInput-Login" onChange={handleChange} name="email" type="email" placeholder="email"/>
+            <input                   className="new-user-input formInput-Login" onChange={handleChange} name="password" type="password" placeholder="password"/>
             
-            <button type="submit">Submit Registration</button>
+            <button     id="submitBtn-Login"               className="btn" type="submit">Submit</button>
         </form>
+      </div>
+      </div>
+      </main>
+
         </div>
     )
 }

@@ -14,13 +14,13 @@ export const Table = ({data,excludedProperties=[]})=>{
         }
         trimmedData.push(obj)
     }
-    console.log(trimmedData)
+
 
     const headings = [];
     for (let d in trimmedData[0]){
         headings.push(d)
     }
-    console.log("headings",headings)
+
     
     return(
         <table className="product-list-table">

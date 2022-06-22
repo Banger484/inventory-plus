@@ -38,6 +38,7 @@ export default function ProductList (props) {
             <table className='order-table'>
                 <thead>
                     <tr className='order-header'>
+                        <th></th>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
@@ -54,6 +55,8 @@ export default function ProductList (props) {
                         if(!check) {
                          return (
                         <tr data-pid={product._id} key={index} >
+                            <td>
+                                {product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
                             <td data-pid={product._id}>{product.sku}</td>
                             <td data-pid={product._id}>{product.name}</td>
                             <td data-pid={product._id}>{product.description}</td>

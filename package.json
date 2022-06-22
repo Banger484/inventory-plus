@@ -26,6 +26,10 @@
   "homepage": "https://github.com/Banger484/inventory-plus#readme",
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
-    "dotenv": "^16.0.1"
+    "aws-sdk": "^2.1160.0",
+    "dotenv": "^16.0.1",
+    "multer": "^1.4.5-lts.1",
+    "react-dropbox-chooser": "^0.0.5",
+    "react-dropzone": "^7.0.0"
   }
 }
