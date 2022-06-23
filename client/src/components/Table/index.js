@@ -23,7 +23,7 @@ export const Table = ({data,excludedProperties=[]})=>{
 
     
     return(
-        <table className="product-list-table">
+        <table className="product-list-table analysis-table">
             <thead>
 
             <tr>

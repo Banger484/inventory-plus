@@ -172,6 +172,29 @@ button:hover {
   animation: blinker 1s linear infinite;
 }
 
+.product-selector-cont{
+  background-color: var(--lightest);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:1rem;
+  width:100vw
+}
+
+.product-selector-cont select{
+  font-size: 1.1rem;
+}
+
+.analysis-table {
+  margin:20px auto;
+}
+
+
+
+
+
+
+
 @keyframes blinker {
   50% {
     opacity: 0;

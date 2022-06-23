@@ -45,6 +45,7 @@ export const MonthlyAnalysis = ({enterpriseId})=>{
 
     return(
         <div>
+            <div  className="product-selector-cont">
             <select value={selectedProduct} onChange={handleProductChange}>
                 <option value={"all"}>All Products</option>
                 {products.map(p=>{
@@ -53,7 +54,8 @@ export const MonthlyAnalysis = ({enterpriseId})=>{
                     )
                 })}
             </select>
-            <Table data={addedData} excludedProperties={["__typename","month"]}/>
+            </div>
+            <Table  data={addedData} excludedProperties={["__typename","month"]}/>
         </div>
     )
 }

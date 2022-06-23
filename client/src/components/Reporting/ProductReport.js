@@ -37,16 +37,16 @@ export default function ProductReport ({enterpriseId}){
         </div>
             </div>
             </div>
-        <div className="card product-report-container">
+            <div className="product-selector-cont">
 
-            <h3>Products</h3>
             <select defaultValue="Choose a Product" placeholder="Choose a product"  onChange={handleProductClick}>
             <option selected value="">Select a Product</option>
             {products.map((product,index)=>{
                 return(<option data-product-id={product._id} value={product._id} >{product.name}</option>)
             })}
             </select>
-        </div>
+            </div>
+
             {productId?<ProductDetails enterpriseId={enterpriseId} productId={productId}/>:null}
         </div>
 
