@@ -24,7 +24,7 @@ export default function UserDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='dash-grid-main' to="/users/roster">
+            <Link className='dash-grid-main' to="/users/settings">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Preferences</h2>

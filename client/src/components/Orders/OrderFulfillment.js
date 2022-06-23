@@ -69,18 +69,6 @@ export default function OrderFulfillment({ enterpriseId }) {
 
                     </tbody>
                 </table>
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
         </div>

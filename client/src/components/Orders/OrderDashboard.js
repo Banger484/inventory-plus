@@ -21,7 +21,7 @@ export default function OrderDashboard ({ incomingOrderCount }) {
             <Link className='dash-grid-main' to="/orders/order-received">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Receive Order</h2><div className='order-count'>{incomingOrderCount}</div>
+                    <h2>Receive Order</h2>{incomingOrderCount? <div className='order-count'>{incomingOrderCount}</div> : null}
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>

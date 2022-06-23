@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@apollo/client"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
 import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
@@ -28,7 +28,6 @@ export default function OrderPurchase (props) {
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
-    console.log(props)
     
     if(!currentStocksLoading && !incomingItemsLoading){
         incomingRefetch()
@@ -61,7 +60,7 @@ export default function OrderPurchase (props) {
 
         
         const filterTableData = tableData.filter(data => data.newOrderQty > 0)
-
+        console.log(tableData);
         try {
             await filterTableData.forEach(async (product) => {
                 console.log("this is the input",product.newOrderCostPerUnit)
@@ -74,6 +73,7 @@ export default function OrderPurchase (props) {
                     supplier,
                     enterpriseId: props.enterpriseId
                 }
+                console.log(product);
                 console.log(variables)
                 await buyItems({
                     variables
@@ -82,6 +82,7 @@ export default function OrderPurchase (props) {
             })
             setOpenModal(true);
             setOrderNumber(orderNumber+1)
+
 
         } catch (err) {
             console.error(err);

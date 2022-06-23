@@ -19,7 +19,8 @@ export default function OrderReceived ({enterpriseId, incomingItemsData, incomin
         incomingItemsRefetch()
     }
 
-    
+    // console.log(incomingItemsData);
+    console.log(incomingOrders);
     const handleFulfill = (e)=>{
         console.log("this is the date input",date)
         incomingItemsRefetch()

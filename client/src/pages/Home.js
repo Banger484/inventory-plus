@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { groupOrders } from '../utils/remodeledData'
 import {
   GET_ENTERPRISE_BY_ID,
   QUERY_ALL_PRODUCTS,
@@ -27,7 +28,7 @@ import OrderFulfillment from "../components/Orders/OrderFulfillment";
 import OrderPurchase from "../components/Orders/OrderPurchase";
 import OrderSell from "../components/Orders/OrderSell";
 import OrderGuide from "../components/Orders/OrderGuide";
-import OrderHistory from "../components/Orders/OrderHistory";
+import StockGuide from "../components/Orders/StockGuide";
 import OrderReceived from "../components/Orders/OrderReceived";
 //Reporting
 import ReportingDashboard from "../components/Reporting/ReportingDashboard";
@@ -92,7 +93,7 @@ const Home = ({ handleThemeChange }) => {
     orderGuide = enterpriseData.getEnterpriseById.orderGuide;
     roster = rosterData.getEnterpriseUsers;
     products = productsData.allProducts;
-    incomingOrders = incomingItemsData.getOrderedItems
+    incomingOrders = groupOrders(incomingItemsData.getOrderedItems)
     incomingOrderCount = incomingOrders.length
   }
 
@@ -190,8 +191,11 @@ const Home = ({ handleThemeChange }) => {
                   }
                 />
                 <Route
-                  path="/orders/order-history"
-                  element={<OrderHistory />}
+                  path="/orders/stock-guide"
+                  element={<StockGuide
+                    orderGuide={orderGuide}
+                    enterpriseId={enterpriseId}
+                  />}
                 />
                 <Route path="/users" element={<UserDashboard />} />
                 <Route path="/users/add-user" element={<AddUser />} />
