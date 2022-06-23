@@ -39,9 +39,13 @@ export default function OrderPurchase (props) {
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
     }
 
+    
     const handleSupplierChange = (e) => {
         setSupplier(e.target.value)
     }
+
+    const [quantities,setQuantities] = useState({})
+
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
         let val;
@@ -50,27 +54,33 @@ export default function OrderPurchase (props) {
         }else{
             val = parseFloat(e.target.value)
         }
-        tableData[index][e.target.name] = val
+        const newQuantities = {...quantities};
+        if (!newQuantities[e.target.dataset.pid]){
+            newQuantities[e.target.dataset.pid] = {}
+        }
+        newQuantities[e.target.dataset.pid][e.target.name] = val
+        setQuantities(newQuantities)
     }
 
     const handleDateChange = (e)=>{
         setDate(e.target.value)
+        
     }
+    
 
-    const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
 
-        
-        const filterTableData = tableData.filter(data => data.newOrderQty > 0)
+        const filterTableData = tableData.filter(data => quantities?.[data._id]?.newOrderQty > 0)
 
         try {
-            await filterTableData.forEach(async (product) => {
+            filterTableData.forEach(async (product) => {
                 console.log("this is the input",product.newOrderCostPerUnit)
+                console.log("this is the quantities",)
                 const variables = {
-                    quantity: product.newOrderQty,
+                    quantity: quantities[product._id].newOrderQty,
                     productId: product._id,
                     orderNumber,
-                    cost: product.newOrderCostPerUnit,
+                    cost: quantities[product._id].newOrderCostPerUnit,
                     purchaseDate: date,
                     supplier,
                     enterpriseId: props.enterpriseId
@@ -83,7 +93,7 @@ export default function OrderPurchase (props) {
             })
             setOpenModal(true);
             setOrderNumber(orderNumber+1)
-
+            setQuantities({})
         } catch (err) {
             console.error(err);
         }
@@ -122,7 +132,7 @@ export default function OrderPurchase (props) {
                 </thead>
                     <tbody>
                     {tableData.map((product, index) => {
-                        console.log(product)
+
                         return (
                         <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
@@ -134,9 +144,9 @@ export default function OrderPurchase (props) {
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
                             <td className="td-1" data-pid={product._id}>
-                                <input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
+                                <input className="td-1"  data-pid={product._id} data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
                             </td>
-                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input  data-pid={product._id} className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
                         </tr>
                         )
                     })}

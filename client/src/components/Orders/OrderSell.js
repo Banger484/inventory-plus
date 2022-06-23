@@ -10,12 +10,10 @@ import { stringifyProperties } from "../../utils/filter";
 import OrderModal from "./OrderModal";
 
 export default function OrderSell (props) {
-    //modal junk
+
     const [openModal, setOpenModal] = useState(false)
     const [date, setDate] = useState( orderDate())
     const [saleNumber,setSaleNumber] = useState(props.enterprise.getEnterpriseById.saleNumber)
-    // const [buyer, setBuyer] = useState('dummy')
-    console.log(props)
 
     const [buyer,setBuyer] = useState("Not specified")
     const [sellItems, { error }] = useMutation(SELL_ITEMS)
@@ -38,15 +36,23 @@ export default function OrderSell (props) {
     const handleSupplierChange = (e) => {
         setBuyer(e.target.value)
     }
+
+    const [quantities,setQuantities] = useState({})
+
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
         let val;
-        if(e.target.name==="newOrderQty"){
+        if(e.target.name==="newSaleQty"){
             val = parseInt(e.target.value)
         }else{
             val = parseFloat(e.target.value)
         }
-        tableData[index][e.target.name] = val
+        const newQuantities = {...quantities};
+        if (!newQuantities[e.target.dataset.pid]){
+            newQuantities[e.target.dataset.pid] = {}
+        }
+        newQuantities[e.target.dataset.pid][e.target.name] = val
+        setQuantities(newQuantities)
     }
 
     const handleDateChange = (e)=>{
@@ -55,14 +61,16 @@ export default function OrderSell (props) {
     }
 
     const handleSubmit = async () => {
-        const filterTableData = tableData.filter(data => data.newSaleQty > 0)
+        console.log(quantities)
+        const filterTableData = tableData.filter(data => quantities?.[data._id]?.newSaleQty > 0)
+        
         try {
             await filterTableData.forEach(async (product) => {
                 const variables = {
-                    quantity: product.newSaleQty,
+                    quantity: quantities[product._id].newSaleQty,
                     productId: product._id,
                     saleId:saleNumber,
-                    salesPrice: product.newSalePricePerUnit,
+                    salesPrice: quantities[product._id].newSalePricePerUnit,
                     saleDate: date,
                     buyer,
                     enterpriseId: props.enterpriseId
@@ -75,6 +83,7 @@ export default function OrderSell (props) {
             })
             setOpenModal(true)
             setSaleNumber(saleNumber+1)
+            setQuantities({})
         } catch (err) {
             console.error(err);
         }}
@@ -119,8 +128,8 @@ export default function OrderSell (props) {
                             <td className="td-2" data-pid={product._id}>{product.category}</td>
                             <td className="td-4" data-pid={product._id}>{product.notes}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
-                            <td className="td-1" data-pid={product._id}><input className="td-1" step={0.01} data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
-                            <td className="td-1" ><input className="td-1" data-index={index} name="newSaleQty" type="number" min="0" max={product.current} onChange={handleInputChange}/></td>
+                            <td className="td-1" data-pid={product._id}><input data-pid={product._id} className="td-1" step={0.01} data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
+                            <td className="td-1" ><input data-pid={product._id} className="td-1" data-index={index} name="newSaleQty" type="number" min="0" max={product.current} onChange={handleInputChange}/></td>
                         </tr>
                         )
                     })}
