@@ -87,6 +87,7 @@ input, button {
 #usernameInput-Signup,
 #emailInput-Signup,
 #passwordInput-Signup,
+#confirmPasswordInput-Signup,
 #enterpriseInput-Signup,
 #locationInput-Signup,
 #success-Login,
@@ -104,6 +105,7 @@ input, button {
 #usernameInput-Signup,
 #emailInput-Signup,
 #passwordInput-Signup,
+#confirmPasswordInput-Signup,
 #enterpriseInput-Signup,
 #locationInput-Signup {
   background-color: white;
