@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER,LOGIN_USER } from '../../utils/mutations';
 import auth from '../../utils/auth';
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
 import "./Auth.css"
 const Signup = () => {
+  console.log(auth)
+  const [registered,setRegistered] = useState(false)
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -14,6 +16,7 @@ const Signup = () => {
     location:''
   });
   const [addProfile, { error, data }] = useMutation(ADD_USER);
+  const [login,{data:loginData}] = useMutation(LOGIN_USER)
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -33,30 +36,37 @@ const Signup = () => {
       const { data } = await addProfile({
         variables: { ...formState },
       });
-      auth.login(data.addUser.token);
+      // auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
-    
+    try{
 
-
-
-
+      const { data:loginData } = await login({
+        variables: { email:formState.email,password:formState.password },
+      });
+      
+      auth.login(loginData.login.token);
+    }catch(err){
+      console.error(err)
+    }
   };
+
+  
 
   return (
 
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="signupCard">
-            {!data ? (
+            {data ? (
                 <Link to="/">
               <div className='success-form'>
                 <h2>
                   Success! 
                   </h2>
               <p>
-                You may now head...
+                You are now heading...
               </p><p>
 
               to the homepage.
