@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import auth from '../../utils/auth';
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
-
+import "./Auth.css"
 const Signup = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -37,6 +37,11 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     }
+    
+
+
+
+
   };
 
   return (
@@ -44,11 +49,20 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="signupCard">
-            {data ? (
-              <p id="success-Login">
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+            {!data ? (
+                <Link to="/">
+              <div className='success-form'>
+                <h2>
+                  Success! 
+                  </h2>
+              <p>
+                You may now head...
+              </p><p>
+
+              to the homepage.
               </p>
+              </div>
+                 </Link>
             ) : (
               <form  className="signupForm" onSubmit={handleFormSubmit} autoComplete="off" method="post" action="">
               <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />
