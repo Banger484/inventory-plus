@@ -128,8 +128,8 @@ export default function OrderSell (props) {
                             <td className="td-2" data-pid={product._id}>{product.category}</td>
                             <td className="td-4" data-pid={product._id}>{product.notes}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
-                            <td className="td-1" data-pid={product._id}><input data-pid={product._id} className="td-1" step={0.01} data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}></input></td>
-                            <td className="td-1" ><input data-pid={product._id} className="td-1" data-index={index} name="newSaleQty" type="number" min="0" max={product.current} onChange={handleInputChange}/></td>
+                            <td className="td-1" data-pid={product._id}><input data-pid={product._id} className="td-1" step={0.01} data-index={index} name="newSalePricePerUnit" type="number" min="0" onChange={handleInputChange}  value={quantities?.[product._id]?.newSalePricePerUnit||""}></input></td>
+                            <td className="td-1" ><input data-pid={product._id} className="td-1" data-index={index} name="newSaleQty" type="number" min="0" max={product.current} onChange={handleInputChange} value={quantities?.[product._id]?.newSaleQty||0}/></td>
                         </tr>
                         )
                     })}

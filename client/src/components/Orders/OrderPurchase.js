@@ -144,9 +144,9 @@ export default function OrderPurchase (props) {
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
                             <td className="td-1" data-pid={product._id}>
-                                <input className="td-1"  data-pid={product._id} data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
+                                <input className="td-1"  data-pid={product._id} data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} value={quantities?.[product._id]?.newOrderCostPerUnit||""} />
                             </td>
-                            <td className="td-1" ><input  data-pid={product._id} className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input  data-pid={product._id} className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange}  value={quantities?.[product._id]?.newOrderQty||0}/></td>
                         </tr>
                         )
                     })}
