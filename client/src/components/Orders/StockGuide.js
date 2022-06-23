@@ -8,41 +8,64 @@ export default function StockGuide(props) {
   const { loading, data, refetch } = useQuery(GET_STOCK_GUIDE, {
     variables: { enterpriseId: props.enterpriseId },
   });
-  let stockGuide = []
+  let stockGuide = [];
   if (data) {
     stockGuide = data.getStockGuide;
+    console.log(stockGuide);
   }
-  console.log('stock guide', stockGuide);
+  console.log('data', data);
   const stockDefault = (id) => {
-    let val
-    if(!loading) {
-        stockGuide.map(product => {
-            if(id === product.product) {
-                val = product.requiredStock;
-            } else {
-                val = 0
-            }
-        })
+    if (loading) {
+        return
     }
-    return val
-  }
+    let val;
+
+    const filteredStockGuide = stockGuide.filter(product => product.product === id.toString())
+    val = filteredStockGuide[0].requiredStock
+
+    console.log('val',val);
+    return val;
+  };
   // Mutation
-  let updatedStockGuide = []
-  const [setNewPars, { error}] = useMutation(SET_STOCK_GUIDE)
+  let updatedStockGuide = [];
+  const [setNewPars, { error }] = useMutation(SET_STOCK_GUIDE);
 
   // Change Handler
   const handleInputChange = (e) => {
-
-    const index = e.target.dataset.index
-    console.log('this', props.orderGuide[index]);
+    const index = e.target.dataset.index;
     const newPar = {
-        
-    }
-  }
+      product: props.orderGuide[index]._id,
+      requiredStock: parseInt(e.target.value),
+    };
+
+      updatedStockGuide = updatedStockGuide.filter((par) => {
+        return par.product !== newPar.product;
+      });
+ 
+    updatedStockGuide.push(newPar);
+    console.log(updatedStockGuide);
+    return updatedStockGuide;
+  };
 
   // Submit
   const handleSubmit = async () => {
     console.log("wired");
+    try {
+        await updatedStockGuide.forEach(async (product) => {
+            const variables = {
+                enterpriseId: props.enterpriseId,
+                product: product.product,
+                requiredStock: product.requiredStock
+            }
+            console.log('product', product);
+            console.log('variables', variables);
+            await setNewPars({
+                variables
+            })
+        })
+    } catch (err) {
+        console.error(err);
+    }
   };
   return (
     <>
@@ -71,7 +94,14 @@ export default function StockGuide(props) {
                   <td data-pid={product._id}>${product.msrp}</td>
                   <td data-pid={product._id}>{product.category}</td>
                   <td data-pid={product._id}>
-                    <input data-index={index} name="par" type="number" min={0} onChange={handleInputChange} defaultValue={stockDefault(product._id)} />
+                    <input
+                      data-index={index}
+                      name="par"
+                      type="number"
+                      min={0}
+                      onChange={handleInputChange}
+                      defaultValue={stockDefault(product._id)}
+                    />
                   </td>
                 </tr>
               );
