@@ -34,8 +34,10 @@ const mutation = {
 
     // Function to create a new Enterprise and register new User for the Enterprise
     register : async (parent,{name,email,password,location,enterpriseName})=>{
+        console.log({name,email,password,location,enterpriseName});
         try{
             const enterprise = await Enterprise.create({name:enterpriseName,location})
+            console.log(enterprise);
             const user = await User.create({name,email,password,enterprise:enterprise._id})
             const finder = await Enterprise.findOne({_id:user.enterprise})
             user.enterprise = finder
