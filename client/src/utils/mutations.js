@@ -75,15 +75,16 @@ mutation Login($email: String!, $password: String!) {
 `;
 
 export const ADD_PRODUCT = gql`
-mutation Mutation($enterprise: ID!, $sku: String!, $name: String!, $msrp: Int!, $category: String!, $notes: String!, $description: String!) {
-  addProduct(enterprise: $enterprise, sku: $sku, name: $name, msrp: $msrp, category: $category, notes: $notes, description: $description) {
+mutation Mutation($enterprise: ID!, $sku: String!, $name: String!, $description: String!, $msrp: Float!, $category: String!, $notes: String!, $imageKey: String) {
+  addProduct(enterprise: $enterprise, sku: $sku, name: $name, description: $description, msrp: $msrp, category: $category, notes: $notes, imageKey: $imageKey) {
     _id
     sku
     name
+    description
     msrp
     category
     notes
-    description
+    disabled
   }
 }
 `

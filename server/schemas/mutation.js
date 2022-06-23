@@ -105,16 +105,18 @@ const mutation = {
     setStockGuide: async (parent,{enterpriseId,product,requiredStock})=>{
         const enterprise = await Enterprise.findById(enterpriseId);
         const stockGuideItem = enterprise.stockGuide.filter(s=>{
-            return s.product === product
+            return s.product.toString() === product
         })?.[0];
         if (stockGuideItem){
             stockGuideItem.requiredStock = requiredStock;
         }else{
+            // make sure it overwrites
             enterprise.stockGuide.push({
                 product,requiredStock
             })
         }
         await enterprise.save();
+        console.log(enterprise.stockGuide)
         return "success"
     },
     toggleUser: async (parent,{id})=>{

@@ -3,7 +3,7 @@ import { themes } from "../../themes"
 
 export const Settings = ({handleThemeChange})=>{
     return (
-        <div>
+        <div className="settings-menu">
             <select onChange={handleThemeChange}>
                 {Object.keys(themes).map(k=>{
                     return(<option value={k}>{k}</option>)

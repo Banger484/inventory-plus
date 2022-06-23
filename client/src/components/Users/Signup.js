@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER,LOGIN_USER } from '../../utils/mutations';
 import auth from '../../utils/auth';
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
+import "./Auth.css"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -18,6 +19,8 @@ const userSchema = yup.object().shape({
 });
 
 const Signup = () => {
+  console.log(auth)
+  const [registered,setRegistered] = useState(false)
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -30,6 +33,7 @@ const Signup = () => {
     resolver: yupResolver(userSchema)
   });
   const [addProfile, { error, data }] = useMutation(ADD_USER);
+  const [login,{data:loginData}] = useMutation(LOGIN_USER)
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -55,10 +59,23 @@ const Signup = () => {
       const { data } = await addProfile({
         variables
       });
+      // auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
+    try{
+
+      const { data:loginData } = await login({
+        variables: { email:d.email,password:d.password },
+      });
+      
+      auth.login(loginData.login.token);
+    }catch(err){
+      console.error(err)
+    }
   };
+
+  
 
   return (
 
@@ -66,10 +83,19 @@ const Signup = () => {
       <div className="col-12 col-lg-10">
         <div className="signupCard">
             {data ? (
-              <p id="success-Login">
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/">
+              <div className='success-form'>
+                <h2>
+                  Success! 
+                  </h2>
+              <p>
+                You are now heading...
+              </p><p>
+
+              to the homepage.
               </p>
+              </div>
+                 </Link>
             ) : (
               <form  className="signupForm" onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off" method="post" action="">
               <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />

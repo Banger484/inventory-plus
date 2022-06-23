@@ -56,6 +56,7 @@ query Query($all: Boolean) {
     category
     notes
     disabled
+    imageKey
   }
 }
 `

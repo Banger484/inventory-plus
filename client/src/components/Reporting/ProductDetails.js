@@ -31,7 +31,7 @@ export default function ProductDetails ({enterpriseId,productId}){
 
     return(
         <>
-        <table className="product-list-table p-details">
+        <table className=".analysis-table product-list-table p-details">
 
         {analysisArray.map((array,index)=>{
             return(<tr>

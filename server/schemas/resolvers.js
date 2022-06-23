@@ -88,12 +88,17 @@ const resolvers = {
   Mutation: {
 
     // Function to add new product to order guide
-    addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes}) =>{
-      const product = await Product.create({sku,name,description,msrp,category,notes});
-      const ent = await Enterprise.findById(enterprise);
-      ent.orderGuide.push(product._id)
-      ent.save()     
-      return product
+    addProduct: async (parent,{enterprise,sku,name,description,msrp,category,notes,imageKey}) =>{
+      try{
+
+        const product = await Product.create({sku,name,description,msrp,category,notes,imageKey});
+        const ent = await Enterprise.findById(enterprise);
+        ent.orderGuide.push(product._id)
+        ent.save()     
+        return product
+      }catch(err){
+        console.log(err)
+      }
     },
 
     // Function to update a single product by id number
