@@ -1,22 +1,22 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
-query GetAllUsers {
-  getAllUsers {
-    _id
-    name
-    email
-    password
-    credentials
-    role
-    disabled
-    enterprise {
+  query GetAllUsers {
+    getAllUsers {
       _id
       name
-      location
+      email
+      password
+      credentials
+      role
+      disabled
+      enterprise {
+        _id
+        name
+        location
+      }
     }
   }
-}
 `;
 
 export const QUERY_ENT_USERS = gql`
@@ -33,78 +33,8 @@ export const QUERY_ENT_USERS = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-query Query($all: Boolean) {
-  allProducts(all: $all) {
-    _id
-    sku
-    name
-    description
-    msrp
-    category
-    notes
-    disabled
-    imageKey
-  }
-}
-`
-
-export const QUERY_SINGLE_PRODUCT = gql`
-query Query($singleProductId: ID!) {
-  singleProduct(id: $singleProductId) {
-    _id
-    sku
-    name
-    description
-    msrp
-    category
-    notes
-  }
-}
-`
-export const QUERY_SINGLE_CATEGORY = gql`
-query Query($category: String!) {
-  singleCategoryProducts(category: $category) {
-    _id
-    sku
-    name
-    description
-    msrp
-    category
-    notes
-  }
-}
-`
-
-export const QUERY_ALL_ENTERPRISES = gql`
-query Query {
-  getEnterprises {
-    name
-    location
-  }
-}
-`
-
-export const QUERY_SINGLE_ENTERPRISE = gql`
-query Query($email: String!) {
-  getEnterpriseByUser(email: $email) {
-    _id
-    name
-    location
-    orderGuide
-    registrant {
-      _id
-      name
-      email
-      password
-      credentials
-      enterprise
-    }
-  }
-`;
-
-export const QUERY_ALL_PRODUCTS = gql`
-  query QueryAllProducts {
-    allProducts {
+  query Query($all: Boolean) {
+    allProducts(all: $all) {
       _id
       sku
       name
@@ -112,6 +42,8 @@ export const QUERY_ALL_PRODUCTS = gql`
       msrp
       category
       notes
+      disabled
+      imageKey
     }
   }
 `;
@@ -153,24 +85,24 @@ export const QUERY_ALL_ENTERPRISES = gql`
 `;
 
 export const QUERY_SINGLE_ENTERPRISE = gql`
-  query Query($email: String!) {
-    getEnterpriseByUser(email: $email) {
+query Query($email: String!) {
+  getEnterpriseByUser(email: $email) {
+    _id
+    name
+    location
+    orderGuide
+    registrant {
       _id
       name
-      location
-      orderGuide
-      registrant {
-        _id
-        name
-        email
-        password
-        credentials
-        enterprise
-        role
-      }
+      email
+      password
+      credentials
+      enterprise
     }
   }
+}
 `;
+
 export const GET_ENTERPRISE_BY_ID = gql`
   query GetEnterpriseById($id: ID!) {
     getEnterpriseById(_id: $id) {
@@ -390,14 +322,23 @@ export const QUERY_ORDER_DETAILS = gql`
 `;
 
 export const GET_MONTH_TO_MONTH = gql`
-query GroupItemsByMonth($enterpriseId: ID!, $productId: ID) {
-  groupItemsByMonth(enterpriseId: $enterpriseId, productId: $productId) {
-    month
-    year
-    numberPurchased
-    numberSold
-    totalIncome
-    totalCost
+  query GroupItemsByMonth($enterpriseId: ID!, $productId: ID) {
+    groupItemsByMonth(enterpriseId: $enterpriseId, productId: $productId) {
+      month
+      year
+      numberPurchased
+      numberSold
+      totalIncome
+      totalCost
+    }
   }
-}`
+`;
 
+export const GET_STOCK_GUIDE = gql`
+  query Query($enterpriseId: ID!) {
+    getStockGuide(enterpriseId: $enterpriseId) {
+      product
+      requiredStock
+    }
+  }
+`;

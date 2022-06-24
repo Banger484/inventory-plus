@@ -1,29 +1,26 @@
-import { useMutation, from } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import { groupOrders } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import { RECEIVE_ITEMS } from "../../utils/mutations";
 import "./orderReceived.css"
 import { useState } from "react";
+import { GET_INCOMING_ITEMS } from '../../utils/queries'
 import { OrderDetails } from "../Reporting/OrderDetails";
 import { t } from "../../utils/translation/translator";
 import { stringifyProperties } from "../../utils/filter";
 
-export default function OrderReceived ({enterpriseId, incomingItemsData, incomingItemsRefetch, incomingOrders}) {
+export default function OrderReceived ({enterpriseId }) {
     
     const [receiveOrder,{error}] = useMutation(RECEIVE_ITEMS)
     const [date,setDate] = useState(null)
-    const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch: incomingItemsRefetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
     const [searchTerm,setSearchTerm] = useState("")
     const [orderNumberSelected,setOrderNumberSelected] = useState(false)
 
-    if (incomingItemsData) {
-        incomingItemsRefetch()
-    }
-
-    // console.log(incomingItemsData);
-    console.log(incomingOrders);
+    const incomingOrders = []
+    console.log(incomingItemsData);
     const handleFulfill = (e)=>{
         console.log("this is the date input",date)
         incomingItemsRefetch()
@@ -95,10 +92,9 @@ export default function OrderReceived ({enterpriseId, incomingItemsData, incomin
                         })}
 
                 </tbody>
-            </table>
+            </table>}
       
-      {orderNumberSelected?(<OrderDetails orderNumber={orderNumberSelected} enterpriseId={enterpriseId}/>):null}
-                
+      {orderNumberSelected?(<OrderDetails orderNumber={orderNumberSelected} enterpriseId={enterpriseId}/>):null}      
         </div>
     )
 }
