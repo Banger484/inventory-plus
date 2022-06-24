@@ -21,7 +21,7 @@ export default function StockGuide(props) {
     let val;
 
     const filteredStockGuide = stockGuide.filter(product => product.product === id.toString())
-    val = filteredStockGuide[0].requiredStock
+    val = filteredStockGuide[0]?.requiredStock || ''
 
     console.log('val',val);
     return val;
@@ -75,6 +75,7 @@ export default function StockGuide(props) {
         <table className="order-table">
           <thead>
             <tr>
+              <th>Img</th>
               <th>SKU</th>
               <th>Name</th>
               <th>Description</th>
@@ -88,6 +89,7 @@ export default function StockGuide(props) {
             {props.orderGuide.map((product, index) => {
               return (
                 <tr data-pid={product._id} key={index}>
+                  <td>{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
                   <td data-pid={product._id}>{product.sku}</td>
                   <td data-pid={product._id}>{product.name}</td>
                   <td data-pid={product._id}>{product.description}</td>

@@ -19,8 +19,8 @@ export default function OrderReceived ({enterpriseId }) {
     const [searchTerm,setSearchTerm] = useState("")
     const [orderNumberSelected,setOrderNumberSelected] = useState(false)
 
-    const incomingOrders = []
-    console.log(incomingItemsData);
+    const incomingOrders = groupOrders(incomingItemsData.getOrderedItems)
+    
     const handleFulfill = (e)=>{
         console.log("this is the date input",date)
         incomingItemsRefetch()
