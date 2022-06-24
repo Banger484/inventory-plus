@@ -59,7 +59,6 @@ const Signup = () => {
       const { data } = await addProfile({
         variables
       });
-      // auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }

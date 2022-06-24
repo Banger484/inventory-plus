@@ -272,3 +272,12 @@ mutation RemoveFromOrderGuide($enterpriseId: ID!, $productId: ID!) {
     }
   }
 }`
+export const SET_STOCK_GUIDE = gql`
+mutation Mutation($enterpriseId: ID!, $product: ID!, $requiredStock: Int!) {
+  setStockGuide(
+    enterpriseId: $enterpriseId
+    product: $product
+    requiredStock: $requiredStock
+  )
+}
+`;

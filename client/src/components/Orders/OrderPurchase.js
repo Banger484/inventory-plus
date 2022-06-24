@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@apollo/client"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
 import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
@@ -10,7 +10,6 @@ import OrderModal from "./OrderModal";
 import { stringifyProperties } from "../../utils/filter";
 
 export default function OrderPurchase (props) {
-    //modal junk
     const [openModal, setOpenModal] = useState(false)
     const [date, setDate] = useState( orderDate())
     const [orderNumber,setOrderNumber] =useState(props.enterprise.getEnterpriseById.orderNumber)
@@ -47,7 +46,6 @@ export default function OrderPurchase (props) {
     const [quantities,setQuantities] = useState({})
 
     const handleInputChange = (e) => {
-        const index = e.target.dataset.index
         let val;
         if(e.target.name==="newOrderQty"){
             val = parseInt(e.target.value)
@@ -85,6 +83,7 @@ export default function OrderPurchase (props) {
                     supplier,
                     enterpriseId: props.enterpriseId
                 }
+                console.log(product);
                 console.log(variables)
                 await buyItems({
                     variables

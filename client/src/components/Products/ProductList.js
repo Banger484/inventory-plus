@@ -56,7 +56,7 @@ export default function ProductList (props) {
                          return (
                         <tr data-pid={product._id} key={index} >
                             <td>
-                                {product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
+                                {product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`} alt='product'/>):null}</td>
                             <td data-pid={product._id}>{product.sku}</td>
                             <td data-pid={product._id}>{product.name}</td>
                             <td data-pid={product._id}>{product.description}</td>

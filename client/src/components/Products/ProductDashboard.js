@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 export default function ProductDashboard () {
     return (
-        <section className='task-container'>
-            <Link className='task-links' to="/products/add-product">
+        <section className='grid-container'>
+            <Link className='dash-grid-main gi-2' to="/products/add-product">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Add Product</h2>
@@ -14,7 +14,7 @@ export default function ProductDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/products/product-guide">
+            <Link className='dash-grid-main gi-3' to="/products/product-guide">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Product Guide</h2>

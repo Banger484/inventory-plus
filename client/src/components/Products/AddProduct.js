@@ -62,8 +62,7 @@ export default function AddProduct (props) {
         {/* <div className="table-top apl-top">
             <h1>Product Guide</h1>
         </div> */}
-    <div className='add-product-body'>
-    <div className='form-container'>
+    <div className='add-product-grid'>
             <form  onSubmit={handleFormSubmit}>
                 <div className='add-product-header'>
                     <h1>Add Product</h1>
@@ -86,7 +85,6 @@ export default function AddProduct (props) {
           </div>
         )}
             </form>
-        </div>
         <div className='add-product-list'>
         {/* <img src="/images/305746d03021662a7f453c223d81e707"/> */}
         <ProductList

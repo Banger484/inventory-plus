@@ -1,33 +1,29 @@
-import { useQuery,useMutation, from } from "@apollo/client"
-import {GET_INCOMING_ITEMS,GET_OPEN_SALES} from "../../utils/queries"; 
+import { useMutation, useQuery } from "@apollo/client"
 import { groupOrders } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
 import { RECEIVE_ITEMS } from "../../utils/mutations";
 import "./orderReceived.css"
 import { useState } from "react";
+import { GET_INCOMING_ITEMS } from '../../utils/queries'
 import { OrderDetails } from "../Reporting/OrderDetails";
 import { t } from "../../utils/translation/translator";
 import { stringifyProperties } from "../../utils/filter";
 
-export default function OrderReceived ({enterpriseId}) {
+export default function OrderReceived ({enterpriseId }) {
     
     const [receiveOrder,{error}] = useMutation(RECEIVE_ITEMS)
     const [date,setDate] = useState(null)
-    const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
+    const { loading: incomingItemsLoading, data: incomingItemsData, refetch: incomingItemsRefetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
     const [searchTerm,setSearchTerm] = useState("")
     const [orderNumberSelected,setOrderNumberSelected] = useState(false)
 
-    if (incomingItemsData) {
-        refetch()
-    }
-
-    const incomingOrders = incomingItemsLoading?null:groupOrders(incomingItemsData.getOrderedItems)
+    const incomingOrders = groupOrders(incomingItemsData.getOrderedItems)
     
     const handleFulfill = (e)=>{
         console.log("this is the date input",date)
-        refetch()
+        incomingItemsRefetch()
         const index = e.target.dataset.index;
         const binLocation = e.target.parentNode.parentNode.lastElementChild.childNodes[0].value
         const variables = {
@@ -37,7 +33,7 @@ export default function OrderReceived ({enterpriseId}) {
             binLocation
         }
         receiveOrder({variables})
-        refetch()
+        incomingItemsRefetch()
     }
 
     const handleSelect = (e)=>{
@@ -62,7 +58,10 @@ export default function OrderReceived ({enterpriseId}) {
 
     return (
         <div className="big-center-flex">
+            <div className="table-top rec-order-tt">
             <h1>Receive Order</h1>
+            </div>
+
             <input type="date" onChange={handleDateChange}></input>
             <div className="search-bar">
                 <input onChange={(e)=>setSearchTerm(e.target.value)}/>
@@ -90,15 +89,12 @@ export default function OrderReceived ({enterpriseId}) {
                             <td><input type="text"></input></td>
                         </tr>
 )
-                    })}
+                        })}
 
                 </tbody>
-            </table>
-      }
-      {
-        orderNumberSelected?(<OrderDetails orderNumber={orderNumberSelected} enterpriseId={enterpriseId}/>):null
-      }
-                
+            </table>}
+      
+      {orderNumberSelected?(<OrderDetails orderNumber={orderNumberSelected} enterpriseId={enterpriseId}/>):null}      
         </div>
     )
 }
