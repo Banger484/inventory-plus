@@ -1,19 +1,39 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER,LOGIN_USER } from '../../utils/mutations';
 import auth from '../../utils/auth';
 import { FaUserCircle, FaEnvelope, FaLock, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
+import "./Auth.css"
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const userSchema = yup.object().shape({
+  name: yup.string().required("Username is required!"),
+  email: yup.string().email().required(),
+  password: yup.string().min(5).max(28).required(),
+  confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
+  enterpriseName: yup.string().required("Enterprise is required!"),
+  location: yup.string().required(),
+});
 
 const Signup = () => {
+  console.log(auth)
+  const [registered,setRegistered] = useState(false)
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     password: '',
+    confirmPassword: '',
     enterpriseName:'',
     location:''
   });
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(userSchema)
+  });
   const [addProfile, { error, data }] = useMutation(ADD_USER);
+  const [login,{data:loginData}] = useMutation(LOGIN_USER)
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -26,18 +46,35 @@ const Signup = () => {
   };
 
   // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async (d) => {
+    const variables = {
+      name: d.name,
+      email: d.email,
+      password: d.password,
+      enterpriseName: d.enterpriseName,
+      location: d.location
+    }
 
     try {
       const { data } = await addProfile({
-        variables: { ...formState },
+        variables
       });
-      auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
+    try{
+
+      const { data:loginData } = await login({
+        variables: { email:d.email,password:d.password },
+      });
+      
+      auth.login(loginData.login.token);
+    }catch(err){
+      console.error(err)
+    }
   };
+
+  
 
   return (
 
@@ -45,12 +82,21 @@ const Signup = () => {
       <div className="col-12 col-lg-10">
         <div className="signupCard">
             {data ? (
-              <p id="success-Login">
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/">
+              <div className='success-form'>
+                <h2>
+                  Success! 
+                  </h2>
+              <p>
+                You are now heading...
+              </p><p>
+
+              to the homepage.
               </p>
+              </div>
+                 </Link>
             ) : (
-              <form  className="signupForm" onSubmit={handleFormSubmit} autoComplete="off" method="post" action="">
+              <form  className="signupForm" onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off" method="post" action="">
               <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />
               <h4 className="card-header" id="signupHeader">Sign Up</h4>
               <div id="usernameForm-Signup">
@@ -60,6 +106,7 @@ const Signup = () => {
                   placeholder="Username"
                   name="name"
                   type="text"
+                  {...register("name")}
                   autoComplete="off"
                   value={formState.name}
                   onChange={handleChange}
@@ -73,6 +120,7 @@ const Signup = () => {
                   placeholder="Email"
                   name="email"
                   type="email"
+                  {...register("email")}
                   autoComplete="off"
                   value={formState.email}
                   onChange={handleChange}
@@ -86,8 +134,23 @@ const Signup = () => {
                   placeholder="Password"
                   name="password"
                   type="password"
+                  {...register("password")}
                   autoComplete="off"
                   value={formState.password}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div id="passwordForm-Signup">
+              <FaLock id="passwordIcon-Signup" style={{color: 'gray', fontSize: '25px'}} />
+                <input id="confirmPasswordInput-Signup"
+                  className="formInput-Signup"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  {...register("confirmPassword")}
+                  autoComplete="off"
+                  value={formState.confirmPassword}
                   onChange={handleChange}
                 />
               </div>
@@ -99,6 +162,7 @@ const Signup = () => {
                   placeholder="Enterprise"
                   name="enterpriseName"
                   type="text"
+                  {...register("enterpriseName")}
                   autoComplete="off"
                   value={formState.enterpriseName}
                   onChange={handleChange}
@@ -112,6 +176,7 @@ const Signup = () => {
                   placeholder="Location"
                   name="location"
                   type="text"
+                  {...register("location")}
                   autoComplete="off"
                   value={formState.location}
                   onChange={handleChange}
@@ -131,12 +196,18 @@ const Signup = () => {
                   Back to Login
                 </Link>
                 </p>
+                <div>{errors.name?.message} 
+              {errors.email?.message} 
+              {errors.password?.message} 
+              {errors.confirmPassword && "Passwords Should Match!"} 
+              {errors.enterpriseName?.message} 
+              {errors.location?.message}</div>
               </form>
             )}
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white" id= "errorMsg-Signup">
-                {error.message}
+              {error.message}
               </div>
             )}
           </div>

@@ -1,16 +1,22 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
-  query allUsers {
-    users {
+query GetAllUsers {
+  getAllUsers {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+    disabled
+    enterprise {
       _id
       name
-      email
-      password
-      credentials
-      enterprise
+      location
     }
   }
+}
 `;
 
 export const QUERY_ENT_USERS = gql`
@@ -26,9 +32,66 @@ export const QUERY_ENT_USERS = gql`
   }
 `;
 
-export const QUERY_SINGLE_USER = gql`
-  query getUser($userId: ID!) {
-    user(userId: $userId) {
+export const QUERY_ALL_PRODUCTS = gql`
+query Query($all: Boolean) {
+  allProducts(all: $all) {
+    _id
+    sku
+    name
+    description
+    msrp
+    category
+    notes
+    disabled
+    imageKey
+  }
+}
+`
+
+export const QUERY_SINGLE_PRODUCT = gql`
+query Query($singleProductId: ID!) {
+  singleProduct(id: $singleProductId) {
+    _id
+    sku
+    name
+    description
+    msrp
+    category
+    notes
+  }
+}
+`
+export const QUERY_SINGLE_CATEGORY = gql`
+query Query($category: String!) {
+  singleCategoryProducts(category: $category) {
+    _id
+    sku
+    name
+    description
+    msrp
+    category
+    notes
+  }
+}
+`
+
+export const QUERY_ALL_ENTERPRISES = gql`
+query Query {
+  getEnterprises {
+    name
+    location
+  }
+}
+`
+
+export const QUERY_SINGLE_ENTERPRISE = gql`
+query Query($email: String!) {
+  getEnterpriseByUser(email: $email) {
+    _id
+    name
+    location
+    orderGuide
+    registrant {
       _id
       name
       email
@@ -327,21 +390,14 @@ export const QUERY_ORDER_DETAILS = gql`
 `;
 
 export const GET_MONTH_TO_MONTH = gql`
-  query Query($enterpriseId: ID!, $sales: Boolean) {
-    groupItemsByMonth(enterpriseId: $enterpriseId, sales: $sales) {
-      month
-      year
-      items {
-        _id
-      }
-    }
+query GroupItemsByMonth($enterpriseId: ID!, $productId: ID) {
+  groupItemsByMonth(enterpriseId: $enterpriseId, productId: $productId) {
+    month
+    year
+    numberPurchased
+    numberSold
+    totalIncome
+    totalCost
   }
-`;
-export const GET_STOCK_GUIDE = gql`
-  query Query($enterpriseId: ID!) {
-    getStockGuide(enterpriseId: $enterpriseId) {
-      product
-      requiredStock
-    }
-  }
-`;
+}`
+

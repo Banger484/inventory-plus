@@ -31,8 +31,32 @@ export const ADD_USER = gql`
 `;
 
 export const REMOVE_USER = gql`
-  mutation removeUser($userId: ID!) {
-    removeUser(userId: $userId) {
+mutation removeUser($userId: ID!) {
+  removeUser(userId: $userId) {
+    _id
+    name
+    email
+    password
+    credentials
+    role
+  }
+}
+`
+export const TOGGLE_USER = gql`
+mutation Mutation($toggleUserId: ID!) {
+  toggleUser(id: $toggleUserId)
+}
+`
+
+export const ADD_USER_TO_EXISTING = gql`
+mutation addUserToExisting($name: String!, $email: String!, $password: String!, $enterprise: ID!) {
+  registerOnlyUser(name: $name, email: $email, password: $password, enterprise: $enterprise) {
+    _id
+    name
+    email
+    password
+    credentials
+    enterprise {
       _id
       name
       email
@@ -92,32 +116,16 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation Mutation(
-    $enterprise: ID!
-    $sku: String!
-    $name: String!
-    $msrp: Int!
-    $category: String!
-    $notes: String!
-    $description: String!
-  ) {
-    addProduct(
-      enterprise: $enterprise
-      sku: $sku
-      name: $name
-      msrp: $msrp
-      category: $category
-      notes: $notes
-      description: $description
-    ) {
-      _id
-      sku
-      name
-      msrp
-      category
-      notes
-      description
-    }
+mutation Mutation($enterprise: ID!, $sku: String!, $name: String!, $description: String!, $msrp: Float!, $category: String!, $notes: String!, $imageKey: String) {
+  addProduct(enterprise: $enterprise, sku: $sku, name: $name, description: $description, msrp: $msrp, category: $category, notes: $notes, imageKey: $imageKey) {
+    _id
+    sku
+    name
+    description
+    msrp
+    category
+    notes
+    disabled
   }
 `;
 
@@ -182,6 +190,12 @@ export const UPDATE_PRODUCT_NOTES = gql`
     }
   }
 `;
+
+export const TOGGLE_PRODUCT = gql`
+mutation ToggleProduct($toggleProductId: ID!) {
+  toggleProduct(id: $toggleProductId)
+}
+`
 
 export const ADD_ENTERPRISE = gql`
   mutation addEnterprise($name: String!, $userId: ID!, $location: String!) {

@@ -1,7 +1,7 @@
 import { t } from "../../utils/translation/translator";
 
-export const Table = ({data,excludedProperties})=>{
-    console.log(excludedProperties)
+export const Table = ({data,excludedProperties=[]})=>{
+    console.log("this is the table data",data)
 
     const trimmedData = []
 
@@ -14,7 +14,7 @@ export const Table = ({data,excludedProperties})=>{
         }
         trimmedData.push(obj)
     }
-    console.log(trimmedData)
+
 
     const headings = [];
     for (let d in trimmedData[0]){
@@ -22,10 +22,8 @@ export const Table = ({data,excludedProperties})=>{
     }
 
     
-
-
     return(
-        <table className="product-list-table">
+        <table className="product-list-table analysis-table">
             <thead>
 
             <tr>
@@ -43,7 +41,7 @@ export const Table = ({data,excludedProperties})=>{
                         <tr>
                             {Object.keys(i).map((p)=>{
                                 return(
-                                    <td>{i[p]}</td>
+                                    <td>{typeof i[p]==="number"?Math.round(i[p]):i[p]}</td>
                                 )
                             })}
                         </tr>

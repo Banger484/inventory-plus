@@ -4,10 +4,10 @@
   --middle: #3a3b3c;
   --middle-dark: #242526;
   --darkest: #171717;
-  --shadow: 0.8;
+  --main-font:'Comfortaa', cursive;
 }
 * {
-  font-family: 'Comfortaa', cursive;
+  font-family: var(--main-font)
 }
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
@@ -24,7 +24,7 @@ html {
 body {
   margin: 0;
   background-color: var(--middle-light);
-  font-family: 'Comfortaa', cursive;
+  font-family: var(--main-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -87,6 +87,7 @@ input, button {
 #usernameInput-Signup,
 #emailInput-Signup,
 #passwordInput-Signup,
+#confirmPasswordInput-Signup,
 #enterpriseInput-Signup,
 #locationInput-Signup,
 #success-Login,
@@ -104,6 +105,7 @@ input, button {
 #usernameInput-Signup,
 #emailInput-Signup,
 #passwordInput-Signup,
+#confirmPasswordInput-Signup,
 #enterpriseInput-Signup,
 #locationInput-Signup {
   background-color: white;
@@ -172,6 +174,29 @@ button:hover {
   color: rgb(255, 109, 109);
   animation: blinker 1s linear infinite;
 }
+
+.product-selector-cont{
+  background-color: var(--lightest);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:1rem;
+  width:100vw
+}
+
+.product-selector-cont select{
+  font-size: 1.1rem;
+}
+
+.analysis-table {
+  margin:20px auto;
+}
+
+
+
+
+
+
 
 @keyframes blinker {
   50% {

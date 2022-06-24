@@ -33,7 +33,9 @@ const ProductSchema = new Schema({
   disabled:{
     type:Boolean,
     default:false
-
+  },
+  imageKey:{
+    type:String
   }
 });
 

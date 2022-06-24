@@ -13,4 +13,11 @@ export  const themes = {
     "--middle-dark": "#256926",
     "--darkest": "#111110",
 },
+    babyBlue: {
+        "--lightest": "hsl(221deg 100% 98%)",
+        "--middle-light": "hsl(221deg 100% 96%)",
+        "--middle": "hsl(221deg 100% 89%)",
+        "--middle-dark": "hsl(221deg 100% 90%)",
+        "--darkest": "hsl(221deg 90% 10%)",
+    }
 }

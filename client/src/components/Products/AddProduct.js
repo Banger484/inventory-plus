@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../../utils/mutations'
 import ProductList from './ProductList';
-
+import { DropBox } from '../Tools/DropBox';
 import Auth from '../../utils/auth';
 
 export default function AddProduct (props) {
-    
+    const [imageKey,setImageKey] = useState(null)
     const enterprise = Auth.getProfile().data.enterprise
     const [ formData, setFormData ] = useState({
         sku: '',
@@ -36,6 +36,10 @@ export default function AddProduct (props) {
 
         try {
             const variables = { ...inputData, enterprise }
+            if (imageKey){
+                variables.imageKey = imageKey
+            }
+            console.log(variables)
             const { data } = await addProduct({
                 variables
             })
@@ -70,6 +74,9 @@ export default function AddProduct (props) {
                 <label htmlFor='category'>Category:<input name='category' value={formData.category} type='text' onChange={handleInputChange}/></label>
                 <label htmlFor='notes'>Notes:<input name='notes' value={formData.notes} type='text' onChange={handleInputChange}/></label>
                 </div>
+    {/* <input type="file" id="fileElem" multiple accept="image/*" onChange={()=>{}}/>
+    <label id="" className="button select-btn" htmlFor="fileElem">Select some files</label> */}
+                <DropBox imageKey={imageKey} setImageKey={setImageKey}/>
                 <input id='add-product-submit' type='submit' value='Submit' />
                 {error && (
           <div className="col-12 my-3 bg-danger text-white p-3">
@@ -78,9 +85,7 @@ export default function AddProduct (props) {
         )}
             </form>
         <div className='add-product-list'>
-        <div className='add-product-header'>
-            <h1>Product Guide</h1>
-        </div>
+        {/* <img src="/images/305746d03021662a7f453c223d81e707"/> */}
         <ProductList
           products={props.products}
           productsRefetch={props.productsRefetch}
