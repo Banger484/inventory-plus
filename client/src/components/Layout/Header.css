@@ -32,25 +32,6 @@ header {
     justify-content: center;
     align-items: center;
 }
-/* 
-header img {
-    height: 100%;
-    border: 1px solid red;
-}
-.header-enterprise {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid blue;
-    flex-direction: column;
-}
-.header-logo {
-    width: 50%;
-    display: flex;
-    align-items: flex-end;
-    border: 1px solid blue;
-} */
 
 header h1 {
     font-family: 'Comfortaa', cursive;

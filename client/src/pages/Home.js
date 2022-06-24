@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { groupOrders } from '../utils/remodeledData'
+import { groupOrders, groupSales } from "../utils/remodeledData";
 import {
   GET_ENTERPRISE_BY_ID,
   QUERY_ALL_PRODUCTS,
   QUERY_ENT_USERS,
   GET_INCOMING_ITEMS,
-  GET_OPEN_SALES
+  GET_OPEN_SALES,
 } from "../utils/queries";
 import auth from "../utils/auth";
 import { Route, Routes } from "react-router-dom";
@@ -45,7 +45,7 @@ import { Settings } from "../components/Users/Settings";
 const Home = ({ handleThemeChange }) => {
   // getting logged in user
   const user = auth.getProfile();
-  console.log('user info here', user.data.enterprise);
+  console.log("user info here", user.data.enterprise);
   // making queries
   const {
     loading: enterpriseLoading,
@@ -73,6 +73,13 @@ const Home = ({ handleThemeChange }) => {
   } = useQuery(GET_INCOMING_ITEMS, {
     variables: { enterpriseId: user.data.enterprise },
   });
+  const {
+    loading: salesLoading,
+    data: salesData,
+    refetch: salesRefetch,
+  } = useQuery(GET_OPEN_SALES, {
+    variables: { enterpriseId: user.data.enterprise },
+  });
 
   // setting variables to be passed through props
   let enterpriseName;
@@ -81,20 +88,31 @@ const Home = ({ handleThemeChange }) => {
   let enterpriseId;
   let roster;
   let incomingOrders;
-  let incomingOrderCount
+  let incomingOrderCount;
+  let outgoingSales;
+  let salesCount;
 
-  if (enterpriseData && rosterData && productsData && incomingItemsData) {
+  if (
+    enterpriseData &&
+    rosterData &&
+    productsData &&
+    incomingItemsData &&
+    salesData
+  ) {
     productsRefetch();
     enterpriseRefetch();
     rosterRefetch();
     incomingItemsRefetch();
+    salesRefetch();
     enterpriseName = enterpriseData.getEnterpriseById.name;
     enterpriseId = enterpriseData.getEnterpriseById._id;
     orderGuide = enterpriseData.getEnterpriseById.orderGuide;
     roster = rosterData.getEnterpriseUsers;
     products = productsData.allProducts;
-    incomingOrders = groupOrders(incomingItemsData.getOrderedItems)
-    incomingOrderCount = incomingOrders.length
+    incomingOrders = groupOrders(incomingItemsData.getOrderedItems);
+    incomingOrderCount = incomingOrders.length;
+    outgoingSales = groupSales(salesData.getOpenSales);
+    salesCount = outgoingSales.length;
   }
 
   return (
@@ -104,7 +122,11 @@ const Home = ({ handleThemeChange }) => {
       <main className="home-main-content">
         <div>
           <div>
-            {enterpriseLoading || rosterLoading || productsLoading || incomingItemsLoading ? (
+            {enterpriseLoading ||
+            rosterLoading ||
+            productsLoading ||
+            incomingItemsLoading ||
+            salesLoading ? (
               <div>Loading...</div>
             ) : (
               <Routes>
@@ -127,7 +149,17 @@ const Home = ({ handleThemeChange }) => {
                     />
                   }
                 />
-                <Route path="/orders" element={<OrderDashboard incomingOrderCount={incomingOrderCount} />} />
+                <Route
+                  path="/orders"
+                  element={
+                    <OrderDashboard
+                      incomingOrderCount={incomingOrderCount}
+                      incomingItemsRefetch={incomingItemsRefetch}
+                      salesCount={salesCount}
+                      salesRefetch={salesRefetch}
+                    />
+                  }
+                />
                 <Route
                   path="/users/settings"
                   element={<Settings handleThemeChange={handleThemeChange} />}
@@ -192,10 +224,12 @@ const Home = ({ handleThemeChange }) => {
                 />
                 <Route
                   path="/orders/stock-guide"
-                  element={<StockGuide
-                    orderGuide={orderGuide}
-                    enterpriseId={enterpriseId}
-                  />}
+                  element={
+                    <StockGuide
+                      orderGuide={orderGuide}
+                      enterpriseId={enterpriseId}
+                    />
+                  }
                 />
                 <Route path="/users" element={<UserDashboard />} />
                 <Route path="/users/add-user" element={<AddUser />} />
