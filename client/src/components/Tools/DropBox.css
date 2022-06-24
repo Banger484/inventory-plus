@@ -1,8 +1,25 @@
-.drop-zone{
-  height: 100px;
-  width: 100%;
-  background:red;  
+.drop-zone-cont{
+    border: 10px solid black;
+    padding:5px;
+}
 
+.drop-zone{
+    height: 100px;
+    width: 100%;
+    /* background: red; */
+    color: var(--lightest);
+    border: 5px dotted var(--middle-dark);
+    box-sizing: border-box;
+    text-align: center;
+    position:relative
+}
+
+.drop-zone::after{
+    content:"Drop Image File Here";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
 
 #fileElem{
@@ -14,18 +31,21 @@
 }
 
 .drop-zone.highlight{
-    background:blue;
+    background:var(--darkest);
+    opacity:.2
 }
 
 .dropped-image-cont{
     display: flex;
     justify-content: center;
-    background-color: var(--darkest);
+    background-color: var(--middle-dark);
+    padding:2px;
+    border:10px solid var(--middle-light)
 }
 
 .dropped-image{
     width: 100px;
     height: 100px;
-    border: 3px solid gold;
+    border: 3px solid var(--lightest);
     margin: auto;
 }

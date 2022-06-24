@@ -67,11 +67,12 @@ export const DropBox = ({imageKey,setImageKey})=>{
     )
   }
   return(
-    <>
+    <><div className="drop-zone-cont">
+
     <div className="drop-zone" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}>
-      Drop image file here
+
        </div>
-       <span draggable={true}>Drag Me</span>
+    </div>
     </>
   )
 }
