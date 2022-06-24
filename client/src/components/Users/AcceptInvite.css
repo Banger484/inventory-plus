@@ -4,3 +4,23 @@
     justify-content: center;
     align-items: center;
 }
+
+.new-user-input{
+    margin-bottom: 15px;
+    padding:5px
+}
+
+.btn{
+    font-size: large;
+    width: auto;
+}
+
+.loginCard{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    margin-top:0px
+}

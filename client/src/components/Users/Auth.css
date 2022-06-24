@@ -1,0 +1,16 @@
+.success-form{
+    background-color: var(--lightest);
+    text-align: center;
+    transform: translateY(25vh);
+    padding: 2rem;
+    box-shadow: 2px 2px 3px 2px black;
+}
+
+.success-form p{
+    color: var(--darkest);
+}
+
+.success-form a{
+    color:var(--middle-dark);
+    cursor:pointer
+}

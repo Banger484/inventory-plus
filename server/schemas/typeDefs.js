@@ -45,6 +45,7 @@ type User {
     credentials: String
     enterprise: Enterprise
     role: String
+    disabled: Boolean
   }
 
   type Product {
@@ -55,6 +56,8 @@ type User {
     msrp: Float!
     category: String!
     notes: String!
+    disabled: Boolean
+    imageKey:String
   }
 
   type Item {
@@ -99,7 +102,10 @@ type User {
   type Month {
     month: Int
     year: Int
-    items: [Item]
+    numberPurchased: Int
+    numberSold: Int
+    totalCost:Float
+    totalIncome:Float
   }
 
   type Auth {
@@ -110,7 +116,7 @@ type User {
   type Query {
     users: [User]
     user(userId: ID!): User
-    allProducts: [Product]
+    allProducts(all: Boolean): [Product]
     singleProduct(id:ID!): Product
     singleCategoryProducts(category: String!): [Product]
     getEnterprises: [Enterprise]
@@ -132,12 +138,13 @@ type User {
     generateProductReport(enterpriseId:ID!, productId:ID!):Analysis
     orderDetails(enterpriseId: ID!,orderNumber: Int!):[ProductRow]
     getStockGuide(enterpriseId:ID!):[StockGuide]
-    groupItemsByMonth(enterpriseId:ID!,sales:Boolean):[Month]
+    groupItemsByMonth(enterpriseId:ID!,productId:ID):[Month]
+    getAllUsers:[User]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addProduct(enterprise:ID!,sku: String!, name: String!, description: String!, msrp: Float!, category: String! notes: String!): Product
+    addProduct(enterprise:ID!,sku: String!, name: String!, description: String!, msrp: Float!, category: String! notes: String!,imageKey: String): Product
     updateProduct(_id: ID!, sku: String, name: String, description: String, msrp: Int, category: String notes: String): Product
     addEnterprise(name:String!,location:String!,userId:ID!): Enterprise
     addItems(quantity:Int!,productId:ID!,orderNumber:Int!,cost:Float!,purchaseDate:String!,supplier:String!,enterpriseId:ID!): [Item]
@@ -154,6 +161,8 @@ type User {
     removeUser(userId:ID!):User
     setStockGuide(enterpriseId:ID!,product:ID!,requiredStock:Int!):String!
     purchaseProducts(orderNumber:Int!,enterpriseId:ID!,purchaseDate:String!,supplier:String!,products:[ProductOrder]):String
+    toggleUser(id:ID!):String
+    toggleProduct(id:ID!):String
   }
 
 

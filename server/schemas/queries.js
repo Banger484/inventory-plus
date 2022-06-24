@@ -91,8 +91,14 @@ const getStockGuide = async (parent,{enterpriseId})=>{
     return enterprise.stockGuide
 }
 
+const getAllUsers = async ()=>{
+    const users = await User.find().populate("enterprise");
+    console.log(users)
+    return users
+}
+
 // Exports functions 
-module.exports = {getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
+module.exports = {getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
 
 
 

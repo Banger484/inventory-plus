@@ -7,6 +7,7 @@ import orderDate from "../../utils/orderDate";
 import './Order.css'
 
 import OrderModal from "./OrderModal";
+import { stringifyProperties } from "../../utils/filter";
 
 export default function OrderPurchase (props) {
     //modal junk
@@ -28,7 +29,7 @@ export default function OrderPurchase (props) {
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
-    console.log(props)
+    const [searchTerm,setSearchTerm] = useState("")
     
     if(!currentStocksLoading && !incomingItemsLoading){
         incomingRefetch()
@@ -38,9 +39,13 @@ export default function OrderPurchase (props) {
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
     }
 
+    
     const handleSupplierChange = (e) => {
         setSupplier(e.target.value)
     }
+
+    const [quantities,setQuantities] = useState({})
+
     const handleInputChange = (e) => {
         const index = e.target.dataset.index
         let val;
@@ -49,27 +54,33 @@ export default function OrderPurchase (props) {
         }else{
             val = parseFloat(e.target.value)
         }
-        tableData[index][e.target.name] = val
+        const newQuantities = {...quantities};
+        if (!newQuantities[e.target.dataset.pid]){
+            newQuantities[e.target.dataset.pid] = {}
+        }
+        newQuantities[e.target.dataset.pid][e.target.name] = val
+        setQuantities(newQuantities)
     }
 
     const handleDateChange = (e)=>{
         setDate(e.target.value)
+        
     }
+    
 
-    const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
 
-        
-        const filterTableData = tableData.filter(data => data.newOrderQty > 0)
+        const filterTableData = tableData.filter(data => quantities?.[data._id]?.newOrderQty > 0)
 
         try {
-            await filterTableData.forEach(async (product) => {
+            filterTableData.forEach(async (product) => {
                 console.log("this is the input",product.newOrderCostPerUnit)
+                console.log("this is the quantities",)
                 const variables = {
-                    quantity: product.newOrderQty,
+                    quantity: quantities[product._id].newOrderQty,
                     productId: product._id,
                     orderNumber,
-                    cost: product.newOrderCostPerUnit,
+                    cost: quantities[product._id].newOrderCostPerUnit,
                     purchaseDate: date,
                     supplier,
                     enterpriseId: props.enterpriseId
@@ -82,12 +93,17 @@ export default function OrderPurchase (props) {
             })
             setOpenModal(true);
             setOrderNumber(orderNumber+1)
-
+            setQuantities({})
         } catch (err) {
             console.error(err);
         }
 
     }
+
+    const searchedRows = tableData.filter(p=>{
+        return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+    })
+
     return (
         <div>
             {openModal && <OrderModal orderNumber={orderNumber} closeModal={setOpenModal}/>}
@@ -95,6 +111,9 @@ export default function OrderPurchase (props) {
                 <h1>Purchase Order</h1>
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
                 <input onChange={handleDateChange} type="date"/>
+            </div>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>
@@ -113,8 +132,9 @@ export default function OrderPurchase (props) {
                 </thead>
                     <tbody>
                     {tableData.map((product, index) => {
+
                         return (
-                        <tr data-pid={product._id} key={index}>
+                        <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>
@@ -124,9 +144,9 @@ export default function OrderPurchase (props) {
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
                             <td className="td-1" data-pid={product._id}>
-                                <input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
+                                <input className="td-1"  data-pid={product._id} data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} value={quantities?.[product._id]?.newOrderCostPerUnit||""} />
                             </td>
-                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input  data-pid={product._id} className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange}  value={quantities?.[product._id]?.newOrderQty||0}/></td>
                         </tr>
                         )
                     })}

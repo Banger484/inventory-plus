@@ -7,6 +7,7 @@ import "./orderReceived.css"
 import { useState } from "react";
 import { OrderDetails } from "../Reporting/OrderDetails";
 import { t } from "../../utils/translation/translator";
+import { stringifyProperties } from "../../utils/filter";
 
 export default function OrderReceived ({enterpriseId}) {
     
@@ -15,7 +16,7 @@ export default function OrderReceived ({enterpriseId}) {
     const { loading: incomingItemsLoading, data: incomingItemsData, refetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId:enterpriseId}
     })
-
+    const [searchTerm,setSearchTerm] = useState("")
     const [orderNumberSelected,setOrderNumberSelected] = useState(false)
 
     if (incomingItemsData) {
@@ -49,10 +50,23 @@ export default function OrderReceived ({enterpriseId}) {
         setDate(e.target.value)
     }
 
+    if(incomingItemsLoading){
+        return(
+            <div>Loading...</div>
+        )
+    }
+
+    const searchedRows = incomingOrders.filter(p=>{
+        return stringifyProperties(p).toLowerCase().includes(searchTerm.toLowerCase())
+    })
+
     return (
         <div className="big-center-flex">
             <h1>Receive Order</h1>
             <input type="date" onChange={handleDateChange}></input>
+            <div className="search-bar">
+                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
+            </div>
             {incomingItemsLoading
         ? <h2>Loading</h2>
         :  <table  className="product-list-table" id="order-received-table"><thead>
@@ -67,7 +81,7 @@ export default function OrderReceived ({enterpriseId}) {
         </thead>
                 <tbody>
                     {incomingOrders.map((order,index)=>{
-                        return(<tr key={index} onClick={handleSelect} data-order={order.number}>
+                        return(<tr  className={searchedRows.includes(order)?"":"hide"} key={index} onClick={handleSelect} data-order={order.number}>
                             <td data-order={order.number}>{order.number}</td>
                             <td>{orderDate(order.date)}</td>
                             <td>{order.supplier}</td>

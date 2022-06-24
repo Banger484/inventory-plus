@@ -6,6 +6,7 @@ import { LOGIN_USER } from '../../utils/mutations';
 import { FaEnvelope, FaLock } from "react-icons/fa";
 
 import Auth from '../../utils/auth';
+import "./Auth.css"
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -46,11 +47,19 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="loginCard">
-            {data ? (
-              <p id="success-Login">
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+            {data ? ( <Link to="/">
+              <div className='success-form'>
+                <h2>
+                  Success! 
+                  </h2>
+              <p>
+                You are now heading...
+              </p><p>
+
+              to the homepage.
               </p>
+              </div>
+                 </Link>
             ) : (
               <form className="loginForm" onSubmit={handleFormSubmit} autoComplete="off" method="post" action="">
               <img src='../../images/icons/iplus.png' alt="Inventory+ Logo" className='login-signup-logo' />
