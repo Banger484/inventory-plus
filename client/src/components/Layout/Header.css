@@ -1,29 +1,38 @@
 header {
     background-color: var(--lightest);
-    display: flex;
     height: 12vh;
     color: var(--darkest);
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 3fr 1fr;
+    grid-template-rows: 1fr;
 }
-
-header img {
-    height: 100%;
-    /* border: 1px solid red; */
-}
-.header-enterprise {
-    width: 50%;
+.header-avatar {
+    grid-column-start: 1;
+    grid-column-end: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid blue; */
+}
+.header-avatar img {
+    height: 80px;
+    width: 80px;
+}
+.header-welcome {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .header-logo {
-    width: 50%;
+    grid-column-start: 4;
+    grid-column-end: 5;
     display: flex;
-    align-items: flex-end;
-    /* border: 1px solid blue; */
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 header h1 {
     font-family: var(--main-font);
     font-weight: bolder;

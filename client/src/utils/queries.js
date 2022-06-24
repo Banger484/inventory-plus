@@ -132,6 +132,7 @@ query GetEnterpriseById($id: ID!) {
       msrp
       category
       notes
+      imageKey
     }
   }
 }
@@ -341,4 +342,11 @@ query GroupItemsByMonth($enterpriseId: ID!, $productId: ID) {
     totalCost
   }
 }`
-
+export const GET_STOCK_GUIDE = gql`
+query Query($enterpriseId: ID!) {
+  getStockGuide(enterpriseId: $enterpriseId) {
+    product
+    requiredStock
+  }
+}
+`;

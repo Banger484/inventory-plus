@@ -51,7 +51,10 @@ export default function OrderFulfillment({ enterpriseId }) {
 
     return (
         <div className="big-center-flex">
+            <div className="table-top rec-order-tt">
             <h1>Fulfill Sale</h1>
+            </div>
+
             <input onChange={handleDateChange} type="date"/>
             <div className="search-bar">
                 <input onChange={(e)=>setSearchTerm(e.target.value)}/>
@@ -81,18 +84,6 @@ export default function OrderFulfillment({ enterpriseId }) {
 
                     </tbody>
                 </table>
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
         </div>

@@ -30,7 +30,10 @@ export default function Roster({ roster, rosterRefetch }) {
     return (
       //HTML for employee roster
         <div className='employee-roster-cont'>
+          <div className="table-top rec-order-tt">
             <h1>Employee Roster</h1>
+          </div>
+
             {userList.map((u,i)=>{
                 return(<div className='employee-cont' key={i}><h3>{u.name}</h3><h3>{u.email}</h3><button onClick={()=>handleRemoveUser(u._id)}>Remove</button></div>)
             })}
