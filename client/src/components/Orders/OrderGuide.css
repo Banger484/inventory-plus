@@ -1,21 +1,13 @@
-.page-title {
-    text-align: center;
-}
-.order-guide-content {
-    display: flex;
-    flex-wrap: wrap;
-}
-.order-guide-sides {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .table-top-og {
     background-color: var(--darkest);
     color: var(--lightest);
     width: 100%;
     display: flex;
     justify-content: center;
+}
+.order-guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .product-list-table th:last-child{

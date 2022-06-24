@@ -2,21 +2,25 @@
 // Imports custom css file and requires all dependant files
 import './Header.css'
 import React from 'react'
-import { useQuery } from '@apollo/client';
-import { GET_ENTERPRISE_BY_ID } from '../../utils/queries'
-import auth from '../../utils/auth'
+import Icon from './Icon'
 
 // Export function to display header of application with welcome enterprise and user. Displays application logo and name as well.
 export default function Header(props) {
   return (
-    <header>
-      <div className='header-enterprise'>
+    <header className='header-grid'>
+        <div className='header-avatar'>
+        <img src='/images/icons/avatar.png' alt='your avatar'/>
+        </div>
+        <div className='header-welcome'>
         <h1>{props.enterprise}</h1>
         <p>Welcome, {props.user}.</p>
-      </div>
-      <div className='header-logo'>
-        <img src='/images/icons/iplus.png' alt="Inventory+ Logo" />
-      </div>
+        </div>
+        <div className='header-logo'>
+        <Icon /> 
+        <h1>Inventory+</h1>
+        </div>
+
+
     </header>
   )
 }

@@ -1,8 +1,4 @@
-.order-list-table {
-    background-color: var(--lightest);
-    border: 1px solid var(--darkest);
-    width: 50vw;
-}
+
 
 th {
     border: 1px solid var(--darkest);

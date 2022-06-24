@@ -8,7 +8,7 @@ export default function OrderGuide(props) {
   const buttons = true;
   return (
     <>
-      <div className="order-guide-content">
+      <div className="order-guide-grid">
         <div className="order-guide-sides">
       <div className="table-top-og">
         <h1>Order Guide</h1>
@@ -22,7 +22,7 @@ export default function OrderGuide(props) {
           />
         </div>
         <div className="order-guide-sides">
-        <div className="table-top-og">
+      <div className="table-top-og">
         <h1>Full Product List</h1>
       </div>
           <ProductList
