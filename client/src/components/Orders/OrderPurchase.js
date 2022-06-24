@@ -9,7 +9,6 @@ import './Order.css'
 import OrderModal from "./OrderModal";
 
 export default function OrderPurchase (props) {
-    //modal junk
     const [openModal, setOpenModal] = useState(false)
     const [date, setDate] = useState( orderDate())
     const [orderNumber,setOrderNumber] =useState(props.enterprise.getEnterpriseById.orderNumber)
@@ -54,7 +53,6 @@ export default function OrderPurchase (props) {
     const handleDateChange = (e)=>{
         setDate(e.target.value)
     }
-
     const [updatedTable, setUpdatedTable] = useState([])
     const handleSubmit = async () => {
 
@@ -97,7 +95,7 @@ export default function OrderPurchase (props) {
                 <input type='text' onChange={handleSupplierChange} placeholder="Please enter supplier's name"/>
                 <input onChange={handleDateChange} type="date"/>
             </div>
-            <table className='order-table'>
+            <table id="purchase-table" className='order-table'>
                 <thead>
                     <tr className="order-header">
                         <th>SKU</th>
@@ -125,9 +123,9 @@ export default function OrderPurchase (props) {
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
                             <td className="td-1" data-pid={product._id}>
-                                <input className="td-1" data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
+                                <input className="td-1 table-inputs" data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} />
                             </td>
-                            <td className="td-1" ><input className="td-1" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
+                            <td className="td-1" ><input className="td-1 table-inputs" data-index={index} name="newOrderQty" type="number" min="0" onChange={handleInputChange} /></td>
                         </tr>
                         )
                     })}
