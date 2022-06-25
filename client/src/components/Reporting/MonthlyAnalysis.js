@@ -43,6 +43,22 @@ export const MonthlyAnalysis = ({enterpriseId})=>{
         return a.year-b.year
     })
 
+    for (let i = 0;i<addedData.length;i++){
+        if(i===0){
+            addedData[i].startingStock = 0
+        }else{
+            addedData[i].startingStock = addedData[i-1].startingStock+addedData[i-1].numberPurchased-addedData[i-1].numberSold
+        }
+    }
+    for (let i = 0;i<addedData.length;i++){
+        if(i===(addedData.length-1)){
+            addedData[addedData.length-1].endingStock = addedData[i].startingStock+addedData[i].numberPurchased-addedData[i].numberSold
+        }else{
+            addedData[i].endingStock = addedData[i+1].startingStock
+        }
+    }
+
+
     return(
         <div>
             <div  className="product-selector-cont">

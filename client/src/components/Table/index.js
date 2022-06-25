@@ -1,7 +1,7 @@
 import { t } from "../../utils/translation/translator";
 
 export const Table = ({data,excludedProperties=[]})=>{
-    console.log("this is the table data",data)
+
 
     const trimmedData = []
 
@@ -36,12 +36,12 @@ export const Table = ({data,excludedProperties=[]})=>{
 
             {
                 trimmedData.map((i)=>{
-                    console.log(Object.keys(i))
                     return(
                         <tr>
                             {Object.keys(i).map((p)=>{
                                 return(
-                                    <td>{typeof i[p]==="number"?Math.round(i[p]):i[p]}</td>
+                                    // <td>{typeof i[p]==="number"?Math.round(i[p]):i[p]}</td>
+                                    <td>{t(i[p],p)}</td>
                                 )
                             })}
                         </tr>
