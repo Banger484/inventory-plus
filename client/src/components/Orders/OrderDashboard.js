@@ -3,10 +3,12 @@ import '../Layout/Dashboard.css'
 import { Link } from 'react-router-dom'
 
 // Function to create icons and link html for order dasbboard. exports function
-export default function OrderDashboard () {
+export default function OrderDashboard ({ incomingOrderCount, salesCount, incomingItemsRefetch, salesRefetch }) {
+    incomingItemsRefetch()
+    salesRefetch()
     return (
-        <section className='task-container'>
-            <Link className='task-links' to="/orders/purchase-order">
+        <section className='grid-container grid-container-order'>
+            <Link className='dash-grid-main' to="/orders/purchase-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Purchase Order</h2>
@@ -16,7 +18,19 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/orders/sell-order">
+            <p className='order-arrows  dash-grid-main'>➤</p>
+            <Link className='dash-grid-main' to="/orders/order-received">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Receive Order</h2>{incomingOrderCount? <div className='order-count'>{incomingOrderCount}</div> : null}
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
+            <p className='order-arrows dash-grid-main'>➤</p>
+            <Link className='dash-grid-main' to="/orders/sell-order">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Sell Order</h2>
@@ -26,27 +40,18 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/orders/order-received">
+            <p className='order-arrows dash-grid-main'>➤</p>
+            <Link className='dash-grid-main' to="/orders/order-fulfillment">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Receive Order</h2>
-                </div>
-                <div className='task-image'>
-                <img className="button-icon" src="/images/icons/completed.png" alt='icon'/>
-                </div>
-            </div>
-            </Link>
-            <Link className='task-links' to="/orders/order-fulfillment">
-            <div className='task'>
-                <div className='task-header'>
-                    <h2>Order Fulfillment</h2>
+                    <h2>Order Fulfillment</h2>{salesCount? <div className='order-count'>{salesCount}</div> : null}
                 </div>
                 <div className='task-image'>
                 <img className="button-icon" src="/images/icons/sale.png" alt='icon'/>
                 </div>
             </div>
             </Link>
-            <Link className='task-links' to="/orders/order-guide">
+            <Link className='gi-8' to="/orders/order-guide">
             <div className='task'>
                 <div className='task-header'>
                     <h2>Order Guide</h2>
@@ -56,16 +61,16 @@ export default function OrderDashboard () {
                 </div>
             </div>
             </Link>
-            {/* <Link to="/orders/order-history">
+            <Link className='gi-9' to="/orders/stock-guide">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Order History</h2>
+                    <h2>Stock Guide</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/history.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/table1.png" alt='icon'/>
                 </div>
             </div>
-            </Link> */}
+            </Link>
         </section>
     )
 }

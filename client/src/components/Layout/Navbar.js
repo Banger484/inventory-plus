@@ -23,11 +23,11 @@ export default function Navbar() {
         <Link to='/orders'>
         <button className='mini-nav-buttons'>Orders</button>
         </Link>
-        <Link to='/users'>
-        <button className='mini-nav-buttons'>Users</button>
-        </Link>
         <Link to='/reporting'>
         <button className='mini-nav-buttons'>Reporting</button>
+        </Link>
+        <Link to='/users'>
+        <button className='mini-nav-buttons'>Settings</button>
         </Link>
         
         <button className='mini-nav-buttons' onClick={logout}>Logout</button>

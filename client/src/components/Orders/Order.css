@@ -26,7 +26,8 @@
     font-size: 1.5rem;
 }
 .order-table {
-    background-color: var(--middle-light);
+    background-color: var(--lightest);
+    width: 100%;
 }
 .order-header {
     background-color: var(--lightest);
@@ -46,7 +47,9 @@
 .td-4 {
     width: 20vw;
 }
-
+.order-arrows {
+    font-size: 3rem;
+}
 /* modal styling */
 
 .modal {
@@ -89,7 +92,26 @@
     padding-bottom: 1rem;
 }
 
-
+.order-count {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    background-color: red;
+    border: 3px solid var(--darkest);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 250px;
+    top: -90px;
+    left: 220px;
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+.rec-order-tt {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width:700px) {
     .table-top.purchase-order-header{
@@ -97,7 +119,6 @@
         align-items: flex-start;
     }
 
-    padding: 10px;
 }
 .modal-footer-button {
     border: none;

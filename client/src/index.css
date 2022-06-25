@@ -23,7 +23,7 @@ html {
 }
 body {
   margin: 0;
-  background-color: var(--middle);
+  background-color: var(--middle-light);
   font-family: var(--main-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -134,7 +134,8 @@ input, button {
 }
 
 button:hover {
-  background-color: var(--lightest);
+  /* background-color: var(--lightest); */
+  color: orange;
   transition: 0.3s;
 }
 

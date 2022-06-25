@@ -1,9 +1,12 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { groupOrders, groupSales } from "../utils/remodeledData";
 import {
   GET_ENTERPRISE_BY_ID,
   QUERY_ALL_PRODUCTS,
   QUERY_ENT_USERS,
+  GET_INCOMING_ITEMS,
+  GET_OPEN_SALES,
 } from "../utils/queries";
 import auth from "../utils/auth";
 import { Route, Routes } from "react-router-dom";
@@ -25,7 +28,7 @@ import OrderFulfillment from "../components/Orders/OrderFulfillment";
 import OrderPurchase from "../components/Orders/OrderPurchase";
 import OrderSell from "../components/Orders/OrderSell";
 import OrderGuide from "../components/Orders/OrderGuide";
-import OrderHistory from "../components/Orders/OrderHistory";
+import StockGuide from "../components/Orders/StockGuide";
 import OrderReceived from "../components/Orders/OrderReceived";
 //Reporting
 import ReportingDashboard from "../components/Reporting/ReportingDashboard";
@@ -39,11 +42,10 @@ import AddUser from "../components/Users/AddUser";
 import Roster from "../components/Users/Roster";
 import { Settings } from "../components/Users/Settings";
 
-
-const Home = ({handleThemeChange}) => {
+const Home = ({ handleThemeChange }) => {
   // getting logged in user
   const user = auth.getProfile();
-
+  console.log("user info here", user.data.enterprise);
   // making queries
   const {
     loading: enterpriseLoading,
@@ -64,6 +66,20 @@ const Home = ({handleThemeChange}) => {
     data: productsData,
     refetch: productsRefetch,
   } = useQuery(QUERY_ALL_PRODUCTS);
+  const {
+    loading: incomingItemsLoading,
+    data: incomingItemsData,
+    refetch: incomingItemsRefetch,
+  } = useQuery(GET_INCOMING_ITEMS, {
+    variables: { enterpriseId: user.data.enterprise },
+  });
+  const {
+    loading: salesLoading,
+    data: salesData,
+    refetch: salesRefetch,
+  } = useQuery(GET_OPEN_SALES, {
+    variables: { enterpriseId: user.data.enterprise },
+  });
 
   // setting variables to be passed through props
   let enterpriseName;
@@ -71,16 +87,32 @@ const Home = ({handleThemeChange}) => {
   let products;
   let enterpriseId;
   let roster;
+  let incomingOrders;
+  let incomingOrderCount;
+  let outgoingSales;
+  let salesCount;
 
-  if (enterpriseData && rosterData && productsData) {
+  if (
+    enterpriseData &&
+    rosterData &&
+    productsData &&
+    incomingItemsData &&
+    salesData
+  ) {
     productsRefetch();
     enterpriseRefetch();
     rosterRefetch();
+    incomingItemsRefetch();
+    salesRefetch();
     enterpriseName = enterpriseData.getEnterpriseById.name;
     enterpriseId = enterpriseData.getEnterpriseById._id;
     orderGuide = enterpriseData.getEnterpriseById.orderGuide;
     roster = rosterData.getEnterpriseUsers;
     products = productsData.allProducts;
+    incomingOrders = groupOrders(incomingItemsData.getOrderedItems);
+    incomingOrderCount = incomingOrders.length;
+    outgoingSales = groupSales(salesData.getOpenSales);
+    salesCount = outgoingSales.length;
   }
 
   return (
@@ -90,14 +122,23 @@ const Home = ({handleThemeChange}) => {
       <main className="home-main-content">
         <div>
           <div>
-            {enterpriseLoading || rosterLoading || productsLoading ? (
+            {enterpriseLoading ||
+            rosterLoading ||
+            productsLoading ||
+            incomingItemsLoading ||
+            salesLoading ? (
               <div>Loading...</div>
             ) : (
               <Routes>
                 <Route path="/products" element={<ProductDashboard />} />
                 <Route
                   path="/products/add-product"
-                  element={<AddProduct productsRefetch={productsRefetch} products={products} />}
+                  element={
+                    <AddProduct
+                      productsRefetch={productsRefetch}
+                      products={products}
+                    />
+                  }
                 />
                 <Route
                   path="/products/product-guide"
@@ -108,12 +149,21 @@ const Home = ({handleThemeChange}) => {
                     />
                   }
                 />
-                <Route path="/orders" element={<OrderDashboard />} />
+                <Route
+                  path="/orders"
+                  element={
+                    <OrderDashboard
+                      incomingOrderCount={incomingOrderCount}
+                      incomingItemsRefetch={incomingItemsRefetch}
+                      salesCount={salesCount}
+                      salesRefetch={salesRefetch}
+                    />
+                  }
+                />
                 <Route
                   path="/users/settings"
-                  element={
-                    <Settings handleThemeChange={handleThemeChange}/>
-                  }/>
+                  element={<Settings handleThemeChange={handleThemeChange} />}
+                />
                 <Route
                   path="/orders/purchase-order"
                   element={
@@ -153,6 +203,9 @@ const Home = ({handleThemeChange}) => {
                     <OrderReceived
                       enterpriseRefetch={enterpriseRefetch}
                       enterpriseId={enterpriseId}
+                      incomingItemsData={incomingItemsData}
+                      incomingItemsRefetch={incomingItemsRefetch}
+                      incomingOrders={incomingOrders}
                     />
                   }
                 />
@@ -170,14 +223,21 @@ const Home = ({handleThemeChange}) => {
                   }
                 />
                 <Route
-                  path="/orders/order-history"
-                  element={<OrderHistory />}
+                  path="/orders/stock-guide"
+                  element={
+                    <StockGuide
+                      orderGuide={orderGuide}
+                      enterpriseId={enterpriseId}
+                    />
+                  }
                 />
                 <Route path="/users" element={<UserDashboard />} />
                 <Route path="/users/add-user" element={<AddUser />} />
                 <Route
                   path="users/roster"
-                  element={<Roster rosterRefetch={rosterRefetch} roster={roster} />}
+                  element={
+                    <Roster rosterRefetch={rosterRefetch} roster={roster} />
+                  }
                 />
                 <Route path="/reporting" element={<ReportingDashboard />} />
                 <Route path="/signup" element={<Signup />} />
@@ -186,7 +246,7 @@ const Home = ({handleThemeChange}) => {
                   path="/reporting/product"
                   element={<ProductReport enterpriseId={enterpriseId} />}
                 />
-                  <Route
+                <Route
                   path="/reporting/month-to-month-report"
                   element={<MonthlyAnalysis enterpriseId={enterpriseId} />}
                 />
