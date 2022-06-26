@@ -350,3 +350,12 @@ query Query($enterpriseId: ID!) {
   }
 }
 `;
+
+export const CURRENT_STOCK_QUANTITIES = gql`
+query CurrentStocksQuantity($enterpriseId: ID!) {
+  currentStocksQuantity(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`

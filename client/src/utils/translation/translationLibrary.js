@@ -39,7 +39,10 @@ export const translations = {
     startingStock:"Start Stock",
     endingStock:"End Stock",
     notes:"Notes",
-    "__typename":" "
+    "__typename":" ",
+    numberPurchased:"# Purchased",
+    numberSold: "# Sold",
+    netSalesIncome: "Purchase/Sales Cashflow"
 }
 
 const converters = []

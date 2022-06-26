@@ -113,6 +113,20 @@ type User {
     user: User
   }
 
+  type StockQuantity {
+    product:String
+    quantity:Int
+  }
+
+  type Supplier {
+    supplier:String
+    quantity:Int
+  }
+  type Buyer {
+    buyer:String
+    quantity:Int
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -140,6 +154,12 @@ type User {
     getStockGuide(enterpriseId:ID!):[StockGuide]
     groupItemsByMonth(enterpriseId:ID!,productId:ID):[Month]
     getAllUsers:[User]
+    currentStocksQuantity(enterpriseId:ID!):[StockQuantity]
+    pastSalesQuantity(enterpriseId:ID!):[StockQuantity]
+    allPastPurchases(enterpriseId:ID!):[StockQuantity]
+    pastSuppliers(enterpriseId:ID!,productId:ID!):[Supplier]
+    pastBuyers(enterpriseId:ID!,productId:ID!):[Buyer]
+
   }
 
   type Mutation {

@@ -97,6 +97,9 @@ const getAllUsers = async ()=>{
     return users
 }
 
+
+
+
 // Exports functions 
 module.exports = {getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
 

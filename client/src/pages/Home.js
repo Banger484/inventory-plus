@@ -34,6 +34,7 @@ import OrderReceived from "../components/Orders/OrderReceived";
 import ReportingDashboard from "../components/Reporting/ReportingDashboard";
 import ProductReport from "../components/Reporting/ProductReport";
 import { MonthlyAnalysis } from "../components/Reporting/MonthlyAnalysis";
+import { Charts } from "../components/Reporting/Charts";
 
 //Users
 import UserDashboard from "../components/Users/UserDashboard";
@@ -249,6 +250,10 @@ const Home = ({ handleThemeChange }) => {
                 <Route
                   path="/reporting/month-to-month-report"
                   element={<MonthlyAnalysis enterpriseId={enterpriseId} />}
+                />
+                <Route
+                  path="/reporting/charts"
+                  element={<Charts enterpriseId={enterpriseId} />}
                 />
               </Routes>
             )}
