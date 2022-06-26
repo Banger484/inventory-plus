@@ -15,12 +15,12 @@ const{loading: enterpriseLoading,data:enterpriseData} = useQuery(GET_ENTERPRISE_
 const [chart,selectChart] = useState(null)
 const [productId,setProductId] = useState(false)
 const [property,setProperty] = useState(null)
-
+const [queryType,setQueryType] = useState(null)
 const handleChartSelector = (e)=>{
-    const {chartName,property} = JSON.parse(e.target.value)
+    const {chartName,property,queryType} = JSON.parse(e.target.value)
     selectChart(chartName);
     setProperty(property)
-
+    setQueryType(queryType)
 }
 let products
 if (!enterpriseLoading){
@@ -41,7 +41,11 @@ return(
             <option value={JSON.stringify({chartName:"costByMonth",property:["totalCost"]})}>Cost By Month</option>
             <option value={JSON.stringify({chartName:"totalSales",property:["totalIncome"]})}>Gross Sales Income By Month</option>
             <option value={JSON.stringify({chartName:"netSalesIncome",property:["totalCost","totalIncome","netSalesIncome"]})}>Purchase/Sales Cashflow</option>
-            <option value={JSON.stringify({chartName:"currentStocksPie",property:null})}>Current Stocks</option>
+            <option value={JSON.stringify({chartName:"currentStocksPie",property:null,queryType:"current"})}>Current Stocks</option>
+            <option value={JSON.stringify({chartName:"pastSalesPie",property:null,queryType:"purchases"})}>Past Purchases Product Breakdown</option>
+            <option value={JSON.stringify({chartName:"pastPurchasesPie",property:null,queryType:"sales"})}>Past Sales Product Breakdown</option>
+            <option value={JSON.stringify({chartName:"pastSuppliersPie",property:"noLegend",queryType:"suppliers"})}>Suppliers</option>
+            <option value={JSON.stringify({chartName:"pastBuyersPie",property:"noLegend",queryType:"buyers"})}>Buyers</option>
         </select>
         {property?(
 
@@ -65,8 +69,15 @@ return(
         {chart==="costByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost"]}/>:null}
         {chart==="totalSales"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalIncome"]}/>:null}
         {chart==="netSalesIncome"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost","totalIncome","netSalesIncome"]}/>:null}
-        {chart==="currentStocksPie"?<StockPie setProperty={setProperty} enterpriseId={enterpriseId}/>:null}
-        {property?(
+        {chart==="currentStocksPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {chart==="pastSalesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {chart==="pastPurchasesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {productId && chart==="pastSuppliersPie"?<StockPie property={"product"} productId={productId} queryType={queryType} setProperty={setProperty} name={"supplier"} number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {productId && chart==="pastBuyersPie"?<StockPie property={"product"} productId={productId} queryType={queryType} setProperty={setProperty} name={"buyer"} number={"quantity"} enterpriseId={enterpriseId}/>:null}
+
+        
+         
+        {property && property!="noLegend"?(
             <section className="legend">
                 {property.map(p=>{
                 return(<div className="legend-div">
