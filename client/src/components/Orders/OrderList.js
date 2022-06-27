@@ -26,14 +26,14 @@ export default function OrderList (props) {
             <table className='order-table'>
                 <thead>
                     <tr>
-                        <th>Img</th>
+                        <th>Image</th>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>MSRP</th>
                         <th>Category</th>
                         <th>Notes</th>
-                        {props.buttons?<th>Rem</th> : null}
+                        {props.buttons?<th>➖</th> : null}
                     </tr>
                 </thead>
                     <tbody>

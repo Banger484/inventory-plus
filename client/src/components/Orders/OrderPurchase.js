@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@apollo/client"
 import { useState } from 'react'
-import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS } from "../../utils/queries";
+import { GET_CURRENT_STOCKS, GET_INCOMING_ITEMS, GET_STOCK_GUIDE } from "../../utils/queries";
 import { BUY_ITEMS } from '../../utils/mutations'
 import { groupItems, generatePurchaseTableData } from "../../utils/remodeledData";
 import orderDate from "../../utils/orderDate";
@@ -24,21 +24,51 @@ export default function OrderPurchase (props) {
     const { loading: incomingItemsLoading, data: incomingItemsData, refetch: incomingRefetch } = useQuery(GET_INCOMING_ITEMS, {
         variables: { enterpriseId: props.enterpriseId}
     })
+    const { loading: parsLoading, data: parsData, refetch: parsRefetch} = useQuery(GET_STOCK_GUIDE, {
+        variables: { enterpriseId: props.enterpriseId}
+    })
 
     let currentStocksGroups
     let incomingItemsGroups
     let tableData = []
+    let pars
     const [searchTerm,setSearchTerm] = useState("")
     
-    if(!currentStocksLoading && !incomingItemsLoading){
+    if(!currentStocksLoading && !incomingItemsLoading && !parsLoading){
         incomingRefetch()
         currentRefetch()
+        parsRefetch()
         currentStocksGroups = groupItems(currentStocksData.getCurrentStocks)
         incomingItemsGroups = groupItems(incomingItemsData.getOrderedItems)
         tableData = generatePurchaseTableData(props.orderGuide, currentStocksGroups, incomingItemsGroups)
+        pars = parsData.getStockGuide
+
+    }
+    // console.log('pars',pars);
+    const getPar = (id) => {
+        const parQty = pars.filter(par => id === par.product)
+        if (parQty.length === 0) {
+            return 'N/A'
+        }
+        return parQty[0].requiredStock;
     }
 
-    
+    const suggestQty = (id, current, incoming) => {
+        const parVal = getPar(id)
+        const suggested = parVal - current - incoming
+        console.log(suggested);
+        if (parVal === 'N/A') {
+            return 'N/A'
+        }
+        if (suggested < 0) {
+            return 0
+        }else {
+            return suggested
+        }
+        
+        
+    }
+
     const handleSupplierChange = (e) => {
         setSupplier(e.target.value)
     }
@@ -117,31 +147,35 @@ export default function OrderPurchase (props) {
             <table className='order-table'>
                 <thead>
                     <tr className="order-header">
+                        <th>Image</th>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>MSRP</th>
                         <th>Category</th>
-                        <th>Notes</th>
+                        <th>Par</th>
                         <th>Current</th>
                         <th>Incoming</th>
+                        <th>Suggest</th>
                         <th>Cost</th>
                         <th>Order Qty</th>
                     </tr>
                 </thead>
                     <tbody>
                     {tableData.map((product, index) => {
-
+                        
                         return (
                         <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
+                            <td>{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
-                            <td className="td-4" data-pid={product._id}>{product.description}</td>
+                            <td className="td-3" data-pid={product._id}>{product.description}</td>
                             <td className="td-1" data-pid={product._id}>${product.msrp}</td>
                             <td className="td-2" data-pid={product._id}>{product.category}</td>
-                            <td className="td-4" data-pid={product._id}>{product.notes}</td>
+                            <td className="td-1" data-pid={product._id}>{getPar(product._id)}</td>
                             <td className="td-1" data-pid={product._id}>{product.current}</td>
                             <td className="td-1" data-pid={product._id}>{product.incoming}</td>
+                            <td className="td-1" data-pid={product._id}>{suggestQty(product._id, product.current, product.incoming)}</td>
                             <td className="td-1" data-pid={product._id}>
                                 <input className="td-1"  data-pid={product._id} data-index={index} name="newOrderCostPerUnit" type="number" step=".01" min="0" onChange={handleInputChange} value={quantities?.[product._id]?.newOrderCostPerUnit||""} />
                             </td>

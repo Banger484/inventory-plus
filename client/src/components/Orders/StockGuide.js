@@ -43,7 +43,6 @@ export default function StockGuide(props) {
       });
  
     updatedStockGuide.push(newPar);
-    console.log(updatedStockGuide);
     return updatedStockGuide;
   };
 
