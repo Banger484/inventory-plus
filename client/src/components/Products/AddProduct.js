@@ -5,6 +5,18 @@ import { ADD_PRODUCT } from '../../utils/mutations'
 import ProductList from './ProductList';
 import { DropBox } from '../Tools/DropBox';
 import Auth from '../../utils/auth';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const addSchema = yup.object().shape({
+    sku: yup.string().required("sku is required!"),
+    name: yup.string().required(),
+    description: yup.string().required(),
+    msrp: yup.number().required(),
+    category: yup.string().optional(),
+    notes: yup.string().optional(),
+  });
 
 export default function AddProduct (props) {
     const [imageKey,setImageKey] = useState(null)
@@ -18,6 +30,9 @@ export default function AddProduct (props) {
         notes: '',
     })
     
+    const { register, handleSubmit, formState:{ errors } } = useForm({
+        resolver: yupResolver(addSchema)
+      });
 
     const [addProduct, { error, data }] = useMutation(ADD_PRODUCT)
 
@@ -26,10 +41,17 @@ export default function AddProduct (props) {
         setFormData({ ...formData, [name]: value });
     }
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
+    const handleFormSubmit = async (d) => {
+        const info = {
+            sku: d.sku,
+            name: d.name,
+            description: d.description,
+            msrp: d.msrp,
+            category: d.category,
+            notes: d.notes
+        }
 
-        const inputData = { ...formData}
+        const inputData = info
 
         inputData.msrp = parseInt(inputData.msrp)
 
@@ -63,17 +85,17 @@ export default function AddProduct (props) {
             <h1>Product Guide</h1>
         </div> */}
     <div className='add-product-grid'>
-            <form  onSubmit={handleFormSubmit}>
+            <form  onSubmit={handleSubmit(handleFormSubmit)}>
                 <div className='add-product-header'>
                     <h1>Add Product</h1>
                 </div>
                 <div className='add-product-form'>
-                <label htmlFor='sku'>SKU:<input name='sku' value={formData.sku} type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='name'>Product Name:<input name='name' value={formData.name} type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='description'>Description:<input name='description' value={formData.description} type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='msrp'>MSRP:<input name='msrp' value={formData.msrp} type='number' onChange={handleInputChange}/></label>
-                <label htmlFor='category'>Category:<input name='category' value={formData.category} type='text' onChange={handleInputChange}/></label>
-                <label htmlFor='notes'>Notes:<input name='notes' value={formData.notes} type='text' onChange={handleInputChange}/></label>
+                <label htmlFor='sku'>SKU:<input name='sku' value={formData.sku} type='text' {...register("sku")} onChange={handleInputChange}/></label>
+                <label htmlFor='name'>Product Name:<input name='name' value={formData.name} type='text' {...register("name")} onChange={handleInputChange}/></label>
+                <label htmlFor='description'>Description:<input name='description' value={formData.description} type='text' {...register("description")} onChange={handleInputChange}/></label>
+                <label htmlFor='msrp'>MSRP:<input name='msrp' value={formData.msrp} type='number' {...register("msrp")} onChange={handleInputChange}/></label>
+                <label htmlFor='category'>Category:<input name='category' value={formData.category} type='text' {...register("category")} onChange={handleInputChange}/></label>
+                <label htmlFor='notes'>Notes:<input name='notes' value={formData.notes} type='text' {...register("notes")} onChange={handleInputChange}/></label>
                 </div>
     {/* <input type="file" id="fileElem" multiple accept="image/*" onChange={()=>{}}/>
     <label id="" className="button select-btn" htmlFor="fileElem">Select some files</label> */}
@@ -84,6 +106,12 @@ export default function AddProduct (props) {
             Something went wrong...
           </div>
         )}
+        <div>{errors.sku?.message}<br/> 
+              {errors.name?.message}<br/> 
+              {errors.description?.message}<br/> 
+              {errors.msrp?.message}<br/> 
+              {errors.category?.message}<br/> 
+              {errors.notes?.message}</div>
             </form>
         <div className='add-product-list'>
         {/* <img src="/images/305746d03021662a7f453c223d81e707"/> */}
