@@ -1,11 +1,12 @@
 import { useQuery } from "@apollo/client"
-import { QUERY_SINGLE_PRODUCT,PRODUCT_AVERAGES } from "../../utils/queries"
+import { QUERY_SINGLE_PRODUCT,PRODUCT_AVERAGES,GET_ENTERPRISE_BY_ID } from "../../utils/queries"
 import { MonthBar } from "./Charts/SalesByMonth"
 import "./fullReport.css"
 import ProductDetails from "./ProductDetails"
 import { StockPie } from "./Charts/StockPie"
 import { Table } from "../Table"
 import { MonthlyAnalysis } from "./MonthlyAnalysis"
+import { useState } from "react"
 
 const FullReportInside = ({enterpriseId,productId})=>{
     console.log(enterpriseId,productId,"these are the props")
@@ -68,9 +69,37 @@ return(
 
 export const FullReport = ({enterpriseId})=>{
 
-    const productId = "62993832ab0e9a436f475a32"
+    const{loading: enterpriseLoading,data:enterpriseData} = useQuery(GET_ENTERPRISE_BY_ID,{
+        variables:{id:enterpriseId}
+    })
+    const [productId,setProductId] = useState(false)
+    if(enterpriseLoading){
+        return(<div>Loading</div>)
+    }
+    let products
+
+    if (!enterpriseLoading){
+        products = enterpriseData.getEnterpriseById.orderGuide;
+    }
+
+    const handleProductChange = (e)=>{
+        setProductId(e.target.value)
+    }
 
     return(
-        <FullReportInside enterpriseId={enterpriseId} productId={productId}/>
+
+        <>
+                <div  className="product-selector-cont">
+        <select value={productId} onChange={handleProductChange}>
+            <option value={null}>Pick a Product</option>
+            {products.map(p=>{
+                    return(
+                        <option value={p._id}>{p.name}</option>
+                    )
+            })}
+        </select>
+        </div>
+        {productId?(<FullReportInside enterpriseId={enterpriseId} productId={productId}/>):null}
+        </>
     )
 }

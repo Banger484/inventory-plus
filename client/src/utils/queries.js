@@ -409,3 +409,9 @@ query Query($enterpriseId: ID!, $productId: ID!) {
   }
 }
 `
+
+export const GET_THEME = gql`
+query Query($userId: ID!) {
+  getTheme(userId: $userId)
+}
+`

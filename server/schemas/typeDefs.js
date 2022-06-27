@@ -168,7 +168,7 @@ type User {
     pastSuppliers(enterpriseId:ID!,productId:ID!):[Supplier]
     pastBuyers(enterpriseId:ID!,productId:ID!):[Buyer]
     productAverages(enterpriseId:ID!,productId:ID!):[AverageRow]
-    
+    getTheme(userId:ID!):String
   }
 
   type Mutation {
@@ -192,6 +192,7 @@ type User {
     purchaseProducts(orderNumber:Int!,enterpriseId:ID!,purchaseDate:String!,supplier:String!,products:[ProductOrder]):String
     toggleUser(id:ID!):String
     toggleProduct(id:ID!):String
+    setTheme(userId:ID!,theme:String):String
   }
 
 

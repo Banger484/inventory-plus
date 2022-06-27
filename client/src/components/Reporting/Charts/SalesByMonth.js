@@ -54,7 +54,14 @@ export const MonthBar = ({enterpriseId,productId,property})=>{
 
     const options = {
         high: findMax(data.series.map(e=>findMax(e))),
-        width:"95vw"
+        width:"95vw",
+        axisY:{
+            position:"start",
+            labelOffset: {
+                x: 0,
+                y: 0
+              },
+        }
     }
 
     // const options = {

@@ -5,7 +5,7 @@ import { GET_ENTERPRISE_BY_ID } from "../../utils/queries"
 import { useQuery } from "@apollo/client"
 import { t } from "../../utils/translation/translator"
 import { StockPie } from "./Charts/StockPie"
-
+import "./charts.css"
 export const Charts = ({enterpriseId})=>{
 
 const{loading: enterpriseLoading,data:enterpriseData} = useQuery(GET_ENTERPRISE_BY_ID,{
@@ -33,6 +33,7 @@ const handleProductChange = (e)=>{
 
 return(
     <section className="chart-cont">
+        <div  className="product-selector-cont">
         <select onChange={handleChartSelector}>
             <option value={false}> Pick a Chart</option>
             <option value={JSON.stringify({chartName:"salesByMonth",property:["numberSold"]})}>Sales By Month</option>
@@ -50,7 +51,6 @@ return(
         {property?(
 
       
-        <div  className="product-selector-cont">
             <select value={productId} onChange={handleProductChange}>
                 <option value={null}>Pick a Product</option>
                 {products.map(p=>{
@@ -59,9 +59,9 @@ return(
                     )
                 })}
             </select>
-        </div>
           ):null
         }
+        </div>
         {!chart?<div>Pick a chart</div>:null}
         {chart==="salesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberSold"]}/>:null}
         {chart==="purchasesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberPurchased"]}/>:null}

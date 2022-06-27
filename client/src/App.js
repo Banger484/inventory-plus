@@ -7,6 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Home from './pages/Home';
 import auth from "./utils/auth"
 import Login from "./components/Users/Login"
@@ -50,14 +51,21 @@ function App() {
   }
   }
 
-  const handleThemeChange = (e)=>{
-    const choice = e.target.value;
+
+  const handleThemeChange = (e,isSettingInitialTheme)=>{
+    let choice
+    if(isSettingInitialTheme){
+      choice = e
+    }else {
+      choice = e.target.value;
+
+    }
     const theme = themes[choice]
     Object.entries(theme).forEach(([k,v])=>{
       console.log(k,v)
       document.documentElement.style.setProperty(k,v)
     })
-
+    // mutate user
   }
 
   
