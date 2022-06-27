@@ -42,7 +42,8 @@ export const translations = {
     "__typename":" ",
     numberPurchased:"# Purchased",
     numberSold: "# Sold",
-    netSalesIncome: "Purchase/Sales Cashflow"
+    netSalesIncome: "Purchase/Sales Cashflow",
+    period:"Averages"
 }
 
 const converters = []

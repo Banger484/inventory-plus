@@ -5,13 +5,13 @@ import { Table } from "../Table"
 import { t } from "../../utils/translation/translator"
 import { GET_ENTERPRISE_BY_ID } from "../../utils/queries"
 
-export const MonthlyAnalysis = ({enterpriseId})=>{
+export const MonthlyAnalysis = ({enterpriseId,presetProductId})=>{
     const [sales,setSales] = useState(true)
     const [selectedProduct,setSelectedProduct] = useState(null)
     const{loading: enterpriseLoading,data:enterpriseData} = useQuery(GET_ENTERPRISE_BY_ID,{
         variables:{id:enterpriseId}
     })
-    const variables = selectedProduct==="all"?{enterpriseId}:{enterpriseId,productId:selectedProduct}
+    const variables = selectedProduct==="all"?{enterpriseId}:{enterpriseId,productId:(presetProductId || selectedProduct)}
     console.log(variables)
     const {data,loading,error}=useQuery(GET_MONTH_TO_MONTH,{variables})
     
@@ -61,7 +61,7 @@ export const MonthlyAnalysis = ({enterpriseId})=>{
 
     return(
         <div>
-            <div  className="product-selector-cont">
+            {!presetProductId?(<div  className="product-selector-cont">
             <select value={selectedProduct} onChange={handleProductChange}>
                 <option value={"all"}>All Products</option>
                 {products.map(p=>{
@@ -70,7 +70,7 @@ export const MonthlyAnalysis = ({enterpriseId})=>{
                     )
                 })}
             </select>
-            </div>
+            </div>):null}
             <Table  data={addedData} excludedProperties={["__typename","month"]}/>
         </div>
     )

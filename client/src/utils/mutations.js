@@ -281,3 +281,9 @@ mutation Mutation($enterpriseId: ID!, $product: ID!, $requiredStock: Int!) {
   )
 }
 `;
+
+export const SET_THEME = gql`
+mutation Mutation($userId: ID!, $theme: String) {
+  setTheme(userId: $userId, theme: $theme)
+}
+`

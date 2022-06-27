@@ -175,6 +175,19 @@ const mutation = {
     await enterprise.save();
     return "success";
   },
+  setTheme: async (parent,{userId,theme})=>{
+      console.log(theme)
+      const user = await User.findById(userId);
+      user.theme = theme;
+      user.save();
+      return "success"
+  },
+  setAvatar: async (parent,{userId,avatar})=>{
+    const user = await User.findById(userId);
+    user.avatar = avatar;
+    user.save();
+    return "success"
+  }
 };
 
 

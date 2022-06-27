@@ -84,4 +84,45 @@ const groupItemsByMonth = async (parent,{enterpriseId,productId})=>{
 }
 }
 
-module.exports = {groupItemsByMonth}
+const productAverages = async (parent,{enterpriseId,productId})=>{
+    const months = await groupItemsByMonth(null,{enterpriseId,productId});
+    const num = months.length
+    const totals = months.reduce((a,b)=>{
+        a.numberPurchased+=b.numberPurchased
+        a.numberSold+=b.numberSold
+        a.totalCost+=b.totalCost
+        a.totalIncome+=b.totalIncome
+        return a
+    },{numberPurchased:0,numberSold:0,totalCost:0,totalIncome:0})
+    const table = [{
+        period:"Monthly",
+        numberPurchased:totals.numberPurchased/num,
+        numberSold:totals.numberSold/num,
+        totalCost:totals.totalCost/num,
+        totalIncome:totals.totalIncome/num
+    },{
+        period:"Quarterly",
+        numberPurchased:totals.numberPurchased/num*3,
+        numberSold:totals.numberSold/num*3,
+        totalCost:totals.totalCost/num*3,
+        totalIncome:totals.totalIncome/num*3
+    },{
+        period:"Annually",
+        numberPurchased:totals.numberPurchased/num*12,
+        numberSold:totals.numberSold/num*12,
+        totalCost:totals.totalCost/num*12,
+        totalIncome:totals.totalIncome/num*12
+    }]
+    table.forEach(row=>{
+        for(let p in row){
+            (typeof row[p]==="number")&& (row[p] = Math.round(row[p]))
+        }
+    })
+    console.log(table)
+    return table
+}
+
+
+
+
+module.exports = {groupItemsByMonth,productAverages}

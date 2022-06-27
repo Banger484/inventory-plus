@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { groupOrders, groupSales } from "../utils/remodeledData";
 import {
@@ -7,6 +7,7 @@ import {
   QUERY_ENT_USERS,
   GET_INCOMING_ITEMS,
   GET_OPEN_SALES,
+  GET_THEME
 } from "../utils/queries";
 import auth from "../utils/auth";
 import { Route, Routes } from "react-router-dom";
@@ -35,6 +36,7 @@ import ReportingDashboard from "../components/Reporting/ReportingDashboard";
 import ProductReport from "../components/Reporting/ProductReport";
 import { MonthlyAnalysis } from "../components/Reporting/MonthlyAnalysis";
 import { Charts } from "../components/Reporting/Charts";
+import { FullReport } from "../components/Reporting/FullReport";
 
 //Users
 import UserDashboard from "../components/Users/UserDashboard";
@@ -44,9 +46,24 @@ import Roster from "../components/Users/Roster";
 import { Settings } from "../components/Users/Settings";
 
 const Home = ({ handleThemeChange }) => {
+
   // getting logged in user
   const user = auth.getProfile();
+  console.log(user.data)
   console.log("user info here", user.data.enterprise);
+
+  const {data:themeData,loading:themeLoading} = useQuery(GET_THEME,{variables:{userId:user.data._id}})
+
+  useEffect(()=>{
+    console.log("theme",themeData)
+    if(themeLoading||!themeData.getTheme){
+      return
+    }
+    
+    handleThemeChange(themeData.getTheme,true)
+  },[themeData])
+
+
   // making queries
   const {
     loading: enterpriseLoading,
@@ -163,7 +180,7 @@ const Home = ({ handleThemeChange }) => {
                 />
                 <Route
                   path="/users/settings"
-                  element={<Settings handleThemeChange={handleThemeChange} />}
+                  element={<Settings user={user} handleThemeChange={handleThemeChange} />}
                 />
                 <Route
                   path="/orders/purchase-order"
@@ -254,6 +271,10 @@ const Home = ({ handleThemeChange }) => {
                 <Route
                   path="/reporting/charts"
                   element={<Charts enterpriseId={enterpriseId} />}
+                />
+                <Route
+                  path="/reporting/fullReport"
+                  element={<FullReport enterpriseId={enterpriseId} />}
                 />
               </Routes>
             )}
