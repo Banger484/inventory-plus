@@ -39,7 +39,8 @@ const UserSchema = new Schema({
   },
   theme:{
     type:String
-  }
+  },
+  avatar:String
 });
 
 // set up pre-save middleware to create password

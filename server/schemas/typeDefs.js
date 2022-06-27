@@ -46,6 +46,7 @@ type User {
     enterprise: Enterprise
     role: String
     disabled: Boolean
+    avatar: String
   }
 
   type Product {
@@ -193,6 +194,7 @@ type User {
     toggleUser(id:ID!):String
     toggleProduct(id:ID!):String
     setTheme(userId:ID!,theme:String):String
+    setAvatar(userId:ID!,avatar:String):String
   }
 
 
