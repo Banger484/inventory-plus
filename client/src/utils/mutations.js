@@ -287,3 +287,10 @@ mutation Mutation($userId: ID!, $theme: String) {
   setTheme(userId: $userId, theme: $theme)
 }
 `
+
+export const ADD_AVATAR = gql`
+mutation Mutation($userId: ID!, $avatar: String) {
+  setAvatar(userId: $userId, avatar: $avatar)
+}
+
+`
