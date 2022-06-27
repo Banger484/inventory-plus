@@ -34,6 +34,16 @@ export default function ReportingDashboard () {
                 </div>
             </div>
             </Link>
+            <Link className='dash-grid-main gi-4' to="/reporting/fullReport">
+            <div className='task'>
+                <div className='task-header'>
+                    <h2>Extended Report</h2>
+                </div>
+                <div className='task-image'>
+                <img className="button-icon" src="/images/icons/reporting2.png" alt='icon'/>
+                </div>
+            </div>
+            </Link>
         </section>
     )
 }

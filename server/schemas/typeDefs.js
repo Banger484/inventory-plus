@@ -127,6 +127,14 @@ type User {
     quantity:Int
   }
 
+  type AverageRow {
+    period:String
+    numberPurchased:Int
+    numberSold:Int
+    totalCost:Int
+    totalIncome:Int
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -159,7 +167,8 @@ type User {
     allPastPurchases(enterpriseId:ID!):[StockQuantity]
     pastSuppliers(enterpriseId:ID!,productId:ID!):[Supplier]
     pastBuyers(enterpriseId:ID!,productId:ID!):[Buyer]
-
+    productAverages(enterpriseId:ID!,productId:ID!):[AverageRow]
+    getTheme(userId:ID!):String
   }
 
   type Mutation {
@@ -183,6 +192,7 @@ type User {
     purchaseProducts(orderNumber:Int!,enterpriseId:ID!,purchaseDate:String!,supplier:String!,products:[ProductOrder]):String
     toggleUser(id:ID!):String
     toggleProduct(id:ID!):String
+    setTheme(userId:ID!,theme:String):String
   }
 
 

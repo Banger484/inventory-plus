@@ -62,7 +62,7 @@ query Query($all: Boolean) {
 `
 
 export const QUERY_SINGLE_PRODUCT = gql`
-query Query($singleProductId: ID!) {
+query SingleProduct($singleProductId: ID!) {
   singleProduct(id: $singleProductId) {
     _id
     sku
@@ -71,6 +71,8 @@ query Query($singleProductId: ID!) {
     msrp
     category
     notes
+    disabled
+    imageKey
   }
 }
 `
@@ -393,5 +395,23 @@ query PastBuyers($enterpriseId: ID!, $productId: ID!) {
     buyer
     quantity
   }
+}
+`
+
+export const PRODUCT_AVERAGES = gql`
+query Query($enterpriseId: ID!, $productId: ID!) {
+  productAverages(enterpriseId: $enterpriseId, productId: $productId) {
+    period
+    numberPurchased
+    numberSold
+    totalCost
+    totalIncome
+  }
+}
+`
+
+export const GET_THEME = gql`
+query Query($userId: ID!) {
+  getTheme(userId: $userId)
 }
 `

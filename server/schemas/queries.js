@@ -97,11 +97,15 @@ const getAllUsers = async ()=>{
     return users
 }
 
-
+const getTheme = async (parent,{userId})=>{
+    const user = await User.findById(userId);
+    const theme = user.theme;
+    return theme
+}
 
 
 // Exports functions 
-module.exports = {getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
+module.exports = {getTheme,getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
 
 
 

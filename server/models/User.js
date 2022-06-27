@@ -36,6 +36,9 @@ const UserSchema = new Schema({
   disabled:{
     type:Boolean,
     default:false
+  },
+  theme:{
+    type:String
   }
 });
 

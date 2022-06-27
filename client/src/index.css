@@ -5,6 +5,7 @@
   --middle-dark: #242526;
   --darkest: #171717;
   --main-font:'Comfortaa', cursive;
+
 }
 * {
   font-family: var(--main-font)
@@ -21,6 +22,12 @@ html {
   width: 0;  
   background: transparent;  
 }
+
+#root,#root>div,.container,body{
+  height: 100% !important;
+}
+
+
 body {
   margin: 0;
   background-color: var(--middle-light);
@@ -28,6 +35,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  height: 100%;
+  padding-bottom: 25px;
 }
 
 code {
@@ -43,6 +52,7 @@ code {
   padding: 40px;
   padding-bottom: 80px;
   align-items: center;
+  text-align: center;
 }
 
 .loginCard, .signupCard {
@@ -192,7 +202,9 @@ button:hover {
   margin:20px auto;
 }
 
-
+input[type="submit"],button{
+  cursor: pointer;
+}
 
 
 
