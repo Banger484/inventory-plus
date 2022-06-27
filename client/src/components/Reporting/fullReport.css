@@ -1,0 +1,25 @@
+.report-side-by-side{
+    width:100vw;
+    display:flex
+}
+.report-side-by-side>section{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.report-side-by-side h1{
+    text-align: center;
+}
+
+.report-side-by-side img{
+    width:30vw;
+    /* height:30vh; */
+}
+
+.report-side-by-side table{
+    width: 70%;
+}
+

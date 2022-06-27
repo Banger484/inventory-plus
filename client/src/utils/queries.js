@@ -62,7 +62,7 @@ query Query($all: Boolean) {
 `
 
 export const QUERY_SINGLE_PRODUCT = gql`
-query Query($singleProductId: ID!) {
+query SingleProduct($singleProductId: ID!) {
   singleProduct(id: $singleProductId) {
     _id
     sku
@@ -71,6 +71,8 @@ query Query($singleProductId: ID!) {
     msrp
     category
     notes
+    disabled
+    imageKey
   }
 }
 `
@@ -350,3 +352,66 @@ query Query($enterpriseId: ID!) {
   }
 }
 `;
+
+export const CURRENT_STOCK_QUANTITIES = gql`
+query CurrentStocksQuantity($enterpriseId: ID!) {
+  currentStocksQuantity(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const PAST_SALES_QUANTITIES = gql`
+query CurrentStocksQuantity($enterpriseId: ID!) {
+  pastSalesQuantity(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const ALL_PURCHASES = gql`
+query AllPastPurchases($enterpriseId: ID!) {
+  allPastPurchases(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const PAST_SUPPLIERS = gql`
+query PastSuppliers($enterpriseId: ID!, $productId: ID!) {
+  pastSuppliers(enterpriseId: $enterpriseId, productId: $productId) {
+    supplier
+    quantity
+  }
+}
+`
+
+export const PAST_BUYERS = gql`
+query PastBuyers($enterpriseId: ID!, $productId: ID!) {
+  pastBuyers(enterpriseId: $enterpriseId, productId: $productId) {
+    buyer
+    quantity
+  }
+}
+`
+
+export const PRODUCT_AVERAGES = gql`
+query Query($enterpriseId: ID!, $productId: ID!) {
+  productAverages(enterpriseId: $enterpriseId, productId: $productId) {
+    period
+    numberPurchased
+    numberSold
+    totalCost
+    totalIncome
+  }
+}
+`
+
+export const GET_THEME = gql`
+query Query($userId: ID!) {
+  getTheme(userId: $userId)
+}
+`

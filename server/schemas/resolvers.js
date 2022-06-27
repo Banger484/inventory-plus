@@ -1,12 +1,13 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Enterprise, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const {getAllUsers,getStockGuide,singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getCompletedSales,getInventory} = require("./queries")
+const {getTheme,getAllUsers,getStockGuide,singleProduct,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getCompletedSales,getInventory} = require("./queries")
 const mutations = require('../schemas/mutation');
 const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
 const {orderDetails} = require("../analysis/orderAnalysis")
-const {groupItemsByMonth} = require("../analysis/monthlyAnalysis")
+const {productAverages,groupItemsByMonth} = require("../analysis/monthlyAnalysis")
+const {allPastPurchases,currentStocksQuantity,pastSalesQuantity,pastSuppliers,pastBuyers} = require("../analysis/currentStocks")
 
 const resolvers = {
   Query: {
@@ -82,7 +83,14 @@ const resolvers = {
     getInventory,
     getStockGuide,
     groupItemsByMonth,
-    getAllUsers
+    getAllUsers,
+    currentStocksQuantity,
+    pastSalesQuantity,
+    allPastPurchases,
+    pastSuppliers,
+    pastBuyers,
+    productAverages,
+    getTheme
   },
 
   Mutation: {

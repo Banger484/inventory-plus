@@ -339,3 +339,29 @@ export const formatSales = (sales)=>{
     }
     return array
 }
+
+export const calculateAdditionalPropertiesForMonth = (monthArray)=>{
+  monthArray.forEach(m=>{
+    m.netSalesIncome = m.totalIncome - m.totalCost
+    console.log(m)
+  }
+  )
+  return monthArray
+}
+
+export const otherizeArray = (arr,num,nameKey,valueKey)=>{
+  
+  const newArray = []
+  const other = {[nameKey]:"Other",[valueKey]:0};
+  for (let i=0;i<arr.length;i++){
+    if (i<num){
+      newArray.push(arr[i])
+    }else{
+      other[valueKey]+=arr[i][valueKey]
+    }
+  }
+  if(other[valueKey]>0){
+    newArray.push(other)
+  }
+  return newArray
+}

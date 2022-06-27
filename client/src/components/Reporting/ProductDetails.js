@@ -32,10 +32,10 @@ export default function ProductDetails ({enterpriseId,productId}){
     return(
         <>
         <table className=".analysis-table product-list-table p-details">
-
+        
         {analysisArray.map((array,index)=>{
             return(<tr>
-              <td>{t(array[0])}</td><td>{array[1]}</td>    
+              <td>{t(array[0])}</td><td>{t(array[1],array[0])}</td>    
           </tr>)
         })}
         </table>
