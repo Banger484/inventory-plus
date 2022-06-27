@@ -7,6 +7,7 @@ const bulkMutations = require("./bulkmutations")
 const {generateProductReport} = require("../analysis/productAnalysis")
 const {orderDetails} = require("../analysis/orderAnalysis")
 const {groupItemsByMonth} = require("../analysis/monthlyAnalysis")
+const {allPastPurchases,currentStocksQuantity,pastSalesQuantity,pastSuppliers,pastBuyers} = require("../analysis/currentStocks")
 
 const resolvers = {
   Query: {
@@ -82,7 +83,12 @@ const resolvers = {
     getInventory,
     getStockGuide,
     groupItemsByMonth,
-    getAllUsers
+    getAllUsers,
+    currentStocksQuantity,
+    pastSalesQuantity,
+    allPastPurchases,
+    pastSuppliers,
+    pastBuyers
   },
 
   Mutation: {

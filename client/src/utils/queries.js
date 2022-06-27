@@ -350,3 +350,48 @@ query Query($enterpriseId: ID!) {
   }
 }
 `;
+
+export const CURRENT_STOCK_QUANTITIES = gql`
+query CurrentStocksQuantity($enterpriseId: ID!) {
+  currentStocksQuantity(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const PAST_SALES_QUANTITIES = gql`
+query CurrentStocksQuantity($enterpriseId: ID!) {
+  pastSalesQuantity(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const ALL_PURCHASES = gql`
+query AllPastPurchases($enterpriseId: ID!) {
+  allPastPurchases(enterpriseId: $enterpriseId) {
+    product
+    quantity
+  }
+}
+`
+
+export const PAST_SUPPLIERS = gql`
+query PastSuppliers($enterpriseId: ID!, $productId: ID!) {
+  pastSuppliers(enterpriseId: $enterpriseId, productId: $productId) {
+    supplier
+    quantity
+  }
+}
+`
+
+export const PAST_BUYERS = gql`
+query PastBuyers($enterpriseId: ID!, $productId: ID!) {
+  pastBuyers(enterpriseId: $enterpriseId, productId: $productId) {
+    buyer
+    quantity
+  }
+}
+`

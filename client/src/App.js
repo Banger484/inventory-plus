@@ -61,7 +61,7 @@ function App() {
   }
 
   
-// if (auth.getProfile().data.email==="admin@inventoryplus.com"){
+// if (auth.getProfile().data.email==="npm inventoryplus.com"){
 //   return <ApolloClient client={client}>
 //     <Router>
 //     <div className="flex-column justify-flex-start min-100-vh">

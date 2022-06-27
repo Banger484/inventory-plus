@@ -36,6 +36,49 @@ export const translations = {
     11:"Dec",
     year:"Year",
     totalIncome:"Total Income",
-    
+    startingStock:"Start Stock",
+    endingStock:"End Stock",
+    notes:"Notes",
+    "__typename":" ",
+    numberPurchased:"# Purchased",
+    numberSold: "# Sold",
+    netSalesIncome: "Purchase/Sales Cashflow"
 }
 
+const converters = []
+
+class Converter{
+    constructor(name,conversionFunction){
+        this.name = name
+        this.properties = []
+        this.conversionFunction = conversionFunction
+        converters.push(this)
+    }
+    addProperty(property){
+        this.properties.push(property)
+    }
+    convertValue(property,value){
+        if(!this.properties.includes(property)||(typeof value !== "number")){
+            return value
+        }
+            return this.conversionFunction(value)
+    }
+}
+
+const decimalDollars = new Converter("decimalDollars",(value)=>`$${separator(value.toFixed(2))}`)
+decimalDollars.addProperty("costPerUnit")
+decimalDollars.addProperty("averageSalesPrice")
+decimalDollars.addProperty("averageCost")
+
+const wholeDollars = new Converter("wholeDollars",(value)=>`$${separator(Math.round(value))}`)
+wholeDollars.addProperty("totalIncome")
+wholeDollars.addProperty("totalCost")
+wholeDollars.addProperty("totalSalesRevenue")
+
+export const conversions = converters
+
+function separator(numb) {
+    var str = numb.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return str.join(".");
+}

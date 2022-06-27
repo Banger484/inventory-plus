@@ -46,6 +46,7 @@ export default function AddProduct (props) {
         } catch (err) {
             console.error(err);
         }
+        setImageKey(null)
         setFormData({
             sku: '',
             name: '',
