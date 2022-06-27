@@ -48,7 +48,7 @@ import { Settings } from "../components/Users/Settings";
 const Home = ({ handleThemeChange }) => {
 
   // getting logged in user
-  const user = auth.getProfile();
+  let user = auth.getProfile();
   console.log(user.data)
   console.log("user info here", user.data.enterprise);
 
@@ -133,9 +133,14 @@ const Home = ({ handleThemeChange }) => {
     salesCount = outgoingSales.length;
   }
 
+  const handleHeaderRefresh = ()=>{
+    user = auth.getProfile()
+    console.log(user)
+  }
+
   return (
     <>
-      <Header user={user.data.name} enterprise={enterpriseName} />
+      <Header user={user.data} enterprise={enterpriseName} />
       <Navbar />
       <main className="home-main-content">
         <div>
@@ -180,7 +185,7 @@ const Home = ({ handleThemeChange }) => {
                 />
                 <Route
                   path="/users/settings"
-                  element={<Settings user={user} handleThemeChange={handleThemeChange} />}
+                  element={<Settings handleHeaderRefresh={handleHeaderRefresh} user={user} handleThemeChange={handleThemeChange} />}
                 />
                 <Route
                   path="/orders/purchase-order"
