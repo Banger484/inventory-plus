@@ -5,7 +5,21 @@
   --middle-dark: #242526;
   --darkest: #171717;
   --main-font:'Comfortaa', cursive;
-
+  --header-text:white;
+  --header-sub-text:rgb(177, 192, 90);
+  --nav-background-color:white;
+  --nav-hover:gold;
+  --nav-text-color:gold;
+  --task-header-background:green;
+  --task-header-color:black;
+  --task-body-background:blue;
+  --table-background:grey;
+  --table-header:grey;
+  --table-text-color:black;
+  --input-background:yellow;
+  --input-color:purple;
+  --default-text:red;
+  --chart-text:black;
 }
 * {
   font-family: var(--main-font)
@@ -30,13 +44,14 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--middle-light);
+  background-color: var(--main-bac);
   font-family: var(--main-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   height: 100%;
   padding-bottom: 25px;
+  color:var(--default-text)
 }
 
 code {
@@ -206,7 +221,23 @@ input[type="submit"],button{
   cursor: pointer;
 }
 
+.avatar-cont{
+  border: 3px solid var(--darkest);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--middle);
+  box-shadow: 1px 1px 3px var(--darkest);
+  display: flex;
+  align-items: center;;
+  justify-content: center;
+}
 
+#avatar-image, .avatar-image{
+  height: 55px;
+  width: 55px;
+  /* border-radius: 50%; */
+}
 
 
 

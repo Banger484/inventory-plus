@@ -21,8 +21,8 @@ form {
     max-width: 100%;
 }
 input {
-    background-color: var(--lightest);
-    color: var(--darkest);
+    background-color: var(--input-background);
+    color: var(--input-color);
     font-size: 16pt;
 }
 #add-product-submit {

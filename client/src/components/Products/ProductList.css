@@ -1,5 +1,5 @@
 .product-list-table {
-    background-color: var(--lightest);
+    background-color: var(--table-background);
     border: 1px solid var(--darkest);
     width: 50vw;
 }

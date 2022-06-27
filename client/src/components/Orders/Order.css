@@ -26,11 +26,12 @@
     font-size: 1.5rem;
 }
 .order-table {
-    background-color: var(--lightest);
+    background-color: var(--table-background);
     width: 100%;
+    color:var(--table-text-color)
 }
 .order-header {
-    background-color: var(--lightest);
+    background-color: var(--table-header);
 }
 .order-header-title {
     background-color: var(--darkest);
