@@ -64,7 +64,7 @@ export default function OrderReceived ({enterpriseId }) {
 
             <input type="date" onChange={handleDateChange}></input>
             <div className="search-bar">
-                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
+                <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             {incomingItemsLoading
         ? <h2>Loading</h2>

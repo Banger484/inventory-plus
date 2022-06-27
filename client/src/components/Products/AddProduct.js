@@ -14,7 +14,7 @@ const addSchema = yup.object().shape({
     name: yup.string().required(),
     description: yup.string().required(),
     msrp: yup.number().required(),
-    category: yup.string().optional(),
+    category: yup.string().required(),
     notes: yup.string().optional(),
   });
 

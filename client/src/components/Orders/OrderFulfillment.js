@@ -57,7 +57,7 @@ export default function OrderFulfillment({ enterpriseId }) {
 
             <input onChange={handleDateChange} type="date"/>
             <div className="search-bar">
-                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
+                <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             {openSaleItemsLoading
                 ? <h2>Loading</h2>
