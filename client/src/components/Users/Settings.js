@@ -4,6 +4,7 @@ import { SET_THEME,ADD_AVATAR } from "../../utils/mutations"
 import { useState } from "react"
 import { DropBox } from "../Tools/DropBox"
 import "../Tools/DropBox.css"
+import './settings.css'
 
 
 export const Settings = ({handleThemeChange,user,handleHeaderRefresh})=>{
