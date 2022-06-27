@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'
 export default function ReportingDashboard () {
     return (
         <section className='grid-container'>
-            {/* <Link className='task-links' to="/reporting/current-supply">
+            <Link className='dash-grid-main gi-1' to="/reporting/charts">
             <div className='task'>
                 <div className='task-header'>
-                    <h2>Current Supply</h2>
+                    <h2>Charts</h2>
                 </div>
                 <div className='task-image'>
-                <img className="button-icon" src="/images/icons/table2.png" alt='icon'/>
+                <img className="button-icon" src="/images/icons/reporting2.png" alt='icon'/>
                 </div>
             </div>
-            </Link> */}
+            </Link>
             <Link className='dash-grid-main gi-2' to="/reporting/product">
             <div className='task'>
                 <div className='task-header'>
