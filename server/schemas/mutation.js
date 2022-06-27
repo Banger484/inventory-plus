@@ -181,6 +181,12 @@ const mutation = {
       user.theme = theme;
       user.save();
       return "success"
+  },
+  setAvatar: async (parent,{userId,avatar})=>{
+    const user = await User.findById(userId);
+    user.avatar = avatar;
+    user.save();
+    return "success"
   }
 };
 
