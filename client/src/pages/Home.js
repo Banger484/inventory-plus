@@ -140,7 +140,9 @@ const Home = ({ handleThemeChange }) => {
 
   const [avatarPic,setNewAvatarPic] = useState(user.data.avatar)
 
+
   const handleAvatarPicChange = (key)=>{
+    console.log("pick changed!")
     setNewAvatarPic(key)
   }
 
