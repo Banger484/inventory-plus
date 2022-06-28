@@ -212,11 +212,3 @@ export  const themes = {
         "--add-product-text":"  var(--main-text)"},
 }
 
-// --main-text: hsl(199deg 7% 89%);
-//     --main-background: hsl(221deg 49% 8%);
-//     --card-background: hsl(221deg 20% 16%);
-//     --middle-dark: rgb(146 177 177);
-//     --middle-dark: rgb(68 102 102);
-//     --darkest: #849e6e;
-//     --poppin-border: rgb(218, 177, 89);
-//     --main-font: "Josefin Sans", sans-serif;
