@@ -3,8 +3,7 @@
 import './Header.css'
 import React from 'react'
 import Icon from './Icon'
-// import { useQuery } from '@apollo/client'
-// import { GET_AVATAR } from '../../utils/queries'
+import { Link } from 'react-router-dom'
 
 // Export function to display header of application with welcome enterprise and user. Displays application logo and name as well.
 export default function Header({avatarPic,user,enterprise}) {
@@ -17,17 +16,18 @@ export default function Header({avatarPic,user,enterprise}) {
 
   return (
     <header className='header-grid'>
-        <div className='header-avatar'>
-        {user.avatar?(<div className='avatar-cont'><img id="avatar-image" className='avatar-image' src={`/images/${avatarPic}`}/></div>):(<img src='/images/icons/avatar.png' alt='your avatar'/>)}
-        </div>
-        <div className='header-welcome'>
+        <Link className='header-avatar' to='/users/settings'>
+        {user.avatar?(<img alt='avatar' className='avatar-image' src={`/images/${user.avatar}`}/>):(<img src='/images/icons/avatar.png' alt='your avatar'/>)}
+        </Link>
+        
+        <Link className='header-welcome' to='users/roster'>
         <h1>{enterprise}</h1>
         <p>Welcome, {user.name}.</p>
-        </div>
-        <div className='header-logo'>
+        </Link>
+        <Link to='/' className='header-logo'>
         <Icon /> 
         <h1>Inventory+</h1>
-        </div>
+        </Link>
 
 
     </header>

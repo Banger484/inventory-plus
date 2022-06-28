@@ -10,7 +10,7 @@ const S3 = require("aws-sdk/clients/s3")
 const bucketName = "inventoryplus"
 const region = "us-east-2"
 const accessKeyId = "AKIASDTCYWN37XY53C6T"
-const secretAccessKey = "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";
+const secretAccessKey = process.env.AWS_SECRET_KEY;
 
 
 

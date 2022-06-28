@@ -248,12 +248,6 @@ input[type="submit"],button{
   justify-content: center;
 }
 
-#avatar-image, .avatar-image{
-  height: 55px;
-  width: 55px;
-  /* border-radius: 50%; */
-}
-
 thead{
   background: var(--table-header);
   color:var(--table-header-text)

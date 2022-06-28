@@ -4,7 +4,7 @@ import { SET_THEME,ADD_AVATAR } from "../../utils/mutations"
 import { useState } from "react"
 import { DropBox } from "../Tools/DropBox"
 import "../Tools/DropBox.css"
-
+import './settings.css'
 
 
 export const Settings = ({handleThemeChange,user,handleAvatarPicChange})=>{
@@ -18,7 +18,7 @@ const handleThemeChangeAndSetThemeForUser = async (e)=>{
     const variables = {userId,theme:e.target.value};
     const resp = await setTheme({variables})
 }
-
+console.log('user', user.data);
 const handleDropBoxDrop = async (key)=>{
     console.log(key);
     setAvatar(key);
@@ -32,21 +32,34 @@ const handleRenderDropBox = ()=>{
  
     return (
         <div className="settings-menu">
-            <select onChange={handleThemeChangeAndSetThemeForUser}>
+            <div className="settings-header">
+                <h1>Preferences</h1>
+            </div>
+                <h2>User Information</h2>
+                <h3>Name: {user.data.name}</h3>
+                <h3>Email: {user.data.email}</h3>
+                <h2>Profile Picture</h2>
+                {avatar?(<>
+                <div>
+
+                <img className="avatar-image-settings" src={"/images/"+avatar}/>
+                </div>
+                <button className="set-avatar" onClick={handleRenderDropBox}>Set New Avatar</button>
+                </>
+                ):(
+                <div className="drop-container">
+                    <DropBox imageKey={avatar} setImageKey={handleDropBoxDrop}/>
+                </div>
+
+                )}
+                <h3>
+                    Select your preferred theme.
+                </h3>
+                <select onChange={handleThemeChangeAndSetThemeForUser}>
                 {Object.keys(themes).map(k=>{
                     return(<option value={k}>{k}</option>)
                 })}
                 </select>
-                {avatar?(<>
-                <div className="avatar-cont">
-
-                <img className="avatar-image" src={"/images/"+avatar}/>
-                </div>
-                <button onClick={handleRenderDropBox}>Set New Avatar</button>
-                </>
-                ):(
-                <DropBox imageKey={avatar} setImageKey={handleDropBoxDrop}/>
-                )}
         </div>
     )
 }
