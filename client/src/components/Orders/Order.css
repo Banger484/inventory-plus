@@ -1,11 +1,10 @@
 .table-top {
     height: 5vh;
-    background-color: var(--lightest);
+    background-color: var(--table-top);
     display: flex;
     justify-content: space-between;
-    background-color: var(--darkest);
     align-items: center;
-    color: var(--lightest);
+    color: var(--table-top-text);
     max-width: 100%;
     padding: 20px 2%
 }
@@ -26,11 +25,13 @@
     font-size: 1.5rem;
 }
 .order-table {
-    background-color: var(--lightest);
+    background-color: var(--table-background);
     width: 100%;
+    color:var(--table-text-color)
 }
 .order-header {
-    background-color: var(--lightest);
+    background-color: var(--table-header);
+    color:var(--table-header-text)
 }
 .order-header-title {
     background-color: var(--darkest);

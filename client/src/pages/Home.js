@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { groupOrders, groupSales } from "../utils/remodeledData";
 import {
@@ -138,9 +138,15 @@ const Home = ({ handleThemeChange }) => {
     console.log(user)
   }
 
+  const [avatarPic,setNewAvatarPic] = useState(user.data.avatar)
+
+  const handleAvatarPicChange = (key)=>{
+    setNewAvatarPic(key)
+  }
+
   return (
     <>
-      <Header user={user.data} enterprise={enterpriseName} />
+      <Header avatarPic={avatarPic} user={user.data} enterprise={enterpriseName} />
       <Navbar />
       <main className="home-main-content">
         <div>
@@ -185,7 +191,7 @@ const Home = ({ handleThemeChange }) => {
                 />
                 <Route
                   path="/users/settings"
-                  element={<Settings handleHeaderRefresh={handleHeaderRefresh} user={user} handleThemeChange={handleThemeChange} />}
+                  element={<Settings handleAvatarPicChange={handleAvatarPicChange} user={user} handleThemeChange={handleThemeChange} />}
                 />
                 <Route
                   path="/orders/purchase-order"

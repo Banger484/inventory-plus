@@ -49,15 +49,15 @@
 }
 
 .task-header {
-    background-color: var(--darkest);
+    background-color: var(--task-header-background);
     height: 25%;
-    color: var(--lightest);
+    color: var(--task-header-color);
     text-align: center;
 }
 
 .task-image {
     height: 75%;
-    background-color: var(--lightest);
+    background-color: var(--task-body-background);
     display: flex;
     justify-content: center;
     align-items: center;

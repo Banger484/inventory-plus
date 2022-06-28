@@ -1,5 +1,5 @@
 .mini-nav {
-    background-color: var(--darkest);
+    background-color: var(--nav-background-color);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -9,13 +9,14 @@
 }
 
 .mini-nav-buttons {
-    background-color: var(--darkest);
+    background-color: transparent;
     color: var(--lightest);
     border: none;
     padding:5px;
     font-size: 15pt;
+    color:var(--nav-text-color)
 }
 .mini-nav-buttons:hover {
     cursor: pointer;
-    background-color: var(--darkest);
+    background-color: var(--nav-hover);
 }
