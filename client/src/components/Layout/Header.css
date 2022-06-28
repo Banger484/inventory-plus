@@ -6,6 +6,7 @@ header {
     grid-template-columns: 1fr 3fr 2fr 3fr 1fr;
     grid-template-rows: 1fr;
 }
+
 .header-avatar {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -14,8 +15,12 @@ header {
     align-items: center;
 }
 .header-avatar img {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
+}
+.avatar-image {
+    border-radius: 50%;
+    border: 1px solid var(--darkest);
 }
 .header-welcome {
     grid-column-start: 2;

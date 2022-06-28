@@ -89,13 +89,13 @@ export default function StockGuide(props) {
               return (
                 <tr data-pid={product._id} key={index}>
                   <td>{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
-                  <td data-pid={product._id}>{product.sku}</td>
-                  <td data-pid={product._id}>{product.name}</td>
-                  <td data-pid={product._id}>{product.description}</td>
-                  <td data-pid={product._id}>${product.msrp}</td>
-                  <td data-pid={product._id}>{product.category}</td>
-                  <td data-pid={product._id}>
-                    <input
+                  <td className="td-1" data-pid={product._id}>{product.sku}</td>
+                  <td className="td-3" data-pid={product._id}>{product.name}</td>
+                  <td className="td-3" data-pid={product._id}>{product.description}</td>
+                  <td className="td-1" data-pid={product._id}>${product.msrp}</td>
+                  <td className="td-1" data-pid={product._id}>{product.category}</td>
+                  <td className='td-1'data-pid={product._id}>
+                    <input className="td-1"
                       data-index={index}
                       name="par"
                       type="number"

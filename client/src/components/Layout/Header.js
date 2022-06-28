@@ -3,23 +3,25 @@
 import './Header.css'
 import React from 'react'
 import Icon from './Icon'
+import { Link } from 'react-router-dom'
 
 // Export function to display header of application with welcome enterprise and user. Displays application logo and name as well.
 export default function Header({user,enterprise}) {
   
   return (
     <header className='header-grid'>
-        <div className='header-avatar'>
+        <Link className='header-avatar' to='/users/settings'>
         {user.avatar?(<div className='avatar-cont'><img id="avatar-image" className='avatar-image' src={`/images/${user.avatar}`}/></div>):(<img src='/images/icons/avatar.png' alt='your avatar'/>)}
-        </div>
-        <div className='header-welcome'>
+        </Link>
+        
+        <Link className='header-welcome' to='users/roster'>
         <h1>{enterprise}</h1>
         <p>Welcome, {user.name}.</p>
-        </div>
-        <div className='header-logo'>
+        </Link>
+        <Link to='/' className='header-logo'>
         <Icon /> 
         <h1>Inventory+</h1>
-        </div>
+        </Link>
 
 
     </header>
