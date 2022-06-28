@@ -170,6 +170,7 @@ type User {
     pastBuyers(enterpriseId:ID!,productId:ID!):[Buyer]
     productAverages(enterpriseId:ID!,productId:ID!):[AverageRow]
     getTheme(userId:ID!):String
+    getAvatar(userId:ID!):String
   }
 
   type Mutation {

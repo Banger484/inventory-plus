@@ -1,7 +1,7 @@
 header {
-    background-color: var(--lightest);
+    background-color: var(--header-background);
     height: 12vh;
-    color: var(--darkest);
+    color: var(--header-text);
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 3fr 1fr;
     grid-template-rows: 1fr;
@@ -43,12 +43,12 @@ header h1 {
     font-weight: bolder;
     font-size: 2.5rem;
     margin: 0;
-    color: var(--darkest)!important;
+    color: var(--header-text)!important;
 }
 header p {
     font-size: 1.2rem;
     margin: 0;
-    color: var(--darkest)!important;
+    color: var(--header-sub-text)!important;
 }
 .header-linker {
     display: none;

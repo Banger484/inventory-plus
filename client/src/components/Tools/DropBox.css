@@ -7,8 +7,8 @@
     height: 100px;
     width: 100%;
     /* background: red; */
-    color: var(--darkest);
-    border: 5px dotted var(--middle-dark);
+    color: var(--poppin-border);
+    border: 5px dotted var(--poppin-border);
     box-sizing: border-box;
     text-align: center;
     position:relative

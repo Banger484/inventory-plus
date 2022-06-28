@@ -1,6 +1,6 @@
 .table-top-og {
-    background-color: var(--darkest);
-    color: var(--lightest);
+    background-color: var(--table-top);
+    color: var(--table-top-text);
     width: 100%;
     display: flex;
     justify-content: center;
