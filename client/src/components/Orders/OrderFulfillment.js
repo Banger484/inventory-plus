@@ -7,6 +7,7 @@ import { FULFILL_ITEMS } from "../../utils/mutations";
 import { useState } from "react";
 import { stringifyProperties } from "../../utils/filter";
 
+
 export default function OrderFulfillment({ enterpriseId }) {
 
     const [fulfillSale, { error }] = useMutation(FULFILL_ITEMS)
@@ -54,10 +55,13 @@ export default function OrderFulfillment({ enterpriseId }) {
             <div className="table-top rec-order-tt">
             <h1>Fulfill Sale</h1>
             </div>
-
+            <div className="infobar">
+            <div className="date-picker"></div>
             <input onChange={handleDateChange} type="date"/>
+            
             <div className="search-bar">
                 <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
+            </div>
             </div>
             {openSaleItemsLoading
                 ? <h2>Loading</h2>

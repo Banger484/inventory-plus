@@ -18,6 +18,7 @@
     align-items: center;
     text-align: center;
     margin-top: 40px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .add-user-section input{
@@ -27,7 +28,7 @@
     text-align: center;
 }
 
-#addUserButton{
+.add-user-section button{
     font-size: 1.5rem;
     padding: 10px;
     margin-top: 10px;
@@ -35,3 +36,7 @@
     color: var(--lightest);
     background-color: var(--darkest);
 }
+
+.add-user-section button:hover {
+    color: orange;
+    }

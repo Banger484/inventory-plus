@@ -29,7 +29,7 @@ export default function AddUser () {
             <form ref={form} onSubmit= {sendEmail}>
                 <input name="user_email" type="email" placeholder="Email Address..."></input>
                 <input name="enterpriseId" type="hidden" value={link}></input>
-                <button id= "addUserButton"type='submit' value="Send">Send Invite</button>
+                <button type='submit' value="Send">Send Invite</button>
             </form>
         </div>
     )
