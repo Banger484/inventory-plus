@@ -137,5 +137,50 @@ export  const themes = {
     "--big-button-background":"rgb(38, 25, 68)",
     "--big-button-text":"white",
     "--report-text":"white"},
+    elite:{  
+        "--main-text": "hsl(199deg 7% 89%)",
+        "--main-background": "hsl(221deg 49% 8%)",
+        "--card-background": "hsl(246deg 12% 47%)",
+        "--middle-dark": "rgb(146 177 177)",
+        "--middle-dark": "rgb(68 102 102)",
+        "--darkest": "#849e6e",
+        "--poppin-border": "rgb(218, 177, 89)",
+        "--main-font": "monotype",
+        "--lightest":" var(--card-background)",
+        "--middle-light":"var(--card-background) ",
+        "--middle":" var(--card-background)",
+        "--main-background-text":"var(--card-background)",
+        "--header-background":"var(--card-background)",
+        "--header-text":"  var(--main-text)",
+        "--header-sub-text":"  var(--main-text)",
+        "--nav-background-color":"  var(--main-text)",
+        "--nav-hover":"  var(--main-text)",
+        "--nav-text-color":"var(--card-background)",
+        "--task-header-background":"  var(--main-text)",
+        "--task-header-color":"var(--card-background)",
+        "--task-body-background":"var(--card-background)",
+        "--table-background":"var(--card-background)",
+        "--table-header":"var(--card-background)",
+        "--table-header-text":"  var(--main-text)",
+        "--table-text-color":"  var(--main-text)",
+        "--input-background":"var(--card-background)",
+        "--input-color":"var(--main-text)",
+        "--default-text":"var(--main-text)",
+        "--chart-text":"  hsl(199deg 100% 9%)",
+        "--table-top":"  var(--main-text)",
+        "--table-top-text":"var(--card-background)",
+        "--big-button-background":"  var(--main-text)",
+        "--big-button-text":"var(--card-background)",
+        "--report-text":"  var(--middle-dark)",
+        "--add-product-background":"var(--card-background)",
+        "--add-product-text":"  var(--main-text)"},
 }
 
+// --main-text: hsl(199deg 7% 89%);
+//     --main-background: hsl(221deg 49% 8%);
+//     --card-background: hsl(221deg 20% 16%);
+//     --middle-dark: rgb(146 177 177);
+//     --middle-dark: rgb(68 102 102);
+//     --darkest: #849e6e;
+//     --poppin-border: rgb(218, 177, 89);
+//     --main-font: "Josefin Sans", sans-serif;

@@ -1,6 +1,5 @@
 header {
     background-color: var(--header-background);
-    height: 12vh;
     color: var(--header-text);
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 3fr 1fr;
@@ -13,11 +12,12 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    height:80px;
 }
 
 .avatar-image {
-    height: 100px;
-    width: 100px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     /* border: 1px solid var(--darkest); */
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);

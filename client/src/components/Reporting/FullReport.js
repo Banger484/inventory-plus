@@ -91,7 +91,7 @@ export const FullReport = ({enterpriseId})=>{
         <>
                 <div  className="product-selector-cont">
         <select value={productId} onChange={handleProductChange}>
-
+        {!productId?<option value={null}>Pick a Product</option>:null}
             {products.map(p=>{
                     return(
                         <option value={p._id}>{p.name}</option>
