@@ -103,9 +103,15 @@ const getTheme = async (parent,{userId})=>{
     return theme
 }
 
+const getAvatar = async (parent,{userId})=>{
+    const user = await User.findById(userId);
+    const avatar = user.avatar;
+    return avatar
+}
+
 
 // Exports functions 
-module.exports = {getTheme,getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
+module.exports = {getAvatar,getTheme,getAllUsers,getStockGuide,getEnterpriseUsers,getItemsByOrderNumber,getOrderedItems,getCurrentStocks,getOpenSales,getFulfilledItems,getOrderedItemsByProduct,getCurrentStocksByProduct,getOpenSalesByProduct,getFulfilledItemsByProduct,getOneItemInStock, getCompletedSales, getInventory,singleProduct}
 
 
 

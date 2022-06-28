@@ -92,7 +92,7 @@ export default function AddProduct (props) {
                 <div className='add-product-form'>
                 <label htmlFor='sku'>SKU:<input name='sku' value={formData.sku} type='text' {...register("sku")} onChange={handleInputChange}/></label>
                 <label htmlFor='name'>Product Name:<input name='name' value={formData.name} type='text' {...register("name")} onChange={handleInputChange}/></label>
-                <label htmlFor='description'>Description:<input name='description' value={formData.description} type='text' {...register("description")} onChange={handleInputChange}/></label>
+                <label htmlFor='description'>Desc.:<input name='description' value={formData.description} type='text' {...register("description")} onChange={handleInputChange}/></label>
                 <label htmlFor='msrp'>MSRP:<input name='msrp' value={formData.msrp} type='number' {...register("msrp")} onChange={handleInputChange}/></label>
                 <label htmlFor='category'>Category:<input name='category' value={formData.category} type='text' {...register("category")} onChange={handleInputChange}/></label>
                 <label htmlFor='notes'>Notes:<input name='notes' value={formData.notes} type='text' {...register("notes")} onChange={handleInputChange}/></label>
