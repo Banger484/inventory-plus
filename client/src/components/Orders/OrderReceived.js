@@ -61,8 +61,9 @@ export default function OrderReceived ({enterpriseId }) {
             <div className="table-top rec-order-tt">
             <h1>Receive Order</h1>
             </div>
-
+            <div className="date-picker">
             <input type="date" onChange={handleDateChange}></input>
+            </div>
             <div className="search-bar">
                 <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
