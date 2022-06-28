@@ -21,7 +21,7 @@ const FullReportInside = ({enterpriseId,productId})=>{
     const product = data.singleProduct
     console.log("product",product)
 return(
-    <main>
+    <main className="full-report">
 
     <div className="report-side-by-side">
         <section className="left">
@@ -91,7 +91,7 @@ export const FullReport = ({enterpriseId})=>{
         <>
                 <div  className="product-selector-cont">
         <select value={productId} onChange={handleProductChange}>
-            <option value={null}>Pick a Product</option>
+
             {products.map(p=>{
                     return(
                         <option value={p._id}>{p.name}</option>

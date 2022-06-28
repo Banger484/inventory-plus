@@ -51,6 +51,7 @@
 .legend{
     display: flex;
     justify-content: center;
+    color:var(--main-background-text)
 }
 
 .legend-div{

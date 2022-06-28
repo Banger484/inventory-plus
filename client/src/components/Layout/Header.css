@@ -1,7 +1,7 @@
 header {
-    background-color: var(--lightest);
+    background-color: var(--header-background);
     height: 12vh;
-    color: var(--darkest);
+    color: var(--header-text);
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 3fr 1fr;
     grid-template-rows: 1fr;
