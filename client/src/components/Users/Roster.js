@@ -6,7 +6,7 @@ import "./Roster.css";
 import { REMOVE_USER } from "../../utils/mutations";
 
 //exports function to render employee roster
-export default function Roster({ roster, rosterRefetch }) {
+export default function Roster({ roster, rosterRefetch, enterprise }) {
   const [userList, setUserList] = useState(roster);
   const [removeUser, { error }] = useMutation(REMOVE_USER);
 
@@ -31,7 +31,7 @@ export default function Roster({ roster, rosterRefetch }) {
       //HTML for employee roster
         <div className='employee-roster-cont'>
           <div className="table-top rec-order-tt">
-            <h1>Employee Roster</h1>
+            <h1>{enterprise} - Employee Roster</h1>
           </div>
 
             {userList.map((u,i)=>{

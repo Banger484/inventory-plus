@@ -67,11 +67,10 @@ export const DropBox = ({imageKey,setImageKey})=>{
     )
   }
   return(
-    <><div className="drop-zone-cont">
-
-    <div className="drop-zone" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}>
-
-       </div>
+    <>
+    <div className="drop-zone-cont">
+      <div className="drop-zone" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}>
+      </div>
     </div>
     </>
   )
