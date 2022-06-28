@@ -17,7 +17,7 @@ export default function Header({avatarPic,user,enterprise}) {
   return (
     <header className='header-grid'>
         <Link className='header-avatar' to='/users/settings'>
-        {user.avatar?(<div className='avatar-cont'><img id="avatar-image" className='avatar-image' src={`/images/${user.avatar}`}/></div>):(<img src='/images/icons/avatar.png' alt='your avatar'/>)}
+        {user.avatar?(<img alt='avatar' className='avatar-image' src={`/images/${user.avatar}`}/>):(<img src='/images/icons/avatar.png' alt='your avatar'/>)}
         </Link>
         
         <Link className='header-welcome' to='users/roster'>

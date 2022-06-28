@@ -1,5 +1,9 @@
-.avatar-image {
+.avatar-image-settings {
     width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-bottom: 10px;
 }
 .settings-menu {
     background-color: var(--lightest);

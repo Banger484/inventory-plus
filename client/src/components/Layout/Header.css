@@ -14,13 +14,14 @@ header {
     justify-content: center;
     align-items: center;
 }
-.header-avatar img {
+
+.avatar-image {
     height: 100px;
     width: 100px;
-}
-.avatar-image {
     border-radius: 50%;
-    border: 1px solid var(--darkest);
+    /* border: 1px solid var(--darkest); */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 }
 .header-welcome {
     grid-column-start: 2;
@@ -50,9 +51,7 @@ header p {
     margin: 0;
     color: var(--header-sub-text)!important;
 }
-.header-linker {
-    display: none;
-}
+
 @media screen and (max-width:750px) {
     header{
         height: 9vh;

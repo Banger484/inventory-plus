@@ -40,9 +40,9 @@ const handleRenderDropBox = ()=>{
                 <h3>Email: {user.data.email}</h3>
                 <h2>Profile Picture</h2>
                 {avatar?(<>
-                <div className="avatar-cont">
+                <div>
 
-                <img className="avatar-image" src={"/images/"+avatar}/>
+                <img className="avatar-image-settings" src={"/images/"+avatar}/>
                 </div>
                 <button className="set-avatar" onClick={handleRenderDropBox}>Set New Avatar</button>
                 </>
