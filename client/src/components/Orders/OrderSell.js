@@ -106,6 +106,7 @@ export default function OrderSell (props) {
             <table className='order-table'>
                 <thead>
                     <tr className="order-header">
+                        <th>Image</th>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
@@ -121,6 +122,7 @@ export default function OrderSell (props) {
                     {tableData.map((product, index) => {
                         return (
                         <tr className={searchedRows.includes(product)?"":"hide"}  data-pid={product._id} key={index}>
+                            <td className="td-2">{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-4" data-pid={product._id}>{product.description}</td>

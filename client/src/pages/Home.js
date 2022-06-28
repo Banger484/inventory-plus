@@ -259,7 +259,7 @@ const Home = ({ handleThemeChange }) => {
                 <Route
                   path="users/roster"
                   element={
-                    <Roster rosterRefetch={rosterRefetch} roster={roster} />
+                    <Roster enterprise={enterpriseName} rosterRefetch={rosterRefetch} roster={roster} />
                   }
                 />
                 <Route path="/reporting" element={<ReportingDashboard />} />

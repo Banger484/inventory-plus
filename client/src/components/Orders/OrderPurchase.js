@@ -166,7 +166,7 @@ export default function OrderPurchase (props) {
                         
                         return (
                         <tr className={searchedRows.includes(product)?"":"hide"} data-pid={product._id} key={index}>
-                            <td>{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
+                            <td className="td-2">{product.imageKey?(<img className='table-image' src={`/images/${product.imageKey}`}/>):null}</td>
                             <td className="td-1" data-pid={product._id}>{product.sku}</td>
                             <td className="td-3" data-pid={product._id}>{product.name}</td>
                             <td className="td-3" data-pid={product._id}>{product.description}</td>
