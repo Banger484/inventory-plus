@@ -6,7 +6,7 @@
     margin-bottom: 10px;
 }
 .settings-menu {
-    background-color: var(--lightest);
+    background-color: var(--middle);
     display: flex;
     flex-direction: column;
     margin: 50px auto;
@@ -28,4 +28,5 @@
 }
 .drop-container {
     width: 50%;
+    background-color: var(--middle-dark);
 }
