@@ -7,7 +7,7 @@
     height: 100px;
     width: 100%;
     /* background: red; */
-    color: var(--lightest);
+    color: var(--darkest);
     border: 5px dotted var(--middle-dark);
     box-sizing: border-box;
     text-align: center;
