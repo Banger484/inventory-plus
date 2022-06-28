@@ -6,10 +6,10 @@
 .add-product-header {
     display: flex;
     justify-content: center;
-    background-color: var(--darkest);
+    background-color: var(--table-top);
 }
 .add-product-header h1 {
-    color: var(--lightest);
+    color: var(--table-top-text);
 }
 
 form {
@@ -17,20 +17,21 @@ form {
 }
 .add-product-form {
     padding: 2%;
-    background-color: var(--lightest);
+    background-color: var(--add-product-background);
     max-width: 100%;
+    color:var(--add-product-color)
 }
 input {
-    background-color: var(--lightest);
-    color: var(--darkest);
+    background-color: var(--input-background);
+    color: var(--input-color);
     font-size: 16pt;
 }
 #add-product-submit {
     height: 100px;
-    background-color: var(--darkest);
-    color: var(--lightest);
+    background-color: var(--big-button-background);
     border: none;
     width: 100%;
+    color:var(--big-button-text)
 }
 label {
     display: flex;

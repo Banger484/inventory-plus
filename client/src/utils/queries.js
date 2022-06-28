@@ -415,3 +415,9 @@ query Query($userId: ID!) {
   getTheme(userId: $userId)
 }
 `
+
+export const GET_AVATAR = gql`
+query Query($userId: ID!) {
+  getAvatar(userId: $userId)
+}
+`

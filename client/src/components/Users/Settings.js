@@ -7,7 +7,7 @@ import "../Tools/DropBox.css"
 
 
 
-export const Settings = ({handleThemeChange,user,handleHeaderRefresh})=>{
+export const Settings = ({handleThemeChange,user,handleAvatarPicChange})=>{
     console.log(user)
 const [avatar,setAvatar] = useState(user.data.avatar)
 const [setTheme,{data:setThemeData,error:setThemeError}] = useMutation(SET_THEME)
@@ -23,7 +23,7 @@ const handleDropBoxDrop = async (key)=>{
     console.log(key);
     setAvatar(key);
     await addAvatar({variables:{avatar:key,userId}})
-    handleHeaderRefresh()
+    handleAvatarPicChange(key)
 }
 
 const handleRenderDropBox = ()=>{

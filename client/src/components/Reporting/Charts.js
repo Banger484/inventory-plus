@@ -52,7 +52,7 @@ return(
 
       
             <select value={productId} onChange={handleProductChange}>
-                <option value={null}>Pick a Product</option>
+                {/* <option value={null}>Pick a Product</option> */}
                 {products.map(p=>{
                     return(
                         <option value={p._id}>{p.name}</option>

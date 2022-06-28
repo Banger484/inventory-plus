@@ -1,11 +1,40 @@
 :root {
-  --lightest: #e2e2e2;
-  --middle-light: #b0b3b8;
-  --middle: #3a3b3c;
-  --middle-dark: #242526;
-  --darkest: #171717;
-  --main-font:'Comfortaa', cursive;
-
+  --main-text:hsl(199, 57%, 39%);
+  --main-background:hsl(221deg 100% 96%);
+  --card-background:hsl(221deg 100% 90%);
+  --middle-dark: rgb(36, 38, 38);
+  --darkest: #022b29;
+  --poppin-border:rgb(218, 177, 89);
+  --main-font:'Josefin Sans', sans-serif;
+  --lightest: var(--card-background);
+  --middle-light:var(--card-background) ;
+  --middle: var(--card-background);
+  --main-background-text:var(--card-background);
+  --header-background:var(--card-background);
+  --header-text:  var(--main-text);
+  --header-sub-text:  var(--main-text);
+  --nav-background-color:  var(--main-text);
+  --nav-hover:  var(--main-text);
+  --nav-text-color:var(--card-background);
+  --task-header-background:  var(--main-text);
+  --task-header-color:var(--card-background);
+  --task-body-background:var(--card-background);
+  --table-background:var(--card-background);
+  --table-header:var(--card-background);
+  --table-header-text:  var(--main-text);
+  --table-text-color:  var(--main-text);
+  --input-background:var(--card-background);
+  --input-color:var(--main-text);
+  --default-text:var(--main-text);
+  --chart-text:  var(--main-text);
+  --table-top:  var(--main-text);
+  --table-top-text:var(--card-background);
+  --big-button-background:  var(--main-text);
+  --big-button-text:var(--card-background);
+  --report-text:  var(--middle-dark);
+  --add-product-background:var(--card-background);
+  --add-product-text:  var(--main-text);
+  
 }
 * {
   font-family: var(--main-font)
@@ -30,13 +59,14 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--middle-light);
+  background-color: var(--main-background);
   font-family: var(--main-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   height: 100%;
   padding-bottom: 25px;
+  color:var(--default-text)
 }
 
 code {
@@ -186,7 +216,7 @@ button:hover {
 }
 
 .product-selector-cont{
-  background-color: var(--lightest);
+  background-color: var(--table-header);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,9 +236,28 @@ input[type="submit"],button{
   cursor: pointer;
 }
 
+.avatar-cont{
+  border: 3px solid var(--darkest);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--middle);
+  box-shadow: 1px 1px 3px var(--darkest);
+  display: flex;
+  align-items: center;;
+  justify-content: center;
+}
 
+#avatar-image, .avatar-image{
+  height: 55px;
+  width: 55px;
+  /* border-radius: 50%; */
+}
 
-
+thead{
+  background: var(--table-header);
+  color:var(--table-header-text)
+}
 
 @keyframes blinker {
   50% {
