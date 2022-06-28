@@ -6,6 +6,7 @@ import "./charts.css";
 import { GET_MONTH_TO_MONTH } from "../../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { calculateAdditionalPropertiesForMonth } from "../../../utils/remodeledData"
+import Chartist from "chartist"
 
 export const MonthBar = ({enterpriseId,productId,property})=>{
 
@@ -61,20 +62,18 @@ export const MonthBar = ({enterpriseId,productId,property})=>{
                 x: 0,
                 y: 0
               },
+            scaleMinSpace:50,
+            scaleMaxSpace:50,
+            },
         }
-    }
 
-    // const options = {
-    //     high: data.series[0].reduce((a,b)=>{
-    //         return a>b?a:b
-    // },0)*1.2,
-    //     width:"100vw"
-    // }
+
 
     return (
-        <>
-            <ChartistGraph data={data} options={options} type="Bar"/>
-        </>
+        <div>
+            <ChartistGraph data={data} options={options} type="Bar"         
+            />
+        </div>
     )
 
 }
