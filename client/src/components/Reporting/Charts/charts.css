@@ -124,3 +124,36 @@
 .pie .ct-series:nth-child(6){
     fill:var(--sixth-bar-stroke)
 }
+
+/* foreignObject[x="10"]{
+    
+    transform: translateY(10%);
+} */
+
+foreignObject{
+    transform: translateY(5%);
+}
+
+
+foreignObject[height="20"]{
+    transform: translateY(0%);
+}
+
+foreignObject[height="80"]{
+    transform: translateY(10%);
+}
+
+foreignObject[height="50"]{
+    transform: translateY(4%);
+}
+
+
+foreignObject:last-child{
+    transform: translateY(-0%);
+}
+
+foreignObject>span{
+    height: initial !important;
+    width: fit-content !important;
+    background-color:rgb(238, 231, 245) ;
+}

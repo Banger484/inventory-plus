@@ -52,7 +52,7 @@ return(
 
       
             <select value={productId} onChange={handleProductChange}>
-                {/* <option value={null}>Pick a Product</option> */}
+                {!productId?<option value={null}>Pick a Product</option>:null}
                 {products.map(p=>{
                     return(
                         <option value={p._id}>{p.name}</option>
@@ -63,15 +63,15 @@ return(
         }
         </div>
         {!chart?<div>Pick a chart</div>:null}
-        {chart==="salesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberSold"]}/>:null}
-        {chart==="purchasesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberPurchased"]}/>:null}
-        {chart==="activityByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberPurchased","numberSold"]}/>:null}
-        {chart==="costByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost"]}/>:null}
-        {chart==="totalSales"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalIncome"]}/>:null}
-        {chart==="netSalesIncome"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost","totalIncome","netSalesIncome"]}/>:null}
-        {chart==="currentStocksPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
-        {chart==="pastSalesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
-        {chart==="pastPurchasesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {productId && chart==="salesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberSold"]}/>:null}
+        {productId && chart==="purchasesByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberPurchased"]}/>:null}
+        {productId && chart==="activityByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["numberPurchased","numberSold"]}/>:null}
+        {productId && chart==="costByMonth"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost"]}/>:null}
+        {productId && chart==="totalSales"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalIncome"]}/>:null}
+        {productId && chart==="netSalesIncome"?<MonthBar enterpriseId={enterpriseId} productId={productId} property={["totalCost","totalIncome","netSalesIncome"]}/>:null}
+        {productId && chart==="currentStocksPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {productId && chart==="pastSalesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
+        {productId && chart==="pastPurchasesPie"?<StockPie productId={productId} queryType={queryType} setProperty={setProperty} name="product" number={"quantity"} enterpriseId={enterpriseId}/>:null}
         {productId && chart==="pastSuppliersPie"?<StockPie property={"product"} productId={productId} queryType={queryType} setProperty={setProperty} name={"supplier"} number={"quantity"} enterpriseId={enterpriseId}/>:null}
         {productId && chart==="pastBuyersPie"?<StockPie property={"product"} productId={productId} queryType={queryType} setProperty={setProperty} name={"buyer"} number={"quantity"} enterpriseId={enterpriseId}/>:null}
 

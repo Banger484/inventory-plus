@@ -61,20 +61,31 @@ export const MonthBar = ({enterpriseId,productId,property})=>{
                 x: 0,
                 y: 0
               },
+            scaleMinSpace:50,
+            scaleMaxSpace:50,
+            },
         }
-    }
 
-    // const options = {
-    //     high: data.series[0].reduce((a,b)=>{
-    //         return a>b?a:b
-    // },0)*1.2,
-    //     width:"100vw"
-    // }
+
 
     return (
-        <>
-            <ChartistGraph data={data} options={options} type="Bar"/>
-        </>
+        <div>
+            <ChartistGraph data={data} options={options} type="Bar"
+            listener={{"draw" : function(data) {
+                if(data.type === 'line' || data.type === 'area') {
+                  data.element.animate({
+                    d: {
+                      begin: 2000 * data.index,
+                      dur: 2000,
+                      from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                      to: data.path.clone().stringify(),
+                      easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                  });
+                } } }}
+            
+            />
+        </div>
     )
 
 }
