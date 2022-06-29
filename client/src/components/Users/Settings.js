@@ -42,7 +42,7 @@ const handleRenderDropBox = ()=>{
                 {avatar?(<>
                 <div>
 
-                <img className="avatar-image-settings" src={"/images/"+avatar}/>
+                <img className="avatar-image-settings" src={"/images/"+avatar} alt='avatar'/>
                 </div>
                 <button className="set-avatar" onClick={handleRenderDropBox}>Set New Avatar</button>
                 </>
