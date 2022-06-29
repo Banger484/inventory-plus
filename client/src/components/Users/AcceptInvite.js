@@ -19,7 +19,7 @@ export default function AcceptInvite() {
   const path = window.location.pathname.split("/")
   const navigate = useNavigate()
   let enterprise = path[path.length - 1]
-
+  console.log(enterprise);
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -39,15 +39,18 @@ export default function AcceptInvite() {
     });
   };
 
+
   const handleFormSubmit = async (d) => {
     try {
+      const variables = { name: d.name,
+        email: d.email,
+        password: d.password,
+        enterprise: enterprise}
+      console.log(variables);
       const { data } = await addUser({
-        variables: { name: d.name,
-          email: d.email,
-          password: d.password,
-          enterprise: enterprise}
+        variables}
         
-      });
+      );
     } catch (e) {
       console.error(e);
     }
