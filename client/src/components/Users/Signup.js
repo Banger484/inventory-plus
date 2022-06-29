@@ -196,12 +196,26 @@ const Signup = () => {
                   Back to Login
                 </Link>
                 </p>
-                <div>{errors.name?.message} 
-              {errors.email?.message} 
-              {errors.password?.message} 
-              {errors.confirmPassword && "Passwords Should Match!"} 
-              {errors.enterpriseName?.message} 
-              {errors.location?.message}</div>
+                <div className='errors-cont'>
+              <p>
+                {errors.name?.message} 
+                </p>
+              <p>
+                {errors.email?.message} 
+                </p>
+              <p>
+                {errors.password?.message} 
+                </p>
+              <p>
+                {errors.confirmPassword && "Passwords Should Match!"} 
+                </p>
+              <p>
+                {errors.enterpriseName?.message} 
+                </p>
+              <p>
+                {errors.location?.message}
+                </p>
+                </div>
               </form>
             )}
 

@@ -1,7 +1,6 @@
 .success-form{
     background-color: var(--lightest);
     text-align: center;
-    transform: translateY(25vh);
     padding: 2rem;
     box-shadow: 2px 2px 3px 2px black;
 }
@@ -13,4 +12,15 @@
 .success-form a{
     color:var(--middle-dark);
     cursor:pointer
+}
+
+.errors-cont{
+    width:550px;
+    padding-top:20px
+}
+
+.errors-cont p{
+    line-height: 1.1em;
+    color: rgb(167, 49, 49);
+    margin: 4px 20px;
 }

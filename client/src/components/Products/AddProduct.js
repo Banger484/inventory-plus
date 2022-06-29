@@ -106,12 +106,14 @@ export default function AddProduct (props) {
             Something went wrong...
           </div>
         )}
-        <div>{errors.sku?.message}<br/> 
-              {errors.name?.message}<br/> 
-              {errors.description?.message}<br/> 
-              {errors.msrp?.message}<br/> 
-              {errors.category?.message}<br/> 
-              {errors.notes?.message}</div>
+        <div className='errors-cont'>
+        <p>{errors.sku?.message}</p>
+              <p>{errors.name?.message}</p>
+              <p>{errors.description?.message}</p>
+              <p>{errors.msrp?.message}</p>
+              <p>{errors.category?.message}</p>
+              <p>{errors.notes?.message}</p>
+              </div>
             </form>
         <div className='add-product-list'>
         {/* <img src="/images/305746d03021662a7f453c223d81e707"/> */}
