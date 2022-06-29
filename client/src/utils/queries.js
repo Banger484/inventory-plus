@@ -20,7 +20,7 @@ query GetAllUsers {
 `;
 
 export const QUERY_ENT_USERS=gql`
-query Query($enterpriseId: ID!) {
+query GetEnterpriseUsers($enterpriseId: ID!) {
   getEnterpriseUsers(enterpriseId: $enterpriseId) {
     _id
     name
@@ -28,6 +28,8 @@ query Query($enterpriseId: ID!) {
     password
     credentials
     role
+    disabled
+    avatar
   }
 }
 `
