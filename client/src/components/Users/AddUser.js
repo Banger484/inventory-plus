@@ -9,7 +9,7 @@ export default function AddUser () {
     const enterprise = Auth.getProfile().data.enterprise
 
     // const link = `http://localhost:3000/invite/${enterprise}`
-    const link = `https://inventoryplus.herokuapp.com/invite/${enterprise}/`
+    const link = `https://inventoryplus.herokuapp.com/invite/${enterprise}`
     
     const sendEmail = (e) => {
         e.preventDefault();
