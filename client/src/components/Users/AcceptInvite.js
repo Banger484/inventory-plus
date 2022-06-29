@@ -61,7 +61,7 @@ export default function AcceptInvite() {
       <main className="flex-row justify-center mb-4">
         <div className="col-12 col-lg-10">
           <div className="loginCard">
-            <form className="loginForm" onSubmit={handleSubmit(handleFormSubmit)}>
+            <form className="loginForm acceptForm" onSubmit={handleSubmit(handleFormSubmit)}>
               <h2>Complete Registration</h2>
               <input className="new-user-input formInput-Login" onChange={handleChange} name="name" type="text" placeholder="username" {...register("name")} />
               <input className="new-user-input formInput-Login" onChange={handleChange} name="email" type="email" placeholder="email" {...register("email")} />
