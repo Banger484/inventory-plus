@@ -142,7 +142,7 @@ export default function OrderPurchase (props) {
                 <input onChange={handleDateChange} type="date"/>
             </div>
             <div className="search-bar">
-                <input onChange={(e)=>setSearchTerm(e.target.value)}/>
+                <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
             </div>
             <table className='order-table'>
                 <thead>

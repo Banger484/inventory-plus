@@ -13,6 +13,10 @@
     background-color: var(--lightest);
     justify-content: space-between;
     width:500px;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .employee-cont h2,h3{
@@ -20,20 +24,20 @@
     padding:1rem;
     /* border:2px solid var(--darkest); */
     margin:0;
-    font-size: 0.9rem;
-}
+    font-size: 1.3rem;}
 
 
 .employee-cont button{
-
     font-size: 0.9rem;
     border:2px solid var(--darkest);
-    background-color: var(--lightest);
+    color: var(--lightest);
+    background-color: var(--darkest);
     cursor: pointer;
     height: 3rem;
+    border-radius: 5px;
 }
 
 .employee-cont button:hover{
-    background-color:  hsl(0, 0%, 80%);
+    background-color:  hsl(0, 88%, 52%);
     color: var(--darkest);
 }

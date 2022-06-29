@@ -15,3 +15,18 @@
 .big-center-flex h1{
     color: whitesmoke;
 }
+
+.date-picker{
+    display: flex;
+
+}
+
+.infobar{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.infobar > div{
+    margin: 5px;
+}
