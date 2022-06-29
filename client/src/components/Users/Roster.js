@@ -35,7 +35,7 @@ export default function Roster({ roster, rosterRefetch, enterprise }) {
           </div>
 
             {userList.map((u,i)=>{
-                return(<div className='employee-cont' key={i}><h3>{u.name}</h3><h3>{u.email}</h3><button onClick={()=>handleRemoveUser(u._id)}>Remove</button></div>)
+                return(<div className='employee-cont' key={i}><img className="roster-avatar" src={`/images/${u.avatar}`} alt="avatar"/><h3>{u.name}</h3><h3>{u.email}</h3><button onClick={()=>handleRemoveUser(u._id)}>Remove</button></div>)
             })}
         </div>
     )

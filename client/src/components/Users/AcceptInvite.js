@@ -19,7 +19,7 @@ export default function AcceptInvite() {
   const path = window.location.pathname.split("/")
   const navigate = useNavigate()
   let enterprise = path[path.length - 1]
-
+  console.log(enterprise);
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -39,15 +39,18 @@ export default function AcceptInvite() {
     });
   };
 
+
   const handleFormSubmit = async (d) => {
     try {
+      const variables = { name: d.name,
+        email: d.email,
+        password: d.password,
+        enterprise: enterprise}
+      console.log(variables);
       const { data } = await addUser({
-        variables: { name: d.name,
-          email: d.email,
-          password: d.password,
-          enterprise: enterprise}
+        variables}
         
-      });
+      );
     } catch (e) {
       console.error(e);
     }
@@ -58,7 +61,7 @@ export default function AcceptInvite() {
       <main className="flex-row justify-center mb-4">
         <div className="col-12 col-lg-10">
           <div className="loginCard">
-            <form className="loginForm" onSubmit={handleSubmit(handleFormSubmit)}>
+            <form className="loginForm acceptForm" onSubmit={handleSubmit(handleFormSubmit)}>
               <h2>Complete Registration</h2>
               <input className="new-user-input formInput-Login" onChange={handleChange} name="name" type="text" placeholder="username" {...register("name")} />
               <input className="new-user-input formInput-Login" onChange={handleChange} name="email" type="email" placeholder="email" {...register("email")} />

@@ -15,7 +15,7 @@ header {
     height:80px;
 }
 
-.avatar-image {
+.avatar-image, .header-avatar > img {
     height: 60px;
     width: 60px;
     border-radius: 50%;
