@@ -83,13 +83,13 @@ code {
 }
 
 .loginCard, .signupCard {
-  margin-top: 10%;
   display: flex;
   justify-content: center;
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
-
+  transform: translate(-50%,-50%);
+  align-items: center;
 }
 
 #loginHeader, #signupHeader {
@@ -248,6 +248,14 @@ input[type="submit"],button{
 thead{
   background: var(--table-header);
   color:var(--table-header-text)
+}
+
+.search-bar{
+  padding: 10px;
+}
+
+.infobar input{
+  margin:4px;
 }
 
 @keyframes blinker {

@@ -56,12 +56,12 @@ export default function OrderFulfillment({ enterpriseId }) {
             <h1>Fulfill Sale</h1>
             </div>
             <div className="infobar">
-            <div className="date-picker"></div>
+
             <input onChange={handleDateChange} type="date"/>
             
-            <div className="search-bar">
-                <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
-            </div>
+
+            <input placeholder="Search..." onChange={(e)=>setSearchTerm(e.target.value)}/>
+
             </div>
             {openSaleItemsLoading
                 ? <h2>Loading</h2>
